@@ -18,7 +18,11 @@ public class World extends GameState
 	@Override
 	public void init()
 	{
-		 
+		 this.player = new Player();
+		 for(int i = 0; i < this.rooms.length; i++)
+		 {
+			 this.rooms[i] = new Room();
+		 }
 		
 	}
 
