@@ -9,22 +9,52 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener
-{
+{	
+	
     private static final long serialVersionUID = 1L;
+    
+    /**
+     * Get the size of the Screen.
+     */
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    
+    /**
+     * Set the Width at screenSize (1280)
+     */
     public static final int WIDTH = screenSize.width ;		//1280
+    
+    /**
+     * Set the Height at screenSize (720)
+     */
     public static final int HEIGHT = screenSize.height;		//720
     @SuppressWarnings("unused")
 	private Thread thread;
+    
+    /**
+     * Boolean for say if the game is Running
+     */
     private boolean isRunning;
+    
+    /**
+     * The FramePerSecond of the player.
+     */
     private int FPS;
-    private long targetTime;
+    
+    /**
+     * The travel time of your player 
+     */
+    private long travelTime;
     private GameStateManager gsm;
     
+    
+    /**
+     * Constructor of the Panel.
+     * Set not running the game, FPS at 60, the travelTime (1000 / the FPS), set the Size we prefer with new Dimensions, start the game
+     */
     public GamePanel() {
         this.isRunning = false;
         this.FPS = 60;
-        this.targetTime = 1000 / this.FPS;
+        this.travelTime = 1000 / this.FPS;
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.addKeyListener(this);
         this.setFocusable(true);
@@ -58,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
             this.tick();
             this.repaint();
             final long elapsed = System.nanoTime() - start;
-            long wait = this.targetTime - elapsed / 1000000L;
+            long wait = this.travelTime - elapsed / 1000000L;
             if (wait <= 0L) {
                 wait = 5L;
             }
