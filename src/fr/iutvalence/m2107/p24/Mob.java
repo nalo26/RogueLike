@@ -39,7 +39,7 @@ public class Mob {
 	
 	
 /**
- * Constructor of the mob
+ * Constructor of the mob, set the health, the damage, the position, and the type.
  * @param theType of the mob
  */
 	public Mob(MobType theType) {
