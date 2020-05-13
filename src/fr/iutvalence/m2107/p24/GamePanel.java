@@ -49,7 +49,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     
     /**
      * Constructor of the Panel.
-     * Set not running the game, FPS at 60, the travelTime (1000 / the FPS), set the Size we prefer with new Dimensions, start the game
+     * Set not running the game, FPS at 60, the travelTime (1000 / the FPS), set the Size we prefer with new Dimensions, 
+     * get the key we pressed, set the clickable part of the window, start the game
      */
     public GamePanel() {
         this.isRunning = false;
@@ -61,6 +62,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         this.start();
     }
     
+    /**
+     * When the game Start, set that the game is running.
+     */
     private void start() {
         this.isRunning = true;
         (this.thread = new Thread(this)).start();
