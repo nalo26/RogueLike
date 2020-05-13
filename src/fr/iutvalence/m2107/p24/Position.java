@@ -1,5 +1,7 @@
 package fr.iutvalence.m2107.p24;
 
+import java.util.Random;
+
 public class Position {
 
 	/**
@@ -34,6 +36,13 @@ public class Position {
 	 */
 	public int getY() {
 		return this.y;
+	}
+
+	public static Position randomPosition() {
+		Random random = new Random();
+		int width = GamePanel.WIDTH;
+		int height = GamePanel.HEIGHT;
+		return new Position(random.nextInt(width) - width/2, random.nextInt(height) - height/2);
 	}
 	
 }

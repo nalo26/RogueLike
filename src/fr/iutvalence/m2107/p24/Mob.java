@@ -13,11 +13,6 @@ public class Mob {
 	public static final int DEFAULT_DAMAGE = 2;
 	
 	/**
-	 * the default position of the mob
-	 */
-	public static final Position DEFAULT_POSITON = new Position(0, 0); // TODO random Position in the room
-	
-	/**
 	 * the health of the mob
 	 */
 	private float health;
@@ -45,7 +40,7 @@ public class Mob {
 	public Mob(MobType theType) {
 		this.health = DEFAULT_HEALTH;
 		this.damage = DEFAULT_DAMAGE;
-		this.position = DEFAULT_POSITON;
+		this.position = Position.randomPosition();
 		this.type = theType;
 	}
 	

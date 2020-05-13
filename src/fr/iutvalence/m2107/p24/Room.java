@@ -2,31 +2,28 @@ package fr.iutvalence.m2107.p24;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Room {
-	
-	/**
-	 * Default size of the room.
-	 */
-	public static final int DEFAULT_SIZE = 20;
 	
 	/**
 	 * List of all mobs in this room.
 	 */
 	private List<Mob> mobs = new ArrayList<Mob>();
 	
-	/**
-	 * The Board of the game.
-	 * we make a two-dimensional table because we've got a height and a width so 2 dimension.
-	 * TTT board upper-left corner is at [0][0], TTT board lower-left corner is at [DEFAULT_SIZE][DEFAULT_SIZE].
-	 */
-	private int[][] roomBoard = new int[DEFAULT_SIZE][DEFAULT_SIZE];
+	public static final int MAX_MOBS = 10;
+	
 	
 	/**
 	 * Constructor of your Room.
 	 */
 	public Room() {
+		Random random = new Random();
+		int mobAmount = random.nextInt(MAX_MOBS);
 		
+		for(int i = 0; i < mobAmount; i ++) {
+			this.mobs.add(new Mob(MobType.randomMobType()));
+		}
 	}
 
 	/**
@@ -34,14 +31,6 @@ public class Room {
 	 */
 	public List<Mob> getMobs() {
 		return this.mobs;
-	}
-	
-	/**
-	 * 
-	 * @return the board of your game (Getter)
-	 */
-	public int[][] getBoard() {
-		return this.roomBoard;
 	}
 	
 }

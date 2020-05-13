@@ -2,20 +2,13 @@ package fr.iutvalence.m2107.p24;
 
 import java.awt.Graphics;
 
-public class World extends GameState
-{
+public class World extends GameState {
 
 	/**
-	 * Rooms of the World. We make a one-dimensional table because the world have
+	 * Rooms of the World. We make a two-dimensional table because the world have
 	 * many Rooms.
 	 */
 	public Room[][] rooms;
-
-	/**
-	 * Mobs of the World. We make a one-dimensional table because the world have
-	 * many Mobs.
-	 */
-	public Mob[] mobs;
 
 	/**
 	 * The Player in the World.
@@ -27,8 +20,7 @@ public class World extends GameState
 	 * 
 	 * @param gsm State of the game.
 	 */
-	public World(GameStateManager gsm)
-	{
+	public World(GameStateManager gsm) {
 		super(gsm);
 
 	}
@@ -38,13 +30,10 @@ public class World extends GameState
 	 * Initialization of your game. We set the player and then we create all the
 	 * rooms.
 	 */
-	public void init()
-	{
+	public void init() {
 		this.player = new Player();
-		for (int i = 0; i < this.rooms.length; i++)
-		{
-			for (int j = 0; j < this.rooms.length; j++)
-			{
+		for (int i = 0; i < this.rooms.length; i++) {
+			for (int j = 0; j < this.rooms[i].length; j++) {
 				this.rooms[i][j] = new Room();
 			}
 		}
@@ -52,26 +41,22 @@ public class World extends GameState
 	}
 
 	@Override
-	public void tick()
-	{
+	public void tick() {
 
 	}
 
 	@Override
-	public void draw(Graphics p0)
-	{
+	public void draw(Graphics p0) {
 
 	}
 
 	@Override
-	public void keyPressed(int p0)
-	{
+	public void keyPressed(int p0) {
 
 	}
 
 	@Override
-	public void keyReleased(int p0)
-	{
+	public void keyReleased(int p0) {
 
 	}
 
