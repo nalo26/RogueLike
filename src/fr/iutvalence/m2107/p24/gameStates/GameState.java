@@ -1,4 +1,4 @@
-package fr.iutvalence.m2107.p24;
+package fr.iutvalence.m2107.p24.gameStates;
 
 import java.awt.Graphics;
 

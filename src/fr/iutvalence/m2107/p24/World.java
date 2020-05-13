@@ -2,6 +2,9 @@ package fr.iutvalence.m2107.p24;
 
 import java.awt.Graphics;
 
+import fr.iutvalence.m2107.p24.gameStates.GameState;
+import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
+
 public class World extends GameState {
 
 	/**

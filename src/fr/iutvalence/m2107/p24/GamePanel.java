@@ -8,6 +8,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
+
 public class GamePanel extends JPanel implements Runnable, KeyListener
 {	
 	
