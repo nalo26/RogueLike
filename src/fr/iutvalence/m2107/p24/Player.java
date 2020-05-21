@@ -59,6 +59,7 @@ public class Player {
 	
 	public void draw(Graphics g) {
 		g.drawImage(Images.player[0], this.position.getX(), this.position.getY(), null);
+		
 	}
 	
 	public void keyPressed(int k) {
