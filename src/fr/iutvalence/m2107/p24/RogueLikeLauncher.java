@@ -9,7 +9,7 @@ public class RogueLikeLauncher {
 
     public static void main(final String[] args) {
         final GamePanel g = new GamePanel();
-        final JFrame frame = new JFrame("Platformer");
+        final JFrame frame = new JFrame("RogueLike");
         frame.setDefaultCloseOperation(3);
         frame.setResizable(true);
         frame.setLayout(new BorderLayout());

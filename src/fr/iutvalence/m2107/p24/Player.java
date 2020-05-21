@@ -1,5 +1,9 @@
 package fr.iutvalence.m2107.p24;
 
+import java.awt.Graphics;
+
+import fr.iutvalence.m2107.p24.ressources.Images;
+
 public class Player {
 
 	/** The default life of the player. */
@@ -26,13 +30,45 @@ public class Player {
 	/** The position of the player. */
 	private Position position;
 	
-	/** Constructor of Player, set the health, the damage, and the position. */
+	private boolean up;
+	private boolean right;
+	private boolean down;
+	private boolean left;
+	
+	/** Create a new player. */
 	public Player() {
 		this.health = DEFAULT_HEALTH;
 		this.damage = DEFAULT_DAMAGE;
 		this.position = DEFAULT_POSITON;
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
+	}
+	
+	public void tick() {
+		if (this.right == true) {
+			this.direction = Direction.RIGHT;
+			this.watchingAt = Direction.RIGHT;
+			this.position.move(1, 0);
+		}
+		else if (this.left == true) {
+			this.direction = Direction.LEFT;
+			this.watchingAt = Direction.LEFT;
+			this.position.move(-1, 0);
+		}
+	}
+	
+	public void draw(Graphics g) {
+		g.drawImage(Images.player[0], this.position.getX(), this.position.getY(), null);
+	}
+	
+	public void keyPressed(int k) {
+		if (k == 68 || k == 39) this.right = true;
+		if (k == 81 || k == 37) this.left = true;
+	}
+	
+	public void keyReleased(int k) {
+		if (k == 68 || k == 39) this.right = false;
+		if (k == 81 || k == 37) this.left = false;
 	}
 	
 	/**
@@ -74,6 +110,5 @@ public class Player {
 	public Direction getWatching() {
 		return this.watchingAt;
 	}
-
 
 }

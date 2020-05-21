@@ -20,12 +20,10 @@ public class World extends GameState {
 
 	/**
 	 * Constructor of the World.
-	 * 
 	 * @param gsm State of the game.
 	 */
 	public World(GameStateManager gsm) {
 		super(gsm);
-
 	}
 
 	@Override
@@ -35,6 +33,7 @@ public class World extends GameState {
 	 */
 	public void init() {
 		this.player = new Player();
+		this.rooms = new Room[1][1];
 		for (int i = 0; i < this.rooms.length; i++) {
 			for (int j = 0; j < this.rooms[i].length; j++) {
 				this.rooms[i][j] = new Room();
@@ -45,22 +44,22 @@ public class World extends GameState {
 
 	@Override
 	public void tick() {
-
+		this.player.tick();
 	}
 
 	@Override
-	public void draw(Graphics p0) {
-
+	public void draw(Graphics g) {
+		this.player.draw(g);
 	}
 
 	@Override
-	public void keyPressed(int p0) {
-
+	public void keyPressed(int k) {
+		this.player.keyPressed(k);
 	}
 
 	@Override
-	public void keyReleased(int p0) {
-
+	public void keyReleased(int k) {
+		this.player.keyReleased(k);
 	}
 
 }

@@ -4,10 +4,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
 
+import fr.iutvalence.m2107.p24.World;
+
 public class MenuState extends GameState implements ImageObserver {
 
     public MenuState(final GameStateManager gsm) {
         super(gsm);
+        this.gsm1.getState().push(new World(this.gsm1));
     }
     
     @Override

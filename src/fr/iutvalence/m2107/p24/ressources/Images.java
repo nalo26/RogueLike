@@ -12,7 +12,7 @@ public class Images {
         Images.player = new BufferedImage[1];
         
         try {
-            Images.player[0] = ImageIO.read(this.getClass().getResourceAsStream("/player_right.png"));
+            Images.player[0] = ImageIO.read(this.getClass().getResourceAsStream("img/player_right.png"));
             // TODO: more images to come later..
             
         } catch (IOException e) {

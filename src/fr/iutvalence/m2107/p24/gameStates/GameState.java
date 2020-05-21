@@ -2,8 +2,8 @@ package fr.iutvalence.m2107.p24.gameStates;
 
 import java.awt.Graphics;
 
-public abstract class GameState
-{
+public abstract class GameState {
+	
     protected GameStateManager gsm1;
     public static double xOffset;
     public static double yOffset;

@@ -5,10 +5,10 @@ import java.util.Random;
 public class Position {
 
 	/** The x position in the screen. */
-	private final int x;
+	private int x;
 	
 	/** The y position in the screen. */
-	private final int y;	
+	private int y;	
 	
 	/**
 	 * Constructor of Position, set X and Y position.
@@ -18,6 +18,16 @@ public class Position {
 	public Position(int theX, int theY) {
 		this.x = theX;
 		this.y = theY;
+	}
+	
+	/**
+	 * Add the parameters to the current position.
+	 * @param x the X to add.
+	 * @param y the Y to add.
+	 */
+	public void move(int x, int y) {
+		this.x += x;
+		this.y += y;
 	}
 	
 	/**
