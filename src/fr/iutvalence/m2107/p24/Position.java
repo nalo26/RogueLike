@@ -4,14 +4,10 @@ import java.util.Random;
 
 public class Position {
 
-	/**
-	 * The x position in the map
-	 */
+	/** The x position in the screen. */
 	private final int x;
 	
-	/**
-	 * The y position in the map
-	 */
+	/** The y position in the screen. */
 	private final int y;	
 	
 	/**
@@ -25,19 +21,25 @@ public class Position {
 	}
 	
 	/**
-	 * @return X position (Getter)
+	 * Get the x value of the position.
+	 * @return X position (Getter).
 	 */
 	public int getX() {
 		return  this.x;
 	}
 	
 	/**
-	 * @return Y position (Getter)
+	 * Get the y value of the position.
+	 * @return Y position (Getter).
 	 */
 	public int getY() {
 		return this.y;
 	}
 
+	/**
+	 * Randomly choose a position (random X & Y).
+	 * @return a new random position on the screen.
+	 */
 	public static Position randomPosition() {
 		Random random = new Random();
 		int width = GamePanel.WIDTH;
