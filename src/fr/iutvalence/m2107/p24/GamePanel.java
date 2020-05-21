@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
+import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener
 {	
@@ -62,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.addKeyListener(this);
         this.setFocusable(true);
+        new Images();
         this.start();
     }
     
