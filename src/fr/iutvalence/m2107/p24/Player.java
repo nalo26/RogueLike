@@ -53,10 +53,10 @@ public class Player {
 	
 	public void draw(Graphics g) {
 		if (this.watchingAt == Direction.RIGHT) {
-			g.drawImage(Images.playerRight.getImage(), this.position.getX(), this.position.getY(), null);
+			g.drawImage(Images.PLAYER_RIGHT.getImage(), this.position.getX(), this.position.getY(), null);
 		}
 		if (this.watchingAt == Direction.LEFT) {
-			g.drawImage(Images.playerLeft.getImage(), this.position.getX(), this.position.getY(), null);
+			g.drawImage(Images.PLAYER_LEFT.getImage(), this.position.getX(), this.position.getY(), null);
 		}
 	}
 	
