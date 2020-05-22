@@ -1,5 +1,6 @@
 package fr.iutvalence.m2107.p24;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import fr.iutvalence.m2107.p24.gameStates.GameState;
@@ -50,7 +51,9 @@ public class World extends GameState {
 
 	@Override
 	public void draw(Graphics g) {
-		g.drawImage(Images.room0.getImage(), 0, 0, null);
+		g.setColor(new Color(0, 0, 0));
+        g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+		g.drawImage(Images.room14.getImage(), (int)GamePanel.WIDTH/2-GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT, GamePanel.HEIGHT, null);
 		this.player.draw(g);
 	}
 

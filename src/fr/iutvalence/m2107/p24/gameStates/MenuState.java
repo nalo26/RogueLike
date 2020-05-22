@@ -30,7 +30,7 @@ public class MenuState extends GameState implements ImageObserver {
     
     @Override
     public void draw(final Graphics g) {
-    	 g.setColor(new Color(255, 0, 102));
+    	 g.setColor(new Color(0, 0, 0));
          g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
          for (int i = 0; i < this.options.length; ++i) {
              if (i == this.SelectedOption) {

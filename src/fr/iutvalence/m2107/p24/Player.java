@@ -13,7 +13,7 @@ public class Player {
 	public static final int DEFAULT_DAMAGE = 2;
 	
 	/** The default position of the player. */
-	public static final Position DEFAULT_POSITON = new Position(0, 0);
+	public static final Position DEFAULT_POSITON = new Position(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
 	
 	/** The direction of the player. */
 	private Direction direction;
@@ -45,28 +45,45 @@ public class Player {
 	}
 	
 	public void tick() {
-		if (this.right == true) {
-			this.direction = Direction.RIGHT;
-			this.watchingAt = Direction.RIGHT;
-			this.position.move(1, 0);
-		}
-		else if (this.left == true) {
-			this.direction = Direction.LEFT;
-			this.watchingAt = Direction.LEFT;
-			this.position.move(-1, 0);
-		}
+		if (this.right) this.position.move(3, 0);
+		if (this.left) this.position.move(-3, 0);
+		if (this.up) this.position.move(0, -3);
+		if (this.down) this.position.move(0, 3);
 	}
 	
 	public void draw(Graphics g) {
-		g.drawImage(Images.playerRight.getImage(), this.position.getX(), this.position.getY(), null);
+		if (this.watchingAt == Direction.RIGHT) {
+			g.drawImage(Images.playerRight.getImage(), this.position.getX(), this.position.getY(), null);
+		}
+		if (this.watchingAt == Direction.LEFT) {
+			g.drawImage(Images.playerLeft.getImage(), this.position.getX(), this.position.getY(), null);
+		}
 	}
 	
 	public void keyPressed(int k) {
-		if (k == 68 || k == 39) this.right = true;
-		if (k == 81 || k == 37) this.left = true;
+		if (k == 90 || k == 38) {
+			this.up = true;
+			this.direction = Direction.UP;
+		}
+		if (k == 83 || k == 40) {
+			this.down = true;
+			this.direction = Direction.DOWN;
+		}
+		if (k == 68 || k == 39) {
+			this.right = true;
+			this.direction = Direction.RIGHT;
+			this.watchingAt = Direction.RIGHT;
+		}
+		if (k == 81 || k == 37) {
+			this.left = true;
+			this.direction = Direction.LEFT;
+			this.watchingAt = Direction.LEFT;
+		}
 	}
 	
 	public void keyReleased(int k) {
+		if (k == 90 || k == 38) this.up = false;
+		if (k == 83 || k == 40) this.down = false;
 		if (k == 68 || k == 39) this.right = false;
 		if (k == 81 || k == 37) this.left = false;
 	}

@@ -16,38 +16,29 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	
     private static final long serialVersionUID = 1L;
     
-    /**
-     * Get the size of the Screen.
-     */
+    /** Get the size of the Screen. */
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     
-    /**
-     * Set the Width at screenSize
-     */
-    public static final int WIDTH = screenSize.width ;
+    /** Set the Width at screenSize. */
+    //public static final int WIDTH = screenSize.width;
+    public static final int WIDTH = 1280;
     
-    /**
-     * Set the Height at screenSize
-     */
-    public static final int HEIGHT = screenSize.height;
+    /** Set the Height at screenSize. */
+    //public static final int HEIGHT = screenSize.height;
+    public static final int HEIGHT = 720;
     
     @SuppressWarnings("unused")
 	private Thread thread;
     
-    /**
-     * Boolean for say if the game is Running
-     */
+    /** Boolean for say if the game is running. */
     private boolean isRunning;
     
-    /**
-     * The FramePerSecond of the player.
-     */
+    /** The FramePerSecond of the player. */
     private int FPS;
     
-    /**
-     * The travel time of your player 
-     */
+    /** The travel time of your player  */
     private long travelTime;
+    
     private GameStateManager gsm;
     
     
@@ -63,7 +54,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.addKeyListener(this);
         this.setFocusable(true);
-        //new Images();
         this.start();
     }
     
@@ -75,16 +65,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         (this.thread = new Thread(this)).start();
     }
     
+    /** Triggered when a key is pressed. */
     @Override
     public void keyPressed(final KeyEvent e) {
         this.gsm.keyPressed(e.getKeyCode());
     }
     
+    /** Triggered when a key is released. */
     @Override
     public void keyReleased(final KeyEvent e) {
         this.gsm.keyReleased(e.getKeyCode());
     }
     
+    /** Triggered when a key is typed. */
     @Override
     public void keyTyped(final KeyEvent e) {
     }

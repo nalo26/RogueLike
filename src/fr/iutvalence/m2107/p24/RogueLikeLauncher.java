@@ -17,7 +17,8 @@ public class RogueLikeLauncher {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+        //frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+        frame.setExtendedState(Frame.NORMAL);
     }
 
 }
