@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import fr.iutvalence.m2107.p24.gameStates.GameState;
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
+import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class World extends GameState {
 
@@ -49,6 +50,7 @@ public class World extends GameState {
 
 	@Override
 	public void draw(Graphics g) {
+		g.drawImage(Images.room0.getImage(), 0, 0, null);
 		this.player.draw(g);
 	}
 
