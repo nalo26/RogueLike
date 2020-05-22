@@ -1,5 +1,9 @@
 package fr.iutvalence.m2107.p24;
 
+import java.awt.Graphics;
+
+import fr.iutvalence.m2107.p24.ressources.Images;
+
 public class Mob {
 	
 	/** The default life of the mob. */
@@ -31,11 +35,23 @@ public class Mob {
 	public Mob(MobType theType) {
 		this.health = DEFAULT_HEALTH;
 		this.damage = DEFAULT_DAMAGE;
-		this.position = Position.randomPosition();
+		this.position = Position.randomPosition(GamePanel.WIDTH/2-GamePanel.HEIGHT/2, GamePanel.WIDTH/2+GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT);
 		this.type = theType;
 		this.watchingAt = Direction.RIGHT;
 	}
-	
+
+
+	public void draw(Graphics g) {
+		if (this.type == MobType.SLIME) {
+			g.drawImage(Images.SLIME_GREEN_DOWN.getImage(), this.position.getX(), this.position.getY(), null);
+		}
+		if (this.type == MobType.ZOMBIE) {
+			g.drawImage(Images.ZOMBIE_STAY_RIGHT.getImage(), this.position.getX(), this.position.getY(), null);
+		}
+		if (this.type == MobType.SKELETON) {
+			g.drawImage(Images.SKELETON_STAY_RIGHT.getImage(), this.position.getX(), this.position.getY(), null);
+		}
+	}
 	
 	/**
 	 * Get the health (life) of the mob.

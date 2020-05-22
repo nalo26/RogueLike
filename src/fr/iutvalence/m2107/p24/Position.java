@@ -47,14 +47,18 @@ public class Position {
 	}
 
 	/**
-	 * Randomly choose a position (random X & Y).
+	 * Randomly choose a position :
+	 * (X between <tt>minX</tt> and <tt>maxX</tt>),
+	 * (Y between <tt>minY</tt> and <tt>maxY</tt>),
+	 * @param minX the minimum X value.
+	 * @param maxX the maximum X value.
+	 * @param minY the minimum Y value.
+	 * @param maxY the maximum Y value.
 	 * @return a new random position on the screen.
 	 */
-	public static Position randomPosition() {
+	public static Position randomPosition(int minX, int maxX, int minY, int maxY) {
 		Random random = new Random();
-		int width = GamePanel.WIDTH;
-		int height = GamePanel.HEIGHT;
-		return new Position(random.nextInt(width) - width/2, random.nextInt(height) - height/2);
+		return new Position(random.nextInt(maxX - minX) + minX, random.nextInt(maxY - minY) + minY);
 	}
 	
 	@Override
