@@ -84,7 +84,7 @@ public class Room {
 	}
 
 	public void draw(Graphics g) {
-		g.drawImage(this.image, (int)GamePanel.WIDTH/2-GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT, GamePanel.HEIGHT, null);
+		g.drawImage(this.image, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		for(Mob m : this.mobs) {
 			m.draw(g);
 		}

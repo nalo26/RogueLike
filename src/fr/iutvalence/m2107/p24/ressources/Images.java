@@ -53,7 +53,7 @@ public enum Images {
 	ROOM12("room_1100.jpg"),
 	ROOM13("room_1101.jpg"),
 	ROOM14("room_1110.jpg"),
-	ROOM15("room_1111.jpg");
+	ROOM15("room_1111.png");
 
 	private final BufferedImage image;
 	
