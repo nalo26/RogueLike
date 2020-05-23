@@ -63,6 +63,12 @@ public class Room {
 		return res;
 	}
 
+	public void tick() {
+		for(Mob m : this.mobs) {
+			m.tick();
+		}
+	}
+
 	public void draw(Graphics g) {
 		g.drawImage(this.image, (int)GamePanel.WIDTH/2-GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT, GamePanel.HEIGHT, null);
 		for(Mob m : this.mobs) {

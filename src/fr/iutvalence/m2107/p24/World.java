@@ -38,6 +38,8 @@ public class World extends GameState {
 	@Override
 	public void tick() {
 		this.player.tick();
+        //this.getRoom(...).draw(g); //TODO current room
+		this.rooms.get(0).tick();
 	}
 
 	@Override
