@@ -2,6 +2,7 @@ package fr.iutvalence.m2107.p24;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +55,8 @@ public class World extends GameState {
 	@Override
 	public void keyPressed(int k) {
 		this.player.keyPressed(k);
+		if(k== KeyEvent.VK_ESCAPE) this.gsm1.getState().push(new PauseState(this.gsm1));
+		
 	}
 
 	@Override
