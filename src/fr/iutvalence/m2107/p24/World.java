@@ -42,6 +42,7 @@ public class World extends GameState {
 		this.player.tick();
         //this.getRoom(...).draw(g); //TODO current room
 		this.rooms.get(0).tick();
+		if (this.player.getHealth() == 0.0) this.gsm1.getState().push(new DeathState(this.gsm1));
 	}
 
 	@Override

@@ -57,6 +57,7 @@ public class Player {
 		if (this.left) this.position.move(-3, 0);
 		if (this.up) this.position.move(0, -3);
 		if (this.down) this.position.move(0, 3);
+		
 	}
 	
 	public void draw(Graphics g) {
