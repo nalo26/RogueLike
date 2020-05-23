@@ -11,6 +11,10 @@ public enum Direction {
 	DOWN,
 	LEFT;
 
+	/**
+	 * Pick up a random direction.
+	 * @return a random direction.
+	 */
 	public static Direction randomDirection() {
 		Direction[] allDirections = Direction.values();
 		Random random = new Random();

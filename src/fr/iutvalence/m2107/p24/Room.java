@@ -23,9 +23,9 @@ public class Room {
 	
 	
 	/**
-	 * Constructor of your Room.
+	 * Constructor of a Room.
 	 * @param pos the position of the room in the map.
-	 * @param config the configuration of doors of the room (i.e. 0110).
+	 * @param config the configuration of doors of the room (i.e. {false, true, true, false}).
 	 * @param bin the binary configuration of doors.
 	 */
 	public Room(Position pos, boolean[] config, String bin) {
@@ -44,14 +44,28 @@ public class Room {
 		}
 	}
 	
+	/**
+	 * Create a new room, with the configuration as String. 
+	 * @param pos the position of the room in the map.
+	 * @param config the String configuration of doors of the room (i.e. "0110").
+	 */
 	public Room(Position pos, String config) {
 		this(pos, (boolean[])Room.computeDoors(config), config);
 	}
-
+	
+	/** 
+	 * Create a new room, without configuration, to be a random one. 
+	 * @param pos the position of the room in the map.
+	 */
 	public Room(Position pos) {
 		this(pos, (boolean[])null, (String)null);
 	}
 	
+	/**
+	 * Compute the string configuration to convert it in a boolean array.
+	 * @param config the String configuration of doors (i.e. "0110").
+	 * @return a boolean array of door values (i.e. {false, true, true, false}).
+	 */
 	private static boolean[] computeDoors(String config) {
 		if(config.length() != 4) return null;
 		
@@ -77,16 +91,29 @@ public class Room {
 	}
 	
 	/**
-	 * @return the list of mobs (Getter)
+	 * Get the list of mobs of the room.
+	 * @return the list of mobs (Getter).
 	 */
 	public List<Mob> getMobs() {
 		return this.mobs;
 	}
 
+	/**
+	 * Get the position of the room in the map.
+	 * @return the position of the room (Getter).
+	 */
 	public Position getPosition() {
 		return this.position;
 	}
 
+	/**
+	 * Get the doors of the room.
+	 * @return the boolean array of doors:
+	 *  [0] right
+	 *  [1] up
+	 *  [2] left
+	 *  [3] down
+	 */
 	public boolean[] getDoors() {
 		return this.doors;
 	}

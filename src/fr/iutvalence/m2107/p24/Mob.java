@@ -30,15 +30,17 @@ public class Mob {
 	/** The direction the mob is watching at. */
 	private Direction watchingAt;
 	
-	
+	/** The direction the mob is walking to. */
 	private Direction direction;
 	
 	/** The image of the mob. */
 	private BufferedImage image;
 
+	/** Indicates if the mob is moving or not. */
 	private boolean wantToMove;
 
-	private int lenghtOfMove;
+	/** Indicates the length of the move of the mob. */
+	private int lengthOfMove;
 	
 	
 	/**
@@ -53,30 +55,16 @@ public class Mob {
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
 		this.wantToMove = false;
-		this.lenghtOfMove = 0;
+		this.lengthOfMove = 0;
 		updateImage();
 	}
 
-	public void tick() {
-		if (this.wantToMove) {
-			if (this.direction == Direction.RIGHT) this.position.move(1, 0);
-			if (this.direction == Direction.LEFT)  this.position.move(-1, 0);
-			if (this.direction == Direction.DOWN)  this.position.move(0, -1);
-			if (this.direction == Direction.UP)    this.position.move(0, 1);
-			
-			this.lenghtOfMove -= 1;
-			if(this.lenghtOfMove == 0) this.wantToMove = false;
-		} else {
-			if (new Random().nextInt(150) == 0) {
-				this.direction = Direction.randomDirection();
-				if(this.direction == Direction.RIGHT || this.direction == Direction.LEFT) this.watchingAt = this.direction;
-				this.lenghtOfMove = new Random().nextInt(100) + 20;
-				this.wantToMove = true;
-			}
-		}
-		updateImage();
-	}
-
+	/**
+	 * Update the image of the mob considering:
+	 * - Its type,
+	 * - If it is moving or no,
+	 * - The direction it is watching at.
+	 */
 	private void updateImage() {
 		switch(this.type) {
 			case SLIME:
@@ -102,6 +90,26 @@ public class Mob {
 				break;
 			default: break;
 		}
+	}
+
+	public void tick() {
+		if (this.wantToMove) {
+			if (this.direction == Direction.RIGHT) this.position.move(1, 0);
+			if (this.direction == Direction.LEFT)  this.position.move(-1, 0);
+			if (this.direction == Direction.DOWN)  this.position.move(0, -1);
+			if (this.direction == Direction.UP)    this.position.move(0, 1);
+			
+			this.lengthOfMove -= 1;
+			if(this.lengthOfMove == 0) this.wantToMove = false;
+		} else {
+			if (new Random().nextInt(150) == 0) {
+				this.direction = Direction.randomDirection();
+				if(this.direction == Direction.RIGHT || this.direction == Direction.LEFT) this.watchingAt = this.direction;
+				this.lengthOfMove = new Random().nextInt(100) + 20;
+				this.wantToMove = true;
+			}
+		}
+		updateImage();
 	}
 
 	public void draw(Graphics g) {
