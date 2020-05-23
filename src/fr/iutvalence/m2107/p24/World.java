@@ -8,6 +8,7 @@ import java.util.List;
 
 import fr.iutvalence.m2107.p24.gameStates.GameState;
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
+import fr.iutvalence.m2107.p24.gameStates.PauseState;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class World extends GameState {

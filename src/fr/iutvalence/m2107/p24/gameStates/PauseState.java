@@ -1,14 +1,11 @@
-package fr.iutvalence.m2107.p24;
+package fr.iutvalence.m2107.p24.gameStates;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-
-
-import fr.iutvalence.m2107.p24.gameStates.GameState;
-import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
-import fr.iutvalence.m2107.p24.gameStates.MenuState;
+import fr.iutvalence.m2107.p24.GamePanel;
+import fr.iutvalence.m2107.p24.World;
 
 public class PauseState extends GameState
 {
