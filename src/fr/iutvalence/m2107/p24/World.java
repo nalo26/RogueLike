@@ -27,8 +27,7 @@ public class World extends GameState {
 
 	@Override
 	/**
-	 * Initialization of your game. We set the player and then we create all the
-	 * rooms.
+	 * Initialization of your game. We set the player and then we create a room.
 	 */
 	public void init() {
 		this.player = new Player();
