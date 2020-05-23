@@ -1,6 +1,7 @@
 package fr.iutvalence.m2107.p24;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.ressources.Images;
 
@@ -12,8 +13,10 @@ public class Player {
 	/** The default damage of the player. */
 	public static final int DEFAULT_DAMAGE = 2;
 	
+	public static final BufferedImage DEFAULT_IMAGE = Images.PLAYER_RIGHT.getImage();
+	
 	/** The default position of the player. */
-	public static final Position DEFAULT_POSITON = new Position(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
+	public static final Position DEFAULT_POSITON = new Position(GamePanel.WIDTH/2 - (DEFAULT_IMAGE.getWidth()/2), GamePanel.HEIGHT/2 - (DEFAULT_IMAGE.getHeight()/2));
 	
 	/** The direction of the player. */
 	private Direction direction;
@@ -30,6 +33,9 @@ public class Player {
 	/** The position of the player. */
 	private Position position;
 	
+	/** The image of the player. */
+	private BufferedImage image;
+	
 	private boolean up;
 	private boolean right;
 	private boolean down;
@@ -42,6 +48,7 @@ public class Player {
 		this.position = DEFAULT_POSITON;
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
+		this.image = DEFAULT_IMAGE;
 	}
 	
 	public void tick() {
@@ -52,12 +59,8 @@ public class Player {
 	}
 	
 	public void draw(Graphics g) {
-		if (this.watchingAt == Direction.RIGHT) {
-			g.drawImage(Images.PLAYER_RIGHT.getImage(), this.position.getX(), this.position.getY(), null);
-		}
-		if (this.watchingAt == Direction.LEFT) {
-			g.drawImage(Images.PLAYER_LEFT.getImage(), this.position.getX(), this.position.getY(), null);
-		}
+		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
+		g.drawRect(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
 	}
 	
 	public void keyPressed(int k) {
@@ -73,11 +76,13 @@ public class Player {
 			this.right = true;
 			this.direction = Direction.RIGHT;
 			this.watchingAt = Direction.RIGHT;
+			this.image = Images.PLAYER_RIGHT.getImage();
 		}
 		if (k == 81 || k == 37) {
 			this.left = true;
 			this.direction = Direction.LEFT;
 			this.watchingAt = Direction.LEFT;
+			this.image = Images.PLAYER_LEFT.getImage();
 		}
 	}
 	

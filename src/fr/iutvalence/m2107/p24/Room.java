@@ -1,6 +1,7 @@
 package fr.iutvalence.m2107.p24;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,7 +17,7 @@ public class Room {
 	
 	private boolean[] doors;
 	
-	private Images image;
+	private BufferedImage image;
 	
 	public static final int MAX_MOBS = 10;
 	
@@ -31,7 +32,7 @@ public class Room {
 		this.position = pos;
 		if(config.length == 4 && config != null) {
 			this.doors = config;
-			this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2));
+			this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
 		}
 		else this.doors = null; //TODO procedural generation
 		
@@ -63,7 +64,7 @@ public class Room {
 	}
 
 	public void draw(Graphics g) {
-		g.drawImage(this.image.getImage(), (int)GamePanel.WIDTH/2-GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT, GamePanel.HEIGHT, null);
+		g.drawImage(this.image, (int)GamePanel.WIDTH/2-GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT, GamePanel.HEIGHT, null);
 		for(Mob m : this.mobs) {
 			m.draw(g);
 		}

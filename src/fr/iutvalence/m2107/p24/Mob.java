@@ -1,6 +1,7 @@
 package fr.iutvalence.m2107.p24;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.ressources.Images;
 
@@ -27,6 +28,9 @@ public class Mob {
 	/** The direction the mob is watching at. */
 	private Direction watchingAt;
 	
+	/** The image of the mob. */
+	private BufferedImage image;
+	
 	
 	/**
 	 * Create a new mob, with its specific attributes.
@@ -38,19 +42,24 @@ public class Mob {
 		this.position = Position.randomPosition(GamePanel.WIDTH/2-GamePanel.HEIGHT/2, GamePanel.WIDTH/2+GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT);
 		this.type = theType;
 		this.watchingAt = Direction.RIGHT;
+		switch(this.type) {
+			case SLIME:
+				this.image = Images.SLIME_GREEN_DOWN.getImage();
+				break;
+			case ZOMBIE:
+				this.image = Images.ZOMBIE_STAY_RIGHT.getImage();
+				break;
+			case SKELETON:
+				this.image = Images.SKELETON_STAY_RIGHT.getImage();
+				break;
+			default: break;
+		}
 	}
 
 
 	public void draw(Graphics g) {
-		if (this.type == MobType.SLIME) {
-			g.drawImage(Images.SLIME_GREEN_DOWN.getImage(), this.position.getX(), this.position.getY(), null);
-		}
-		if (this.type == MobType.ZOMBIE) {
-			g.drawImage(Images.ZOMBIE_STAY_RIGHT.getImage(), this.position.getX(), this.position.getY(), null);
-		}
-		if (this.type == MobType.SKELETON) {
-			g.drawImage(Images.SKELETON_STAY_RIGHT.getImage(), this.position.getX(), this.position.getY(), null);
-		}
+		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
+		g.drawRect(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
 	}
 	
 	/**
