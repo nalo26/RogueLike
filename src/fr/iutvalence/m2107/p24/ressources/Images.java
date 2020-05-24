@@ -39,6 +39,11 @@ public enum Images {
 	POTION("potion.png"),
 	BUTTON("button.jpg"),
 	
+	TREE1("tree_1.png"),
+	TREE2("tree_2.png"),
+	TREE3("tree_3.png"),
+	TREE4("tree_4.png"),
+	
 	ROOM1("room_0001.jpg"), //binary order, will be useful.
 	ROOM2("room_0010.jpg"),
 	ROOM3("room_0011.jpg"),

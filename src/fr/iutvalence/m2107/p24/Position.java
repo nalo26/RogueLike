@@ -80,5 +80,10 @@ public class Position {
 		if (this.y != other.y) return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "(" + this.x + ", " + this.y + ")";
+	}
 	
 }

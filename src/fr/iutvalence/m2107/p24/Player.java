@@ -19,6 +19,8 @@ public class Player {
 	/** The default position of the player. */
 	public static final Position DEFAULT_POSITON = new Position(GamePanel.WIDTH/2 - (DEFAULT_IMAGE.getWidth()/2), GamePanel.HEIGHT/2 - (DEFAULT_IMAGE.getHeight()/2));
 	
+	public static final Position DEFAULT_ROOM_POSITION = new Position(0, 0);
+	
 	/** The direction of the player. */
 	private Direction direction;
 	
@@ -33,6 +35,9 @@ public class Player {
 	
 	/** The position of the player. */
 	private Position position;
+	
+	/** The room coordinates the player is in. */
+	private Position roomPosition;
 	
 	/** The image of the player. */
 	private BufferedImage image;
@@ -50,6 +55,7 @@ public class Player {
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
 		this.image = DEFAULT_IMAGE;
+		this.roomPosition = DEFAULT_ROOM_POSITION;
 	}
 	
 	public void tick() {
@@ -57,7 +63,6 @@ public class Player {
 		if (this.left) this.position.move(-3, 0);
 		if (this.up) this.position.move(0, -3);
 		if (this.down) this.position.move(0, 3);
-		
 	}
 	
 	public void draw(Graphics g) {
@@ -76,21 +81,21 @@ public class Player {
 	}
 	
 	public void keyPressed(int k) {
-		if (k == 90 || k == 38) {
+		if (!this.down && (k == 90 || k == 38)) {
 			this.up = true;
 			this.direction = Direction.UP;
 		}
-		if (k == 83 || k == 40) {
+		if (!this.up && (k == 83 || k == 40)) {
 			this.down = true;
 			this.direction = Direction.DOWN;
 		}
-		if (k == 68 || k == 39) {
+		if (!this.left && (k == 68 || k == 39)) {
 			this.right = true;
 			this.direction = Direction.RIGHT;
 			this.watchingAt = Direction.RIGHT;
 			this.image = Images.PLAYER_RIGHT.getImage();
 		}
-		if (k == 81 || k == 37) {
+		if (!this.right && (k == 81 || k == 37)) {
 			this.left = true;
 			this.direction = Direction.LEFT;
 			this.watchingAt = Direction.LEFT;
@@ -139,10 +144,18 @@ public class Player {
 	
 	/**
 	 * Get the actual direction the player is watching at.
-	 * @return the direction the player is watching at(Getter).
+	 * @return the direction the player is watching at (Getter).
 	 */
 	public Direction getWatching() {
 		return this.watchingAt;
+	}
+
+	/**
+	 * Get the position of the room the player is actually in.
+	 * @return the position of the room of the player (Getter).
+	 */
+	public Position getRoomPosition() {
+		return this.roomPosition;
 	}
 
 }

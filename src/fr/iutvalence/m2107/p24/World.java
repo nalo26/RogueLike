@@ -40,17 +40,46 @@ public class World extends GameState {
 	@Override
 	public void tick() {
 		this.player.tick();
-        //this.getRoom(...).draw(g); //TODO current room
-		this.rooms.get(0).tick();
-		if (this.player.getHealth() == 0.0) this.gsm1.getState().push(new DeathState(this.gsm1));
+        this.getRoom(this.player.getRoomPosition()).tick();
+		if (this.player.getHealth() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
+		
+		// Changing of room
+		// TODO TP the player to the other side of the room
+		// TODO better positions
+		// TODO optimize getRoom() here (always same)
+		if (this.player.getPosition().getX() <= 0) {
+			this.player.getRoomPosition().move(-1, 0);
+			if(this.getRoom(this.player.getRoomPosition()) == null) {
+				this.rooms.add(new Room(this.player.getRoomPosition(), "1111"));
+			}
+		}
+		if (this.player.getPosition().getX() >= GamePanel.WIDTH) {
+			this.player.getRoomPosition().move(1, 0);
+			if(this.getRoom(this.player.getRoomPosition()) == null) {
+				this.rooms.add(new Room(this.player.getRoomPosition(), "1111"));
+			}
+		}
+		if (this.player.getPosition().getY() <= 0) {
+			this.player.getRoomPosition().move(0, -1);
+			if(this.getRoom(this.player.getRoomPosition()) == null) {
+				this.rooms.add(new Room(this.player.getRoomPosition(), "1111"));
+			}
+		}
+		if (this.player.getPosition().getY() >= GamePanel.HEIGHT) {
+			this.player.getRoomPosition().move(0, 1);
+			if(this.getRoom(this.player.getRoomPosition()) == null) {
+				this.rooms.add(new Room(this.player.getRoomPosition(), "1111"));
+			}
+		}
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(new Color(0, 0, 0));
+		g.setColor(Color.BLACK);
         g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
-        //this.getRoom(...).draw(g); //TODO current room
-        this.rooms.get(0).draw(g);
+        this.getRoom(this.player.getRoomPosition()).draw(g);
+        g.setColor(Color.RED);
+        g.drawString(this.player.getRoomPosition().toString(), 0, 100);
 		this.player.draw(g);
 	}
 
@@ -68,7 +97,7 @@ public class World extends GameState {
 	
 	public Room getRoom(Position pos) {
 		for(Room r : this.rooms) {
-			if(r.getPosition() == pos) return r;
+			if(r.getPosition().equals(pos)) return r;
 		}
 		return null;
 	}
