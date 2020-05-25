@@ -20,6 +20,8 @@ public class World extends GameState {
 	/** The Player in the World. */
 	public Player player;
 
+	/** The inventory of the player*/
+	public Inventory inventory;
 	/**
 	 * Constructor of the World.
 	 * @param gsm State of the game.
@@ -36,6 +38,7 @@ public class World extends GameState {
 		this.player = new Player();
 		this.rooms = new ArrayList<Room>();
 		this.rooms.add(new Room(new Position(0, 0), "1111"));
+		this.inventory = new Inventory();
 	}
 
 	@Override
@@ -82,6 +85,7 @@ public class World extends GameState {
         g.setColor(Color.RED);
         g.drawString(this.player.getRoomPosition().toString(), 0, 100);
 		this.player.draw(g);
+		this.inventory.draw(g);
 	}
 
 	@Override
