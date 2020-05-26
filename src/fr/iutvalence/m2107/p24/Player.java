@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.sun.scenario.effect.InvertMask;
-
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class Player {
