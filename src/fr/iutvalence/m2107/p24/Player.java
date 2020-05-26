@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.sun.scenario.effect.InvertMask;
+
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class Player {
@@ -42,6 +44,9 @@ public class Player {
 	/** The image of the player. */
 	private BufferedImage image;
 	
+	/** The inventory of the player*/
+	public Inventory inventory;
+	
 	private boolean up;
 	private boolean right;
 	private boolean down;
@@ -56,6 +61,8 @@ public class Player {
 		this.watchingAt = Direction.RIGHT;
 		this.image = DEFAULT_IMAGE;
 		this.roomPosition = DEFAULT_ROOM_POSITION;
+		this.inventory = new Inventory();
+		
 	}
 	
 	public void tick() {
@@ -78,6 +85,7 @@ public class Player {
 		int green = (int)(255 * (this.health / DEFAULT_HEALTH));
 		g.setColor(new Color(red, green, 0));
 		g.fillRect(this.position.getX()+this.image.getWidth()/2-52/2+1, this.position.getY()-19, (int)(50 * (this.health / DEFAULT_HEALTH)), 8);
+		this.inventory.draw(g);
 	}
 	
 	public void keyPressed(int k) {
