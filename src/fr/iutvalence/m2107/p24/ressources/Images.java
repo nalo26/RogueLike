@@ -60,7 +60,9 @@ public enum Images {
 	ROOM14("room_1110.jpg"),
 	ROOM15("room_1111.png"),
 
-	Inventory("Inventory.png");
+	Inventory("Inventory.png"),
+	
+	HealthPotion("healthpotion.png");
 	
 	private final BufferedImage image;
 	
