@@ -21,7 +21,7 @@ public class Inventory
 	public Inventory()
 	{
 		this.items = null;
-		this.inventoryImage = Images.Inventory.getImage();
+		this.inventoryImage = Images.INVENTORY.getImage();
 	}
 	
 	public void addItem(Item i)

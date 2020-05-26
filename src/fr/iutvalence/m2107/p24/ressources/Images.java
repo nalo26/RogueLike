@@ -38,31 +38,31 @@ public enum Images {
 	MANA("mana.png"),
 	POTION("potion.png"),
 	BUTTON("button.jpg"),
+	HEALTHPOTION("healthpotion.png"),
 	
 	TREE1("tree_1.png"),
 	TREE2("tree_2.png"),
 	TREE3("tree_3.png"),
 	TREE4("tree_4.png"),
 	
-	ROOM1("room_0001.jpg"), //binary order, will be useful.
-	ROOM2("room_0010.jpg"),
-	ROOM3("room_0011.jpg"),
-	ROOM4("room_0100.jpg"),
-	ROOM5("room_0101.jpg"),
-	ROOM6("room_0110.jpg"),
-	ROOM7("room_0111.jpg"),
-	ROOM8("room_1000.jpg"),
-	ROOM9("room_1001.jpg"),
-	ROOM10("room_1010.jpg"),
-	ROOM11("room_1011.jpg"),
-	ROOM12("room_1100.jpg"),
-	ROOM13("room_1101.jpg"),
-	ROOM14("room_1110.jpg"),
+	ROOM1("room_0001.png"), //binary order, will be useful.
+	ROOM2("room_0010.png"),
+	ROOM3("room_0011.png"),
+	ROOM4("room_0100.png"),
+	ROOM5("room_0101.png"),
+	ROOM6("room_0110.png"),
+	ROOM7("room_0111.png"),
+	ROOM8("room_1000.png"),
+	ROOM9("room_1001.png"),
+	ROOM10("room_1010.png"),
+	ROOM11("room_1011.png"),
+	ROOM12("room_1100.png"),
+	ROOM13("room_1101.png"),
+	ROOM14("room_1110.png"),
 	ROOM15("room_1111.png"),
 
-	Inventory("Inventory.png"),
+	INVENTORY("inventory.png");
 	
-	HealthPotion("healthpotion.png");
 	
 	private final BufferedImage image;
 	
