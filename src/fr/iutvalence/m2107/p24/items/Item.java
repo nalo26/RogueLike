@@ -13,6 +13,6 @@ public abstract class Item
 		this.id = theId;
 	}
 	
-	public abstract void tick();
-	public abstract void draw(Graphics g);
+
+
 }
