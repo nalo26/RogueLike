@@ -1,8 +1,10 @@
 package fr.iutvalence.m2107.p24;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -34,7 +36,6 @@ public class Room {
 			this.doors = config;
 			this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
 		}
-		else this.doors = null; //TODO procedural generation
 		
 		Random random = new Random();
 		int mobAmount = random.nextInt(MAX_MOBS);
@@ -51,14 +52,6 @@ public class Room {
 	 */
 	public Room(Position pos, String config) {
 		this(pos, (boolean[])Room.computeDoors(config), config);
-	}
-	
-	/** 
-	 * Create a new room, without configuration, to be a random one. 
-	 * @param pos the position of the room in the map.
-	 */
-	public Room(Position pos) {
-		this(pos, (boolean[])null, (String)null);
 	}
 	
 	/**
@@ -88,6 +81,7 @@ public class Room {
 		for(Mob m : this.mobs) {
 			m.draw(g);
 		}
+		g.setColor(Color.RED);
 	}
 	
 	/**
@@ -116,6 +110,21 @@ public class Room {
 	 */
 	public boolean[] getDoors() {
 		return this.doors;
+	}
+	
+	public boolean isOpen(Direction dir) {
+		switch (dir) {
+			case RIGHT: return (this.doors[0]);
+			case UP: return (this.doors[1]);
+			case LEFT: return (this.doors[2]);
+			case DOWN: return (this.doors[3]);
+			default: return false;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Room [position=" + this.position + ", doors=" + Arrays.toString(this.doors) + "]";
 	}
 	
 }
