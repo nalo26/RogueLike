@@ -16,7 +16,7 @@ public class InventoryDisplay extends Inventory {
 	}
 	
 	public void draw(Graphics g) {
-		g.drawImage(this.inventoryImage, GamePanel.WIDTH /2 - 625 , GamePanel.HEIGHT /2 + 100 ,250, 250, null);
+		g.drawImage(this.inventoryImage, 15, GamePanel.HEIGHT-15-250, 250, 250, null);
 		if(this.items != null) {
 			//TODO draw items here
 		}
