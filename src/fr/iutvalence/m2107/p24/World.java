@@ -48,30 +48,13 @@ public class World extends GameState {
 		// Changing of room
 		// TODO TP the player to the other side of the room
 		// TODO better positions
-		// TODO optimize getRoom() here (always same)
-		if (this.player.getPosition().getX() <= 0) {
-			this.player.getRoomPosition().move(-1, 0);
-			if(this.getRoom(this.player.getRoomPosition()) == null) {
-				this.rooms.add(randomRoom(this.player.getRoomPosition()));
-			}
-		}
-		if (this.player.getPosition().getX() >= GamePanel.WIDTH) {
-			this.player.getRoomPosition().move(1, 0);
-			if(this.getRoom(this.player.getRoomPosition()) == null) {
-				this.rooms.add(randomRoom(this.player.getRoomPosition()));
-			}
-		}
-		if (this.player.getPosition().getY() <= 0) {
-			this.player.getRoomPosition().move(0, -1);
-			if(this.getRoom(this.player.getRoomPosition()) == null) {
-				this.rooms.add(randomRoom(this.player.getRoomPosition()));
-			}
-		}
-		if (this.player.getPosition().getY() >= GamePanel.HEIGHT) {
-			this.player.getRoomPosition().move(0, 1);
-			if(this.getRoom(this.player.getRoomPosition()) == null) {
-				this.rooms.add(randomRoom(this.player.getRoomPosition()));
-			}
+		if (this.player.getPosition().getX() <= 0) 				  this.player.getRoomPosition().move(-1, 0);
+		if (this.player.getPosition().getX() >= GamePanel.WIDTH)  this.player.getRoomPosition().move(1, 0);
+		if (this.player.getPosition().getY() <= 0) 				  this.player.getRoomPosition().move(0, -1);
+		if (this.player.getPosition().getY() >= GamePanel.HEIGHT) this.player.getRoomPosition().move(0, 1);
+		
+		if(this.getRoom(this.player.getRoomPosition()) == null) {
+			this.rooms.add(randomRoom(this.player.getRoomPosition()));
 		}
 	}
 
@@ -133,10 +116,7 @@ public class World extends GameState {
 			else doors += "0";
 		} else doors += ""+rdm.nextInt(2);
 		
-		System.out.println(doors);
-		Room gen = new Room(pos, doors);
-		System.out.println(gen);
-		return gen;
+		return new Room(new Position(pos.getX(), pos.getY()), doors);
 	}
 
 }
