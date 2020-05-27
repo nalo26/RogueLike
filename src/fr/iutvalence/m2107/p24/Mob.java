@@ -16,31 +16,28 @@ public class Mob {
 	public static final int DEFAULT_DAMAGE = 2;
 	
 	/** The health of the mob. */
-	private float health;
+	protected float health;
 	
 	/** The damage of the mob. */
-	private float damage;
+	protected float damage;
 	
 	/** The position of the mob. */
-	private Position position;
+	protected Position position;
 	
 	/** The type of the mob. */
-	private MobType type;
+	protected MobType type;
 	
 	/** The direction the mob is watching at. */
-	private Direction watchingAt;
+	protected Direction watchingAt;
 	
 	/** The direction the mob is walking to. */
-	private Direction direction;
-	
-	/** The image of the mob. */
-	private BufferedImage image;
+	protected Direction direction;
 
 	/** Indicates if the mob is moving or not. */
-	private boolean wantToMove;
+	protected boolean wantToMove;
 
 	/** Indicates the length of the move of the mob. */
-	private int lengthOfMove;
+	protected int lengthOfMove;
 	
 	
 	/**
@@ -56,40 +53,6 @@ public class Mob {
 		this.watchingAt = Direction.RIGHT;
 		this.wantToMove = false;
 		this.lengthOfMove = 0;
-		updateImage();
-	}
-
-	/**
-	 * Update the image of the mob considering:
-	 * - Its type,
-	 * - If it is moving or no,
-	 * - The direction it is watching at.
-	 */
-	private void updateImage() {
-		switch(this.type) {
-			case SLIME:
-				this.image = Images.SLIME_GREEN_DOWN.getImage();
-				break;
-			case ZOMBIE:
-				if(this.wantToMove) {
-					if (this.watchingAt == Direction.RIGHT) this.image = Images.ZOMBIE_WALK_RIGHT.getImage();
-					if (this.watchingAt == Direction.LEFT) this.image = Images.ZOMBIE_WALK_LEFT.getImage();
-				} else {
-					if(this.watchingAt == Direction.RIGHT) this.image = Images.ZOMBIE_STAY_RIGHT.getImage();
-					if(this.watchingAt == Direction.LEFT) this.image = Images.ZOMBIE_STAY_LEFT.getImage();
-				}
-				break;
-			case SKELETON:
-				if(this.wantToMove) {
-					if (this.watchingAt == Direction.RIGHT) this.image = Images.SKELETON_WALK_RIGHT.getImage();
-					if (this.watchingAt == Direction.LEFT) this.image = Images.SKELETON_WALK_LEFT.getImage();
-				} else {
-					if(this.watchingAt == Direction.RIGHT) this.image = Images.SKELETON_STAY_RIGHT.getImage();
-					if(this.watchingAt == Direction.LEFT) this.image = Images.SKELETON_STAY_LEFT.getImage();
-				}
-				break;
-			default: break;
-		}
 	}
 
 	public void tick() {
@@ -111,22 +74,17 @@ public class Mob {
 		}
 		updateImage();
 	}
-
-	public void draw(Graphics g) {
-		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
-		g.setColor(Color.BLACK);
-		g.drawRect(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
-		
-		g.setColor(Color.WHITE);
-		g.fillRect(this.position.getX()+this.image.getWidth()/2-52/2, this.position.getY()-20, 52, 10);
-		g.setColor(Color.BLACK);
-		g.fillRect(this.position.getX()+this.image.getWidth()/2-52/2+1, this.position.getY()-19, 50, 8);
-		int red = (int)(255 * (1 - this.health / DEFAULT_HEALTH));
-		int green = (int)(255 * (this.health / DEFAULT_HEALTH));
-		g.setColor(new Color(red, green, 0));
-		g.fillRect(this.position.getX()+this.image.getWidth()/2-52/2+1, this.position.getY()-19, (int)(50 * (this.health / DEFAULT_HEALTH)), 8);
-	}
 	
+	/**
+	 * Update the image of the mob considering:
+	 * - Its type,
+	 * - If it is moving or no,
+	 * - The direction it is watching at.
+	 */
+	protected void updateImage() {
+		// Override by sub MobDisplay, which handle images.		
+	}
+
 	/**
 	 * Get the health (life) of the mob.
 	 * @return the health of the mob (Getter). 

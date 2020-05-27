@@ -1,9 +1,5 @@
 package fr.iutvalence.m2107.p24;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class Player {
@@ -14,53 +10,42 @@ public class Player {
 	/** The default damage of the player. */
 	public static final int DEFAULT_DAMAGE = 2;
 	
-	public static final BufferedImage DEFAULT_IMAGE = Images.PLAYER_RIGHT.getImage();
-	
-	/** The default position of the player. */
-	public static final Position DEFAULT_POSITON = new Position(GamePanel.WIDTH/2 - (DEFAULT_IMAGE.getWidth()/2), GamePanel.HEIGHT/2 - (DEFAULT_IMAGE.getHeight()/2));
-	
 	public static final Position DEFAULT_ROOM_POSITION = new Position(0, 0);
 	
 	/** The direction of the player. */
-	private Direction direction;
+	protected Direction direction;
 	
 	/** The direction the player is watching at. */
-	private Direction watchingAt;
+	protected Direction watchingAt;
 	
 	/** The health of the player. */
-	private float health;
+	protected float health;
 	
 	/** The damage of the player. */
-	private float damage;
+	protected float damage;
 	
 	/** The position of the player. */
-	private Position position;
+	protected Position position;
 	
 	/** The room coordinates the player is in. */
-	private Position roomPosition;
-	
-	/** The image of the player. */
-	private BufferedImage image;
+	protected Position roomPosition;
 	
 	/** The inventory of the player*/
-	public Inventory inventory;
+	protected Inventory inventory;
 	
-	private boolean up;
-	private boolean right;
-	private boolean down;
-	private boolean left;
+	protected boolean up;
+	protected boolean right;
+	protected boolean down;
+	protected boolean left;
 	
 	/** Create a new player. */
 	public Player() {
 		this.health = DEFAULT_HEALTH;
 		this.damage = DEFAULT_DAMAGE;
-		this.position = DEFAULT_POSITON;
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
-		this.image = DEFAULT_IMAGE;
 		this.roomPosition = DEFAULT_ROOM_POSITION;
 		this.inventory = new Inventory();
-		
 	}
 	
 	public void tick() {
@@ -68,22 +53,6 @@ public class Player {
 		if (this.left) this.position.move(-3, 0);
 		if (this.up) this.position.move(0, -3);
 		if (this.down) this.position.move(0, 3);
-	}
-	
-	public void draw(Graphics g) {
-		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
-		g.setColor(Color.BLACK);
-		g.drawRect(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
-		
-		g.setColor(Color.WHITE);
-		g.fillRect(this.position.getX()+this.image.getWidth()/2-52/2, this.position.getY()-20, 52, 10);
-		g.setColor(Color.BLACK);
-		g.fillRect(this.position.getX()+this.image.getWidth()/2-52/2+1, this.position.getY()-19, 50, 8);
-		int red = (int)(255 * (1 - this.health / DEFAULT_HEALTH));
-		int green = (int)(255 * (this.health / DEFAULT_HEALTH));
-		g.setColor(new Color(red, green, 0));
-		g.fillRect(this.position.getX()+this.image.getWidth()/2-52/2+1, this.position.getY()-19, (int)(50 * (this.health / DEFAULT_HEALTH)), 8);
-		this.inventory.draw(g);
 	}
 	
 	public void keyPressed(int k) {
@@ -99,14 +68,22 @@ public class Player {
 			this.right = true;
 			this.direction = Direction.RIGHT;
 			this.watchingAt = Direction.RIGHT;
-			this.image = Images.PLAYER_RIGHT.getImage();
+			this.changeImage(Images.PLAYER_RIGHT);
 		}
 		if (!this.right && (k == 81 || k == 37)) {
 			this.left = true;
 			this.direction = Direction.LEFT;
 			this.watchingAt = Direction.LEFT;
-			this.image = Images.PLAYER_LEFT.getImage();
+			this.changeImage(Images.PLAYER_LEFT);
 		}
+	}
+	
+	/**
+	 * Change the image of the player.
+	 * @param img the Image to be change for.
+	 */
+	protected void changeImage(Images img) {
+		// This method is override by PlayerDisplay, which handle images.  
 	}
 	
 	public void keyReleased(int k) {

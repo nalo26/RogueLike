@@ -1,28 +1,22 @@
 package fr.iutvalence.m2107.p24;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import fr.iutvalence.m2107.p24.ressources.Images;
+import fr.iutvalence.m2107.p24.display.MobDisplay;
 
 public class Room {
 	
 	/** List of all mobs in this room. */
-	private List<Mob> mobs = new ArrayList<Mob>();
+	protected List<MobDisplay> mobs = new ArrayList<MobDisplay>();
 	
-	private Position position;
+	protected Position position;
 	
-	private boolean[] doors;
-	
-	private BufferedImage image;
+	protected boolean[] doors;
 	
 	public static final int MAX_MOBS = 10;
-	
 	
 	/**
 	 * Constructor of a Room.
@@ -32,16 +26,13 @@ public class Room {
 	 */
 	public Room(Position pos, boolean[] config, String bin) {
 		this.position = pos;
-		if(config.length == 4 && config != null) {
-			this.doors = config;
-			this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
-		}
+		this.doors = config;
 		
 		Random random = new Random();
 		int mobAmount = random.nextInt(MAX_MOBS);
 		
 		for(int i = 0; i < mobAmount; i ++) {
-			this.mobs.add(new Mob(MobType.randomMobType()));
+			this.mobs.add(new MobDisplay(MobType.randomMobType()));
 		}
 	}
 	
@@ -51,7 +42,7 @@ public class Room {
 	 * @param config the String configuration of doors of the room (i.e. "0110").
 	 */
 	public Room(Position pos, String config) {
-		this(pos, (boolean[])Room.computeDoors(config), config);
+		this(pos, Room.computeDoors(config), config);
 	}
 	
 	/**
@@ -59,7 +50,7 @@ public class Room {
 	 * @param config the String configuration of doors (i.e. "0110").
 	 * @return a boolean array of door values (i.e. {false, true, true, false}).
 	 */
-	private static boolean[] computeDoors(String config) {
+	protected static boolean[] computeDoors(String config) {
 		if(config.length() != 4) return null;
 		
 		boolean[] res = new boolean[4];
@@ -75,20 +66,12 @@ public class Room {
 			m.tick();
 		}
 	}
-
-	public void draw(Graphics g) {
-		g.drawImage(this.image, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
-		for(Mob m : this.mobs) {
-			m.draw(g);
-		}
-		g.setColor(Color.RED);
-	}
 	
 	/**
 	 * Get the list of mobs of the room.
 	 * @return the list of mobs (Getter).
 	 */
-	public List<Mob> getMobs() {
+	public List<MobDisplay> getMobs() {
 		return this.mobs;
 	}
 

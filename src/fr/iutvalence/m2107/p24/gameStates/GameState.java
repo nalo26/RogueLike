@@ -5,13 +5,9 @@ import java.awt.Graphics;
 public abstract class GameState {
 	
     protected GameStateManager gsm1;
-    public static double xOffset;
-    public static double yOffset;
     
     public GameState(final GameStateManager gsm) {
         this.gsm1 = gsm;
-        GameState.xOffset = 0.0;
-        GameState.yOffset = 0.0;
         this.init();
     }
     

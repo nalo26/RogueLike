@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import fr.iutvalence.m2107.p24.display.PlayerDisplay;
+import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.gameStates.DeathState;
 import fr.iutvalence.m2107.p24.gameStates.GameState;
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
@@ -15,10 +17,10 @@ import fr.iutvalence.m2107.p24.gameStates.PauseState;
 public class World extends GameState {
 
 	/** Rooms of the World. */
-	public List<Room> rooms;
+	public List<RoomDisplay> rooms;
 
 	/** The Player in the World. */
-	public Player player;
+	public PlayerDisplay player;
 
 
 	/**
@@ -34,9 +36,9 @@ public class World extends GameState {
 	 * Initialization of your game. We set the player and then we create a room.
 	 */
 	public void init() {
-		this.player = new Player();
-		this.rooms = new ArrayList<Room>();
-		this.rooms.add(new Room(new Position(0, 0), "1111"));
+		this.player = new PlayerDisplay();
+		this.rooms = new ArrayList<RoomDisplay>();
+		this.rooms.add(new RoomDisplay(new Position(0, 0), "1111"));
 	}
 
 	@Override
@@ -80,14 +82,14 @@ public class World extends GameState {
 		this.player.keyReleased(k);
 	}
 	
-	private Room getRoom(Position pos) {
-		for(Room r : this.rooms) {
+	private RoomDisplay getRoom(Position pos) {
+		for(RoomDisplay r : this.rooms) {
 			if(r.getPosition().equals(pos)) return r;
 		}
 		return null;
 	}
 	
-	private Room randomRoom(Position pos) {
+	private RoomDisplay randomRoom(Position pos) {
 		Random rdm = new Random();
 		String doors = "";
 		Room query = null;
@@ -116,7 +118,7 @@ public class World extends GameState {
 			else doors += "0";
 		} else doors += ""+rdm.nextInt(2);
 		
-		return new Room(new Position(pos.getX(), pos.getY()), doors);
+		return new RoomDisplay(new Position(pos.getX(), pos.getY()), doors);
 	}
 
 }
