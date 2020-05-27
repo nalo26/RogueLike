@@ -1,5 +1,6 @@
 package fr.iutvalence.m2107.p24;
 
+import fr.iutvalence.m2107.p24.display.InventoryDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class Player {
@@ -31,7 +32,7 @@ public class Player {
 	protected Position roomPosition;
 	
 	/** The inventory of the player*/
-	protected Inventory inventory;
+	protected InventoryDisplay inventory;
 	
 	protected boolean up;
 	protected boolean right;
@@ -45,7 +46,7 @@ public class Player {
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
 		this.roomPosition = DEFAULT_ROOM_POSITION;
-		this.inventory = new Inventory();
+		this.inventory = new InventoryDisplay();
 	}
 	
 	public void tick() {
