@@ -79,7 +79,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     @Override
     public void keyTyped(final KeyEvent e) {
     }
-    
+    /**
+     * Override method it's the implementation of runnable
+     */
     @Override
     public void run() {
         this.gsm = new GameStateManager();
@@ -101,10 +103,16 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         }
     }
     
+    /**
+     * that's what is refresh every tick
+     */
     public void tick() {
         this.gsm.tick();
     }
     
+    /**
+     * this component allow to draw on the panel
+     */
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
         g.clearRect(0, 0, 1280, 720);
