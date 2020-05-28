@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-
+/** The library of images to use everywhere in the game. */
 public enum Images {
 	PLAYER_RIGHT("player_right.png"),
 	PLAYER_DAMAGE_RIGHT("player_damage_right.png"),
@@ -63,9 +63,12 @@ public enum Images {
 
 	INVENTORY("inventory.png");
 	
-	
+	/** The current image. */
 	private final BufferedImage image;
-	
+	/**
+	 * Constructor.
+	 * @param path the image path on the disk.
+	 */
 	Images(String path) {
 		BufferedImage tempImage = null;
 		try {
@@ -76,6 +79,10 @@ public enum Images {
 		this.image = tempImage;
 	}
 	
+	/**
+	 * Allow to know the current image.
+	 * @return the current image.
+	 */
 	public BufferedImage getImage() {
 		return this.image;
 	}

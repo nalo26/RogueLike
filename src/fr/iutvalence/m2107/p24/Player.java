@@ -3,6 +3,10 @@ package fr.iutvalence.m2107.p24;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
+/**
+ * Represent the player and all of his possible actions (moves, directions, ...).
+ *
+ */
 public class Player {
 
 	/** The default life of the player. */
@@ -49,6 +53,9 @@ public class Player {
 		this.inventory = new InventoryDisplay();
 	}
 	
+	/**
+	 * Describe the behavior of the player after a key is pressed.
+	 */
 	public void tick() {
 		if (this.right) this.position.move(3, 0);
 		if (this.left) this.position.move(-3, 0);
@@ -56,6 +63,10 @@ public class Player {
 		if (this.down) this.position.move(0, 3);
 	}
 	
+	/**
+	 * Describe what to do when a key is pressed.
+	 * @param k the key value
+	 */
 	public void keyPressed(int k) {
 		if (!this.down && (k == 90 || k == 38)) {
 			this.up = true;
@@ -87,6 +98,10 @@ public class Player {
 		// This method is override by PlayerDisplay, which handle images.  
 	}
 	
+	/**
+	 * Describe what to do when a key is released.
+	 * @param k the key value
+	 */
 	public void keyReleased(int k) {
 		if (k == 90 || k == 38) this.up = false;
 		if (k == 83 || k == 40) this.down = false;

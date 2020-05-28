@@ -4,40 +4,40 @@ import java.awt.Graphics;
 import java.util.Stack;
 
 /**
- * this class take care of the current state of the game (menu, pause, dead, in game, ...)
+ * This class take care of the current state of the game (menu, pause, dead, in game, ...).
  * 
  */
 public class GameStateManager
 {
 	/**
-	 * represent the current state of the game
+	 * Represent the current state of the game.
 	 */
     private Stack<GameState> state;
     
     /**
-     * initialize the game and push the MenuState class at the top of stack
+     * Initialize the game and push the MenuState class at the top of stack.
      */
     public GameStateManager() {
         (this.state = new Stack<GameState>()).push(new MenuState(this));
     }
     
     /**
-     * look at which state is at the top of the stack and call his tick method
+     * Look at which state is at the top of the stack and call his tick method.
      */
     public void tick() {
         this.state.peek().tick();
     }
     
     /**
-     * look at which state is at the top of the stack and draw it
-     * @param g the object who allow to draw
+     * Look at which state is at the top of the stack and draw it.
+     * @param g the object who allow to draw.
      */
     public void draw(final Graphics g) {
         this.state.peek().draw(g);
     }
     
     /**
-     * allow to know what is the current state
+     * Allow to know what is the current state.
      * @return the current state
      */
     public Stack<GameState> getState() {
@@ -45,16 +45,16 @@ public class GameStateManager
     }
     
     /**
-     * look at which key is pressed on the current state
-     * @param k the key value
+     * Look at which key is pressed on the current state.
+     * @param k the key value.
      */
     public void keyPressed(final int k) {
         this.state.peek().keyPressed(k);
     }
     
     /**
-     * look at which key is released on the current state
-     * @param k the key value
+     * Look at which key is released on the current state.
+     * @param k the key value.
      */
     public void keyReleased(final int k) {
         this.state.peek().keyReleased(k);

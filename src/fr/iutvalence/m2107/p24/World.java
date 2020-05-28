@@ -3,23 +3,24 @@ package fr.iutvalence.m2107.p24;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.PlayerDisplay;
-import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.gameStates.DeathState;
 import fr.iutvalence.m2107.p24.gameStates.GameState;
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
 import fr.iutvalence.m2107.p24.gameStates.PauseState;
 
+/**
+ * create the whole map
+ *
+ */
 public class World extends GameState {
 
 	/** The Player in the World. */
 	private PlayerDisplay player;
 	
+	/**
+	 * The minimap in the world. */
 	private MiniMapDisplay map;
 
 
@@ -39,14 +40,16 @@ public class World extends GameState {
 		this.player = new PlayerDisplay();
 		this.map = new MiniMapDisplay();
 	}
-
+	
+	/**
+	 * {@inheritDoc} */
 	@Override
 	public void tick() {
 		this.player.tick();
 		if (this.player.getHealth() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
 		this.map.tick(this.player);
 	}
-
+	/** {@inheritDoc}*/
 	@Override
 	public void draw(Graphics g) {
 		this.map.getRoom(this.player.getRoomPosition()).draw(g);
@@ -55,18 +58,23 @@ public class World extends GameState {
 		this.player.draw(g);
 		this.map.draw(g, this.player);
 	}
-
+	/** {@inheritDoc}*/
 	@Override
 	public void keyPressed(int k) {
 		this.player.keyPressed(k);
 		if(k == KeyEvent.VK_ESCAPE) this.gsm1.getState().push(new PauseState(this.gsm1));
 	}
 
+	/** {@inheritDoc}*/
 	@Override
 	public void keyReleased(int k) {
 		this.player.keyReleased(k);
 	}
 	
+	/**
+	 * Allow to know the current player.
+	 * @return the current player.
+	 */
 	public PlayerDisplay getPlayer() {
 		return this.player;
 	}

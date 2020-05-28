@@ -1,7 +1,11 @@
 package fr.iutvalence.m2107.p24;
 
 import java.util.Random;
-
+/**
+ * Represent all of the possible directions.
+ * @author Admin
+ *
+ */
 public enum Direction {
 /**
  * All possible directions

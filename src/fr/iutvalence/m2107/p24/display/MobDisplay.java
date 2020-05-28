@@ -8,18 +8,21 @@ import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.Mob;
 import fr.iutvalence.m2107.p24.MobType;
 import fr.iutvalence.m2107.p24.ressources.Images;
-
+/** Display a mob depending on his type. */
 public class MobDisplay extends Mob {
 	
 	/** The image of the mob. */
 	private BufferedImage image;
-	
+	/**
+	 * Constructor : call his super class Mob.
+	 * @param theType Type of the mob.
+	 */
 	public MobDisplay(MobType theType) {
 		super(theType);
 		updateImage();
 	}
 
-
+/** {@inheritDoc} */
 	@Override
 	protected void updateImage() {
 		switch(this.type) {
@@ -48,6 +51,9 @@ public class MobDisplay extends Mob {
 		}
 	}
 
+	/** Draw the mob.
+	 * @param g the draw component
+	 */
 	public void draw(Graphics g) {
 		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
 		g.setColor(Color.BLACK);

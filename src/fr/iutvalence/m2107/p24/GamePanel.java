@@ -104,14 +104,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
     
     /**
-     * that's what is refresh every tick
+     * That's what is refresh every tick.
      */
     public void tick() {
         this.gsm.tick();
     }
     
     /**
-     * this component allow to draw on the panel
+     * This component allow to draw on the panel.
      */
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);

@@ -6,20 +6,34 @@ import java.util.Random;
 
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 
+/**
+ * Represent the operation of the minimap
+ *
+ */
 public class MiniMap {
 
 	/** Rooms of the World. */
 	protected List<RoomDisplay> rooms;
+	
+	/** A random object to create random values. */
 	private Random random = new Random();
+	
+	/** the seed of the map. */
 	private long seed;
 	
+	/**
+	 * Constructor.
+	 */
 	public MiniMap() {
 		this.rooms = new ArrayList<RoomDisplay>();
 		this.rooms.add(new RoomDisplay(new Position(0, 0), "1111"));
 		this.seed = this.random.nextLong();
 		this.random.setSeed(this.seed);
 	}
-	
+	/**
+	 * Describe the behavior of the minimap every tick for a given player.
+	 * @param p the player wanted.
+	 */
 	public void tick(Player p) {
 		// Changing of room
 		// TODO TP the player to the other side of the room
@@ -47,6 +61,11 @@ public class MiniMap {
         this.getRoom(p.getRoomPosition()).tick();
 	}
 	
+	/** 
+	 * Allow to know the current room by a given position.
+	 * @param pos the position what you want to know the room.
+	 * @return the display of the room for the given position.
+	 */
 	protected RoomDisplay getRoom(Position pos) {
 		for(RoomDisplay r : this.rooms) {
 			if(r.getPosition().equals(pos)) return r;
@@ -54,6 +73,11 @@ public class MiniMap {
 		return null;
 	}
 	
+	/**
+	 * Create a random room from a given position.
+	 * @param pos the position where you want to create the room.
+	 * @return a displaying of a room.
+	 */
 	private RoomDisplay randomRoom(Position pos) {
 		String doors = "";
 		Room query = null;

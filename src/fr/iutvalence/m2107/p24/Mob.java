@@ -1,12 +1,11 @@
 package fr.iutvalence.m2107.p24;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.util.Random;
 
-import fr.iutvalence.m2107.p24.ressources.Images;
-
+/**
+ * Represent a mob with all of his characteristics (health, damage, type, direction, ...).
+ *
+ */
 public class Mob {
 	
 	/** The default life of the mob. */
@@ -54,7 +53,7 @@ public class Mob {
 		this.wantToMove = false;
 		this.lengthOfMove = 0;
 	}
-
+	/** Describe the behavior of a mob every tick. */
 	public void tick() {
 		if (this.wantToMove) {
 			if (this.direction == Direction.RIGHT) this.position.move(1, 0);

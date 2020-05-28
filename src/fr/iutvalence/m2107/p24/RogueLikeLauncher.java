@@ -4,9 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Frame;
 
 import javax.swing.JFrame;
-
+/**
+ * The main class to launch the game.
+ */
 public class RogueLikeLauncher {
 
+	/**
+	 * Create a frame and launch the game on it.
+	 * @param args console arguments
+	 */
     public static void main(final String[] args) {
         final GamePanel g = new GamePanel();
         final JFrame frame = new JFrame("RogueLike");

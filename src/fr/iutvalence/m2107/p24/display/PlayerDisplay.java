@@ -9,8 +9,13 @@ import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
+/**
+ * Display the player.
+ *
+ */
 public class PlayerDisplay extends Player {
 
+	/** The default image of the player.*/
 	public static final BufferedImage DEFAULT_IMAGE = Images.PLAYER_RIGHT.getImage();
 	
 	/** The default position of the player. */
@@ -19,12 +24,16 @@ public class PlayerDisplay extends Player {
 	/** The image of the player. */
 	private BufferedImage image;
 	
+	/**
+	 * Constructor : initialize fields with default values.
+	 */
 	public PlayerDisplay() {
 		super();
 		this.position = DEFAULT_POSITON;
 		this.image = DEFAULT_IMAGE;
 	}
 	
+	/** Draw the player.*/
 	public void draw(Graphics g) {
 		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
 		g.setColor(Color.BLACK);
@@ -40,7 +49,7 @@ public class PlayerDisplay extends Player {
 		g.fillRect(this.position.getX()+this.image.getWidth()/2-52/2+1, this.position.getY()-19, (int)(50 * (this.health / DEFAULT_HEALTH)), 8);
 		this.inventory.draw(g);
 	}
-	
+	/** {@inheritDoc} */
 	@Override
 	protected void changeImage(Images img) {
 		this.image = img.getImage();

@@ -1,7 +1,10 @@
 package fr.iutvalence.m2107.p24;
 
 import java.util.Random;
-
+/**
+ * All of positions of every objects in the game
+ *
+ */
 public class Position {
 
 	/** The x position in the screen. */

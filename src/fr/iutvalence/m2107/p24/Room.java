@@ -7,15 +7,22 @@ import java.util.Random;
 
 import fr.iutvalence.m2107.p24.display.MobDisplay;
 
+/**
+ * Represent a room and all of his component (doors, position, ...).
+ *
+ */
 public class Room {
 	
 	/** List of all mobs in this room. */
 	protected List<MobDisplay> mobs = new ArrayList<MobDisplay>();
 	
+	/** The position of the room. */
 	protected Position position;
 	
+	/** The state of the doors in the room. */
 	protected boolean[] doors;
 	
+	/**  The maximum mob who can spawn at the same time in the room. */
 	public static final int MAX_MOBS = 10;
 	
 	/**
@@ -60,7 +67,8 @@ public class Room {
 		
 		return res;
 	}
-
+	
+	/** Instructions executed every tick. */
 	public void tick() {
 		for(Mob m : this.mobs) {
 			m.tick();
@@ -95,6 +103,11 @@ public class Room {
 		return this.doors;
 	}
 	
+	/**
+	 * Check if the given door is open.
+	 * @param dir the direction of the door.
+	 * @return true is the door is open.
+	 */
 	public boolean isOpen(Direction dir) {
 		switch (dir) {
 			case RIGHT: return (this.doors[0]);
@@ -104,7 +117,7 @@ public class Room {
 			default: return false;
 		}
 	}
-
+	/** {@inheritDoc}*/
 	@Override
 	public String toString() {
 		return "Room [position=" + this.position + ", doors=" + Arrays.toString(this.doors) + "]";
