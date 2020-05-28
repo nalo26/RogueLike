@@ -70,10 +70,11 @@ public class World extends GameState {
 
 	@Override
 	public void draw(Graphics g) {
-		this.map.draw(g, this.player);
+		this.map.getRoom(this.player.getRoomPosition()).draw(g);
         g.setColor(Color.RED);
         g.drawString(this.player.getRoomPosition().toString(), 0, 100);
 		this.player.draw(g);
+		this.map.draw(g, this.player);
 	}
 
 	@Override

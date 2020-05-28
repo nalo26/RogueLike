@@ -12,32 +12,36 @@ import fr.iutvalence.m2107.p24.Room;
 
 public class MiniMapDisplay extends MiniMap {
 	
+	private static final int MINIMAP_SIZE = 250;
+	private static final int MINIMAP_OFFSET = 15;
+	private static final int ROOM_SIZE = 10;
+	private static final int CORRIDOR_WIDTH = 3;
+	private static final int CORRIDOR_HEIGHT = 6;
+	
 	public MiniMapDisplay() {
 		super();
 	}
 	
 	public void draw(Graphics g, Player p) {
-        this.getRoom(p.getRoomPosition()).draw(g);
-
         g.setColor(Color.BLACK);
-		g.fillRect(GamePanel.WIDTH-15-250, 15, 250, 250);
+		g.fillRect(GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE, MINIMAP_OFFSET, MINIMAP_SIZE, MINIMAP_SIZE);
 		
 		Room query = null;
-		int size = 40;
 		for(Room r : this.rooms) {
 			g.setColor(Color.WHITE);
 			
-			int x = GamePanel.WIDTH / 2 + r.getPosition().getX() * size - size / 2 + 10 * r.getPosition().getX();
-			int y = GamePanel.HEIGHT/ 2 - r.getPosition().getY() * size - size / 2 - 10 * r.getPosition().getX();
+			//      (            centering on the mini map            ) - (offset room) + (  offset from room's coordinate   ) + (       gap for corridors if any        )
+			int x = (GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * r.getPosition().getX()) + (r.getPosition().getX() * CORRIDOR_WIDTH);
+			int y = (                  MINIMAP_OFFSET + MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * r.getPosition().getY()) + (r.getPosition().getY() * CORRIDOR_WIDTH);
 			
 			query = this.getRoom(new Position(r.getPosition().getX()-1, r.getPosition().getY()));
-			if (query != null && query.isOpen(Direction.RIGHT)) g.fillRect(x-10, y+11, 10, 18);
-			query = this.getRoom(new Position(r.getPosition().getX(), r.getPosition().getY()+1));
-			if (query != null && query.isOpen(Direction.DOWN)) g.fillRect(x+11, y-10, 18, 10);
+			if (query != null && query.isOpen(Direction.RIGHT)) g.fillRect(x-CORRIDOR_WIDTH, y+ROOM_SIZE/2-CORRIDOR_HEIGHT/2, CORRIDOR_WIDTH, CORRIDOR_HEIGHT);
+			query = this.getRoom(new Position(r.getPosition().getX(), r.getPosition().getY()-1));
+			if (query != null && query.isOpen(Direction.DOWN))  g.fillRect(x+ROOM_SIZE/2-CORRIDOR_HEIGHT/2, y-CORRIDOR_WIDTH, CORRIDOR_HEIGHT, CORRIDOR_WIDTH);
 			
-			if(r.getPosition().equals(new Position(0, 0))) g.setColor(Color.GREEN);
+			if(r.getPosition().equals(Player.DEFAULT_ROOM_POSITION)) g.setColor(Color.GREEN);
 			if(r.getPosition().equals(p.getRoomPosition())) g.setColor(Color.YELLOW);
-			g.fillRect(x, y, size, size);
+			g.fillRect(x, y, ROOM_SIZE, ROOM_SIZE);
 		}
 	}
 
