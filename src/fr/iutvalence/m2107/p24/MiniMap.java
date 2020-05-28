@@ -10,10 +10,14 @@ public class MiniMap {
 
 	/** Rooms of the World. */
 	protected List<RoomDisplay> rooms;
+	private Random random = new Random();
+	private long seed;
 	
 	public MiniMap() {
 		this.rooms = new ArrayList<RoomDisplay>();
 		this.rooms.add(new RoomDisplay(new Position(0, 0), "1111"));
+		this.seed = this.random.nextLong();
+		this.random.setSeed(this.seed);
 	}
 	
 	public void tick(Player p) {
@@ -51,33 +55,37 @@ public class MiniMap {
 	}
 	
 	private RoomDisplay randomRoom(Position pos) {
-		Random rdm = new Random();
 		String doors = "";
 		Room query = null;
-		
-		query = this.getRoom(new Position(pos.getX()+1, pos.getY()));
-		if(query != null) {
-			if(query.isOpen(Direction.LEFT)) doors += "1";
-			else doors += "0";
-		} else doors += ""+rdm.nextInt(2);
+		System.out.println("----------------------");
 		
 		query = this.getRoom(new Position(pos.getX(), pos.getY()+1));
 		if(query != null) {
-			if(query.isOpen(Direction.DOWN)) doors += "1";
-			else doors += "0";
-		} else doors += ""+rdm.nextInt(2);
+			if(query.isOpen(Direction.UP)) doors = "1" + doors;
+			else doors = "0" + doors;
+			System.out.println("Must be " + (doors.charAt(0) == '1' ? "open" : "close") + " on DOWN");
+		} else doors = this.random.nextInt(2) + doors;
 		
 		query = this.getRoom(new Position(pos.getX()-1, pos.getY()));
 		if(query != null) {
-			if(query.isOpen(Direction.RIGHT)) doors += "1";
-			else doors += "0";
-		} else doors += ""+rdm.nextInt(2);
+			if(query.isOpen(Direction.RIGHT)) doors = "1" + doors;
+			else doors = "0" + doors;
+			System.out.println("Must be " + (doors.charAt(0) == '1' ? "open" : "close") + " on LEFT");
+		} else doors = this.random.nextInt(2) + doors;
 		
 		query = this.getRoom(new Position(pos.getX(), pos.getY()-1));
 		if(query != null) {
-			if(query.isOpen(Direction.UP)) doors += "1";
-			else doors += "0";
-		} else doors += ""+rdm.nextInt(2);
+			if(query.isOpen(Direction.DOWN)) doors = "1" + doors;
+			else doors = "0" + doors;
+			System.out.println("Must be " + (doors.charAt(0) == '1' ? "open" : "close") + " on UP");
+		} else doors = this.random.nextInt(2) + doors;
+		
+		query = this.getRoom(new Position(pos.getX()+1, pos.getY()));
+		if(query != null) {
+			if(query.isOpen(Direction.LEFT)) doors = "1" + doors;
+			else doors = "0" + doors;
+			System.out.println("Must be " + (doors.charAt(0) == '1' ? "open" : "close") + " on RIGHT");
+		} else doors = this.random.nextInt(2) + doors;
 		
 		return new RoomDisplay(new Position(pos.getX(), pos.getY()), doors);
 	}
