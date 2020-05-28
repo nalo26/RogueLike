@@ -43,16 +43,29 @@ public class World extends GameState {
 	@Override
 	public void tick() {
 		this.player.tick();
-		this.map.tick(this.player);
 		if (this.player.getHealth() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
 		
 		// Changing of room
 		// TODO TP the player to the other side of the room
 		// TODO better positions
-		if (this.player.getPosition().getX() <= 0) 				  this.player.getRoomPosition().move(-1, 0);
-		if (this.player.getPosition().getX() >= GamePanel.WIDTH)  this.player.getRoomPosition().move(1, 0);
-		if (this.player.getPosition().getY() <= 0) 				  this.player.getRoomPosition().move(0, -1);
-		if (this.player.getPosition().getY() >= GamePanel.HEIGHT) this.player.getRoomPosition().move(0, 1);
+		if (this.player.getPosition().getX() <= 0 && this.map.getRoom(this.player.getRoomPosition()).isOpen(Direction.LEFT)) {
+			this.player.getRoomPosition().move(-1, 0);
+			this.player.getPosition().move(GamePanel.WIDTH/2, 0);
+		}
+		if (this.player.getPosition().getX() >= GamePanel.WIDTH && this.map.getRoom(this.player.getRoomPosition()).isOpen(Direction.RIGHT)) {
+			this.player.getRoomPosition().move(1, 0);
+			this.player.getPosition().move(-GamePanel.WIDTH/2, 0);
+		}
+		if (this.player.getPosition().getY() <= 0 && this.map.getRoom(this.player.getRoomPosition()).isOpen(Direction.UP)) {
+			this.player.getRoomPosition().move(0, -1);
+			this.player.getPosition().move(0, GamePanel.HEIGHT/2);
+		}
+		if (this.player.getPosition().getY() >= GamePanel.HEIGHT && this.map.getRoom(this.player.getRoomPosition()).isOpen(Direction.DOWN)) {
+			this.player.getRoomPosition().move(0, 1);
+			this.player.getPosition().move(0, -GamePanel.HEIGHT/2);
+		}
+		
+		this.map.tick(this.player);
 	}
 
 	@Override
@@ -66,8 +79,7 @@ public class World extends GameState {
 	@Override
 	public void keyPressed(int k) {
 		this.player.keyPressed(k);
-		if(k== KeyEvent.VK_ESCAPE) this.gsm1.getState().push(new PauseState(this.gsm1));
-		
+		if(k == KeyEvent.VK_ESCAPE) this.gsm1.getState().push(new PauseState(this.gsm1));
 	}
 
 	@Override
