@@ -17,6 +17,26 @@ public class MiniMap {
 	}
 	
 	public void tick(Player p) {
+		// Changing of room
+		// TODO TP the player to the other side of the room
+		// TODO better positions
+		if (p.getPosition().getX() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.LEFT)) {
+			p.getRoomPosition().move(-1, 0);
+			p.getPosition().move(GamePanel.WIDTH/2, 0);
+		}
+		if (p.getPosition().getX() >= GamePanel.WIDTH && this.getRoom(p.getRoomPosition()).isOpen(Direction.RIGHT)) {
+			p.getRoomPosition().move(1, 0);
+			p.getPosition().move(-GamePanel.WIDTH/2, 0);
+		}
+		if (p.getPosition().getY() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.UP)) {
+			p.getRoomPosition().move(0, -1);
+			p.getPosition().move(0, GamePanel.HEIGHT/2);
+		}
+		if (p.getPosition().getY() >= GamePanel.HEIGHT && this.getRoom(p.getRoomPosition()).isOpen(Direction.DOWN)) {
+			p.getRoomPosition().move(0, 1);
+			p.getPosition().move(0, -GamePanel.HEIGHT/2);
+		}
+		
 		if(this.getRoom(p.getRoomPosition()) == null) {
 			this.rooms.add(this.randomRoom(p.getRoomPosition()));
 		}
