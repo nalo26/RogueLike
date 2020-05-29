@@ -2,6 +2,8 @@ package fr.iutvalence.m2107.p24;
 
 import java.util.Random;
 
+import fr.iutvalence.m2107.p24.display.HealthDisplay;
+
 /**
  * Represent a mob with all of his characteristics (health, damage, type, direction, ...).
  */
@@ -12,7 +14,7 @@ public class Mob {
 	/** The default damage of the mob. */
 	public static final int DEFAULT_DAMAGE = 2;
 	/** The health of the mob. */
-	protected float health;
+	protected HealthDisplay health;
 	/** The damage of the mob. */
 	protected float damage;
 	/** The position of the mob. */
@@ -33,7 +35,7 @@ public class Mob {
 	 * @param theType of the mob
 	 */
 	public Mob(MobType theType) {
-		this.health = DEFAULT_HEALTH;
+		this.health = new HealthDisplay(DEFAULT_HEALTH);
 		this.damage = DEFAULT_DAMAGE;
 		this.position = Position.randomPosition(GamePanel.WIDTH/2-GamePanel.HEIGHT/2, GamePanel.WIDTH/2+GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT);
 		this.type = theType;
@@ -78,7 +80,7 @@ public class Mob {
 	 * Get the health (life) of the mob.
 	 * @return the health of the mob (Getter). 
 	 */
-	public float getHealth() {
+	public HealthDisplay getHealth() {
 		return this.health;
 	}
 	

@@ -1,5 +1,6 @@
 package fr.iutvalence.m2107.p24;
 
+import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
@@ -19,7 +20,7 @@ public class Player {
 	/** The direction the player is watching at. */
 	protected Direction watchingAt;
 	/** The health of the player. */
-	protected float health;
+	protected HealthDisplay health;
 	/** The damage the player deals. */
 	protected float damage;
 	/** The position of the player. */
@@ -36,7 +37,7 @@ public class Player {
 	
 	/** Create a new player. */
 	public Player() {
-		this.health = DEFAULT_HEALTH;
+		this.health = new HealthDisplay(DEFAULT_HEALTH);
 		this.damage = DEFAULT_DAMAGE;
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
@@ -102,7 +103,7 @@ public class Player {
 	 * Get the health (life) of the player.
 	 * @return the health of the player (Getter).
 	 */
-	public float getHealth() {
+	public HealthDisplay getHealth() {
 		return this.health;
 	}
 	

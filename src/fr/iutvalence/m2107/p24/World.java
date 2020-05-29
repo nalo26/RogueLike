@@ -39,7 +39,7 @@ public class World extends GameState {
 	@Override
 	public void tick() {
 		this.player.tick();
-		if (this.player.getHealth() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
+		if (this.player.getHealth().getLife() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
 		this.map.tick(this.player);
 	}
 	
