@@ -87,7 +87,10 @@ public class Player {
 	protected void changeImage(Images img) {
 		// This method is override by PlayerDisplay, which handle images.  
 	}
-	
+	/**
+	 * Reject the player if he touches the specified mob.
+	 * @param m the mob with who the player interact.
+	 */
 	public void collision(Mob m) {
 		this.up = false;
 		this.right = false;
