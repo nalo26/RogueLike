@@ -4,40 +4,29 @@ import java.util.Random;
 
 /**
  * Represent a mob with all of his characteristics (health, damage, type, direction, ...).
- *
  */
 public class Mob {
 	
 	/** The default life of the mob. */
 	public static final int DEFAULT_HEALTH = 20;
-	
 	/** The default damage of the mob. */
 	public static final int DEFAULT_DAMAGE = 2;
-	
 	/** The health of the mob. */
 	protected float health;
-	
 	/** The damage of the mob. */
 	protected float damage;
-	
 	/** The position of the mob. */
 	protected Position position;
-	
 	/** The type of the mob. */
 	protected MobType type;
-	
 	/** The direction the mob is watching at. */
 	protected Direction watchingAt;
-	
 	/** The direction the mob is walking to. */
 	protected Direction direction;
-
 	/** Indicates if the mob is moving or not. */
 	protected boolean wantToMove;
-
 	/** Indicates the length of the move of the mob. */
 	protected int lengthOfMove;
-	
 	
 	/**
 	 * Create a new mob, with its specific attributes.
@@ -53,6 +42,7 @@ public class Mob {
 		this.wantToMove = false;
 		this.lengthOfMove = 0;
 	}
+	
 	/** Describe the behavior of a mob every tick. */
 	public void tick() {
 		if (this.wantToMove) {

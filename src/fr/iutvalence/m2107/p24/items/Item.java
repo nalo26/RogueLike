@@ -7,7 +7,6 @@ public abstract class Item {
 	
 	/** The name of the item. */
 	protected String name;
-	
 	/** The id of the item. */
 	protected int id;
 	
@@ -20,7 +19,5 @@ public abstract class Item {
 		this.name = theName;
 		this.id = theId;
 	}
-	
-
 
 }

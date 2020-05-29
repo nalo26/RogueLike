@@ -9,24 +9,23 @@ import fr.iutvalence.m2107.p24.display.MobDisplay;
 
 /**
  * Represent a room and all of his component (doors, position, ...).
- *
  */
 public class Room {
 	
 	/** List of all mobs in this room. */
 	protected List<MobDisplay> mobs = new ArrayList<MobDisplay>();
-	
 	/** The position of the room. */
 	protected Position position;
-	
 	/** The state of the doors in the room. */
 	protected boolean[] doors;
-	
 	/**  The maximum mob who can spawn at the same time in the room. */
 	public static final int MAX_MOBS = 10;
 	
 	/**
-	 * Constructor of a Room.
+	 * Construct of a new room.
+	 * It gets the images according to the binary order of doors.
+	 * For example: "1010" will be open on right and left, but close on up and down.
+	 * This will be the image "ROOM10".
 	 * @param pos the position of the room in the map.
 	 * @param config the configuration of doors of the room (i.e. {false, true, true, false}).
 	 * @param bin the binary configuration of doors.
@@ -117,7 +116,7 @@ public class Room {
 			default: return false;
 		}
 	}
-	/** {@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		return "Room [position=" + this.position + ", doors=" + Arrays.toString(this.doors) + "]";

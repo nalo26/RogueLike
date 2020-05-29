@@ -10,10 +10,8 @@ public class HealthPotion extends Item
 	 * @param theName name of the item.
 	 * @param theId if of the item.
 	 */
-	public HealthPotion(String theName, int theId)
-	{
+	public HealthPotion(String theName, int theId) {
 		super(theName, theId);
-		
 	}
 
 

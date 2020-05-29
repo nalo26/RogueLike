@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Frame;
 
 import javax.swing.JFrame;
+
 /**
  * The main class to launch the game.
  */

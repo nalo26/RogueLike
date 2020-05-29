@@ -8,9 +8,7 @@ import java.awt.Graphics;
  */
 public abstract class GameState {
 	
-	/**
-	 * Manage the different states of the game.
-	 */
+	/** Manage the different states of the game. */
     protected GameStateManager gsm1;
     
     /**
@@ -22,14 +20,10 @@ public abstract class GameState {
         this.init();
     }
     
-    /**
-     * Initialize some extra fields (rarely used but can be useful sometimes).
-     */
+    /** Initialize some extra fields (rarely used but can be useful sometimes). */
     public abstract void init();
     
-    /**
-     * Instructions what are executed every tick.
-     */
+    /** Instructions what are executed every tick. */
     public abstract void tick();
     
     /**

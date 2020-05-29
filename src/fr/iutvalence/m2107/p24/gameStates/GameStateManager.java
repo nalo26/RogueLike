@@ -9,21 +9,15 @@ import java.util.Stack;
  */
 public class GameStateManager
 {
-	/**
-	 * Represent the current state of the game.
-	 */
+	/** Represent the current state of the game. */
     private Stack<GameState> state;
     
-    /**
-     * Initialize the game and push the MenuState class at the top of stack.
-     */
+    /** Initialize the game and push the MenuState class at the top of stack. */
     public GameStateManager() {
         (this.state = new Stack<GameState>()).push(new MenuState(this));
     }
     
-    /**
-     * Look at which state is at the top of the stack and call his tick method.
-     */
+    /** Look at which state is at the top of the stack and call his tick method. */
     public void tick() {
         this.state.peek().tick();
     }

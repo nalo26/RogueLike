@@ -11,18 +11,14 @@ import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
 import fr.iutvalence.m2107.p24.gameStates.PauseState;
 
 /**
- * create the whole map
- *
+ * Create the whole map.
  */
 public class World extends GameState {
 
 	/** The Player in the World. */
 	private PlayerDisplay player;
-	
-	/**
-	 * The minimap in the world. */
+	/** The minimap in the world. */
 	private MiniMapDisplay map;
-
 
 	/**
 	 * Constructor of the World.
@@ -33,23 +29,20 @@ public class World extends GameState {
 	}
 
 	@Override
-	/**
-	 * Initialization of your game. We set the player and then we create a room.
-	 */
+	/** Initialization of your game. We set the player and then we create a room. */
 	public void init() {
 		this.player = new PlayerDisplay();
 		this.map = new MiniMapDisplay();
 	}
 	
-	/**
-	 * {@inheritDoc} */
+	/** {@inheritDoc} */
 	@Override
 	public void tick() {
 		this.player.tick();
 		if (this.player.getHealth() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
 		this.map.tick(this.player);
 	}
-	/** {@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public void draw(Graphics g) {
 		this.map.getRoom(this.player.getRoomPosition()).draw(g);
@@ -58,14 +51,14 @@ public class World extends GameState {
 		this.player.draw(g);
 		this.map.draw(g, this.player);
 	}
-	/** {@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public void keyPressed(int k) {
 		this.player.keyPressed(k);
 		if(k == KeyEvent.VK_ESCAPE) this.gsm1.getState().push(new PauseState(this.gsm1));
 	}
 
-	/** {@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public void keyReleased(int k) {
 		this.player.keyReleased(k);

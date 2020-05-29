@@ -7,31 +7,30 @@ import java.util.Random;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 
 /**
- * Represent the operation of the minimap
- *
+ * Represent the operation of the minimap.
  */
 public class MiniMap {
 
 	/** Rooms of the World. */
 	protected List<RoomDisplay> rooms;
-	
 	/** A random object to create random values. */
 	private Random random = new Random();
-	
-	/** the seed of the map. */
+	/** The seed of the map. */
 	private long seed;
 	
 	/**
 	 * Constructor.
+	 * Create a new room of 4 doors, and set a seed.
 	 */
 	public MiniMap() {
 		this.rooms = new ArrayList<RoomDisplay>();
-		this.rooms.add(new RoomDisplay(new Position(0, 0), "1111"));
+		this.rooms.add(new RoomDisplay(Player.DEFAULT_ROOM_POSITION, "1111"));
 		this.seed = this.random.nextLong();
 		this.random.setSeed(this.seed);
 	}
+	
 	/**
-	 * Describe the behavior of the minimap every tick for a given player.
+	 * Describe the behavior of the map every tick for a given player.
 	 * @param p the player wanted.
 	 */
 	public void tick(Player p) {
@@ -63,8 +62,8 @@ public class MiniMap {
 	
 	/** 
 	 * Allow to know the current room by a given position.
-	 * @param pos the position what you want to know the room.
-	 * @return the display of the room for the given position.
+	 * @param pos the position of the room you want to get.
+	 * @return the room standing to the given position.
 	 */
 	protected RoomDisplay getRoom(Position pos) {
 		for(RoomDisplay r : this.rooms) {
@@ -75,40 +74,39 @@ public class MiniMap {
 	
 	/**
 	 * Create a random room from a given position.
-	 * @param pos the position where you want to create the room.
-	 * @return a displaying of a room.
+	 * This generation is procedural :
+	 * The algorithm will tests if the new room should or not have a door
+	 * on every sides according to all the rooms surrounding this new room.
+	 * If no room is found on a specific side, a door is randomly set (1/2 chance).
+	 * @param pos the position where the room will be created.
+	 * @return the new room randomly created.
 	 */
 	private RoomDisplay randomRoom(Position pos) {
 		String doors = "";
 		Room query = null;
-		System.out.println("----------------------");
 		
 		query = this.getRoom(new Position(pos.getX(), pos.getY()+1));
 		if(query != null) {
 			if(query.isOpen(Direction.UP)) doors = "1" + doors;
 			else doors = "0" + doors;
-			System.out.println("Must be " + (doors.charAt(0) == '1' ? "open" : "close") + " on DOWN");
 		} else doors = this.random.nextInt(2) + doors;
 		
 		query = this.getRoom(new Position(pos.getX()-1, pos.getY()));
 		if(query != null) {
 			if(query.isOpen(Direction.RIGHT)) doors = "1" + doors;
 			else doors = "0" + doors;
-			System.out.println("Must be " + (doors.charAt(0) == '1' ? "open" : "close") + " on LEFT");
 		} else doors = this.random.nextInt(2) + doors;
 		
 		query = this.getRoom(new Position(pos.getX(), pos.getY()-1));
 		if(query != null) {
 			if(query.isOpen(Direction.DOWN)) doors = "1" + doors;
 			else doors = "0" + doors;
-			System.out.println("Must be " + (doors.charAt(0) == '1' ? "open" : "close") + " on UP");
 		} else doors = this.random.nextInt(2) + doors;
 		
 		query = this.getRoom(new Position(pos.getX()+1, pos.getY()));
 		if(query != null) {
 			if(query.isOpen(Direction.LEFT)) doors = "1" + doors;
 			else doors = "0" + doors;
-			System.out.println("Must be " + (doors.charAt(0) == '1' ? "open" : "close") + " on RIGHT");
 		} else doors = this.random.nextInt(2) + doors;
 		
 		return new RoomDisplay(new Position(pos.getX(), pos.getY()), doors);

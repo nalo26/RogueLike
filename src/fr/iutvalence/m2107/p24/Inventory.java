@@ -8,16 +8,15 @@ import fr.iutvalence.m2107.p24.items.Item;
 
 /**
  * Represent the inventory of the player
- *
  */
 public class Inventory {
-	/**
-	 * List of the player's items.
-	 */
+	
+	/** List of the player's items. */
 	protected List<Item> items;
 	
 	/**
-	 * Constructor : initialize the list of items.
+	 * Constructor of the inventory.
+	 * Initialize the list of items.
 	 */
 	public Inventory() {
 		this.items = new ArrayList<Item>();

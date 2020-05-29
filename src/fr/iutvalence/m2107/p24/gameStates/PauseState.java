@@ -13,22 +13,17 @@ import fr.iutvalence.m2107.p24.World;
 public class PauseState extends GameState
 {
 
-	/**
-	 * This array represent all of the possible options for the pause menu.
-	 */
+	/** This array represent all of the possible options for the pause menu. */
 	private String[] options;
 	
-	/**
-	 * This array represent all of the possible options for the death menu.
-	 */
+	/** This array represent all of the possible options for the death menu. */
 	private int SelectedOption;
 
 	/**
 	 * Initialize the possible options and the selector.
 	 * @param gsm the manager wanted.
 	 */
-	public PauseState(GameStateManager gsm)
-	{
+	public PauseState(GameStateManager gsm) {
 		super(gsm);
 		this.options = new String[] { "Continue", "Retry", "Help", "Main Menu", "Quit" };
 		this.SelectedOption = 0;
@@ -36,32 +31,26 @@ public class PauseState extends GameState
 
 	/** {@inheritDoc} */
 	@Override
-	public void init()
-	{
-
+	public void init() {
+		// Override later.
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void tick()
-	{
-
+	public void tick() {
+		// Override later.
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void draw(Graphics p)
-	{
+	public void draw(Graphics p) {
 		p.setColor(Color.black);
 		p.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		int j = 75;
-		for (int i = 0; i < this.options.length; ++i)
-		{
-			if (i == this.SelectedOption)
-			{
+		for (int i = 0; i < this.options.length; ++i) {
+			if (i == this.SelectedOption) {
 				p.setColor(new Color(0, 255, 128));
-			} else
-			{
+			} else {
 				p.setColor(new Color(64, 64, 64));
 			}
 
@@ -74,42 +63,31 @@ public class PauseState extends GameState
 
 	/** {@inheritDoc} */
 	@Override
-	public void keyPressed(int k)
-	{
-		if (k == 40 || k == 83)
-		{
+	public void keyPressed(int k) {
+		if (k == 40 || k == 83) {
 			++this.SelectedOption;
-			if (this.SelectedOption >= this.options.length)
-			{
+			if (this.SelectedOption >= this.options.length) {
 				this.SelectedOption = 0;
 			}
-		} else if (k == 38 || k == 90)
-		{
+		} else if (k == 38 || k == 90) {
 			--this.SelectedOption;
-			if (this.SelectedOption < 0)
-			{
+			if (this.SelectedOption < 0) {
 				this.SelectedOption = this.options.length - 1;
 			}
 		}
-		if (k == 10)
-		{
-			if (this.SelectedOption == 0)
-			{
+		if (k == 10) {
+			if (this.SelectedOption == 0) {
 				// Continue
 				this.gsm1.getState().pop();
-			} else if (this.SelectedOption == 1)
-			{
+			} else if (this.SelectedOption == 1) {
 				// Retry
 				this.gsm1.getState().push(new World(this.gsm1));
-			} else if (this.SelectedOption == 2)
-			{
+			} else if (this.SelectedOption == 2) {
 				// Help
-			} else if (this.SelectedOption == 3)
-			{
+			} else if (this.SelectedOption == 3) {
 				// Main menu
 				this.gsm1.getState().push(new MenuState(this.gsm1));
-			} else if (this.SelectedOption == 4)
-			{
+			} else if (this.SelectedOption == 4) {
 				// Exit
 				System.exit(0);
 			}
@@ -119,10 +97,8 @@ public class PauseState extends GameState
 
 	/** {@inheritDoc} */
 	@Override
-	public void keyReleased(int p)
-	{
-		// TODO Auto-generated method stub
-
+	public void keyReleased(int p) {
+		// Not used here.
 	}
 
 }

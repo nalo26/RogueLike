@@ -65,6 +65,7 @@ public enum Images {
 	
 	/** The current image. */
 	private final BufferedImage image;
+	
 	/**
 	 * Constructor.
 	 * @param path the image path on the disk.

@@ -11,22 +11,17 @@ import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.Room;
 /**
  * Display the minimap.
- *
  */
 public class MiniMapDisplay extends MiniMap {
 	
 	/** The size of the minimap. */ 
 	private static final int MINIMAP_SIZE = 250;
-	
 	/** The offset of the minimap. */
 	private static final int MINIMAP_OFFSET = 15;
-	
 	/** The size of the room. */
 	private static final int ROOM_SIZE = 10;
-	
 	/** The width of the corridor. */
 	private static final int CORRIDOR_WIDTH = 3;
-	
 	/** The height of the corridor. */
 	private static final int CORRIDOR_HEIGHT = 6;
 	
@@ -34,7 +29,11 @@ public class MiniMapDisplay extends MiniMap {
 	public MiniMapDisplay() {
 		super();
 	}
-	/** Draw the minimap. */
+	
+	/** Draw the minimap. 
+	 * @param g the graphics to draw on.
+	 * @param p the player of the game.
+	 */
 	public void draw(Graphics g, Player p) {
         g.setColor(Color.BLACK);
 		g.fillRect(GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE, MINIMAP_OFFSET, MINIMAP_SIZE, MINIMAP_SIZE);

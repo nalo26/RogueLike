@@ -5,39 +5,30 @@ import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
  * Represent the player and all of his possible actions (moves, directions, ...).
- *
  */
 public class Player {
 
 	/** The default life of the player. */
 	public static final int DEFAULT_HEALTH = 20;
-	
 	/** The default damage of the player. */
 	public static final int DEFAULT_DAMAGE = 2;
-	
+	/** The default room coordinates the player is in. */
 	public static final Position DEFAULT_ROOM_POSITION = new Position(0, 0);
-	
 	/** The direction of the player. */
 	protected Direction direction;
-	
 	/** The direction the player is watching at. */
 	protected Direction watchingAt;
-	
 	/** The health of the player. */
 	protected float health;
-	
-	/** The damage of the player. */
+	/** The damage the player deals. */
 	protected float damage;
-	
 	/** The position of the player. */
 	protected Position position;
-	
 	/** The room coordinates the player is in. */
 	protected Position roomPosition;
-	
 	/** The inventory of the player*/
 	protected InventoryDisplay inventory;
-	
+	/** Handle the direction the player is moving to. */
 	protected boolean up;
 	protected boolean right;
 	protected boolean down;
@@ -53,9 +44,7 @@ public class Player {
 		this.inventory = new InventoryDisplay();
 	}
 	
-	/**
-	 * Describe the behavior of the player after a key is pressed.
-	 */
+	/** Describe the behavior of the player after a key is pressed. */
 	public void tick() {
 		if (this.right) this.position.move(3, 0);
 		if (this.left) this.position.move(-3, 0);
@@ -65,7 +54,7 @@ public class Player {
 	
 	/**
 	 * Describe what to do when a key is pressed.
-	 * @param k the key value
+	 * @param k the key value pressed.
 	 */
 	public void keyPressed(int k) {
 		if (!this.down && (k == 90 || k == 38)) {
@@ -100,7 +89,7 @@ public class Player {
 	
 	/**
 	 * Describe what to do when a key is released.
-	 * @param k the key value
+	 * @param k the key value released.
 	 */
 	public void keyReleased(int k) {
 		if (k == 90 || k == 38) this.up = false;

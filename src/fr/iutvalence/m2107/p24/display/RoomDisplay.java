@@ -10,8 +10,7 @@ import fr.iutvalence.m2107.p24.Room;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
- * Display a room with his correspondent image.
- *
+ * Display a room with its correspondent image.
  */
 public class RoomDisplay extends Room {
 
@@ -20,6 +19,9 @@ public class RoomDisplay extends Room {
 	
 	/**
 	 * Construct the room displaying.
+	 * It gets the images according to the binary order of doors.
+	 * For example: "1010" will be open on right and left, but close on up and down.
+	 * This will be the image "ROOM10".
 	 * @param pos the position of the room
 	 * @param config the configuration of the room (which type of room)
 	 * @param bin the value of the room (in the file name)
@@ -30,9 +32,9 @@ public class RoomDisplay extends Room {
 	}
 	
 	/**
-	 * Construct the room displaying
-	 * @param pos the position of the room
-	 * @param config the configuration of the room (which type of room)
+	 * Create a new room, with the configuration as String. 
+	 * @param pos the position of the room in the map.
+	 * @param config the String configuration of doors of the room (i.e. "0110").
 	 */
 	public RoomDisplay(Position pos, String config) {
 		this(pos, Room.computeDoors(config), config);
