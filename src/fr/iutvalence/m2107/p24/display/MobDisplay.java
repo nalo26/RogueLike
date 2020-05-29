@@ -2,6 +2,7 @@ package fr.iutvalence.m2107.p24.display;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.Direction;
@@ -60,6 +61,10 @@ public class MobDisplay extends Mob {
 		g.drawRect(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
 		
 		this.getHealth().draw(g, this.position, this.image.getWidth());
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
 	}
 
 }

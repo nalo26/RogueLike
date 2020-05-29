@@ -16,6 +16,10 @@ public class Health {
 		this.life = defaultLife;
 	}
 	
+	public void setHealth(float h) {
+		this.life += h;
+	}
+	
 	/**
 	 * Get the current life.
 	 * @return the current life.

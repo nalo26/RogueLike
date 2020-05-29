@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
+import fr.iutvalence.m2107.p24.display.MobDisplay;
 import fr.iutvalence.m2107.p24.display.PlayerDisplay;
 import fr.iutvalence.m2107.p24.gameStates.DeathState;
 import fr.iutvalence.m2107.p24.gameStates.GameState;
@@ -39,8 +40,15 @@ public class World extends GameState {
 	@Override
 	public void tick() {
 		this.player.tick();
-		if (this.player.getHealth().getLife() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
 		this.map.tick(this.player);
+		
+		for(MobDisplay m : this.map.getRoom(this.player.getRoomPosition()).getMobs()) {
+			if (m.getBounds().intersects(this.player.getBounds())) {
+				this.player.getHealth().setHealth(-1);
+			}
+		}
+		if (this.player.getHealth().getLife() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
+		
 	}
 	
 	/** {@inheritDoc} */

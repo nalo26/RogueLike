@@ -2,6 +2,7 @@ package fr.iutvalence.m2107.p24.display;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.GamePanel;
@@ -11,16 +12,13 @@ import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
  * Display the player.
- *
  */
 public class PlayerDisplay extends Player {
 
 	/** The default image of the player.*/
 	public static final BufferedImage DEFAULT_IMAGE = Images.PLAYER_RIGHT.getImage();
-	
 	/** The default position of the player. */
 	public static final Position DEFAULT_POSITON = new Position(GamePanel.WIDTH/2 - (DEFAULT_IMAGE.getWidth()/2), GamePanel.HEIGHT/2 - (DEFAULT_IMAGE.getHeight()/2));
-	
 	/** The image of the player. */
 	private BufferedImage image;
 	
@@ -46,6 +44,10 @@ public class PlayerDisplay extends Player {
 	@Override
 	protected void changeImage(Images img) {
 		this.image = img.getImage();
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
 	}
 
 }
