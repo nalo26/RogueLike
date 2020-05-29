@@ -24,7 +24,7 @@ public class MiniMap {
 	 */
 	public MiniMap() {
 		this.rooms = new ArrayList<RoomDisplay>();
-		this.rooms.add(new RoomDisplay(Player.DEFAULT_ROOM_POSITION, "1111"));
+		this.rooms.add(new RoomDisplay(Player.DEFAULT_ROOM_POSITION.copy(), "1111"));
 		this.seed = this.random.nextLong();
 		this.random.setSeed(this.seed);
 	}
@@ -109,7 +109,7 @@ public class MiniMap {
 			else doors = "0" + doors;
 		} else doors = this.random.nextInt(2) + doors;
 		
-		return new RoomDisplay(new Position(pos.getX(), pos.getY()), doors);
+		return new RoomDisplay(pos.copy(), doors);
 	}
 	
 }

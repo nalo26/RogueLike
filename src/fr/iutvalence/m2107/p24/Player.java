@@ -40,7 +40,7 @@ public class Player {
 		this.damage = DEFAULT_DAMAGE;
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
-		this.roomPosition = DEFAULT_ROOM_POSITION;
+		this.roomPosition = DEFAULT_ROOM_POSITION.copy();
 		this.inventory = new InventoryDisplay();
 	}
 	

@@ -42,6 +42,7 @@ public class World extends GameState {
 		if (this.player.getHealth() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
 		this.map.tick(this.player);
 	}
+	
 	/** {@inheritDoc} */
 	@Override
 	public void draw(Graphics g) {
@@ -51,6 +52,7 @@ public class World extends GameState {
 		this.player.draw(g);
 		this.map.draw(g, this.player);
 	}
+	
 	/** {@inheritDoc} */
 	@Override
 	public void keyPressed(int k) {

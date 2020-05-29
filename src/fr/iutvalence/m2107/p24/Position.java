@@ -86,5 +86,9 @@ public class Position {
 	public String toString() {
 		return "(" + this.x + ", " + this.y + ")";
 	}
+
+	public Position copy() {
+		return new Position(this.getX(), this.getY());
+	}
 	
 }
