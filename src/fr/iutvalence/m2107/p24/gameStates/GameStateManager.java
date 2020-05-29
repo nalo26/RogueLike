@@ -27,7 +27,10 @@ public class GameStateManager
      * @param g the object who allow to draw.
      */
     public void draw(final Graphics g) {
-        this.state.peek().draw(g);
+    	for(GameState gsm : this.state) {
+    		gsm.draw(g);
+    	}
+        //this.state.peek().draw(g);
     }
     
     /**

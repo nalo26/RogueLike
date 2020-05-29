@@ -88,6 +88,46 @@ public class Player {
 		// This method is override by PlayerDisplay, which handle images.  
 	}
 	
+	public void collision(Mob m) {
+		this.up = false;
+		this.right = false;
+		this.down = false;
+		this.left = false;
+		if (m.wantToMove) {
+			switch(m.getWatching()) {
+				case UP:
+					this.position.move(0, -10);
+					break;
+				case RIGHT:
+					this.position.move(10, 0);
+					break;
+				case DOWN:
+					this.position.move(0, 10);
+					break;
+				case LEFT:
+					this.position.move(-10, 0);
+					break;
+				default: break;
+			}
+		} else {
+			switch(this.direction) {
+				case UP:
+					this.position.move(0, 10);
+					break;
+				case RIGHT:
+					this.position.move(-10, 0);
+					break;
+				case DOWN:
+					this.position.move(0, -10);
+					break;
+				case LEFT:
+					this.position.move(10, 0);
+					break;
+				default: break;
+			}
+		}
+	}
+	
 	/**
 	 * Describe what to do when a key is released.
 	 * @param k the key value released.

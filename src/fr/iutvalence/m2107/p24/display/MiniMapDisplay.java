@@ -2,6 +2,7 @@ package fr.iutvalence.m2107.p24.display;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
@@ -36,8 +37,8 @@ public class MiniMapDisplay extends MiniMap {
 	 * @param g the graphics to draw on.
 	 * @param p the player of the game.
 	 */
-	public void draw(Graphics g, Player p) {
-		if(p.getPosition().getX() >= MINIMAP_POSITION.getX() && p.getPosition().getY() <= MINIMAP_POSITION.getY()+MINIMAP_SIZE) {
+	public void draw(Graphics g, PlayerDisplay p) {
+		if(p.getBounds().intersects(new Rectangle(MINIMAP_POSITION.getX(), MINIMAP_POSITION.getY(), MINIMAP_SIZE, MINIMAP_SIZE))) {
 			// if the player is under the map.
 	        g.setColor(new Color((float)0, (float)0, (float)0, (float)0.5));
 		} else g.setColor(Color.BLACK);
@@ -49,8 +50,8 @@ public class MiniMapDisplay extends MiniMap {
 			g.setColor(Color.WHITE);
 			
 			//      (            centering on the mini map            ) - (offset room) + (  offset from room's coordinate   ) + (       gap for corridors if any        )
-			int x = (GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * r.getPosition().getX()) + (r.getPosition().getX() * CORRIDOR_WIDTH);
-			int y = (                  MINIMAP_OFFSET + MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * r.getPosition().getY()) + (r.getPosition().getY() * CORRIDOR_WIDTH);
+			int x = (GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * (r.getPosition().getX() - p.getRoomPosition().getX())) + ((r.getPosition().getX() - p.getRoomPosition().getX())* CORRIDOR_WIDTH);
+			int y = (                  MINIMAP_OFFSET + MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * (r.getPosition().getY() - p.getRoomPosition().getY())) + ((r.getPosition().getY() - p.getRoomPosition().getY())* CORRIDOR_WIDTH);
 			
 			query = this.getRoom(new Position(r.getPosition().getX()-1, r.getPosition().getY()));
 			if (query != null && query.isOpen(Direction.RIGHT)) g.fillRect(x-CORRIDOR_WIDTH, y+ROOM_SIZE/2-CORRIDOR_HEIGHT/2, CORRIDOR_WIDTH, CORRIDOR_HEIGHT);

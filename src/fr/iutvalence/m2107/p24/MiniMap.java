@@ -65,7 +65,7 @@ public class MiniMap {
 	 * @param pos the position of the room you want to get.
 	 * @return the room standing to the given position.
 	 */
-	protected RoomDisplay getRoom(Position pos) {
+	public RoomDisplay getRoom(Position pos) {
 		for(RoomDisplay r : this.rooms) {
 			if(r.getPosition().equals(pos)) return r;
 		}
@@ -110,6 +110,10 @@ public class MiniMap {
 		} else doors = this.random.nextInt(2) + doors;
 		
 		return new RoomDisplay(pos.copy(), doors);
+	}
+	
+	public List<RoomDisplay> getRooms(){
+		return this.rooms;
 	}
 	
 }
