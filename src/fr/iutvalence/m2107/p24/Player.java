@@ -131,6 +131,24 @@ public class Player {
 		}
 	}
 	
+	public void collision()
+	{
+		switch(this.direction) {
+		case UP:
+			this.position.move(0, 10);
+			break;
+		case RIGHT:
+			this.position.move(-10, 0);
+			break;
+		case DOWN:
+			this.position.move(0, -10);
+			break;
+		case LEFT:
+			this.position.move(10, 0);
+			break;
+		default: break;
+	}
+	}
 	/**
 	 * Describe what to do when a key is released.
 	 * @param k the key value released.

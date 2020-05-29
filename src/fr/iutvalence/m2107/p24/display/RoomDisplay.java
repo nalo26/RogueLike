@@ -2,8 +2,11 @@ package fr.iutvalence.m2107.p24.display;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 
+import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.Room;
@@ -16,7 +19,8 @@ public class RoomDisplay extends Room {
 
 	/** The image of the room. */
 	private BufferedImage image;
-	
+	/** The bounds of the room depending on the direction. */
+	private HashMap<Direction, Rectangle> bounds;
 	/**
 	 * Construct the room displaying.
 	 * It gets the images according to the binary order of doors.
@@ -29,6 +33,9 @@ public class RoomDisplay extends Room {
 	public RoomDisplay(Position pos, boolean[] config, String bin) {
 		super(pos, config, bin);
 		this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
+		this.bounds = new HashMap<Direction, Rectangle>();
+		this.bounds.put(Direction.UP, new Rectangle(-GamePanel.WIDTH/2, -GamePanel.HEIGHT/8, GamePanel.WIDTH*2, GamePanel.HEIGHT/8 -10));
+		this.bounds.put(Direction.LEFT, new Rectangle(-GamePanel.WIDTH/2, -GamePanel.HEIGHT/8, GamePanel.WIDTH/2 -2000, GamePanel.HEIGHT));
 	}
 	
 	/**
@@ -51,4 +58,15 @@ public class RoomDisplay extends Room {
 		}
 		g.setColor(Color.RED);
 	}
+
+	public HashMap<Direction, Rectangle> getBounds()
+	{
+		return this.bounds;
+	}
+	
+	public Rectangle getBoundFromKey(Direction key)
+	{
+		return this.bounds.get(key);
+	}
+
 }

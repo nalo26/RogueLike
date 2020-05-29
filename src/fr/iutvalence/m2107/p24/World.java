@@ -50,7 +50,8 @@ public class World extends GameState {
 			}
 		}
 		if (this.player.getHealth().getLife() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
-		
+		if(this.player.getBounds().intersects(this.map.getRoom(this.player.getRoomPosition()).getBoundFromKey(Direction.UP))) this.player.collision();
+		if(this.player.getBounds().intersects(this.map.getRoom(this.player.getRoomPosition()).getBoundFromKey(Direction.LEFT))) this.player.collision(); System.out.println("Collisions");
 	}
 	
 	/** {@inheritDoc} */
