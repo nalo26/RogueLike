@@ -18,6 +18,8 @@ public class MiniMapDisplay extends MiniMap {
 	private static final int MINIMAP_SIZE = 250;
 	/** The offset of the minimap. */
 	private static final int MINIMAP_OFFSET = 15;
+	/** The position of the minimap */
+	private static final Position MINIMAP_POSITION = new Position(GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE, MINIMAP_OFFSET);
 	/** The size of the room. */
 	private static final int ROOM_SIZE = 10;
 	/** The width of the corridor. */
@@ -35,8 +37,12 @@ public class MiniMapDisplay extends MiniMap {
 	 * @param p the player of the game.
 	 */
 	public void draw(Graphics g, Player p) {
-        g.setColor(Color.BLACK);
-		g.fillRect(GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE, MINIMAP_OFFSET, MINIMAP_SIZE, MINIMAP_SIZE);
+		if(p.getPosition().getX() >= MINIMAP_POSITION.getX() && p.getPosition().getY() <= MINIMAP_POSITION.getY()+MINIMAP_SIZE) {
+			// if the player is under the map.
+	        g.setColor(new Color((float)0, (float)0, (float)0, (float)0.5));
+		} else g.setColor(Color.BLACK);
+		
+		g.fillRect(MINIMAP_POSITION.getX(), MINIMAP_POSITION.getY(), MINIMAP_SIZE, MINIMAP_SIZE);
 		
 		Room query = null;
 		for(Room r : this.rooms) {
