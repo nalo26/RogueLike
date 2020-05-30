@@ -15,15 +15,16 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private static final long serialVersionUID = 1L;
     
     /** Get the size of the Screen. */
-    public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    //public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    public static Dimension screenSize = RogueLikeLauncher.frame.getSize();
     
     /** Set the Width at screenSize. */
-    //public static final int WIDTH = screenSize.width;
-    public static final int WIDTH = 1280;
+    //public static int WIDTH = screenSize.width;
+    public static int WIDTH = 1280;
     
     /** Set the Height at screenSize. */
-    //public static final int HEIGHT = screenSize.height;
-    public static final int HEIGHT = 720;
+    //public static int HEIGHT = screenSize.height;
+    public static int HEIGHT = 720;
     
     @SuppressWarnings("unused")
 	private Thread thread;
@@ -103,7 +104,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     
     /** That's what is refresh every tick. */
     public void tick() {
-        this.gsm.tick();
+    	screenSize = RogueLikeLauncher.frame.getSize();
+    	WIDTH = screenSize.width;
+    	HEIGHT = screenSize.height;
+    	this.gsm.tick();
     }
     
     /** This component allow to draw on the panel. */
