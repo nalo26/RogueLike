@@ -34,8 +34,10 @@ public class RoomDisplay extends Room {
 		super(pos, config, bin);
 		this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
 		this.bounds = new HashMap<Direction, Rectangle>();
-		this.bounds.put(Direction.UP, new Rectangle(-GamePanel.WIDTH/2, -GamePanel.HEIGHT/8, GamePanel.WIDTH*2, GamePanel.HEIGHT/8 -10));
-		this.bounds.put(Direction.LEFT, new Rectangle(-GamePanel.WIDTH/2, -GamePanel.HEIGHT/8, GamePanel.WIDTH/2 -2000, GamePanel.HEIGHT));
+		this.bounds.put(Direction.UP, new Rectangle(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT/8 -89));
+		this.bounds.put(Direction.LEFT, new Rectangle(0, 0, GamePanel.WIDTH/2 -580, GamePanel.HEIGHT));
+		this.bounds.put(Direction.RIGHT, new Rectangle(GamePanel.WIDTH-60, 0, GamePanel.WIDTH, GamePanel.HEIGHT));
+		this.bounds.put(Direction.DOWN, new Rectangle(0, GamePanel.HEIGHT-60, GamePanel.WIDTH, GamePanel.HEIGHT));
 	}
 	
 	/**
