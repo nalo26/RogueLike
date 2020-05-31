@@ -12,8 +12,7 @@ import fr.iutvalence.m2107.p24.ressources.Images;
  * display the inventory with an image
  *
  */
-public class InventoryDisplay extends Inventory
-{
+public class InventoryDisplay extends Inventory {
 
 	/** the image of the inventory */
 	private BufferedImage inventoryImage;
@@ -22,16 +21,19 @@ public class InventoryDisplay extends Inventory
 	/**
 	 * initialize the inventory image to draw it after
 	 */
+
 	public InventoryDisplay()
 	{
 		this.inventoryImage = Images.INVENTORY.getImage();
 		this.transparentInventoryImage = Images.INVENTORY_TRANSPARENT.getImage();
+
 	}
 
 	/**
 	 * draw the inventory
 	 * @param g the draw component
 	 */
+
 	public void draw(Graphics g, PlayerDisplay p)
 	{
 		if(p.getBounds().intersects(new Rectangle(15, GamePanel.HEIGHT - 15 - 250, 250, 250)))
@@ -43,6 +45,7 @@ public class InventoryDisplay extends Inventory
 		}
 		if (this.items != null)
 		{
+
 			// TODO draw items here
 		}
 	}
