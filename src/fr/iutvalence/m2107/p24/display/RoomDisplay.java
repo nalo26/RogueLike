@@ -91,12 +91,11 @@ public class RoomDisplay extends Room {
 	 * Give the bounds of the walls.
 	 * @return the bounds of the walls depending on the direction.
 	 */
-	public HashMap<Direction, Rectangle> getBounds() {
+	public HashMap<Direction, Rectangle> getWallsBounds() {
 		return this.bounds;
 	}
 	
-	public HashMap<Direction, Rectangle> getDoorBounds()
-	{
+	public HashMap<Direction, Rectangle> getDoorBounds() {
 		return this.doors;
 	}
 	/**
