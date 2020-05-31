@@ -23,7 +23,10 @@ public class RoomDisplay extends Room {
 	/** The bounds of the room depending on the direction. */
 	private HashMap<Direction, Rectangle> bounds;
 
+	/** The width offset of the walls. */
 	private static int offsetW = (int) (0.05 * GamePanel.WIDTH);
+	
+	/** The height offset of the walls. */
 	private static int offsetH = (int) ((96/1088) * GamePanel.HEIGHT);
 	/**
 	 * Construct the room displaying.
@@ -74,10 +77,19 @@ public class RoomDisplay extends Room {
 		this.bounds.put(Direction.DOWN, new Rectangle(0, GamePanel.HEIGHT - offsetH, GamePanel.WIDTH, offsetH));
 	}
 
+	/**
+	 * Give the bounds of the walls.
+	 * @return the bounds of the walls depending on the direction.
+	 */
 	public HashMap<Direction, Rectangle> getBounds() {
 		return this.bounds;
 	}
 	
+	/**
+	 * Give a bound of a wall depending on a given direction.
+	 * @param key the direction on what you want to know the bound.
+	 * @return the bound corresponding to the given direction.
+	 */
 	public Rectangle getBoundFromKey(Direction key) {
 		return this.bounds.get(key);
 	}
