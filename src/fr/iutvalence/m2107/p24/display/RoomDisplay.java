@@ -10,6 +10,7 @@ import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.Room;
+import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -21,6 +22,9 @@ public class RoomDisplay extends Room {
 	private BufferedImage image;
 	/** The bounds of the room depending on the direction. */
 	private HashMap<Direction, Rectangle> bounds;
+
+	private static int offsetW = (int) (0.05 * GamePanel.WIDTH);
+	private static int offsetH = (int) ((96/1088) * GamePanel.HEIGHT);
 	/**
 	 * Construct the room displaying.
 	 * It gets the images according to the binary order of doors.
@@ -34,10 +38,7 @@ public class RoomDisplay extends Room {
 		super(pos, config, bin);
 		this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
 		this.bounds = new HashMap<Direction, Rectangle>();
-		this.bounds.put(Direction.UP, new Rectangle(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT/8 -89));
-		this.bounds.put(Direction.LEFT, new Rectangle(0, 0, GamePanel.WIDTH/2 -580, GamePanel.HEIGHT));
-		this.bounds.put(Direction.RIGHT, new Rectangle(GamePanel.WIDTH-60, 0, GamePanel.WIDTH, GamePanel.HEIGHT));
-		this.bounds.put(Direction.DOWN, new Rectangle(0, GamePanel.HEIGHT-60, GamePanel.WIDTH, GamePanel.HEIGHT));
+		this.updateBounds();
 	}
 	
 	/**
@@ -54,6 +55,8 @@ public class RoomDisplay extends Room {
 	 * @param g the draw component
 	 */
 	public void draw(Graphics g) {
+		this.updateBounds();
+		
 		g.drawImage(this.image, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		for(MobDisplay m : this.mobs) {
 			m.draw(g);
@@ -61,13 +64,21 @@ public class RoomDisplay extends Room {
 		g.setColor(Color.RED);
 	}
 
-	public HashMap<Direction, Rectangle> getBounds()
-	{
+	private void updateBounds() {
+		offsetW = (int) (0.05 * GamePanel.WIDTH);
+		offsetH = (int) (96/(float)this.image.getHeight() * GamePanel.HEIGHT);
+		
+		this.bounds.put(Direction.UP, new Rectangle(0, 0, GamePanel.WIDTH, 1));
+		this.bounds.put(Direction.LEFT, new Rectangle(0, 0, offsetW, GamePanel.HEIGHT));
+		this.bounds.put(Direction.RIGHT, new Rectangle(GamePanel.WIDTH - offsetW, 0, offsetW, GamePanel.HEIGHT));
+		this.bounds.put(Direction.DOWN, new Rectangle(0, GamePanel.HEIGHT - offsetH, GamePanel.WIDTH, offsetH));
+	}
+
+	public HashMap<Direction, Rectangle> getBounds() {
 		return this.bounds;
 	}
 	
-	public Rectangle getBoundFromKey(Direction key)
-	{
+	public Rectangle getBoundFromKey(Direction key) {
 		return this.bounds.get(key);
 	}
 

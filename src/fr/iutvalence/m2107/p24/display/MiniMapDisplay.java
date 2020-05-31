@@ -19,8 +19,6 @@ public class MiniMapDisplay extends MiniMap {
 	private static final int MINIMAP_SIZE = 250;
 	/** The offset of the minimap. */
 	private static final int MINIMAP_OFFSET = 15;
-	/** The position of the minimap */
-	private static final Position MINIMAP_POSITION = new Position(GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE, MINIMAP_OFFSET);
 	/** The size of the room. */
 	private static final int ROOM_SIZE = 10;
 	/** The width of the corridor. */
@@ -38,20 +36,25 @@ public class MiniMapDisplay extends MiniMap {
 	 * @param p the player of the game.
 	 */
 	public void draw(Graphics g, PlayerDisplay p) {
-		if(p.getBounds().intersects(new Rectangle(MINIMAP_POSITION.getX(), MINIMAP_POSITION.getY(), MINIMAP_SIZE, MINIMAP_SIZE))) {
+		Position minimapPosition = updatePosition();
+		
+		if(p.getBounds().intersects(new Rectangle(minimapPosition.getX(), minimapPosition.getY(), MINIMAP_SIZE, MINIMAP_SIZE))) {
 			// if the player is under the map.
 	        g.setColor(new Color((float)0, (float)0, (float)0, (float)0.5));
 		} else g.setColor(Color.BLACK);
 		
-		g.fillRect(MINIMAP_POSITION.getX(), MINIMAP_POSITION.getY(), MINIMAP_SIZE, MINIMAP_SIZE);
+		g.fillRect(minimapPosition.getX(), minimapPosition.getY(), MINIMAP_SIZE, MINIMAP_SIZE);
 		
 		Room query = null;
 		for(Room r : this.rooms) {
 			g.setColor(Color.WHITE);
 			
-			//      (            centering on the mini map            ) - (offset room) + (  offset from room's coordinate   ) + (       gap for corridors if any        )
-			int x = (GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * (r.getPosition().getX() - p.getRoomPosition().getX())) + ((r.getPosition().getX() - p.getRoomPosition().getX())* CORRIDOR_WIDTH);
-			int y = (                  MINIMAP_OFFSET + MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * (r.getPosition().getY() - p.getRoomPosition().getY())) + ((r.getPosition().getY() - p.getRoomPosition().getY())* CORRIDOR_WIDTH);
+			int roomOffsetX = r.getPosition().getX() - p.getRoomPosition().getX();
+			int roomOffsetY = r.getPosition().getY() - p.getRoomPosition().getY();
+
+			//      (            centering on the mini map            ) - (offset room) + (offset room coordinates) + (  gap for corridors if any  )
+			int x = (GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * roomOffsetX) + (roomOffsetX * CORRIDOR_WIDTH);
+			int y = (                  MINIMAP_OFFSET + MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * roomOffsetY) + (roomOffsetY * CORRIDOR_WIDTH);
 			
 			query = this.getRoom(new Position(r.getPosition().getX()-1, r.getPosition().getY()));
 			if (query != null && query.isOpen(Direction.RIGHT)) g.fillRect(x-CORRIDOR_WIDTH, y+ROOM_SIZE/2-CORRIDOR_HEIGHT/2, CORRIDOR_WIDTH, CORRIDOR_HEIGHT);
@@ -62,6 +65,10 @@ public class MiniMapDisplay extends MiniMap {
 			if(r.getPosition().equals(p.getRoomPosition())) g.setColor(Color.YELLOW);
 			g.fillRect(x, y, ROOM_SIZE, ROOM_SIZE);
 		}
+	}
+	
+	private static Position updatePosition() {
+		return new Position(GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE, MINIMAP_OFFSET);
 	}
 
 }

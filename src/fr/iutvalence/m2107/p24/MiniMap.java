@@ -33,7 +33,7 @@ public class MiniMap {
 	 * Describe the behavior of the map every tick for a given player.
 	 * @param p the player wanted.
 	 */
-	public void tick(Player p) {
+	public void tick(Player p) {		
 		// Changing of room
 		// TODO TP the player to the other side of the room
 		// TODO better positions
@@ -59,7 +59,7 @@ public class MiniMap {
 		}
         this.getRoom(p.getRoomPosition()).tick();
 	}
-	
+
 	/** 
 	 * Allow to know the current room by a given position.
 	 * @param pos the position of the room you want to get.
