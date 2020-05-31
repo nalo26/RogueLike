@@ -105,8 +105,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     /** That's what is refresh every tick. */
     public void tick() {
     	screenSize = RogueLikeLauncher.frame.getSize();
-    	WIDTH = screenSize.width;
-    	HEIGHT = screenSize.height;
+    	WIDTH = screenSize.width - 16;
+    	HEIGHT = screenSize.height - 39;
     	this.gsm.tick();
     }
     
