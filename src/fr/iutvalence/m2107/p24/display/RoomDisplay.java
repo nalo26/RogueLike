@@ -44,8 +44,8 @@ public class RoomDisplay extends Room {
 		super(pos, config, bin);
 		this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
 		this.bounds = new HashMap<Direction, Rectangle>();
-		this.updateBounds();
 		this.doors = new HashMap<Direction, Rectangle>();
+		this.updateBounds();
 	}
 	
 	/**
@@ -71,6 +71,7 @@ public class RoomDisplay extends Room {
 			m.draw(g);
 		}
 		g.setColor(Color.RED);
+		
 	}
 
 	private void updateBounds() {
@@ -82,7 +83,8 @@ public class RoomDisplay extends Room {
 		this.bounds.put(Direction.RIGHT, new Rectangle(GamePanel.WIDTH - offsetW, 0, offsetW, GamePanel.HEIGHT));
 		this.bounds.put(Direction.DOWN, new Rectangle(0, GamePanel.HEIGHT - offsetH, GamePanel.WIDTH, offsetH));
 		
-		this.doors.put(Direction.UP, new Rectangle(GamePanel.WIDTH/2 - 10, 0, GamePanel.WIDTH/2 + 10, 60));
+		this.doors.put(Direction.UP, new Rectangle(GamePanel.WIDTH/2 - 10, 0, 40, 60));
+		this.doors.put(Direction.LEFT, new Rectangle(0, GamePanel.HEIGHT/2 - 40, 70, 40));
 	}
 
 	/**
@@ -93,6 +95,10 @@ public class RoomDisplay extends Room {
 		return this.bounds;
 	}
 	
+	public HashMap<Direction, Rectangle> getDoorBounds()
+	{
+		return this.doors;
+	}
 	/**
 	 * Give a bound of a wall depending on a given direction.
 	 * @param key the direction on what you want to know the bound.

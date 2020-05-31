@@ -37,7 +37,7 @@ public class MiniMap {
 		// Changing of room
 		// TODO TP the player to the other side of the room
 		// TODO better positions
-		if (p.getPosition().getX() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.LEFT)) {
+		if (p.getBounds().intersects(this.getRoom(p.getRoomPosition()).getDoorBoundFromKey(Direction.LEFT)) && this.getRoom(p.getRoomPosition()).isOpen(Direction.LEFT)) {	//p.getPosition().getX() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.LEFT)
 			p.getRoomPosition().move(-1, 0);
 			p.getPosition().move(GamePanel.WIDTH/2, 0);
 		}
@@ -45,7 +45,7 @@ public class MiniMap {
 			p.getRoomPosition().move(1, 0);
 			p.getPosition().move(-GamePanel.WIDTH/2, 0);
 		}
-		if (p.getBounds().intersects(this.getRoom(p.getRoomPosition()).getDoorBoundFromKey(Direction.UP))) {	//p.getPosition().getY() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.UP)
+		if (p.getBounds().intersects(this.getRoom(p.getRoomPosition()).getDoorBoundFromKey(Direction.UP)) && this.getRoom(p.getRoomPosition()).isOpen(Direction.UP)) {	//p.getPosition().getY() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.UP)
 			p.getRoomPosition().move(0, -1);
 			p.getPosition().move(0, GamePanel.HEIGHT/2);
 		}
