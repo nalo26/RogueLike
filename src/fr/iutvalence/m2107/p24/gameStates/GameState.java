@@ -17,11 +17,7 @@ public abstract class GameState {
      */
     public GameState(final GameStateManager gsm) {
         this.gsm1 = gsm;
-        this.init();
     }
-    
-    /** Initialize some extra fields (rarely used but can be useful sometimes). */
-    public abstract void init();
     
     /** Instructions what are executed every tick. */
     public abstract void tick();

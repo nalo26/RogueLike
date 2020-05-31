@@ -32,12 +32,6 @@ public class FullMapState extends GameState {
 	}
 
 	@Override
-	public void init() {
-		
-		
-	}
-
-	@Override
 	public void tick() {
 		
 		

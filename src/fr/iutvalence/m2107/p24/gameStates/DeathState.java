@@ -30,12 +30,6 @@ public class DeathState extends GameState
 
 	/** {@inheritDoc} */
 	@Override
-	public void init() {
-		// Override later.
-	}
-
-	/** {@inheritDoc} */
-	@Override
 	public void tick() {
 		// Override later.
 	}

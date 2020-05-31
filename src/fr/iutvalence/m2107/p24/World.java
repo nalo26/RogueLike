@@ -28,11 +28,6 @@ public class World extends GameState {
 	 */
 	public World(GameStateManager gsm) {
 		super(gsm);
-	}
-
-	@Override
-	/** Initialization of your game. We set the player and then we create a room. */
-	public void init() {
 		this.player = new PlayerDisplay();
 		this.map = new MiniMapDisplay();
 	}
@@ -82,7 +77,6 @@ public class World extends GameState {
 
 	/**
 	 * Allow to know the current player.
-	 * 
 	 * @return the current player.
 	 */
 	public PlayerDisplay getPlayer() {

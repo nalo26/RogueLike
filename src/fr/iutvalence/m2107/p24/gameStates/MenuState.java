@@ -34,12 +34,6 @@ public class MenuState extends GameState implements ImageObserver
 
 	/** {@inheritDoc} */
 	@Override
-	public void init() {
-		// Override later.
-	}
-
-	/** {@inheritDoc} */
-	@Override
 	public void tick() {
 		// Override later.
 	}
