@@ -71,7 +71,7 @@ public class RoomDisplay extends Room {
 			m.draw(g);
 		}
 		g.setColor(Color.RED);
-		
+		g.fillRect(GamePanel.WIDTH - 60, GamePanel.HEIGHT/2 - 40, 70, 40);
 	}
 
 	private void updateBounds() {
@@ -85,6 +85,8 @@ public class RoomDisplay extends Room {
 		
 		this.doors.put(Direction.UP, new Rectangle(GamePanel.WIDTH/2 - 10, 0, 40, 60));
 		this.doors.put(Direction.LEFT, new Rectangle(0, GamePanel.HEIGHT/2 - 40, 70, 40));
+		this.doors.put(Direction.RIGHT, new Rectangle(GamePanel.WIDTH - 70, GamePanel.HEIGHT/2 - 40, 70, 40));
+		this.doors.put(Direction.DOWN, new Rectangle(GamePanel.WIDTH/2 - 10, GamePanel.HEIGHT - 70, 40, 70));
 	}
 
 	/**

@@ -42,13 +42,13 @@ public class MiniMap {
 		if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.LEFT)) && room.isOpen(Direction.LEFT)) {	//p.getPosition().getX() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.LEFT)
 			p.getRoomPosition().move(-1, 0);
 			p.getPosition().move(GamePanel.WIDTH/2, 0);
-		} else if (p.getPosition().getX() >= GamePanel.WIDTH && room.isOpen(Direction.RIGHT)) {
+		} else if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.RIGHT)) && room.isOpen(Direction.RIGHT)) {
 			p.getRoomPosition().move(1, 0);
 			p.getPosition().move(-GamePanel.WIDTH/2, 0);
 		} else if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.UP)) && room.isOpen(Direction.UP)) {	//p.getPosition().getY() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.UP)
 			p.getRoomPosition().move(0, -1);
 			p.getPosition().move(0, GamePanel.HEIGHT/2);
-		} else if (p.getPosition().getY() >= GamePanel.HEIGHT && room.isOpen(Direction.DOWN)) {
+		} else if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.DOWN)) && room.isOpen(Direction.DOWN)) {
 			p.getRoomPosition().move(0, 1);
 			p.getPosition().move(0, -GamePanel.HEIGHT/2);
 		}
