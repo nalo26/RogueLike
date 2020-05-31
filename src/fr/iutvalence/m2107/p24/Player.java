@@ -1,7 +1,10 @@
 package fr.iutvalence.m2107.p24;
 
+import java.awt.Rectangle;
+
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
+import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -45,12 +48,13 @@ public class Player {
 		this.inventory = new InventoryDisplay();
 	}
 	
-	/** Describe the behavior of the player after a key is pressed. */
-	public void tick() {
-		if (this.right) this.position.move(3, 0);
-		if (this.left) this.position.move(-3, 0);
-		if (this.up) this.position.move(0, -3);
-		if (this.down) this.position.move(0, 3);
+	/** Describe the behavior of the player after a key is pressed. 
+	 * @param r the current room the player interacts with. */
+	public void tick(RoomDisplay r) {
+		if (this.right && !this.getBounds().intersects(r.getBoundFromKey(Direction.RIGHT))) this.position.move( 3,  0);
+		if (this.left  && !this.getBounds().intersects(r.getBoundFromKey(Direction.LEFT)))  this.position.move(-3,  0);
+		if (this.up    && !this.getBounds().intersects(r.getBoundFromKey(Direction.UP)))    this.position.move( 0, -3);
+		if (this.down  && !this.getBounds().intersects(r.getBoundFromKey(Direction.DOWN)))  this.position.move( 0,  3);
 	}
 	
 	/**
@@ -80,6 +84,11 @@ public class Player {
 		}
 	}
 	
+	public Rectangle getBounds() {
+		return null;
+		//this method is override by PlayerDisplay, which handle bounds.
+	}
+	
 	/**
 	 * Change the image of the player.
 	 * @param img the Image to be change for.
@@ -92,62 +101,30 @@ public class Player {
 	 * @param m the mob with who the player interact.
 	 */
 	public void collision(Mob m) {
+		if (m.wantToMove) collision(m.getWatching());
+		else collision(this.direction);
+	}
+	
+	public void collision(Direction side) {
 		this.up = false;
 		this.right = false;
 		this.down = false;
 		this.left = false;
-		if (m.wantToMove) {
-			switch(m.getWatching()) {
-				case UP:
-					this.position.move(0, -10);
-					break;
-				case RIGHT:
-					this.position.move(10, 0);
-					break;
-				case DOWN:
-					this.position.move(0, 10);
-					break;
-				case LEFT:
-					this.position.move(-10, 0);
-					break;
-				default: break;
-			}
-		} else {
-			switch(this.direction) {
-				case UP:
-					this.position.move(0, 10);
-					break;
-				case RIGHT:
-					this.position.move(-10, 0);
-					break;
-				case DOWN:
-					this.position.move(0, -10);
-					break;
-				case LEFT:
-					this.position.move(10, 0);
-					break;
-				default: break;
-			}
+		switch(side) {
+			case UP:
+				this.position.move(0, 10);
+				break;
+			case RIGHT:
+				this.position.move(-10, 0);
+				break;
+			case DOWN:
+				this.position.move(0, -10);
+				break;
+			case LEFT:
+				this.position.move(10, 0);
+				break;
+			default: break;
 		}
-	}
-	
-	public void collision()
-	{
-		switch(this.direction) {
-		case UP:
-			this.position.move(0, 10);
-			break;
-		case RIGHT:
-			this.position.move(-10, 0);
-			break;
-		case DOWN:
-			this.position.move(0, -10);
-			break;
-		case LEFT:
-			this.position.move(10, 0);
-			break;
-		default: break;
-	}
 	}
 	/**
 	 * Describe what to do when a key is released.

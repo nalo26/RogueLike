@@ -40,12 +40,14 @@ public class PlayerDisplay extends Player {
 		this.health.draw(g, this.position, this.image.getWidth());
 		this.inventory.draw(g);
 	}
+	
 	/** {@inheritDoc} */
 	@Override
 	protected void changeImage(Images img) {
 		this.image = img.getImage();
 	}
 	
+	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
 	}
