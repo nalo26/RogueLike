@@ -45,8 +45,7 @@ public class World extends GameState {
 				// this.player.getHealth().setHealth(-1);
 				this.player.collision(m);
 			}
-		}
-		
+		} 
 		if(this.player.getHealth().getLife() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
 	}
 

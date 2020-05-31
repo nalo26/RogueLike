@@ -23,6 +23,9 @@ public class RoomDisplay extends Room {
 	/** The bounds of the room depending on the direction. */
 	private HashMap<Direction, Rectangle> bounds;
 
+	/** The bounds of the doors depending on the direction. */
+	private HashMap<Direction, Rectangle> doors;
+	
 	/** The width offset of the walls. */
 	private static int offsetW = (int) (0.05 * GamePanel.WIDTH);
 	
@@ -42,6 +45,7 @@ public class RoomDisplay extends Room {
 		this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
 		this.bounds = new HashMap<Direction, Rectangle>();
 		this.updateBounds();
+		this.doors = new HashMap<Direction, Rectangle>();
 	}
 	
 	/**
@@ -51,6 +55,8 @@ public class RoomDisplay extends Room {
 	 */
 	public RoomDisplay(Position pos, String config) {
 		this(pos, Room.computeDoors(config), config);
+		this.doors = new HashMap<Direction, Rectangle>();
+		this.bounds = new HashMap<Direction, Rectangle>();
 	}
 
 	/**
@@ -75,6 +81,8 @@ public class RoomDisplay extends Room {
 		this.bounds.put(Direction.LEFT, new Rectangle(0, 0, offsetW, GamePanel.HEIGHT));
 		this.bounds.put(Direction.RIGHT, new Rectangle(GamePanel.WIDTH - offsetW, 0, offsetW, GamePanel.HEIGHT));
 		this.bounds.put(Direction.DOWN, new Rectangle(0, GamePanel.HEIGHT - offsetH, GamePanel.WIDTH, offsetH));
+		
+		this.doors.put(Direction.UP, new Rectangle(GamePanel.WIDTH/2 - 10, 0, GamePanel.WIDTH/2 + 10, 60));
 	}
 
 	/**
@@ -92,6 +100,10 @@ public class RoomDisplay extends Room {
 	 */
 	public Rectangle getBoundFromKey(Direction key) {
 		return this.bounds.get(key);
+	}
+	
+	public Rectangle getDoorBoundFromKey(Direction key)	{
+		return this.doors.get(key);
 	}
 
 }
