@@ -38,7 +38,7 @@ public class PlayerDisplay extends Player {
 		g.drawRect(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
 		
 		this.health.draw(g, this.position, this.image.getWidth());
-		this.inventory.draw(g);
+		this.inventory.draw(g, this);
 	}
 	
 	/** {@inheritDoc} */

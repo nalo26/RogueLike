@@ -61,8 +61,8 @@ public enum Images {
 	ROOM14("room_1110.png"),
 	ROOM15("room_1111.png"),
 
-	INVENTORY("inventory.png");
-	
+	INVENTORY("inventory.png"),
+	INVENTORY_TRANSPARENT("InventoryTransparent.png");
 	/** The current image. */
 	private final BufferedImage image;
 	
