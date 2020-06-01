@@ -14,38 +14,33 @@ import fr.iutvalence.m2107.p24.ressources.Images;
  */
 public class InventoryDisplay extends Inventory {
 
-	/** the image of the inventory */
+	/** The default image of the inventory. */
 	private BufferedImage inventoryImage;
-
+	/** The transparent image of  the inventory (when player under it). */
 	private BufferedImage transparentInventoryImage;
+	
+	private static final int OFFSET = 15;
+	private static final int SIZE = 250;
+	
 	/**
-	 * initialize the inventory image to draw it after
+	 * Initialize the inventory image to draw it later.
 	 */
-
-	public InventoryDisplay()
-	{
+	public InventoryDisplay() {
 		this.inventoryImage = Images.INVENTORY.getImage();
 		this.transparentInventoryImage = Images.INVENTORY_TRANSPARENT.getImage();
-
 	}
 
 	/**
-	 * draw the inventory
-	 * @param g the draw component
+	 * Draw the inventory.
+	 * @param g the draw component.
+	 * @param p the player of the game.
 	 */
-
-	public void draw(Graphics g, PlayerDisplay p)
-	{
-		if(p.getBounds().intersects(new Rectangle(15, GamePanel.HEIGHT - 15 - 250, 250, 250)))
-		{
-			g.drawImage(this.transparentInventoryImage,  15, GamePanel.HEIGHT - 15 - 250, 250, 250, null);
-		}
-		else {
-		g.drawImage(this.inventoryImage, 15, GamePanel.HEIGHT - 15 - 250, 250, 250, null);
-		}
-		if (this.items != null)
-		{
-
+	public void draw(Graphics g, PlayerDisplay p) {
+		if(p.getBounds().intersects(new Rectangle(OFFSET, GamePanel.HEIGHT - SIZE - OFFSET, SIZE, SIZE))) {
+			g.drawImage(this.transparentInventoryImage,  OFFSET, GamePanel.HEIGHT - SIZE - OFFSET, SIZE, SIZE, null);
+		} else g.drawImage(this.inventoryImage, OFFSET, GamePanel.HEIGHT - SIZE - OFFSET, SIZE, SIZE, null);
+		
+		if (this.items != null) {
 			// TODO draw items here
 		}
 	}

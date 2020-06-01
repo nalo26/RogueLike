@@ -51,10 +51,10 @@ public class Player {
 	/** Describe the behavior of the player after a key is pressed. 
 	 * @param r the current room the player interacts with. */
 	public void tick(RoomDisplay r) {
-		if (this.right && !this.getBounds().intersects(r.getBoundFromKey(Direction.RIGHT))) this.position.move( 3,  0);
-		if (this.left  && !this.getBounds().intersects(r.getBoundFromKey(Direction.LEFT)))  this.position.move(-3,  0);
-		if (this.up    && !this.getBounds().intersects(r.getBoundFromKey(Direction.UP)))    this.position.move( 0, -3);
-		if (this.down  && !this.getBounds().intersects(r.getBoundFromKey(Direction.DOWN)))  this.position.move( 0,  3);
+		if (this.right && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.RIGHT))) this.position.move( 3,  0);
+		if (this.left  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-3,  0);
+		if (this.up    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -3);
+		if (this.down  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move( 0,  3);
 	}
 	
 	/**
