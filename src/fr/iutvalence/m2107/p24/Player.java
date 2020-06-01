@@ -1,6 +1,7 @@
 package fr.iutvalence.m2107.p24;
 
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
@@ -18,6 +19,13 @@ public class Player {
 	public static final int DEFAULT_DAMAGE = 2;
 	/** The default room coordinates the player is in. */
 	public static final Position DEFAULT_ROOM_POSITION = new Position(0, 0);
+	/** The default speed of the player (pixels per tick). */
+	public static final int DEFAULT_SPEED = 3;
+	/** The sprint speed of the player (pixels per tick). */
+	public static final int SPRINT_SPEED = 5;
+	
+	/** The speed of the player (pixels per tick)*/
+	protected int speed;
 	/** The direction of the player. */
 	protected Direction direction;
 	/** The direction the player is watching at. */
@@ -40,6 +48,7 @@ public class Player {
 	
 	/** Create a new player. */
 	public Player() {
+		this.speed = DEFAULT_SPEED;
 		this.health = new HealthDisplay(DEFAULT_HEALTH);
 		this.damage = DEFAULT_DAMAGE;
 		this.direction = Direction.RIGHT;
@@ -51,10 +60,10 @@ public class Player {
 	/** Describe the behavior of the player after a key is pressed. 
 	 * @param r the current room the player interacts with. */
 	public void tick(RoomDisplay r) {
-		if (this.right && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.RIGHT))) this.position.move( 3,  0);
-		if (this.left  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-3,  0);
-		if (this.up    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -3);
-		if (this.down  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move( 0,  3);
+		if (this.right && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.RIGHT))) this.position.move( this.speed,  0);
+		if (this.left  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-this.speed,  0);
+		if (this.up    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -this.speed);
+		if (this.down  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move( 0,  this.speed);
 	}
 	
 	/**
@@ -82,6 +91,19 @@ public class Player {
 			this.watchingAt = Direction.LEFT;
 			this.changeImage(Images.PLAYER_LEFT);
 		}
+		if(k == KeyEvent.VK_CONTROL || k == KeyEvent.VK_SHIFT) this.speed = SPRINT_SPEED;
+	}
+	
+	/**
+	 * Describe what to do when a key is released.
+	 * @param k the key value released.
+	 */
+	public void keyReleased(int k) {
+		if (k == 90 || k == 38) this.up = false;
+		if (k == 83 || k == 40) this.down = false;
+		if (k == 68 || k == 39) this.right = false;
+		if (k == 81 || k == 37) this.left = false;
+		if (k == KeyEvent.VK_CONTROL || k == KeyEvent.VK_SHIFT) this.speed = DEFAULT_SPEED;
 	}
 	
 	public Rectangle getBounds() {
@@ -96,6 +118,7 @@ public class Player {
 	protected void changeImage(Images img) {
 		// This method is override by PlayerDisplay, which handle images.  
 	}
+	
 	/**
 	 * Reject the player if he touches the specified mob.
 	 * @param m the mob with who the player interact.
@@ -125,16 +148,6 @@ public class Player {
 				break;
 			default: break;
 		}
-	}
-	/**
-	 * Describe what to do when a key is released.
-	 * @param k the key value released.
-	 */
-	public void keyReleased(int k) {
-		if (k == 90 || k == 38) this.up = false;
-		if (k == 83 || k == 40) this.down = false;
-		if (k == 68 || k == 39) this.right = false;
-		if (k == 81 || k == 37) this.left = false;
 	}
 	
 	/**
