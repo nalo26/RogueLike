@@ -30,7 +30,10 @@ public class RoomDisplay extends Room {
 	/** The height offset of the walls. */
 	private static int offsetH = (int) ((96/1088) * GamePanel.HEIGHT);
 	
+	/** The width of the door depending on the screen size. */
 	private static int doorWidth = GamePanel.WIDTH*64/1920;
+	
+	/** The height of the door depending on the screen size. */
 	private static int doorHeight = GamePanel.HEIGHT*64/1088 - 64;
 	
 	/**
@@ -79,6 +82,9 @@ public class RoomDisplay extends Room {
 		g.fillRect(GamePanel.WIDTH/2 - doorWidth/2, GamePanel.HEIGHT - offsetH, doorWidth, offsetH);
 	}
 
+	/**
+	 * Update the bounds every tick, depending on the screen size.
+	 */
 	private void updateBounds() {
 		//walls
 		offsetW = (int) (0.05 * GamePanel.WIDTH);
@@ -98,13 +104,16 @@ public class RoomDisplay extends Room {
 	}
 
 	/**
-	 * Give the bounds of the walls.
+	 * Give all of the bounds of the walls.
 	 * @return the bounds of the walls depending on the direction.
 	 */
 	public HashMap<Direction, Rectangle> getWallsBounds() {
 		return this.walls;
 	}
-	
+	/**
+	 * Give all of the bounds of the doors.
+	 * @return the bounds of the doors depending on the direction.
+	 */
 	public HashMap<Direction, Rectangle> getDoorBounds() {
 		return this.doors;
 	}
@@ -116,7 +125,11 @@ public class RoomDisplay extends Room {
 	public Rectangle getWallBoundFromKey(Direction key) {
 		return this.walls.get(key);
 	}
-	
+	/**
+	 * Give a bound of a door depending on a given direction.
+	 * @param key the on what you want to know the bound.
+	 * @return the bound corresponding to the given direction.
+	 */
 	public Rectangle getDoorBoundFromKey(Direction key)	{
 		return this.doors.get(key);
 	}
