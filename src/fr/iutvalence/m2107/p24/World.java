@@ -83,6 +83,6 @@ public class World extends GameState {
 	}
 
 	public static int remap(int oldValue, int oldMin, int oldMax, int newMin, int newMax) {
-	    return (((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin;
+	    return Math.round((((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
 	}
 }

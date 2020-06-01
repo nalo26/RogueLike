@@ -60,32 +60,33 @@ public class Player {
 	/** Describe the behavior of the player after a key is pressed. 
 	 * @param r the current room the player interacts with. */
 	public void tick(RoomDisplay r) {
+		this.updatePosition();
 		if (this.right && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.RIGHT))) this.position.move( this.speed,  0);
 		if (this.left  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-this.speed,  0);
 		if (this.up    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -this.speed);
 		if (this.down  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move( 0,  this.speed);
 	}
-	
+
 	/**
 	 * Describe what to do when a key is pressed.
 	 * @param k the key value pressed.
 	 */
 	public void keyPressed(int k) {
-		if (!this.down && (k == 90 || k == 38)) {
+		if (!this.down && (k == KeyEvent.VK_Z || k == KeyEvent.VK_UP)) {
 			this.up = true;
 			this.direction = Direction.UP;
 		}
-		if (!this.up && (k == 83 || k == 40)) {
+		if (!this.up && (k == KeyEvent.VK_S || k == KeyEvent.VK_DOWN)) {
 			this.down = true;
 			this.direction = Direction.DOWN;
 		}
-		if (!this.left && (k == 68 || k == 39)) {
+		if (!this.left && (k == KeyEvent.VK_D || k == KeyEvent.VK_RIGHT)) {
 			this.right = true;
 			this.direction = Direction.RIGHT;
 			this.watchingAt = Direction.RIGHT;
 			this.changeImage(Images.PLAYER_RIGHT);
 		}
-		if (!this.right && (k == 81 || k == 37)) {
+		if (!this.right && (k == KeyEvent.VK_Q || k == KeyEvent.VK_LEFT)) {
 			this.left = true;
 			this.direction = Direction.LEFT;
 			this.watchingAt = Direction.LEFT;
@@ -99,16 +100,20 @@ public class Player {
 	 * @param k the key value released.
 	 */
 	public void keyReleased(int k) {
-		if (k == 90 || k == 38) this.up = false;
-		if (k == 83 || k == 40) this.down = false;
-		if (k == 68 || k == 39) this.right = false;
-		if (k == 81 || k == 37) this.left = false;
+		if (k == KeyEvent.VK_Z || k == KeyEvent.VK_UP)    this.up = false;
+		if (k == KeyEvent.VK_S || k == KeyEvent.VK_DOWN)  this.down = false;
+		if (k == KeyEvent.VK_D || k == KeyEvent.VK_RIGHT) this.right = false;
+		if (k == KeyEvent.VK_Q || k == KeyEvent.VK_LEFT)  this.left = false;
 		if (k == KeyEvent.VK_CONTROL || k == KeyEvent.VK_SHIFT) this.speed = DEFAULT_SPEED;
 	}
 	
 	public Rectangle getBounds() {
 		return null;
 		//this method is override by PlayerDisplay, which handle bounds.
+	}
+	
+	protected void updatePosition() {
+		// override by PlayerDisplay
 	}
 	
 	/**

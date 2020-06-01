@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
+import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -21,6 +22,8 @@ public class PlayerDisplay extends Player {
 	public static final Position DEFAULT_POSITON = new Position(GamePanel.WIDTH/2 - (DEFAULT_IMAGE.getWidth()/2), GamePanel.HEIGHT/2 - (DEFAULT_IMAGE.getHeight()/2));
 	/** The image of the player. */
 	private BufferedImage image;
+	private int width = GamePanel.WIDTH;
+	private int height = GamePanel.HEIGHT;
 	
 	/**
 	 * Constructor : initialize fields with default values.
@@ -41,6 +44,15 @@ public class PlayerDisplay extends Player {
 		
 		this.health.draw(g, this.position, this.image.getWidth());
 		this.inventory.draw(g, this);
+	}
+	
+	@Override
+	protected void updatePosition() {
+		int x = World.remap(this.position.getX(), 0, this.width,  0, GamePanel.WIDTH );
+		int y = World.remap(this.position.getY(), 0, this.height, 0, GamePanel.HEIGHT);
+		this.position = new Position(x, y);
+		this.width = GamePanel.WIDTH;
+		this.height = GamePanel.HEIGHT;
 	}
 	
 	/** {@inheritDoc} */
