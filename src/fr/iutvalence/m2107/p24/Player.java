@@ -60,7 +60,6 @@ public class Player {
 	/** Describe the behavior of the player after a key is pressed. 
 	 * @param r the current room the player interacts with. */
 	public void tick(RoomDisplay r) {
-		this.updatePosition();
 		if (this.right && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.RIGHT))) this.position.move( this.speed,  0);
 		if (this.left  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-this.speed,  0);
 		if (this.up    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -this.speed);
@@ -110,10 +109,6 @@ public class Player {
 	public Rectangle getBounds() {
 		return null;
 		//this method is override by PlayerDisplay, which handle bounds.
-	}
-	
-	protected void updatePosition() {
-		// override by PlayerDisplay
 	}
 	
 	/**

@@ -81,8 +81,10 @@ public class World extends GameState {
 	public PlayerDisplay getPlayer() {
 		return this.player;
 	}
-
-	public static int remap(int oldValue, int oldMin, int oldMax, int newMin, int newMax) {
-	    return Math.round((((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
+	
+	public static Position updatePosition(Position p) {
+		int x = Math.round((float)GamePanel.WIDTH/(float)GamePanel.DEFAULT_WIDTH * p.getX());
+		int y = Math.round((float)GamePanel.HEIGHT/(float)GamePanel.DEFAULT_HEIGHT * p.getY());
+		return new Position(x, y);
 	}
 }

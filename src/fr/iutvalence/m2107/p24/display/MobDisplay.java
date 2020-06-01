@@ -8,18 +8,23 @@ import java.awt.image.BufferedImage;
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.Mob;
 import fr.iutvalence.m2107.p24.MobType;
+import fr.iutvalence.m2107.p24.Position;
+import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.ressources.Images;
 /** Display a mob depending on his type. */
 public class MobDisplay extends Mob {
 	
 	/** The image of the mob. */
 	private BufferedImage image;
+	
+	private Position realPosition;
 	/**
 	 * Constructor : call his super class Mob.
 	 * @param theType Type of the mob.
 	 */
 	public MobDisplay(MobType theType) {
 		super(theType);
+		this.realPosition = this.position;
 		updateImage();
 	}
 
@@ -56,16 +61,18 @@ public class MobDisplay extends Mob {
 	 * @param g the draw component
 	 */
 	public void draw(Graphics g) {
-		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
-		g.setColor(Color.BLACK);
-		g.drawRect(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
+		this.realPosition = World.updatePosition(this.position);
 		
-		this.getHealth().draw(g, this.position, this.image.getWidth());
+		g.drawImage(this.image, this.realPosition.getX(), this.realPosition.getY(), null);
+		g.setColor(Color.BLACK);
+		g.drawRect(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
+		
+		this.getHealth().draw(g, this.realPosition, this.image.getWidth());
 	}
 	
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
+		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
 	}
 
 }

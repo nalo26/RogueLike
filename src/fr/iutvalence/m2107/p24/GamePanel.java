@@ -20,11 +20,13 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     
     /** Set the Width at screenSize. */
     //public static int WIDTH = screenSize.width;
-    public static int WIDTH = 1280;
+    public static final int DEFAULT_WIDTH = 1280;
+    public static int WIDTH = DEFAULT_WIDTH;
     
     /** Set the Height at screenSize. */
     //public static int HEIGHT = screenSize.height;
-    public static int HEIGHT = 720;
+    public static final int DEFAULT_HEIGHT = 720;
+    public static int HEIGHT = DEFAULT_HEIGHT;
     
     @SuppressWarnings("unused")
 	private Thread thread;

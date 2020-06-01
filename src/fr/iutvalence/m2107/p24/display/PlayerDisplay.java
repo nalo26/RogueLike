@@ -22,8 +22,8 @@ public class PlayerDisplay extends Player {
 	public static final Position DEFAULT_POSITON = new Position(GamePanel.WIDTH/2 - (DEFAULT_IMAGE.getWidth()/2), GamePanel.HEIGHT/2 - (DEFAULT_IMAGE.getHeight()/2));
 	/** The image of the player. */
 	private BufferedImage image;
-	private int width = GamePanel.WIDTH;
-	private int height = GamePanel.HEIGHT;
+	
+	private Position realPosition;
 	
 	/**
 	 * Constructor : initialize fields with default values.
@@ -32,27 +32,21 @@ public class PlayerDisplay extends Player {
 		super();
 		this.position = DEFAULT_POSITON;
 		this.image = DEFAULT_IMAGE;
+		this.realPosition = this.position;
 	}
 	
 	/** Draw the player.
 	 * @param g the graphic component to paint on.
 	 */
 	public void draw(Graphics g) {
-		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
-		g.setColor(Color.BLACK);
-		g.drawRect(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
+		this.realPosition = World.updatePosition(this.position);
 		
-		this.health.draw(g, this.position, this.image.getWidth());
+		g.drawImage(this.image, this.realPosition.getX(), this.realPosition.getY(), null);
+		g.setColor(Color.BLACK);
+		g.drawRect(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
+		
+		this.health.draw(g, this.realPosition, this.image.getWidth());
 		this.inventory.draw(g, this);
-	}
-	
-	@Override
-	protected void updatePosition() {
-		int x = World.remap(this.position.getX(), 0, this.width,  0, GamePanel.WIDTH );
-		int y = World.remap(this.position.getY(), 0, this.height, 0, GamePanel.HEIGHT);
-		this.position = new Position(x, y);
-		this.width = GamePanel.WIDTH;
-		this.height = GamePanel.HEIGHT;
 	}
 	
 	/** {@inheritDoc} */
@@ -63,7 +57,7 @@ public class PlayerDisplay extends Player {
 	
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
+		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
 	}
 
 }
