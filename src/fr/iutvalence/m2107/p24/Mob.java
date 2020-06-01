@@ -1,8 +1,10 @@
 package fr.iutvalence.m2107.p24;
 
+import java.awt.Rectangle;
 import java.util.Random;
 
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
+import fr.iutvalence.m2107.p24.display.RoomDisplay;
 
 /**
  * Represent a mob with all of his characteristics (health, damage, type, direction, ...).
@@ -37,7 +39,7 @@ public class Mob {
 	public Mob(MobType theType) {
 		this.health = new HealthDisplay(DEFAULT_HEALTH);
 		this.damage = DEFAULT_DAMAGE;
-		this.position = Position.randomPosition(GamePanel.WIDTH/2-GamePanel.HEIGHT/2, GamePanel.WIDTH/2+GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT);
+		this.position = Position.randomPosition(GamePanel.WIDTH/2-GamePanel.HEIGHT/2, GamePanel.WIDTH/2+GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT); //TODO better positions
 		this.type = theType;
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
@@ -45,13 +47,15 @@ public class Mob {
 		this.lengthOfMove = 0;
 	}
 	
-	/** Describe the behavior of a mob every tick. */
-	public void tick() {
+	/** Describe the behavior of a mob every tick. 
+	 * @param r The room the mob is on.
+	 */
+	public void tick(RoomDisplay r) {
 		if (this.wantToMove) {
-			if (this.direction == Direction.RIGHT) this.position.move(1, 0);
-			if (this.direction == Direction.LEFT)  this.position.move(-1, 0);
-			if (this.direction == Direction.DOWN)  this.position.move(0, -1);
-			if (this.direction == Direction.UP)    this.position.move(0, 1);
+			if (this.direction == Direction.RIGHT && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.RIGHT))) this.position.move(1, 0);
+			if (this.direction == Direction.LEFT  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-1, 0);
+			if (this.direction == Direction.DOWN  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move(0, 1);
+			if (this.direction == Direction.UP    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move(0, -1);
 			
 			this.lengthOfMove -= 1;
 			if(this.lengthOfMove == 0) this.wantToMove = false;
@@ -64,6 +68,11 @@ public class Mob {
 			}
 		}
 		updateImage();
+	}
+	
+	public Rectangle getBounds() {
+		return null;
+		//this method is override by PlayerDisplay, which handle bounds.
 	}
 	
 	/**

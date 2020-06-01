@@ -63,6 +63,7 @@ public class MobDisplay extends Mob {
 		this.getHealth().draw(g, this.position, this.image.getWidth());
 	}
 	
+	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
 	}

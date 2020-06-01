@@ -10,7 +10,6 @@ import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.Room;
-import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import fr.iutvalence.m2107.p24.display.MobDisplay;
+import fr.iutvalence.m2107.p24.display.RoomDisplay;
 
 /**
  * Represent a room and all of his component (doors, position, ...).
@@ -67,10 +68,12 @@ public class Room {
 		return res;
 	}
 	
-	/** Instructions executed every tick. */
-	public void tick() {
+	/** Instructions executed every tick. 
+	 * @param r The display room to pass as parameter to Mob.
+	 */
+	public void tick(RoomDisplay r) {
 		for(Mob m : this.mobs) {
-			m.tick();
+			m.tick(r);
 		}
 	}
 	

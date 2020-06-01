@@ -56,7 +56,8 @@ public class MiniMap {
 		if(this.getRoom(p.getRoomPosition()) == null) {
 			this.rooms.add(this.randomRoom(p.getRoomPosition()));
 		}
-		room.tick();
+		room = this.getRoom(p.getRoomPosition());
+		room.tick(room);
 	}
 
 	/** 

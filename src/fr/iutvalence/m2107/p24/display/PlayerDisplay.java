@@ -31,7 +31,9 @@ public class PlayerDisplay extends Player {
 		this.image = DEFAULT_IMAGE;
 	}
 	
-	/** Draw the player.*/
+	/** Draw the player.
+	 * @param g the graphic component to paint on.
+	 */
 	public void draw(Graphics g) {
 		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
 		g.setColor(Color.BLACK);
