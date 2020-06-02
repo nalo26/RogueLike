@@ -39,5 +39,8 @@ public abstract class GameState {
      * @param p0 the key value.
      */
     public abstract void keyReleased(final int p0);
+
+    /** Describe how to manage the current click is pressed. */
+	protected abstract void mouseClicked(int button);
     
 }

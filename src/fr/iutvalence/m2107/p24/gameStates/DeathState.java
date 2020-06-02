@@ -86,4 +86,11 @@ public class DeathState extends GameState
 		// Override later.
 	}
 
+	@Override
+	protected void mouseClicked(int button)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 }

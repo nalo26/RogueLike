@@ -100,4 +100,11 @@ public class World extends GameState {
 		JSONObject save = new JSONObject();
 		
 	}
+
+	@Override
+	protected void mouseClicked(int button)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }

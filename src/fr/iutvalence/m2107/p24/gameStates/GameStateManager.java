@@ -56,4 +56,14 @@ public class GameStateManager
     public void keyReleased(final int k) {
         this.state.peek().keyReleased(k);
     }
+
+    /**
+     * Look at which click is clicked on the current state
+     * @param button the button value.
+     */
+	public void mouseClicked(int button)
+	{
+		this.state.peek().mouseClicked(button);
+		
+	}
 }

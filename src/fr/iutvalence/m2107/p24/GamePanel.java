@@ -5,12 +5,14 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
 
-public class GamePanel extends JPanel implements Runnable, KeyListener {	
+public class GamePanel extends JPanel implements Runnable, KeyListener, MouseListener {	
 	
     private static final long serialVersionUID = 1L;
     
@@ -118,4 +120,40 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         g.clearRect(0, 0, 1280, 720);
         this.gsm.draw(g);
     }
+
+ 
+	@Override
+	public void mouseClicked(MouseEvent e)
+	{
+		this.gsm.mouseClicked(e.getButton());
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e)
+	{
+		//never used
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e)
+	{
+		//never used
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e)
+	{
+		// never used
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e)
+	{
+		// never used
+		
+	}
 }

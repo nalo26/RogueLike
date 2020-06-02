@@ -50,6 +50,8 @@ public class Player {
 	
 	protected boolean takingDmg;
 	
+	protected boolean isFighting;
+	
 	/** Create a new player. */
 	public Player() {
 		this.speed = DEFAULT_SPEED;
@@ -61,6 +63,7 @@ public class Player {
 		this.inventory = new InventoryDisplay();
 		this.dmgTimer = 0;
 		this.takingDmg = false;
+		this.isFighting = false;
 	}
 	
 	/** Describe the behavior of the player after a key is pressed. 

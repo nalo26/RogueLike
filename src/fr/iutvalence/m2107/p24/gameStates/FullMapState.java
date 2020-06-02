@@ -73,4 +73,11 @@ public class FullMapState extends GameState {
 		// not used
 	}
 
+	@Override
+	protected void mouseClicked(int button)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 }
