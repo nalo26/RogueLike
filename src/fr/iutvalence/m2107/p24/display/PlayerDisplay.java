@@ -25,6 +25,7 @@ public class PlayerDisplay extends Player {
 	/** The image of the player. */
 	private BufferedImage image;
 	
+
 	/** The real position of the player. */
 	private Position realPosition;
 	
@@ -65,8 +66,12 @@ public class PlayerDisplay extends Player {
 		this.inventory.draw(g, this);
 	if(this.dmgTimer > 0 && this.watchingAt == Direction.LEFT) g.drawImage(DMG_LEFT, this.realPosition.getX(), this.realPosition.getY(), DMG_LEFT.getWidth(), DMG_LEFT.getHeight(), null);
 	if(this.dmgTimer > 0 && this.watchingAt == Direction.RIGHT) g.drawImage(DMG_RIGHT, this.realPosition.getX(), this.realPosition.getY(), DMG_RIGHT.getWidth(), DMG_RIGHT.getHeight(), null);
-	if(this.isFighting && this.watchingAt == Direction.LEFT) g.drawImage(PLAYER_ATTACK_LEFT, this.realPosition.getX(), this.realPosition.getY(), PLAYER_ATTACK_LEFT.getWidth(), PLAYER_ATTACK_LEFT.getHeight(), null);
-	if(this.isFighting && this.watchingAt == Direction.RIGHT) g.drawImage(PLAYER_ATTACK_RIGHT, this.realPosition.getX(), this.realPosition.getY(), PLAYER_ATTACK_RIGHT.getWidth(), PLAYER_ATTACK_RIGHT.getHeight(), null);
+	if(this.isFighting && this.watchingAt == Direction.LEFT) {
+			g.drawImage(PLAYER_ATTACK_LEFT, this.realPosition.getX(), this.realPosition.getY(), PLAYER_ATTACK_LEFT.getWidth(), PLAYER_ATTACK_LEFT.getHeight(), null);
+		}
+	if(this.isFighting && this.watchingAt == Direction.RIGHT) {
+		g.drawImage(PLAYER_ATTACK_RIGHT, this.realPosition.getX(), this.realPosition.getY(), PLAYER_ATTACK_RIGHT.getWidth(), PLAYER_ATTACK_RIGHT.getHeight(), null);
+	}
 
 	
 	}
@@ -78,15 +83,19 @@ public class PlayerDisplay extends Player {
 		this.image = img.getImage();
 	}
 	
-	@Override
-	public Rectangle getBounds() {
-		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
-	}
+
 
 	public void mouseClicked(int button) {
 		if(button == MouseEvent.BUTTON1) {
 			this.isFighting = true;
+			System.out.println("fight");
 		}
 	}
+	
+	public Position getRealPosition()
+	{
+		return this.realPosition;
+	}
+
 
 }

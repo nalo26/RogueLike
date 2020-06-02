@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
-import fr.iutvalence.m2107.p24.display.MobDisplay;
+import fr.iutvalence.m2107.p24.display.PlayerDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
@@ -144,8 +144,12 @@ public class Player {
 	}
 	
 	public Rectangle getBounds() {
-		return null;
-		//this method is override by PlayerDisplay, which handle bounds.
+		if(this.isFighting)
+		{
+			return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getWidth(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getHeight());
+		}
+		return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.DEFAULT_IMAGE.getWidth(), PlayerDisplay.DEFAULT_IMAGE.getHeight());
+		
 	}
 	
 	/**
