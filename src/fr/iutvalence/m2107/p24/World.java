@@ -52,7 +52,12 @@ public class World extends GameState {
 				this.player.collision(m);
 				
 			}
+			if(this.player.isFighting() && this.player.getBounds().intersects(m.getBounds()))
+			{
+				m.health.setHealth(-1);
+			}
 		} 
+		
 		if(this.player.getHealth().getLife() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
 
 	}
@@ -104,7 +109,7 @@ public class World extends GameState {
 	@Override
 	protected void mouseClicked(int button)
 	{
-		// TODO Auto-generated method stub
+		this.player.mouseClicked(button);
 		
 	}
 }

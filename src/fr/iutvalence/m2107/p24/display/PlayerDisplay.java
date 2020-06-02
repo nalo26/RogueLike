@@ -3,6 +3,7 @@ package fr.iutvalence.m2107.p24.display;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.Direction;
@@ -33,6 +34,11 @@ public class PlayerDisplay extends Player {
 	/** The image of the player when he's watching on the right and taking damages. */
 	public static final BufferedImage DMG_RIGHT = Images.PLAYER_DAMAGE_RIGHT.getImage();
 	
+	/** The image of the player when he's watching on the right and fighting. */
+	public static final BufferedImage PLAYER_ATTACK_LEFT = Images.PLAYER_ATTACK_LEFT.getImage();
+	
+	/** The image of the player when he's watching on the right and fighting. */
+	public static final BufferedImage PLAYER_ATTACK_RIGHT = Images.PLAYER_ATTACK_RIGHT.getImage();
 	
 	/**
 	 * Constructor : initialize fields with default values.
@@ -59,6 +65,10 @@ public class PlayerDisplay extends Player {
 		this.inventory.draw(g, this);
 	if(this.dmgTimer > 0 && this.watchingAt == Direction.LEFT) g.drawImage(DMG_LEFT, this.realPosition.getX(), this.realPosition.getY(), DMG_LEFT.getWidth(), DMG_LEFT.getHeight(), null);
 	if(this.dmgTimer > 0 && this.watchingAt == Direction.RIGHT) g.drawImage(DMG_RIGHT, this.realPosition.getX(), this.realPosition.getY(), DMG_RIGHT.getWidth(), DMG_RIGHT.getHeight(), null);
+	if(this.isFighting && this.watchingAt == Direction.LEFT) g.drawImage(PLAYER_ATTACK_LEFT, this.realPosition.getX(), this.realPosition.getY(), PLAYER_ATTACK_LEFT.getWidth(), PLAYER_ATTACK_LEFT.getHeight(), null);
+	if(this.isFighting && this.watchingAt == Direction.RIGHT) g.drawImage(PLAYER_ATTACK_RIGHT, this.realPosition.getX(), this.realPosition.getY(), PLAYER_ATTACK_RIGHT.getWidth(), PLAYER_ATTACK_RIGHT.getHeight(), null);
+
+	
 	}
 
 	
@@ -71,6 +81,15 @@ public class PlayerDisplay extends Player {
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
+	}
+
+	public void mouseClicked(int button)
+	{
+		if(button == MouseEvent.BUTTON1)
+		{
+			this.isFighting = true;
+		}
+		
 	}
 
 

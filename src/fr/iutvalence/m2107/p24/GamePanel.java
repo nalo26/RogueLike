@@ -2,7 +2,6 @@ package fr.iutvalence.m2107.p24;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;

@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
+import fr.iutvalence.m2107.p24.display.MobDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
@@ -80,9 +81,19 @@ public class Player {
 			}
 		this.dmgTimer -= 1;
 		if(this.dmgTimer <= 0) 	this.dmgTimer = 0;
-				
-			
+		
+		
 	}
+	
+	/** 
+	 * Allow to know if the player is fighting or not.
+	 * @return the fighting state of the player.
+	 */
+	public boolean isFighting()
+	{
+		return this.isFighting;
+	}
+
 	/**
 	 * Set it true if the player is taking damages.
 	 * @param takingDmg the state of the player.
