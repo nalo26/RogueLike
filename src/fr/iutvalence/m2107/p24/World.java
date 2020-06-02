@@ -107,8 +107,7 @@ public class World extends GameState {
 	}
 
 	@Override
-	protected void mouseClicked(int button)
-	{
+	public void mouseClicked(int button) {
 		this.player.mouseClicked(button);
 		
 	}

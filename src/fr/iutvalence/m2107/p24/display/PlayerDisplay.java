@@ -83,15 +83,10 @@ public class PlayerDisplay extends Player {
 		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
 	}
 
-	public void mouseClicked(int button)
-	{
-		if(button == MouseEvent.BUTTON1)
-		{
+	public void mouseClicked(int button) {
+		if(button == MouseEvent.BUTTON1) {
 			this.isFighting = true;
 		}
-		
 	}
-
-
 
 }

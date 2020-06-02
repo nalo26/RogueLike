@@ -94,8 +94,7 @@ public class MenuState extends GameState implements ImageObserver
 	}
 
 	@Override
-	protected void mouseClicked(int button)
-	{
+	public void mouseClicked(int button) {
 		// TODO Auto-generated method stub
 		
 	}

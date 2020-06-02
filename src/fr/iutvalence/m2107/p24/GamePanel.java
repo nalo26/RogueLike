@@ -55,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
         this.travelTime = 1000 / this.FPS;
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.addKeyListener(this);
+        this.addMouseListener(this);
         this.setFocusable(true);
         this.start();
     }
@@ -122,10 +123,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 
  
 	@Override
-	public void mouseClicked(MouseEvent e)
-	{
+	public void mouseClicked(MouseEvent e) {
 		this.gsm.mouseClicked(e.getButton());
-		
 	}
 
 	@Override
