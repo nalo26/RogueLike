@@ -67,7 +67,7 @@ public class PlayerDisplay extends Player {
 	if(this.dmgTimer > 0 && this.watchingAt == Direction.LEFT) g.drawImage(DMG_LEFT, this.realPosition.getX(), this.realPosition.getY(), DMG_LEFT.getWidth(), DMG_LEFT.getHeight(), null);
 	if(this.dmgTimer > 0 && this.watchingAt == Direction.RIGHT) g.drawImage(DMG_RIGHT, this.realPosition.getX(), this.realPosition.getY(), DMG_RIGHT.getWidth(), DMG_RIGHT.getHeight(), null);
 	if(this.isFighting && this.watchingAt == Direction.LEFT) {
-			g.drawImage(PLAYER_ATTACK_LEFT, this.realPosition.getX(), this.realPosition.getY(), PLAYER_ATTACK_LEFT.getWidth(), PLAYER_ATTACK_LEFT.getHeight(), null);
+			g.drawImage(PLAYER_ATTACK_LEFT, this.realPosition.getX() - 44, this.realPosition.getY(), PLAYER_ATTACK_LEFT.getWidth(), PLAYER_ATTACK_LEFT.getHeight(), null);
 		}
 	if(this.isFighting && this.watchingAt == Direction.RIGHT) {
 		g.drawImage(PLAYER_ATTACK_RIGHT, this.realPosition.getX(), this.realPosition.getY(), PLAYER_ATTACK_RIGHT.getWidth(), PLAYER_ATTACK_RIGHT.getHeight(), null);
