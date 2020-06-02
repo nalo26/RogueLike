@@ -23,6 +23,7 @@ public class HealthDisplay extends Health {
 		g.fillRect(p.getX() + size/2 - HEALTH_WIDTH/2 + 1, p.getY() - (OFFSET-1), HEALTH_WIDTH-2, HEALTH_HEIGHT-2);
 		int red = (int)(255 * (1 - this.life / this.defaultLife));
 		int green = (int)(255 * (this.life / this.defaultLife));
+		if(green < 0) green = 0;
 		g.setColor(new Color(red, green, 0));
 		g.fillRect(p.getX() + size/2 - HEALTH_WIDTH/2 + 1, p.getY() - (OFFSET-1), (int)((HEALTH_WIDTH-2) * (this.life / this.defaultLife)), HEALTH_HEIGHT-2);
 	}
