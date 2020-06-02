@@ -28,7 +28,7 @@ public class MenuState extends GameState implements ImageObserver
 	 */
 	public MenuState(final GameStateManager gsm) {
 		super(gsm);
-		this.options = new String[] { "Start", "Help", "Quit" };
+		this.options = new String[] { "New Game", "Load Save", "Help", "Quit" };
 		this.SelectedOption = 0;
 	}
 
@@ -72,8 +72,10 @@ public class MenuState extends GameState implements ImageObserver
 			if (this.SelectedOption == 0) {
 				this.gsm1.getState().push(new World(this.gsm1));
 			} else if (this.SelectedOption == 1) {
-				// help
+				// TODO load
 			} else if (this.SelectedOption == 2) {
+				// TODO help
+			} else if (this.SelectedOption == 3) {
 				System.exit(0);
 			}
 		}

@@ -25,7 +25,7 @@ public class PauseState extends GameState
 	 */
 	public PauseState(GameStateManager gsm) {
 		super(gsm);
-		this.options = new String[] { "Continue", "Retry", "Help", "Main Menu", "Quit" };
+		this.options = new String[] { "Continue", "Retry", "Sauvegarder", "Help", "Main Menu", "Quit" };
 		this.SelectedOption = 0;
 	}
 
@@ -78,11 +78,14 @@ public class PauseState extends GameState
 				this.gsm1.getState().removeAllElements();
 				this.gsm1.getState().push(new World(this.gsm1));
 			} else if (this.SelectedOption == 2) {
-				// Help
+				this.gsm1.getState().pop();
+				World.save();
 			} else if (this.SelectedOption == 3) {
+				// Help
+			} else if (this.SelectedOption == 4) {
 				// Main menu
 				this.gsm1.getState().push(new MenuState(this.gsm1));
-			} else if (this.SelectedOption == 4) {
+			} else if (this.SelectedOption == 5) {
 				// Exit
 				System.exit(0);
 			}

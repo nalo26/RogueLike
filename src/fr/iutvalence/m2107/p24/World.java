@@ -1,5 +1,7 @@
 package fr.iutvalence.m2107.p24;
 
+import org.json.simple.JSONObject;
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
@@ -92,5 +94,10 @@ public class World extends GameState {
 		int x = Math.round((float)GamePanel.WIDTH/(float)GamePanel.DEFAULT_WIDTH * p.getX());
 		int y = Math.round((float)GamePanel.HEIGHT/(float)GamePanel.DEFAULT_HEIGHT * p.getY());
 		return new Position(x, y);
+	}
+
+	public static void save() {
+		JSONObject save = new JSONObject();
+		
 	}
 }
