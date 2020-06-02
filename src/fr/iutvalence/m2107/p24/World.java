@@ -21,6 +21,8 @@ public class World extends GameState {
 	private PlayerDisplay player;
 	/** The minimap in the world. */
 	private MiniMapDisplay map;
+	
+	
 
 	/**
 	 * Constructor of the World.
@@ -30,6 +32,7 @@ public class World extends GameState {
 		super(gsm);
 		this.player = new PlayerDisplay();
 		this.map = new MiniMapDisplay();
+	
 	}
 
 	/** {@inheritDoc} */
@@ -42,11 +45,14 @@ public class World extends GameState {
 
 		for (MobDisplay m : currentRoom.getMobs()) {
 			if (m.getBounds().intersects(this.player.getBounds())) {
-				// this.player.getHealth().setHealth(-1);
+				this.player.getHealth().setHealth(-1);
+				this.player.setTakingDmg(true);
 				this.player.collision(m);
+				
 			}
 		} 
 		if(this.player.getHealth().getLife() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
+
 	}
 
 	/** {@inheritDoc} */
@@ -55,7 +61,7 @@ public class World extends GameState {
 		this.map.getRoom(this.player.getRoomPosition()).draw(g);
 		this.player.draw(g);
 		this.map.draw(g, this.player);
-		
+	
 	}
 
 	/** {@inheritDoc} */

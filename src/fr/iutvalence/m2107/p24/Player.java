@@ -46,6 +46,10 @@ public class Player {
 	protected boolean down;
 	protected boolean left;
 	
+	protected int dmgTimer;
+	
+	protected boolean takingDmg;
+	
 	/** Create a new player. */
 	public Player() {
 		this.speed = DEFAULT_SPEED;
@@ -55,6 +59,8 @@ public class Player {
 		this.watchingAt = Direction.RIGHT;
 		this.roomPosition = DEFAULT_ROOM_POSITION.copy();
 		this.inventory = new InventoryDisplay();
+		this.dmgTimer = 0;
+		this.takingDmg = false;
 	}
 	
 	/** Describe the behavior of the player after a key is pressed. 
@@ -64,6 +70,23 @@ public class Player {
 		if (this.left  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-this.speed,  0);
 		if (this.up    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -this.speed);
 		if (this.down  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move( 0,  this.speed);
+		if (this.takingDmg) 
+			{
+				this.dmgTimer = 100;
+				this.takingDmg = false;
+			}
+		this.dmgTimer -= 1;
+		if(this.dmgTimer <= 0) 	this.dmgTimer = 0;
+				
+			
+	}
+	/**
+	 * Set it true if the player is taking damages.
+	 * @param takingDmg the state of the player.
+	 */
+	public void setTakingDmg(boolean takingDmg)
+	{
+		this.takingDmg = takingDmg;
 	}
 
 	/**
@@ -128,6 +151,10 @@ public class Player {
 		else collision(this.direction);
 	}
 	
+	/**
+	 * Reject the player when he touches something depending on the direction.
+	 * @param side the direction where the player touches something.
+	 */
 	public void collision(Direction side) {
 		this.up = false;
 		this.right = false;

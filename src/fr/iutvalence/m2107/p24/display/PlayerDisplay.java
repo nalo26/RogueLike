@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
@@ -23,7 +24,15 @@ public class PlayerDisplay extends Player {
 	/** The image of the player. */
 	private BufferedImage image;
 	
+	/** The real position of the player. */
 	private Position realPosition;
+	
+	/** The image of the player when he's watching on the left and taking damages. */
+	public static final BufferedImage DMG_LEFT = Images.PLAYER_DAMAGE_LEFT.getImage();
+	
+	/** The image of the player when he's watching on the right and taking damages. */
+	public static final BufferedImage DMG_RIGHT = Images.PLAYER_DAMAGE_RIGHT.getImage();
+	
 	
 	/**
 	 * Constructor : initialize fields with default values.
@@ -33,6 +42,7 @@ public class PlayerDisplay extends Player {
 		this.position = DEFAULT_POSITON;
 		this.image = DEFAULT_IMAGE;
 		this.realPosition = this.position;
+		
 	}
 	
 	/** Draw the player.
@@ -47,7 +57,10 @@ public class PlayerDisplay extends Player {
 		
 		this.health.draw(g, this.realPosition, this.image.getWidth());
 		this.inventory.draw(g, this);
+	if(this.dmgTimer > 0 && this.watchingAt == Direction.LEFT) g.drawImage(DMG_LEFT, this.realPosition.getX(), this.realPosition.getY(), DMG_LEFT.getWidth(), DMG_LEFT.getHeight(), null);
+	if(this.dmgTimer > 0 && this.watchingAt == Direction.RIGHT) g.drawImage(DMG_RIGHT, this.realPosition.getX(), this.realPosition.getY(), DMG_RIGHT.getWidth(), DMG_RIGHT.getHeight(), null);
 	}
+
 	
 	/** {@inheritDoc} */
 	@Override
@@ -59,5 +72,7 @@ public class PlayerDisplay extends Player {
 	public Rectangle getBounds() {
 		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
 	}
+
+
 
 }
