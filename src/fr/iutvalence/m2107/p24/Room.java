@@ -77,6 +77,7 @@ public class Room {
 	public void tick(RoomDisplay r) {
 		for(Mob m : this.mobs) {
 			m.tick(r);
+			
 		}
 	}
 	

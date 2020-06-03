@@ -33,7 +33,7 @@ public class Mob {
 	protected boolean wantToMove;
 	/** Indicates the length of the move of the mob. */
 	protected int lengthOfMove;
-	
+
 	/**
 	 * Create a new mob, with its specific attributes.
 	 * @param theType of the mob
@@ -47,6 +47,7 @@ public class Mob {
 		this.watchingAt = Direction.RIGHT;
 		this.wantToMove = false;
 		this.lengthOfMove = 0;
+
 	}
 	
 	/** Describe the behavior of a mob every tick. 

@@ -31,7 +31,10 @@ public class World extends GameState {
 	private PlayerDisplay player;
 	/** The minimap in the world. */
 	private MiniMapDisplay map;
-
+	/** check if the mob is dead. */
+	private boolean mobIsDead;
+	
+	private int majorAttackCd;
 	/**
 	 * Constructor of the World.
 	 * @param gsm State of the game.
@@ -40,6 +43,8 @@ public class World extends GameState {
 		super(gsm);
 		this.player = new PlayerDisplay();
 		this.map = new MiniMapDisplay();
+		this.mobIsDead = false;
+		this.majorAttackCd = 0;
 	}
 
 	/** {@inheritDoc} */
@@ -49,7 +54,7 @@ public class World extends GameState {
 		
 		this.player.tick(currentRoom);
 		this.map.tick(this.player);
-
+		MobDisplay deadMob = null;
 		for (MobDisplay m : currentRoom.getMobs()) {
 			if (m.getBounds().intersects(this.player.getBounds())) {
 				if(!this.player.isFighting()) {
@@ -58,13 +63,26 @@ public class World extends GameState {
 				}
 				this.player.collision(m);
 			}
-			if(this.player.isFighting() && this.player.getBounds().intersects(m.getBounds())) {
-				m.health.removeLife(1);
+			if(this.player.isFighting() && this.player.getBounds().intersects(m.getBounds()) && this.player.minorAttack) m.health.removeLife(1);
+			if(this.majorAttackCd <= 0) {
+			if(this.player.isFighting() && this.player.getBounds().intersects(m.getBounds()) && this.player.majorAttack) {
+				m.health.removeLife(3);
+				this.majorAttackCd = 500;
+				this.player.isFighting = false;
+				}
 			}
+			this.majorAttackCd -= 1;
+			if(this.majorAttackCd <= 0) this.majorAttackCd = 0;
+			if(m.getHealth().getLife() <= 0) 
+				{
+					this.mobIsDead = true;
+					deadMob = m;
+				}
+			
 		} 
 		
 		if(this.player.getHealth().getLife() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
-
+		if(this.mobIsDead && deadMob != null) currentRoom.getMobs().remove(deadMob);
 	}
 
 	/** {@inheritDoc} */

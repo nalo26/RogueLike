@@ -60,6 +60,10 @@ public class Player {
 	/** True if the player is fighting, false if not.*/
 	protected boolean isFighting;
 	
+	protected boolean minorAttack;
+	
+	protected boolean majorAttack;
+	
 	/** Create a new player. */
 	public Player() {
 		this.speed = DEFAULT_SPEED;
@@ -72,6 +76,8 @@ public class Player {
 		this.dmgTimer = 0;
 		this.takingDmg = false;
 		this.isFighting = false;
+		this.minorAttack = false;
+		this.majorAttack = false;
 	}
 	
 	/** Describe the behavior of the player after a key is pressed. 
@@ -149,7 +155,8 @@ public class Player {
 	
 	public Rectangle getBounds() {
 		if(this.isFighting) {
-			return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getWidth(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getHeight());
+			if(this.watchingAt == Direction.RIGHT) return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getWidth(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getHeight());
+			if(this.watchingAt == Direction.LEFT) return new Rectangle(this.position.getX() - 44, this.position.getY(), PlayerDisplay.PLAYER_ATTACK_LEFT.getWidth(), PlayerDisplay.PLAYER_ATTACK_LEFT.getHeight());
 		}
 		return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.DEFAULT_IMAGE.getWidth(), PlayerDisplay.DEFAULT_IMAGE.getHeight());
 		
@@ -162,7 +169,12 @@ public class Player {
 	{
 		if(button == MouseEvent.BUTTON1) {
 			this.isFighting = true;
-			System.out.println("fight");
+			this.minorAttack = true;
+		}
+		if(button == MouseEvent.BUTTON3)
+		{
+			this.isFighting = true;
+			this.majorAttack = true;
 		}
 		
 	}
@@ -175,7 +187,12 @@ public class Player {
 	{
 		if(button == MouseEvent.BUTTON1) {
 			this.isFighting = false;
-			System.out.println("NO fight");
+			this.minorAttack = false;
+		}
+		if(button == MouseEvent.BUTTON3)
+		{
+			this.isFighting = false;
+			this.majorAttack = false;
 		}
 		
 	}
