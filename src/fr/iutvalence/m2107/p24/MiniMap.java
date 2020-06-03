@@ -125,7 +125,7 @@ public class MiniMap {
 			
 			String config = (String) room.get("connections");
 			JSONObject pos = (JSONObject) room.get("position");
-			Position roomPos = new Position((int) pos.get("x"), (int) pos.get("y"));
+			Position roomPos = new Position(((Long) pos.get("x")).intValue(), ((Long) pos.get("y")).intValue());
 			RoomDisplay newRoom = new RoomDisplay(roomPos, config);
 			newRoom.load((JSONObject) room.get("mobs"));
 			

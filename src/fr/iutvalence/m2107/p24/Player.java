@@ -198,12 +198,12 @@ public class Player {
 		
 		this.direction = Direction.valueOf((String) save.get("direction"));
 		this.watchingAt = Direction.valueOf((String) save.get("watchingAt"));
-		this.health.setHealth((float) save.get("health"));
-		this.damage = (float) save.get("damage");
+		this.health.setHealth(((Double) save.get("health")).floatValue());
+		this.damage = ((Double) save.get("damage")).floatValue();
 		pos = (JSONObject) save.get("position");
-		this.position = new Position((int) pos.get("x"), (int) pos.get("y"));
+		this.position = new Position(((Long) pos.get("x")).intValue(), ((Long) pos.get("y")).intValue());
 		pos = (JSONObject) save.get("roomPosition");
-		this.roomPosition = new Position((int) pos.get("x"), (int) pos.get("y"));
+		this.roomPosition = new Position(((Long) pos.get("x")).intValue(), ((Long) pos.get("y")).intValue());
 		
 		this.inventory.load((JSONObject) save.get("inventory"));
 	}

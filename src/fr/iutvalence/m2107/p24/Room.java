@@ -108,7 +108,7 @@ public class Room {
 		return this.doors;
 	}
 
-	public String getDoorsString() {// 1 0 1 0
+	public String getDoorsString() {
 		String res = "";
 		for(Boolean door : this.doors) {
 			res += (door.booleanValue() ? "1" : "0");

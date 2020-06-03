@@ -88,11 +88,11 @@ public class Mob {
 	}
 
 	public void load(JSONObject save) {
-		this.health.setHealth((float) save.get("health"));
-		this.damage = (float) save.get("damage");
+		this.health.setHealth(((Double) save.get("health")).floatValue());
+		this.damage = ((Double) save.get("damage")).floatValue();
 		this.direction = Direction.valueOf((String) save.get("direction"));
 		JSONObject pos = (JSONObject) save.get("position");
-		this.position = new Position((int) pos.get("x"), (int) pos.get("y"));
+		this.position = new Position(((Long) pos.get("x")).intValue(), ((Long) pos.get("y")).intValue());
 	}
 
 	/**
