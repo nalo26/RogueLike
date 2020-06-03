@@ -3,6 +3,8 @@ package fr.iutvalence.m2107.p24;
 import java.awt.Rectangle;
 import java.util.Random;
 
+import org.json.simple.JSONObject;
+
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 
@@ -83,6 +85,14 @@ public class Mob {
 	 */
 	protected void updateImage() {
 		// Override by sub MobDisplay, which handle images.		
+	}
+
+	public void load(JSONObject save) {
+		this.health.setHealth((float) save.get("health"));
+		this.damage = (float) save.get("damage");
+		this.direction = Direction.valueOf((String) save.get("direction"));
+		JSONObject pos = (JSONObject) save.get("position");
+		this.position = new Position((int) pos.get("x"), (int) pos.get("y"));
 	}
 
 	/**

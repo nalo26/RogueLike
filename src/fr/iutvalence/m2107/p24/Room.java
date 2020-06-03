@@ -2,8 +2,11 @@ package fr.iutvalence.m2107.p24;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+
+import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.MobDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
@@ -127,6 +130,23 @@ public class Room {
 			default: return false;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public void load(JSONObject save) {
+		this.mobs.clear();
+		
+		HashMap<String, Object> mobs = (HashMap<String, Object>) save;
+		for(HashMap.Entry<String, Object> m : mobs.entrySet()) {
+			JSONObject mob = (JSONObject) m.getValue();
+			
+			MobType type = MobType.valueOf((String) mob.get("type"));
+			MobDisplay newMob = new MobDisplay(type);
+			newMob.load(mob);
+			
+			this.mobs.add(newMob);
+		}
+	}
+	
 	/** {@inheritDoc} */
 	@Override
 	public String toString() {

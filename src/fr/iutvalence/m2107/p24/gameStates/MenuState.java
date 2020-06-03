@@ -72,7 +72,9 @@ public class MenuState extends GameState implements ImageObserver
 			if (this.SelectedOption == 0) {
 				this.gsm1.getState().push(new World(this.gsm1));
 			} else if (this.SelectedOption == 1) {
-				// TODO load
+				World world = new World(this.gsm1);
+				world.load();
+				this.gsm1.getState().push(world);
 			} else if (this.SelectedOption == 2) {
 				// TODO help
 			} else if (this.SelectedOption == 3) {

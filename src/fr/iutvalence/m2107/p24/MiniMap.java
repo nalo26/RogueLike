@@ -1,8 +1,11 @@
 package fr.iutvalence.m2107.p24;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+
+import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 
@@ -110,6 +113,24 @@ public class MiniMap {
 		} else doors = this.random.nextInt(2) + doors;
 		
 		return new RoomDisplay(pos.copy(), doors);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void load(JSONObject save) {
+		this.rooms.clear();
+		
+		HashMap<String, Object> rooms = (HashMap<String, Object>) save;
+		for(HashMap.Entry<String, Object> r : rooms.entrySet()) {
+			JSONObject room = (JSONObject) r.getValue();
+			
+			String config = (String) room.get("connections");
+			JSONObject pos = (JSONObject) room.get("position");
+			Position roomPos = new Position((int) pos.get("x"), (int) pos.get("y"));
+			RoomDisplay newRoom = new RoomDisplay(roomPos, config);
+			newRoom.load((JSONObject) room.get("mobs"));
+			
+			this.rooms.add(newRoom);
+		}
 	}
 	
 	public List<RoomDisplay> getRooms(){

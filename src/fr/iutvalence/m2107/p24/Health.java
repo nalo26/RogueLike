@@ -17,7 +17,11 @@ public class Health {
 	}
 	
 	public void setHealth(float h) {
-		this.life += h;
+		this.life = h;
+	}
+	
+	public void removeLife(float h) {
+		this.life -= h;
 	}
 	
 	/**

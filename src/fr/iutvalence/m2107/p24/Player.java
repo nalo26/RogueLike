@@ -3,6 +3,8 @@ package fr.iutvalence.m2107.p24;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
+import org.json.simple.JSONObject;
+
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
 import fr.iutvalence.m2107.p24.display.PlayerDisplay;
@@ -74,12 +76,11 @@ public class Player {
 		if (this.left  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-this.speed,  0);
 		if (this.up    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -this.speed);
 		if (this.down  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move( 0,  this.speed);
-		if (this.takingDmg) 
-			{
-				this.dmgTimer = 100;
-				this.takingDmg = false;
-			}
-		this.dmgTimer -= 1;
+		if (this.takingDmg)  {
+			this.dmgTimer = 100;
+			this.takingDmg = false;
+		}
+		this.dmgTimer --;
 		if(this.dmgTimer <= 0) 	this.dmgTimer = 0;
 		
 		
@@ -89,8 +90,7 @@ public class Player {
 	 * Allow to know if the player is fighting or not.
 	 * @return the fighting state of the player.
 	 */
-	public boolean isFighting()
-	{
+	public boolean isFighting() {
 		return this.isFighting;
 	}
 
@@ -98,8 +98,7 @@ public class Player {
 	 * Set it true if the player is taking damages.
 	 * @param takingDmg the state of the player.
 	 */
-	public void setTakingDmg(boolean takingDmg)
-	{
+	public void setTakingDmg(boolean takingDmg) {
 		this.takingDmg = takingDmg;
 	}
 
@@ -144,8 +143,7 @@ public class Player {
 	}
 	
 	public Rectangle getBounds() {
-		if(this.isFighting)
-		{
+		if(this.isFighting) {
 			return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getWidth(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getHeight());
 		}
 		return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.DEFAULT_IMAGE.getWidth(), PlayerDisplay.DEFAULT_IMAGE.getHeight());
@@ -193,6 +191,21 @@ public class Player {
 				break;
 			default: break;
 		}
+	}
+	
+	public void load(JSONObject save) {
+		JSONObject pos;
+		
+		this.direction = Direction.valueOf((String) save.get("direction"));
+		this.watchingAt = Direction.valueOf((String) save.get("watchingAt"));
+		this.health.setHealth((float) save.get("health"));
+		this.damage = (float) save.get("damage");
+		pos = (JSONObject) save.get("position");
+		this.position = new Position((int) pos.get("x"), (int) pos.get("y"));
+		pos = (JSONObject) save.get("roomPosition");
+		this.roomPosition = new Position((int) pos.get("x"), (int) pos.get("y"));
+		
+		this.inventory.load((JSONObject) save.get("inventory"));
 	}
 	
 	/**

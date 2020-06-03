@@ -2,12 +2,15 @@ package fr.iutvalence.m2107.p24;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.MobDisplay;
@@ -28,8 +31,6 @@ public class World extends GameState {
 	private PlayerDisplay player;
 	/** The minimap in the world. */
 	private MiniMapDisplay map;
-	
-	
 
 	/**
 	 * Constructor of the World.
@@ -39,7 +40,6 @@ public class World extends GameState {
 		super(gsm);
 		this.player = new PlayerDisplay();
 		this.map = new MiniMapDisplay();
-	
 	}
 
 	/** {@inheritDoc} */
@@ -52,14 +52,13 @@ public class World extends GameState {
 
 		for (MobDisplay m : currentRoom.getMobs()) {
 			if (m.getBounds().intersects(this.player.getBounds())) {
-				this.player.getHealth().setHealth(-1);
+				this.player.getHealth().removeLife(1);
 				this.player.setTakingDmg(true);
 				this.player.collision(m);
 				
 			}
-			if(this.player.isFighting() && this.player.getBounds().intersects(m.getBounds()))
-			{
-				m.health.setHealth(-1);
+			if(this.player.isFighting() && this.player.getBounds().intersects(m.getBounds())) {
+				m.health.removeLife(1);
 			}
 		} 
 		
@@ -160,13 +159,31 @@ public class World extends GameState {
 		JSONObject saveJSON = new JSONObject(save);
 		FileWriter file;
 		try {
-			/*File f = new File("saves/save.json");
-			f.createNewFile();*/
 			file = new FileWriter("saves/save.json");
 			file.write(saveJSON.toString());
 			file.flush();
 			saveJSON.writeJSONString(file);
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void load() {
+		JSONParser parser = new JSONParser();
+		
+		try {
+			FileReader file = new FileReader("saves/save.json");
+			Object obj = parser.parse(file);
+			JSONObject save = (JSONObject) obj;
+			
+			this.player.load((JSONObject) save.get("player"));
+			this.map.load((JSONObject) save.get("rooms"));
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}

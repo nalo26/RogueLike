@@ -2,6 +2,8 @@ package fr.iutvalence.m2107.p24;
 
 import java.util.HashMap;
 
+import org.json.simple.JSONObject;
+
 import fr.iutvalence.m2107.p24.items.Item;
 
 
@@ -40,6 +42,12 @@ public class Inventory {
 		if (quantity == null) return;
 		if (quantity.intValue() == 1) this.items.remove(i);
 		else this.items.put(i, quantity.intValue()-1);
+	}
+
+	public void load(JSONObject save) {
+		@SuppressWarnings("unchecked")
+		HashMap<Item, Integer> inv = (HashMap<Item, Integer>) save;
+		this.items = inv;
 	}
 	
 	/**
