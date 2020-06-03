@@ -1,0 +1,107 @@
+{
+    "rooms": {
+        "0": {
+            "mobs": {
+                "0": {
+                    "damage": 2.0,
+                    "health": 20.0,
+                    "position": {
+                        "x": 782,
+                        "y": 70
+                    },
+                    "type": "SKELETON",
+                    "direction": "DOWN"
+                },
+                "1": {
+                    "damage": 2.0,
+                    "health": 20.0,
+                    "position": {
+                        "x": 694,
+                        "y": 35
+                    },
+                    "type": "SLIME",
+                    "direction": "UP"
+                },
+                "2": {
+                    "damage": 2.0,
+                    "health": 20.0,
+                    "position": {
+                        "x": 837,
+                        "y": 587
+                    },
+                    "type": "SKELETON",
+                    "direction": "RIGHT"
+                }
+            },
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "connections": "1111"
+        },
+        "1": {
+            "mobs": {
+                "0": {
+                    "damage": 2.0,
+                    "health": 20.0,
+                    "position": {
+                        "x": 503,
+                        "y": 609
+                    },
+                    "type": "SKELETON",
+                    "direction": "LEFT"
+                },
+                "1": {
+                    "damage": 2.0,
+                    "health": 20.0,
+                    "position": {
+                        "x": 425,
+                        "y": 480
+                    },
+                    "type": "SLIME",
+                    "direction": "RIGHT"
+                },
+                "2": {
+                    "damage": 2.0,
+                    "health": 20.0,
+                    "position": {
+                        "x": 459,
+                        "y": 0
+                    },
+                    "type": "ZOMBIE",
+                    "direction": "UP"
+                },
+                "3": {
+                    "damage": 2.0,
+                    "health": 20.0,
+                    "position": {
+                        "x": 709,
+                        "y": 257
+                    },
+                    "type": "ZOMBIE",
+                    "direction": "UP"
+                }
+            },
+            "position": {
+                "x": -1,
+                "y": 0
+            },
+            "connections": "1001"
+        }
+    },
+    "player": {
+        "watchingAt": "LEFT",
+        "damage": 2.0,
+        "health": 11.0,
+        "roomPosition": {
+            "x": -1,
+            "y": 0
+        },
+        "position": {
+            "x": 587,
+            "y": 159
+        },
+        "inventory": {},
+        "direction": "LEFT"
+    }
+}
