@@ -2,6 +2,7 @@ package fr.iutvalence.m2107.p24;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import org.json.simple.JSONObject;
 
@@ -147,6 +148,24 @@ public class Player {
 			return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getWidth(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getHeight());
 		}
 		return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.DEFAULT_IMAGE.getWidth(), PlayerDisplay.DEFAULT_IMAGE.getHeight());
+		
+	}
+	
+	public void mousePressed(int button)
+	{
+		if(button == MouseEvent.BUTTON1) {
+			this.isFighting = true;
+			System.out.println("fight");
+		}
+		
+	}
+	
+	public void mouseReleased(int button)
+	{
+		if(button == MouseEvent.BUTTON1) {
+			this.isFighting = false;
+			System.out.println("NO fight");
+		}
 		
 	}
 	

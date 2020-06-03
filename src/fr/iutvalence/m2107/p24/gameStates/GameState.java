@@ -40,9 +40,12 @@ public abstract class GameState {
      */
     public abstract void keyReleased(final int p0);
 
-    /** Describe how to manage the current click is pressed. 
-     * @param button the clicked button.
+
+    /** Describe how to manage the current button is pressed. 
+     * @param button the pressed button.
      */
-	public abstract void mouseClicked(int button);
+	protected abstract void mousePressed(int button);
+
+	protected abstract void mouseReleased(int button);
     
 }

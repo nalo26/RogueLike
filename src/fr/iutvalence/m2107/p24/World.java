@@ -52,10 +52,11 @@ public class World extends GameState {
 
 		for (MobDisplay m : currentRoom.getMobs()) {
 			if (m.getBounds().intersects(this.player.getBounds())) {
+				if(!this.player.isFighting()) {
 				this.player.getHealth().removeLife(1);
 				this.player.setTakingDmg(true);
+				}
 				this.player.collision(m);
-				
 			}
 			if(this.player.isFighting() && this.player.getBounds().intersects(m.getBounds())) {
 				m.health.removeLife(1);
@@ -91,10 +92,6 @@ public class World extends GameState {
 		this.player.keyReleased(k);
 	}
 
-	@Override
-	public void mouseClicked(int button) {
-		this.player.mouseClicked(button);	
-	}
 	
 	public static Position updatePosition(Position p) {
 		int x = Math.round((float)GamePanel.WIDTH/(float)GamePanel.DEFAULT_WIDTH * p.getX());
@@ -186,5 +183,19 @@ public class World extends GameState {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	protected void mousePressed(int button)
+	{
+		this.player.mousePressed(button);
+		
+	}
+
+	@Override
+	protected void mouseReleased(int button)
+	{
+		this.player.mouseReleased(button);
+		
 	}
 }

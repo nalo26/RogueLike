@@ -124,7 +124,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
  
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		this.gsm.mouseClicked(e.getButton());
+		//never used
 	}
 
 	@Override
@@ -144,14 +144,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
-		// never used
+		this.gsm.mousePressed(e.getButton());
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
-		// never used
+		this.gsm.mouseReleased(e.getButton());
 		
 	}
 }

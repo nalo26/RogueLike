@@ -42,7 +42,7 @@ public class MiniMap {
 		// TODO better positions
 		RoomDisplay room = this.getRoom(p.getRoomPosition());
 		
-		if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.LEFT)) && room.isOpen(Direction.LEFT)) {	//p.getPosition().getX() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.LEFT)
+		if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.LEFT)) && room.isOpen(Direction.LEFT) && room.getDoorBoundFromKey(Direction.LEFT) != null) {	//p.getPosition().getX() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.LEFT)
 			p.getRoomPosition().move(-1, 0);
 			p.getPosition().move(GamePanel.WIDTH/2, 0);
 		} else if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.RIGHT)) && room.isOpen(Direction.RIGHT)) {

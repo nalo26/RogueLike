@@ -99,8 +99,17 @@ public class PauseState extends GameState
 		// Not used here.
 	}
 
+
 	@Override
-	public void mouseClicked(int button) {
+	protected void mousePressed(int button)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void mouseReleased(int button)
+	{
 		// TODO Auto-generated method stub
 		
 	}

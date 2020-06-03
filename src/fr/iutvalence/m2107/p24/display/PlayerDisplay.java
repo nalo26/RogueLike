@@ -57,8 +57,7 @@ public class PlayerDisplay extends Player {
 	 */
 	public void draw(Graphics g) {
 		this.realPosition = World.updatePosition(this.position);
-		
-		g.drawImage(this.image, this.realPosition.getX(), this.realPosition.getY(), null);
+		if(!this.isFighting) g.drawImage(this.image, this.realPosition.getX(), this.realPosition.getY(), null);
 		g.setColor(Color.BLACK);
 		g.drawRect(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
 		
@@ -82,16 +81,15 @@ public class PlayerDisplay extends Player {
 		this.image = img.getImage();
 	}
 	
-	public void mouseClicked(int button) {
-		if(button == MouseEvent.BUTTON1) {
-			this.isFighting = true;
-			System.out.println("fight");
-		}
-	}
+
 	
 	public Position getRealPosition() {
 		return this.realPosition;
 	}
+
+
+
+
 
 
 }
