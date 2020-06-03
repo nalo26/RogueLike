@@ -1,9 +1,14 @@
 package fr.iutvalence.m2107.p24;
 
-import org.json.simple.JSONObject;
-
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+
+import org.json.simple.JSONObject;
+
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.MobDisplay;
 import fr.iutvalence.m2107.p24.display.PlayerDisplay;
@@ -87,12 +92,9 @@ public class World extends GameState {
 		this.player.keyReleased(k);
 	}
 
-	/**
-	 * Allow to know the current player.
-	 * @return the current player.
-	 */
-	public PlayerDisplay getPlayer() {
-		return this.player;
+	@Override
+	public void mouseClicked(int button) {
+		this.player.mouseClicked(button);	
 	}
 	
 	public static Position updatePosition(Position p) {
@@ -101,14 +103,71 @@ public class World extends GameState {
 		return new Position(x, y);
 	}
 
-	public static void save() {
-		JSONObject save = new JSONObject();
+	public void save() {
+		HashMap<String, HashMap<String, Object>> save = new HashMap<String, HashMap<String, Object>>();
 		
-	}
+		HashMap<String, Object> player = new HashMap<String, Object>();
+		
+		player.put("direction", this.player.getDirection().toString());
+		player.put("watchingAt", this.player.getWatching().toString());
+		player.put("health", this.player.getHealth().getLife());
+		player.put("damage", this.player.getDamage());
+		HashMap<String, Integer> playerPosition = new HashMap<String, Integer>();
+		playerPosition.put("x", this.player.getPosition().getX());
+		playerPosition.put("y", this.player.getPosition().getY());
+		player.put("position", playerPosition);
+		HashMap<String, Integer> playerRoomPosition = new HashMap<String, Integer>();
+		playerRoomPosition.put("x", this.player.getRoomPosition().getX());
+		playerRoomPosition.put("y", this.player.getRoomPosition().getY());
+		player.put("roomPosition", playerRoomPosition);
+		player.put("inventory", this.player.getInventory().getItems());
+		save.put("player", player);
 
-	@Override
-	public void mouseClicked(int button) {
-		this.player.mouseClicked(button);
+		HashMap<String, Object> rooms = new HashMap<String, Object>();
 		
+		int i = 0;
+		for(Room r : this.map.getRooms()) {
+			HashMap<String, Object> room = new HashMap<String, Object>();
+			
+			room.put("connections", r.getDoorsString());
+			HashMap<String, Integer> roomPosition = new HashMap<String, Integer>();
+			roomPosition.put("x", r.getPosition().getX());
+			roomPosition.put("y", r.getPosition().getY());
+			room.put("position", roomPosition);
+			HashMap<String, Object> mobs = new HashMap<String, Object>();
+			int j = 0;
+			for(Mob m : r.getMobs()) {
+				HashMap<String, Object> mob = new HashMap<String, Object>();
+				mob.put("type", m.getType().toString());
+				mob.put("health", m.getHealth().getLife());
+				mob.put("damage", m.getDamage());
+				mob.put("direction", m.getWatching().toString());
+				HashMap<String, Integer> mobPosition = new HashMap<String, Integer>();
+				mobPosition.put("x", m.getPosition().getX());
+				mobPosition.put("y", m.getPosition().getY());
+				mob.put("position", mobPosition);
+				
+				mobs.put(""+j, mob);
+				j++;
+			}
+			room.put("mobs", mobs);
+			
+			rooms.put(""+i, room);
+			i++;
+		}
+		save.put("rooms", rooms);
+		
+		JSONObject saveJSON = new JSONObject(save);
+		FileWriter file;
+		try {
+			/*File f = new File("saves/save.json");
+			f.createNewFile();*/
+			file = new FileWriter("saves/save.json");
+			file.write(saveJSON.toString());
+			file.flush();
+			saveJSON.writeJSONString(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

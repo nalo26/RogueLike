@@ -243,4 +243,12 @@ public class Player {
 		return this.roomPosition;
 	}
 
+	/**
+	 * Get the inventory of the player.
+	 * @return the inventory of the player.
+	 */
+	public Inventory getInventory() {
+		return this.inventory;
+	}
+
 }

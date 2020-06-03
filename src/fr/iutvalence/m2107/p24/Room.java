@@ -62,7 +62,7 @@ public class Room {
 		
 		boolean[] res = new boolean[4];
 		for(int i = 0; i < config.length(); i++) {
-			res[i] = (config.charAt(i) == '1' ? true : false);
+			res[i] = config.charAt(i) == '1';
 		}
 		
 		return res;
@@ -103,6 +103,14 @@ public class Room {
 	 */
 	public boolean[] getDoors() {
 		return this.doors;
+	}
+
+	public String getDoorsString() {// 1 0 1 0
+		String res = "";
+		for(Boolean door : this.doors) {
+			res += (door.booleanValue() ? "1" : "0");
+		}
+		return res;
 	}
 	
 	/**

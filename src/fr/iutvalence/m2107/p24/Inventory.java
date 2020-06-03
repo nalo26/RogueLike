@@ -1,7 +1,6 @@
 package fr.iutvalence.m2107.p24;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import fr.iutvalence.m2107.p24.items.Item;
 
@@ -12,14 +11,14 @@ import fr.iutvalence.m2107.p24.items.Item;
 public class Inventory {
 	
 	/** List of the player's items. */
-	protected List<Item> items;
+	protected HashMap<Item, Integer> items;
 	
 	/**
 	 * Constructor of the inventory.
 	 * Initialize the list of items.
 	 */
 	public Inventory() {
-		this.items = new ArrayList<Item>();
+		this.items = new HashMap<Item, Integer>();
 	}
 	
 	/**
@@ -27,7 +26,9 @@ public class Inventory {
 	 * @param i the item wanted to add.
 	 */
 	public void addItem(Item i) {
-		this.items.add(i);
+		Integer quantity = this.items.get(i);
+		if (quantity != null) this.items.put(i, quantity.intValue()+1);
+		else this.items.put(i, 1);
 	}
 	
 	/**
@@ -35,6 +36,17 @@ public class Inventory {
 	 * @param i the item wanted to remove.
 	 */
 	public void removeItem(Item i) {
-		this.items.remove(i);
+		Integer quantity = this.items.get(i);
+		if (quantity == null) return;
+		if (quantity.intValue() == 1) this.items.remove(i);
+		else this.items.put(i, quantity.intValue()-1);
+	}
+	
+	/**
+	 * Get the list of items of the inventory.
+	 * @return the list of items of the inventory. 
+	 */
+	public HashMap<Item, Integer> getItems(){
+		return this.items;
 	}
 }

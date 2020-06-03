@@ -79,7 +79,7 @@ public class PauseState extends GameState
 				this.gsm1.getState().push(new World(this.gsm1));
 			} else if (this.SelectedOption == 2) {
 				this.gsm1.getState().pop();
-				World.save();
+				((World) this.gsm1.getState().peek()).save();
 			} else if (this.SelectedOption == 3) {
 				// Help
 			} else if (this.SelectedOption == 4) {

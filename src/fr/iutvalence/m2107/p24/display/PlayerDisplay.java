@@ -64,27 +64,24 @@ public class PlayerDisplay extends Player {
 		
 		this.health.draw(g, this.realPosition, this.image.getWidth());
 		this.inventory.draw(g, this);
-	if(this.dmgTimer > 0 && this.watchingAt == Direction.LEFT) g.drawImage(DMG_LEFT, this.realPosition.getX(), this.realPosition.getY(), DMG_LEFT.getWidth(), DMG_LEFT.getHeight(), null);
-	if(this.dmgTimer > 0 && this.watchingAt == Direction.RIGHT) g.drawImage(DMG_RIGHT, this.realPosition.getX(), this.realPosition.getY(), DMG_RIGHT.getWidth(), DMG_RIGHT.getHeight(), null);
-	if(this.isFighting && this.watchingAt == Direction.LEFT) {
+		
+		if(this.dmgTimer > 0 && this.watchingAt == Direction.LEFT) g.drawImage(DMG_LEFT, this.realPosition.getX(), this.realPosition.getY(), DMG_LEFT.getWidth(), DMG_LEFT.getHeight(), null);
+		if(this.dmgTimer > 0 && this.watchingAt == Direction.RIGHT) g.drawImage(DMG_RIGHT, this.realPosition.getX(), this.realPosition.getY(), DMG_RIGHT.getWidth(), DMG_RIGHT.getHeight(), null);
+		if(this.isFighting && this.watchingAt == Direction.LEFT) {
 			g.drawImage(PLAYER_ATTACK_LEFT, this.realPosition.getX() - 44, this.realPosition.getY(), PLAYER_ATTACK_LEFT.getWidth(), PLAYER_ATTACK_LEFT.getHeight(), null);
 		}
-	if(this.isFighting && this.watchingAt == Direction.RIGHT) {
-		g.drawImage(PLAYER_ATTACK_RIGHT, this.realPosition.getX(), this.realPosition.getY(), PLAYER_ATTACK_RIGHT.getWidth(), PLAYER_ATTACK_RIGHT.getHeight(), null);
+		if(this.isFighting && this.watchingAt == Direction.RIGHT) {
+			g.drawImage(PLAYER_ATTACK_RIGHT, this.realPosition.getX(), this.realPosition.getY(), PLAYER_ATTACK_RIGHT.getWidth(), PLAYER_ATTACK_RIGHT.getHeight(), null);
+		}
+
 	}
 
-	
-	}
-
-	
 	/** {@inheritDoc} */
 	@Override
 	protected void changeImage(Images img) {
 		this.image = img.getImage();
 	}
 	
-
-
 	public void mouseClicked(int button) {
 		if(button == MouseEvent.BUTTON1) {
 			this.isFighting = true;
@@ -92,8 +89,7 @@ public class PlayerDisplay extends Player {
 		}
 	}
 	
-	public Position getRealPosition()
-	{
+	public Position getRealPosition() {
 		return this.realPosition;
 	}
 
