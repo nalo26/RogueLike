@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.World;
+import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
  * Represent the main menu and all of his options.
@@ -22,6 +24,7 @@ public class MenuState extends GameState implements ImageObserver
 	/** This array represent all of the possible options for the death menu. */
 	private int SelectedOption;
 
+	private BufferedImage bg;
 	/**
 	 * Initialize the possible options and the selector.
 	 * @param gsm the manager wanted.
@@ -30,6 +33,7 @@ public class MenuState extends GameState implements ImageObserver
 		super(gsm);
 		this.options = new String[] { "New Game", "Load Save", "Help", "Quit" };
 		this.SelectedOption = 0;
+		this.bg = Images.MAIN_MENU_BACKGROUND.getImage();
 	}
 
 	/** {@inheritDoc} */
@@ -42,7 +46,8 @@ public class MenuState extends GameState implements ImageObserver
 	@Override
 	public void draw(final Graphics g) {
 		g.setColor(new Color(0, 0, 0));
-		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+		g.drawImage(this.bg, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
+		//g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		for (int i = 0; i < this.options.length; ++i) {
 			if (i == this.SelectedOption) {
 				g.setColor(new Color(51, 204, 255));
