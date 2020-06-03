@@ -46,14 +46,18 @@ public class Player {
 	protected InventoryDisplay inventory;
 	/** Handle the direction the player is moving to. */
 	protected boolean up;
+	/** Handle the direction the player is moving to. */
 	protected boolean right;
+	/** Handle the direction the player is moving to. */
 	protected boolean down;
+	/** Handle the direction the player is moving to. */
 	protected boolean left;
 	
+	/** The timer for the damage animation. */
 	protected int dmgTimer;
-	
+	/** True if the player is taking damages, false if not. */
 	protected boolean takingDmg;
-	
+	/** True if the player is fighting, false if not.*/
 	protected boolean isFighting;
 	
 	/** Create a new player. */
@@ -150,7 +154,10 @@ public class Player {
 		return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.DEFAULT_IMAGE.getWidth(), PlayerDisplay.DEFAULT_IMAGE.getHeight());
 		
 	}
-	
+	/**
+	 * Describe what to do when a button of the mouse is pressed.
+	 * @param button the click button value pressed.
+	 */
 	public void mousePressed(int button)
 	{
 		if(button == MouseEvent.BUTTON1) {
@@ -160,6 +167,10 @@ public class Player {
 		
 	}
 	
+	/**
+	 * Describe what to do when a button of the mouse is released.
+	 * @param button the click button value released.
+	 */
 	public void mouseReleased(int button)
 	{
 		if(button == MouseEvent.BUTTON1) {
@@ -211,7 +222,10 @@ public class Player {
 			default: break;
 		}
 	}
-	
+	/**
+	 * Load a save from a Json file.
+	 * @param save the file that you want to load.
+	 */
 	public void load(JSONObject save) {
 		JSONObject pos;
 		
