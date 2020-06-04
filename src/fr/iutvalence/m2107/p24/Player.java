@@ -8,7 +8,6 @@ import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
-import fr.iutvalence.m2107.p24.display.PlayerDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 

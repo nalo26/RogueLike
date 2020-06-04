@@ -1,11 +1,8 @@
 package fr.iutvalence.m2107.p24.display;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-
-import com.sun.org.apache.xml.internal.security.utils.SignerOutputStream;
 
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
