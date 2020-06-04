@@ -30,6 +30,14 @@ public abstract class Item {
 
 	public Player getPlayer()
 	{
-		return this.getPlayer();
+		return this.player;
+	}
+	
+	public int getProbabilty()	{
+		return this.probability;
+	}
+	
+	public int getId() {
+		return this.id;
 	}
 }
