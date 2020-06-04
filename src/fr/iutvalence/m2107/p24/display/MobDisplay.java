@@ -34,6 +34,7 @@ public class MobDisplay extends Mob {
 		switch(this.type) {
 			case SLIME:
 				this.image = Images.SLIME_GREEN_DOWN.getImage();
+				if(this.dmgTimer > 0) this.image = Images.SLIME_RED_DOWN.getImage();
 				break;
 			case ZOMBIE:
 				if(this.wantToMove) {
@@ -42,7 +43,10 @@ public class MobDisplay extends Mob {
 				} else {
 					if(this.watchingAt == Direction.RIGHT) this.image = Images.ZOMBIE_STAY_RIGHT.getImage();
 					if(this.watchingAt == Direction.LEFT) this.image = Images.ZOMBIE_STAY_LEFT.getImage();
+					
 				}
+				if(this.watchingAt == Direction.RIGHT && this.dmgTimer > 0) this.image = Images.ZOMBIE_DAMAGE_RIGHT.getImage();
+				if(this.watchingAt == Direction.LEFT && this.dmgTimer > 0) this.image = Images.ZOMBIE_DAMAGE_LEFT.getImage();
 				break;
 			case SKELETON:
 				if(this.wantToMove) {
@@ -52,6 +56,8 @@ public class MobDisplay extends Mob {
 					if(this.watchingAt == Direction.RIGHT) this.image = Images.SKELETON_STAY_RIGHT.getImage();
 					if(this.watchingAt == Direction.LEFT) this.image = Images.SKELETON_STAY_LEFT.getImage();
 				}
+				if(this.watchingAt == Direction.RIGHT && this.dmgTimer > 0) this.image = Images.SKELETON_DAMAGE_RIGHT.getImage();
+				if(this.watchingAt == Direction.LEFT && this.dmgTimer > 0) this.image = Images.SKELETON_DAMAGE_LEFT.getImage();
 				break;
 			default: break;
 		}

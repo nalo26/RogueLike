@@ -63,10 +63,14 @@ public class World extends GameState {
 				}
 				this.player.collision(m);
 			}
-			if(this.player.isFighting() && this.player.getBounds().intersects(m.getBounds()) && this.player.minorAttack) m.health.removeLife(1);
+			if(this.player.isFighting() && this.player.getBounds().intersects(m.getBounds()) && this.player.minorAttack) {
+				m.health.removeLife(1);
+				m.setTakeDamage(true);
+			}
 			if(this.majorAttackCd <= 0) {
 			if(this.player.isFighting() && this.player.getBounds().intersects(m.getBounds()) && this.player.majorAttack) {
 				m.health.removeLife(3);
+				m.setTakeDamage(true);
 				this.majorAttackCd = 500;
 				this.player.isFighting = false;
 				}

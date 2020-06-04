@@ -34,6 +34,9 @@ public class Mob {
 	/** Indicates the length of the move of the mob. */
 	protected int lengthOfMove;
 
+	protected boolean isTakingDamages;
+	
+	protected int dmgTimer;
 	/**
 	 * Create a new mob, with its specific attributes.
 	 * @param theType of the mob
@@ -47,6 +50,8 @@ public class Mob {
 		this.watchingAt = Direction.RIGHT;
 		this.wantToMove = false;
 		this.lengthOfMove = 0;
+		this.isTakingDamages = false;
+		this.dmgTimer = 0;
 
 	}
 	
@@ -70,6 +75,13 @@ public class Mob {
 				this.wantToMove = true;
 			}
 		}
+		if(this.isTakingDamages)
+		{
+			this.dmgTimer = 50;
+			this.isTakingDamages = false;
+		}
+		this.dmgTimer--;
+		if(this.dmgTimer <= 0) this.dmgTimer = 0;
 		updateImage();
 	}
 	
@@ -134,6 +146,11 @@ public class Mob {
 	 */
 	public Direction getWatching() {
 		return this.direction;
+	}
+	
+	public void setTakeDamage(boolean b)
+	{
+		this.isTakingDamages = b;
 	}
 
 }
