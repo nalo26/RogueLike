@@ -94,7 +94,12 @@ public class Player {
 		this.dmgTimer --;
 		if(this.dmgTimer <= 0) 	this.dmgTimer = 0;
 		
-		
+		if(this.dmgTimer > 0 && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_DAMAGE_LEFT);
+		else if(this.dmgTimer > 0 && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_DAMAGE_RIGHT);
+		else if(this.isFighting && this.watchingAt == Direction.LEFT)    this.changeImage(Images.PLAYER_ATTACK_LEFT);
+		else if(this.isFighting && this.watchingAt == Direction.RIGHT)   this.changeImage(Images.PLAYER_ATTACK_RIGHT);
+		else if(this.watchingAt == Direction.LEFT) this.changeImage(Images.PLAYER_LEFT);
+		else this.changeImage(Images.PLAYER_RIGHT);
 	}
 	
 	/** 
@@ -130,13 +135,13 @@ public class Player {
 			this.right = true;
 			this.direction = Direction.RIGHT;
 			this.watchingAt = Direction.RIGHT;
-			this.changeImage(Images.PLAYER_RIGHT);
+			//this.changeImage(Images.PLAYER_RIGHT);
 		}
 		if (!this.right && (k == KeyEvent.VK_Q || k == KeyEvent.VK_LEFT)) {
 			this.left = true;
 			this.direction = Direction.LEFT;
 			this.watchingAt = Direction.LEFT;
-			this.changeImage(Images.PLAYER_LEFT);
+			//this.changeImage(Images.PLAYER_LEFT);
 		}
 		if(k == KeyEvent.VK_CONTROL || k == KeyEvent.VK_SHIFT) this.speed = SPRINT_SPEED;
 	}
@@ -153,26 +158,16 @@ public class Player {
 		if (k == KeyEvent.VK_CONTROL || k == KeyEvent.VK_SHIFT) this.speed = DEFAULT_SPEED;
 	}
 	
-	public Rectangle getBounds() {
-		if(this.isFighting) {
-			if(this.watchingAt == Direction.RIGHT) return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getWidth(), PlayerDisplay.PLAYER_ATTACK_RIGHT.getHeight());
-			if(this.watchingAt == Direction.LEFT) return new Rectangle(this.position.getX() - 44, this.position.getY(), PlayerDisplay.PLAYER_ATTACK_LEFT.getWidth(), PlayerDisplay.PLAYER_ATTACK_LEFT.getHeight());
-		}
-		return new Rectangle(this.position.getX(), this.position.getY(), PlayerDisplay.DEFAULT_IMAGE.getWidth(), PlayerDisplay.DEFAULT_IMAGE.getHeight());
-		
-	}
 	/**
 	 * Describe what to do when a button of the mouse is pressed.
 	 * @param button the click button value pressed.
 	 */
-	public void mousePressed(int button)
-	{
+	public void mousePressed(int button) {
 		if(button == MouseEvent.BUTTON1) {
 			this.isFighting = true;
 			this.minorAttack = true;
 		}
-		if(button == MouseEvent.BUTTON3)
-		{
+		if(button == MouseEvent.BUTTON3) {
 			this.isFighting = true;
 			this.majorAttack = true;
 		}
@@ -183,14 +178,12 @@ public class Player {
 	 * Describe what to do when a button of the mouse is released.
 	 * @param button the click button value released.
 	 */
-	public void mouseReleased(int button)
-	{
+	public void mouseReleased(int button) {
 		if(button == MouseEvent.BUTTON1) {
 			this.isFighting = false;
 			this.minorAttack = false;
 		}
-		if(button == MouseEvent.BUTTON3)
-		{
+		if(button == MouseEvent.BUTTON3) {
 			this.isFighting = false;
 			this.majorAttack = false;
 		}
@@ -203,6 +196,10 @@ public class Player {
 	 */
 	protected void changeImage(Images img) {
 		// This method is override by PlayerDisplay, which handle images.  
+	}
+	
+	protected Rectangle getBounds() {
+		return new Rectangle(0, 0, 0, 0);
 	}
 	
 	/**

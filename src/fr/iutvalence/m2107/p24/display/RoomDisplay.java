@@ -1,6 +1,5 @@
 package fr.iutvalence.m2107.p24.display;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -10,6 +9,7 @@ import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.Room;
+import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -74,16 +74,11 @@ public class RoomDisplay extends Room {
 			m.draw(g);
 		}
 		for(HashMap.Entry<Position, Images> entry : this.decor.entrySet()) {
-			Position pos = entry.getKey();
-			Images im = entry.getValue();
-			g.drawImage(im.getImage(), pos.getX(), pos.getY(), null);
+			Position pos = World.updatePosition(entry.getKey());
+			BufferedImage im = entry.getValue().getImage();
+			Position dim = World.updatePosition(new Position(im.getWidth(), im.getHeight()));
+			g.drawImage(im, pos.getX(), pos.getY(), dim.getX(), dim.getY(), null);
 		}
-		
-		g.setColor(Color.RED);
-		g.fillRect(GamePanel.WIDTH/2 - doorWidth/2, 0, doorWidth, offsetH);
-		g.fillRect(0, GamePanel.HEIGHT/2 - doorHeight, offsetW, doorHeight);
-		g.fillRect(GamePanel.WIDTH - offsetW, GamePanel.HEIGHT/2 - doorHeight, offsetW, doorHeight);
-		g.fillRect(GamePanel.WIDTH/2 - doorWidth/2, GamePanel.HEIGHT - offsetH, doorWidth, offsetH);
 	}
 
 	/**
