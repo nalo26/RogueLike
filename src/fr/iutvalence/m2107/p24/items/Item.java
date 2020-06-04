@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
@@ -48,6 +49,8 @@ public abstract class Item {
 	public void draw(Graphics g) {
 		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
 	}
+	
+	public abstract void tick(Player p);
 	
 	public Rectangle getBounds() {
 		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());

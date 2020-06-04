@@ -36,11 +36,10 @@ public enum Images {
 	
 	COIN("coin.png"), 
 	MANA("mana.png"),
-	POTION("potion.png"),
 	BUTTON("button.jpg"),
-	HEALTHPOTION("healthpotion.png"),
-	POISONPOTION("poisonpotion.png"),
-	SPEEDPOTION("speedpotion.png"),
+	POTION_HEALTH("healthpotion.png"),
+	POTION_POISON("poisonpotion.png"),
+	POTION_SPEED("speedpotion.png"),
 	
 	TREE1("tree_1.png"),
 	TREE2("tree_2.png"),

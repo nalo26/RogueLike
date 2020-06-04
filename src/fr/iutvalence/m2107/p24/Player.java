@@ -24,8 +24,8 @@ public class Player {
 	public static final Position DEFAULT_ROOM_POSITION = new Position(0, 0);
 	/** The default speed of the player (pixels per tick). */
 	public static final int DEFAULT_SPEED = 3;
-	/** The sprint speed of the player (pixels per tick). */
-	public static final int SPRINT_SPEED = 5;
+	/** The speed to add to the player's speed (pixels per tick). */
+	public static final int SPRINT_SPEED = +2;
 	
 	/** The speed of the player (pixels per tick)*/
 	protected int speed;
@@ -45,11 +45,8 @@ public class Player {
 	protected InventoryDisplay inventory;
 	/** Handle the direction the player is moving to. */
 	protected boolean up;
-	/** Handle the direction the player is moving to. */
 	protected boolean right;
-	/** Handle the direction the player is moving to. */
 	protected boolean down;
-	/** Handle the direction the player is moving to. */
 	protected boolean left;
 	
 	/** The timer for the damage animation. */
@@ -93,7 +90,7 @@ public class Player {
 		this.dmgTimer --;
 		if(this.dmgTimer <= 0) 	this.dmgTimer = 0;
 		
-		if(this.dmgTimer > 0 && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_DAMAGE_LEFT);
+		if (    this.dmgTimer > 0 && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_DAMAGE_LEFT);
 		else if(this.dmgTimer > 0 && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_DAMAGE_RIGHT);
 		else if(this.isFighting && this.watchingAt == Direction.LEFT)    this.changeImage(Images.PLAYER_ATTACK_LEFT);
 		else if(this.isFighting && this.watchingAt == Direction.RIGHT)   this.changeImage(Images.PLAYER_ATTACK_RIGHT);
@@ -134,15 +131,19 @@ public class Player {
 			this.right = true;
 			this.direction = Direction.RIGHT;
 			this.watchingAt = Direction.RIGHT;
-			//this.changeImage(Images.PLAYER_RIGHT);
+			if(this.dmgTimer > 0) this.changeImage(Images.PLAYER_DAMAGE_RIGHT);
+			else if(this.isFighting) this.changeImage(Images.PLAYER_ATTACK_RIGHT);
+			else this.changeImage(Images.PLAYER_RIGHT);
 		}
 		if (!this.right && (k == KeyEvent.VK_Q || k == KeyEvent.VK_LEFT)) {
 			this.left = true;
 			this.direction = Direction.LEFT;
 			this.watchingAt = Direction.LEFT;
-			//this.changeImage(Images.PLAYER_LEFT);
+			if(this.dmgTimer > 0) this.changeImage(Images.PLAYER_DAMAGE_LEFT);
+			else if(this.isFighting) this.changeImage(Images.PLAYER_ATTACK_LEFT);
+			else this.changeImage(Images.PLAYER_LEFT);
 		}
-		if(k == KeyEvent.VK_CONTROL || k == KeyEvent.VK_SHIFT) this.speed = SPRINT_SPEED;
+		if(k == KeyEvent.VK_CONTROL || k == KeyEvent.VK_SHIFT) this.speed = DEFAULT_SPEED + SPRINT_SPEED;
 	}
 	
 	/**
@@ -314,8 +315,7 @@ public class Player {
 	 * Get the speed of the player.
 	 * @return the speed of the player.
 	 */
-	public int getSpeed()
-	{
+	public int getSpeed() {
 		return this.speed;
 	}
 
@@ -323,8 +323,7 @@ public class Player {
 	 * Set the speed of the player.
 	 * @param speed the wanted speed.
 	 */
-	public void setSpeed(int speed)
-	{
+	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
 

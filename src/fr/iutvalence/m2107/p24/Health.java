@@ -16,12 +16,29 @@ public class Health {
 		this.life = defaultLife;
 	}
 	
+	
+	/**
+	 * SET the life to <tt>h</tt>.
+	 * @param h the life amount.
+	 */
 	public void setHealth(float h) {
 		this.life = h;
 	}
 	
+	/**
+	 * REMOVE <tt>h</tt> life.
+	 * @param h the life amount.
+	 */
 	public void removeLife(float h) {
 		this.life -= h;
+	}
+	
+	/**
+	 * ADD <tt>h</tt> life.
+	 * @param h the life amount.
+	 */
+	public void addLife(float h) {
+		this.life += h;
 	}
 	
 	/**
