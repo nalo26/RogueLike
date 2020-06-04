@@ -48,7 +48,7 @@ public class MenuState extends GameState implements ImageObserver
 	@Override
 	public void draw(final Graphics g) {
 		g.setColor(new Color(0, 0, 0));
-		if(help) {
+		if(this.help) {
 			g.drawImage(Images.JEUHELP.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
 		}
 		else {
@@ -88,14 +88,15 @@ public class MenuState extends GameState implements ImageObserver
 				this.gsm1.getState().push(world);
 			} else if (this.SelectedOption == 2) {
 				// TODO help
-				help = true;
-				if(help == true && k==KeyEvent.VK_ESCAPE) help = false;
+				this.help = true;
+				
 		
 				
 			} else if (this.SelectedOption == 3) {
 				System.exit(0);
 			}
 		}
+		if(this.help == true && k==KeyEvent.VK_ESCAPE) this.help = false;
 	}
 
 	/** {@inheritDoc} */
