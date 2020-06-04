@@ -311,4 +311,23 @@ public class Player {
 		return this.inventory;
 	}
 
+	/**
+	 * Get the speed of the player.
+	 * @return the speed of the player.
+	 */
+	public int getSpeed()
+	{
+		return this.speed;
+	}
+
+	/**
+	 * Set the speed of the player.
+	 * @param speed the wanted speed.
+	 */
+	public void setSpeed(int speed)
+	{
+		this.speed = speed;
+	}
+
+	
 }
