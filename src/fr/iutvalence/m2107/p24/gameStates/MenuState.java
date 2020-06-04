@@ -24,7 +24,6 @@ public class MenuState extends GameState implements ImageObserver
 	/** This array represent all of the possible options for the death menu. */
 	private int SelectedOption;
 
-	private BufferedImage bg;
 	/**
 	 * Initialize the possible options and the selector.
 	 * @param gsm the manager wanted.
@@ -33,7 +32,6 @@ public class MenuState extends GameState implements ImageObserver
 		super(gsm);
 		this.options = new String[] { "New Game", "Load Save", "Help", "Quit" };
 		this.SelectedOption = 0;
-		this.bg = Images.MAIN_MENU_BACKGROUND.getImage();
 	}
 
 	/** {@inheritDoc} */
@@ -46,8 +44,7 @@ public class MenuState extends GameState implements ImageObserver
 	@Override
 	public void draw(final Graphics g) {
 		g.setColor(new Color(0, 0, 0));
-		g.drawImage(this.bg, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
-		//g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+		g.drawImage(Images.MAIN_MENU_BACKGROUND.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
 		for (int i = 0; i < this.options.length; ++i) {
 			if (i == this.SelectedOption) {
 				g.setColor(new Color(51, 204, 255));
