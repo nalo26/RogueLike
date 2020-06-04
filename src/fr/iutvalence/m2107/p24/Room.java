@@ -43,7 +43,7 @@ public class Room {
 			this.mobs.add(new MobDisplay(MobType.randomMobType()));
 		}
 		
-		int treeAmount = random.nextInt(5);
+		int treeAmount = random.nextInt(5)+5;
 		for(int i = 0; i < treeAmount; i ++) {
 			this.decor.put(Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT), Images.valueOf("TREE" + (random.nextInt(4)+1)));
 		}
