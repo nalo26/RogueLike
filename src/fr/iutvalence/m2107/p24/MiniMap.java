@@ -34,11 +34,10 @@ public class MiniMap {
 	 * Describe the behavior of the map every tick for a given player.
 	 * @param p the player wanted.
 	 */
-	public void tick(Player p) {		
+	public void tick(RoomDisplay room, Player p) {		
 		// Changing of room
 		// TODO TP the player to the other side of the room
 		// TODO better positions
-		RoomDisplay room = this.rooms.get(p.getRoomPosition());
 		
 		if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.LEFT)) && room.isOpen(Direction.LEFT) && room.getDoorBoundFromKey(Direction.LEFT) != null) {	//p.getPosition().getX() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.LEFT)
 			p.getRoomPosition().move(-1, 0);
@@ -58,7 +57,7 @@ public class MiniMap {
 			this.rooms.put(p.getRoomPosition().copy(), this.randomRoom(p.getRoomPosition()));
 		}
 		room = this.rooms.get(p.getRoomPosition());
-		room.tick(room);
+		room.tick(room, p);
 	}
 	
 	/**

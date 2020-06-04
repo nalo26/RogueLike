@@ -58,7 +58,7 @@ public class Mob {
 	/** Describe the behavior of a mob every tick. 
 	 * @param r The room the mob is on.
 	 */
-	public void tick(RoomDisplay r) {
+	public Mob tick(RoomDisplay r, Player p) {
 		if (this.wantToMove) {
 			if (this.direction == Direction.RIGHT && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.RIGHT))) this.position.move(1, 0);
 			if (this.direction == Direction.LEFT  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-1, 0);
@@ -75,14 +75,37 @@ public class Mob {
 				this.wantToMove = true;
 			}
 		}
-		if(this.isTakingDamages)
-		{
-			this.dmgTimer = 50;
-			this.isTakingDamages = false;
+		
+		if(this.dmgTimer > 0) dmgTimer--;
+
+		if (this.getBounds().intersects(p.getBounds())) {
+			if(!p.isFighting()) {
+				p.getHealth().removeLife(1);
+				p.setTakingDmg(true);
+			}
+			p.collision(this);
 		}
-		this.dmgTimer--;
-		if(this.dmgTimer <= 0) this.dmgTimer = 0;
+		if(p.isFighting() && p.getBounds().intersects(this.getBounds())) {
+			 if(p.minorAttack) {
+				 this.health.removeLife(1);
+				 this.takeDamage();
+			 }
+			 if(p.majorAttack && p.majorAttackCd <= 0) {
+				 this.health.removeLife(3);
+				 this.takeDamage();
+				 p.majorAttackCd = 500;
+				 p.isFighting = false;
+			 }
+		}
+		
 		updateImage();
+		
+		if(this.getHealth().getLife() <= 0) return this;
+		return null;
+	}
+	
+	public void takeDamage() {
+		this.dmgTimer = 50;
 	}
 	
 	public Rectangle getBounds() {
@@ -146,11 +169,6 @@ public class Mob {
 	 */
 	public Direction getWatching() {
 		return this.direction;
-	}
-	
-	public void setTakeDamage(boolean b)
-	{
-		this.isTakingDamages = b;
 	}
 
 }

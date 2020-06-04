@@ -76,11 +76,12 @@ public class Room {
 	/** Instructions executed every tick. 
 	 * @param r The display room to pass as parameter to Mob.
 	 */
-	public void tick(RoomDisplay r) {
+	public void tick(RoomDisplay r, Player p) {
+		Mob toDelete = null;
 		for(Mob m : this.mobs) {
-			m.tick(r);
-			
+			toDelete = m.tick(r, p);
 		}
+		if(toDelete != null) this.mobs.remove(toDelete);
 	}
 	
 	/**
