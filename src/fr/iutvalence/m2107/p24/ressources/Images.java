@@ -39,6 +39,8 @@ public enum Images {
 	POTION("potion.png"),
 	BUTTON("button.jpg"),
 	HEALTHPOTION("healthpotion.png"),
+	POISONPOTION("poisonpotion.png"),
+	SPEEDPOTION("speedpotion.png"),
 	
 	TREE1("tree_1.png"),
 	TREE2("tree_2.png"),
