@@ -4,7 +4,14 @@ package fr.iutvalence.m2107.p24.items;
  *
  */
 public enum ItemsList {
-	HealthPotion,
-	PoisonPotion,
-	SpeedPotion;
+	HealthPotion("1"),
+	PoisonPotion("2"),
+	SpeedPotion("3");
+	
+	private String item;
+	
+	private ItemsList(String theitem)	{
+		this.item = theitem;
+	}
+	
 }
