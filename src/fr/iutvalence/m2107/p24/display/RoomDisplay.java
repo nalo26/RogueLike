@@ -75,6 +75,12 @@ public class RoomDisplay extends Room {
 		for(MobDisplay m : this.mobs) {
 			m.draw(g);
 		}
+		for(HashMap.Entry<Position, Images> entry : this.decor.entrySet()) {
+			Position pos = entry.getKey();
+			Images im = entry.getValue();
+			g.drawImage(im.getImage(), pos.getX(), pos.getY(), null);
+		}
+		
 		g.setColor(Color.RED);
 		g.fillRect(GamePanel.WIDTH/2 - doorWidth/2, 0, doorWidth, offsetH);
 		g.fillRect(0, GamePanel.HEIGHT/2 - doorHeight, offsetW, doorHeight);

@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.MobDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
+import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
  * Represent a room and all of his component (doors, position, ...).
@@ -18,6 +19,8 @@ public class Room {
 	
 	/** List of all mobs in this room. */
 	protected List<MobDisplay> mobs = new ArrayList<MobDisplay>();
+	
+	protected HashMap<Position, Images> decor = new HashMap<Position, Images>();
 	/** The position of the room. */
 	protected Position position;
 	/** The state of the doors in the room. */
@@ -40,9 +43,13 @@ public class Room {
 		
 		Random random = new Random();
 		int mobAmount = random.nextInt(MAX_MOBS);
-		
 		for(int i = 0; i < mobAmount; i ++) {
 			this.mobs.add(new MobDisplay(MobType.randomMobType()));
+		}
+		
+		int treeAmount = random.nextInt(5);
+		for(int i = 0; i < treeAmount; i ++) {
+			this.decor.put(Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT), Images.valueOf("TREE" + (random.nextInt(4)+1)));
 		}
 	}
 	
