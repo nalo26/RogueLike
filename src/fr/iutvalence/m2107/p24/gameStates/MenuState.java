@@ -96,7 +96,7 @@ public class MenuState extends GameState implements ImageObserver
 				System.exit(0);
 			}
 		}
-		if(this.help == true && k==KeyEvent.VK_ESCAPE) this.help = false;
+		if(this.help && k==KeyEvent.VK_ESCAPE) this.help = false;
 	}
 
 	/** {@inheritDoc} */
