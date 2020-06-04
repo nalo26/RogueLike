@@ -1,8 +1,6 @@
 package fr.iutvalence.m2107.p24;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 import org.json.simple.JSONObject;
@@ -15,7 +13,7 @@ import fr.iutvalence.m2107.p24.display.RoomDisplay;
 public class MiniMap {
 
 	/** Rooms of the World. */
-	protected List<RoomDisplay> rooms;
+	protected HashMap<Position, RoomDisplay> rooms;
 	/** A random object to create random values. */
 	private Random random = new Random();
 	/** The seed of the map. */
@@ -26,8 +24,8 @@ public class MiniMap {
 	 * Create a new room of 4 doors, and set a seed.
 	 */
 	public MiniMap() {
-		this.rooms = new ArrayList<RoomDisplay>();
-		this.rooms.add(new RoomDisplay(Player.DEFAULT_ROOM_POSITION.copy(), "1111"));
+		this.rooms = new HashMap<Position, RoomDisplay>();
+		this.rooms.put(Player.DEFAULT_ROOM_POSITION.copy(), new RoomDisplay("1111"));
 		this.seed = this.random.nextLong();
 		this.random.setSeed(this.seed);
 	}
@@ -40,7 +38,7 @@ public class MiniMap {
 		// Changing of room
 		// TODO TP the player to the other side of the room
 		// TODO better positions
-		RoomDisplay room = this.getRoom(p.getRoomPosition());
+		RoomDisplay room = this.rooms.get(p.getRoomPosition());
 		
 		if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.LEFT)) && room.isOpen(Direction.LEFT) && room.getDoorBoundFromKey(Direction.LEFT) != null) {	//p.getPosition().getX() <= 0 && this.getRoom(p.getRoomPosition()).isOpen(Direction.LEFT)
 			p.getRoomPosition().move(-1, 0);
@@ -56,23 +54,11 @@ public class MiniMap {
 			p.getPosition().move(0, -GamePanel.HEIGHT/2);
 		}
 		
-		if(this.getRoom(p.getRoomPosition()) == null) {
-			this.rooms.add(this.randomRoom(p.getRoomPosition()));
+		if(this.rooms.get(p.getRoomPosition()) == null) {
+			this.rooms.put(p.getRoomPosition().copy(), this.randomRoom(p.getRoomPosition()));
 		}
-		room = this.getRoom(p.getRoomPosition());
+		room = this.rooms.get(p.getRoomPosition());
 		room.tick(room);
-	}
-
-	/** 
-	 * Allow to know the current room by a given position.
-	 * @param pos the position of the room you want to get.
-	 * @return the room standing to the given position.
-	 */
-	public RoomDisplay getRoom(Position pos) {
-		for(RoomDisplay r : this.rooms) {
-			if(r.getPosition().equals(pos)) return r;
-		}
-		return null;
 	}
 	
 	/**
@@ -88,31 +74,31 @@ public class MiniMap {
 		String doors = "";
 		Room query = null;
 		
-		query = this.getRoom(new Position(pos.getX(), pos.getY()+1));
+		query = this.rooms.get(new Position(pos.getX(), pos.getY()+1));
 		if(query != null) {
 			if(query.isOpen(Direction.UP)) doors = "1" + doors;
 			else doors = "0" + doors;
 		} else doors = this.random.nextInt(2) + doors;
 		
-		query = this.getRoom(new Position(pos.getX()-1, pos.getY()));
+		query = this.rooms.get(new Position(pos.getX()-1, pos.getY()));
 		if(query != null) {
 			if(query.isOpen(Direction.RIGHT)) doors = "1" + doors;
 			else doors = "0" + doors;
 		} else doors = this.random.nextInt(2) + doors;
 		
-		query = this.getRoom(new Position(pos.getX(), pos.getY()-1));
+		query = this.rooms.get(new Position(pos.getX(), pos.getY()-1));
 		if(query != null) {
 			if(query.isOpen(Direction.DOWN)) doors = "1" + doors;
 			else doors = "0" + doors;
 		} else doors = this.random.nextInt(2) + doors;
 		
-		query = this.getRoom(new Position(pos.getX()+1, pos.getY()));
+		query = this.rooms.get(new Position(pos.getX()+1, pos.getY()));
 		if(query != null) {
 			if(query.isOpen(Direction.LEFT)) doors = "1" + doors;
 			else doors = "0" + doors;
 		} else doors = this.random.nextInt(2) + doors;
 		
-		return new RoomDisplay(pos.copy(), doors);
+		return new RoomDisplay(doors);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -126,14 +112,14 @@ public class MiniMap {
 			String config = (String) room.get("connections");
 			JSONObject pos = (JSONObject) room.get("position");
 			Position roomPos = new Position(((Long) pos.get("x")).intValue(), ((Long) pos.get("y")).intValue());
-			RoomDisplay newRoom = new RoomDisplay(roomPos, config);
+			RoomDisplay newRoom = new RoomDisplay(config);
 			newRoom.load((JSONObject) room.get("mobs"));
 			
-			this.rooms.add(newRoom);
+			this.rooms.put(roomPos, newRoom);
 		}
 	}
 	
-	public List<RoomDisplay> getRooms(){
+	public HashMap<Position, RoomDisplay> getRooms(){
 		return this.rooms;
 	}
 	

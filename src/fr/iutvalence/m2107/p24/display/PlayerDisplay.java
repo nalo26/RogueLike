@@ -2,8 +2,6 @@ package fr.iutvalence.m2107.p24.display;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.Direction;
@@ -81,15 +79,7 @@ public class PlayerDisplay extends Player {
 		this.image = img.getImage();
 	}
 	
-
-	
 	public Position getRealPosition() {
 		return this.realPosition;
 	}
-
-
-
-
-
-
 }

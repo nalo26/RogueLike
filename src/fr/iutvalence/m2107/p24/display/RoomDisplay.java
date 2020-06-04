@@ -41,12 +41,11 @@ public class RoomDisplay extends Room {
 	 * It gets the images according to the binary order of doors.
 	 * For example: "1010" will be open on right and left, but close on up and down.
 	 * This will be the image "ROOM10".
-	 * @param pos the position of the room
 	 * @param config the configuration of the room (which type of room)
 	 * @param bin the value of the room (in the file name)
 	 */
-	public RoomDisplay(Position pos, boolean[] config, String bin) {
-		super(pos, config, bin);
+	public RoomDisplay(boolean[] config, String bin) {
+		super(config, bin);
 		this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
 		this.walls = new HashMap<Direction, Rectangle>();
 		this.doors = new HashMap<Direction, Rectangle>();
@@ -54,12 +53,11 @@ public class RoomDisplay extends Room {
 	}
 	
 	/**
-	 * Create a new room, with the configuration as String. 
-	 * @param pos the position of the room in the map.
+	 * Create a new room, with the configuration as String.
 	 * @param config the String configuration of doors of the room (i.e. "0110").
 	 */
-	public RoomDisplay(Position pos, String config) {
-		this(pos, Room.computeDoors(config), config);
+	public RoomDisplay(String config) {
+		this(Room.computeDoors(config), config);
 		this.doors = new HashMap<Direction, Rectangle>();
 		this.walls = new HashMap<Direction, Rectangle>();
 	}

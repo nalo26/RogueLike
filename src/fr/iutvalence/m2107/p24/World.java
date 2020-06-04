@@ -50,7 +50,7 @@ public class World extends GameState {
 	/** {@inheritDoc} */
 	@Override
 	public void tick() {
-		RoomDisplay currentRoom = this.map.getRoom(this.player.getRoomPosition());
+		RoomDisplay currentRoom = this.map.getRooms().get(this.player.getRoomPosition());
 		
 		this.player.tick(currentRoom);
 		this.map.tick(this.player);
@@ -92,7 +92,7 @@ public class World extends GameState {
 	/** {@inheritDoc} */
 	@Override
 	public void draw(Graphics g) {
-		this.map.getRoom(this.player.getRoomPosition()).draw(g);
+		this.map.getRooms().get(this.player.getRoomPosition()).draw(g);
 		this.player.draw(g);
 		this.map.draw(g, this.player);
 	
@@ -144,13 +144,15 @@ public class World extends GameState {
 		HashMap<String, Object> rooms = new HashMap<String, Object>();
 		
 		int i = 0;
-		for(Room r : this.map.getRooms()) {
+		for(HashMap.Entry<Position, RoomDisplay> entry : this.map.getRooms().entrySet()) {
+			Position p = entry.getKey();
+			RoomDisplay r = entry.getValue();
 			HashMap<String, Object> room = new HashMap<String, Object>();
 			
 			room.put("connections", r.getDoorsString());
 			HashMap<String, Integer> roomPosition = new HashMap<String, Integer>();
-			roomPosition.put("x", r.getPosition().getX());
-			roomPosition.put("y", r.getPosition().getY());
+			roomPosition.put("x", p.getX());
+			roomPosition.put("y", p.getY());
 			room.put("position", roomPosition);
 			HashMap<String, Object> mobs = new HashMap<String, Object>();
 			int j = 0;

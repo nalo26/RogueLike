@@ -21,8 +21,6 @@ public class Room {
 	protected List<MobDisplay> mobs = new ArrayList<MobDisplay>();
 	
 	protected HashMap<Position, Images> decor = new HashMap<Position, Images>();
-	/** The position of the room. */
-	protected Position position;
 	/** The state of the doors in the room. */
 	protected boolean[] doors;
 	/**  The maximum mob who can spawn at the same time in the room. */
@@ -33,12 +31,10 @@ public class Room {
 	 * It gets the images according to the binary order of doors.
 	 * For example: "1010" will be open on right and left, but close on up and down.
 	 * This will be the image "ROOM10".
-	 * @param pos the position of the room in the map.
 	 * @param config the configuration of doors of the room (i.e. {false, true, true, false}).
 	 * @param bin the binary configuration of doors.
 	 */
-	public Room(Position pos, boolean[] config, String bin) {
-		this.position = pos;
+	public Room(boolean[] config, String bin) {
 		this.doors = config;
 		
 		Random random = new Random();
@@ -55,11 +51,10 @@ public class Room {
 	
 	/**
 	 * Create a new room, with the configuration as String. 
-	 * @param pos the position of the room in the map.
 	 * @param config the String configuration of doors of the room (i.e. "0110").
 	 */
-	public Room(Position pos, String config) {
-		this(pos, Room.computeDoors(config), config);
+	public Room(String config) {
+		this(Room.computeDoors(config), config);
 	}
 	
 	/**
@@ -94,14 +89,6 @@ public class Room {
 	 */
 	public List<MobDisplay> getMobs() {
 		return this.mobs;
-	}
-
-	/**
-	 * Get the position of the room in the map.
-	 * @return the position of the room (Getter).
-	 */
-	public Position getPosition() {
-		return this.position;
 	}
 
 	/**
@@ -158,7 +145,7 @@ public class Room {
 	/** {@inheritDoc} */
 	@Override
 	public String toString() {
-		return "Room [position=" + this.position + ", doors=" + Arrays.toString(this.doors) + "]";
+		return "Room [doors=" + Arrays.toString(this.doors) + "]";
 	}
 	
 }

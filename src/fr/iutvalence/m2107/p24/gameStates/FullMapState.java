@@ -43,20 +43,20 @@ public class FullMapState extends GameState {
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		
 		Room query = null;
-		for(Room r : this.map.getRooms()) {
+		for(Position pos : this.map.getRooms().keySet()) {
 			g.setColor(Color.WHITE);
 			
-			//      (            centering on the mini map            ) - (offset room) + (  offset from room's coordinate   ) + (       gap for corridors if any        )
-			int x = (GamePanel.WIDTH /2) - (ROOM_WIDTH /2) + (ROOM_WIDTH  * (r.getPosition().getX() - this.player.getRoomPosition().getX())) + ((r.getPosition().getX() - this.player.getRoomPosition().getX()) * CORRIDOR_WIDTH);
-			int y = (GamePanel.HEIGHT/2) - (ROOM_HEIGHT/2) + (ROOM_HEIGHT * (r.getPosition().getY() - this.player.getRoomPosition().getY())) + ((r.getPosition().getY() - this.player.getRoomPosition().getY()) * CORRIDOR_WIDTH);
+			//      (centering the map ) - ( offset room ) + (                  offset from room's coordinate                  ) + (                      gap for corridors if any                      )
+			int x = (GamePanel.WIDTH /2) - (ROOM_WIDTH /2) + (ROOM_WIDTH  * (pos.getX() - this.player.getRoomPosition().getX())) + ((pos.getX() - this.player.getRoomPosition().getX()) * CORRIDOR_WIDTH);
+			int y = (GamePanel.HEIGHT/2) - (ROOM_HEIGHT/2) + (ROOM_HEIGHT * (pos.getY() - this.player.getRoomPosition().getY())) + ((pos.getY() - this.player.getRoomPosition().getY()) * CORRIDOR_WIDTH);
 			
-			query = this.map.getRoom(new Position(r.getPosition().getX()-1, r.getPosition().getY()));
+			query = this.map.getRooms().get(new Position(pos.getX()-1, pos.getY()));
 			if (query != null && query.isOpen(Direction.RIGHT)) g.fillRect(x-CORRIDOR_WIDTH, y+ROOM_HEIGHT/2-CORRIDOR_HEIGHT/2, CORRIDOR_WIDTH, CORRIDOR_HEIGHT);
-			query = this.map.getRoom(new Position(r.getPosition().getX(), r.getPosition().getY()-1));
+			query = this.map.getRooms().get(new Position(pos.getX(), pos.getY()-1));
 			if (query != null && query.isOpen(Direction.DOWN))  g.fillRect(x+ROOM_WIDTH/2-CORRIDOR_HEIGHT/2, y-CORRIDOR_WIDTH, CORRIDOR_HEIGHT, CORRIDOR_WIDTH);
 			
-			if(r.getPosition().equals(Player.DEFAULT_ROOM_POSITION)) g.setColor(Color.GREEN);
-			if(r.getPosition().equals(this.player.getRoomPosition())) g.setColor(Color.YELLOW);
+			if(pos.equals(Player.DEFAULT_ROOM_POSITION)) g.setColor(Color.GREEN);
+			if(pos.equals(this.player.getRoomPosition())) g.setColor(Color.YELLOW);
 			g.fillRect(x, y, ROOM_WIDTH, ROOM_HEIGHT);
 		}
 	}
