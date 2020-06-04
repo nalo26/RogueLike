@@ -66,7 +66,8 @@ public enum Images {
 	INVENTORY_TRANSPARENT("InventoryTransparent.png"),
 	
 	MENU_BACKGROUND("MenuWallpaper.jpg"),
-	MAIN_MENU_BACKGROUND("MainMenuWallpaper.jpg");
+	MAIN_MENU_BACKGROUND("MainMenuWallpaper.jpg"), 
+	JEUHELP("jeuhelp.png");
 	/** The current image. */
 	private final BufferedImage image;
 	

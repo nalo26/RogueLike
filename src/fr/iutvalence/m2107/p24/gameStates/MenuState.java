@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
 
+import com.sun.glass.events.KeyEvent;
+
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.ressources.Images;
@@ -23,6 +25,9 @@ public class MenuState extends GameState implements ImageObserver
 	/** This array represent all of the possible options for the death menu. */
 	private int SelectedOption;
 
+	private Graphics g;
+
+	private boolean help;
 	/**
 	 * Initialize the possible options and the selector.
 	 * @param gsm the manager wanted.
@@ -43,7 +48,11 @@ public class MenuState extends GameState implements ImageObserver
 	@Override
 	public void draw(final Graphics g) {
 		g.setColor(new Color(0, 0, 0));
-		g.drawImage(Images.MAIN_MENU_BACKGROUND.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
+		if(help) {
+			g.drawImage(Images.JEUHELP.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
+		}
+		else {
+			g.drawImage(Images.MAIN_MENU_BACKGROUND.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
 		for (int i = 0; i < this.options.length; ++i) {
 			if (i == this.SelectedOption) {
 				g.setColor(new Color(51, 204, 255));
@@ -52,6 +61,7 @@ public class MenuState extends GameState implements ImageObserver
 			}
 			g.setFont(new Font("Montserrat", 0, 72));
 			g.drawString(this.options[i], GamePanel.WIDTH / 2 - 50, 250 + i * 150);
+			}
 		}
 	}
 
@@ -78,6 +88,10 @@ public class MenuState extends GameState implements ImageObserver
 				this.gsm1.getState().push(world);
 			} else if (this.SelectedOption == 2) {
 				// TODO help
+				help = true;
+				if(help == true && k==KeyEvent.VK_ESCAPE) help = false;
+		
+				
 			} else if (this.SelectedOption == 3) {
 				System.exit(0);
 			}
