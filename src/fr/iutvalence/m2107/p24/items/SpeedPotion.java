@@ -2,27 +2,28 @@ package fr.iutvalence.m2107.p24.items;
 
 import java.awt.Rectangle;
 
-import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
+import fr.iutvalence.m2107.p24.ressources.Images;
 
-public class SpeedPotion extends Item
-{
+public class SpeedPotion extends Item {
 
-	public SpeedPotion(String theName, int theId, int theprobability, Player thePlayer, Position thePos)
-	{
-		super(theName, theId, theprobability, thePlayer, thePos);
-		
+	public SpeedPotion(ItemsList type, int id, int prob, Position pos) {
+		super(type, id, prob, pos);
+		this.changeImage(Images.SPEEDPOTION);
 	}
-	
-	public void addSpeed()
-	{
-			super.player.setSpeed(5);		
+
+	public void addSpeed() {
+		 return; // TODO speed up the player
 	}
 
 	@Override
-	public Rectangle getBounds()
-	{
-		return new Rectangle(super.pos.getX(), super.pos.getY(), 124, 140);
+	public Rectangle getBounds() {
+		return new Rectangle(0, 0, 0, 0);
+	}
+
+	@Override
+	public void changeImage(Images i) {
+		return;
 	}
 
 }

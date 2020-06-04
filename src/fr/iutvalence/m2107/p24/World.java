@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import fr.iutvalence.m2107.p24.display.ItemDisplay;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.MobDisplay;
 import fr.iutvalence.m2107.p24.display.PlayerDisplay;
@@ -21,6 +22,9 @@ import fr.iutvalence.m2107.p24.gameStates.FullMapState;
 import fr.iutvalence.m2107.p24.gameStates.GameState;
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
 import fr.iutvalence.m2107.p24.gameStates.PauseState;
+import fr.iutvalence.m2107.p24.items.HealthPotion;
+import fr.iutvalence.m2107.p24.items.Item;
+import fr.iutvalence.m2107.p24.items.ItemsList;
 
 /**
  * Create the whole map.
@@ -35,6 +39,8 @@ public class World extends GameState {
 	private boolean mobIsDead;
 	
 	private int majorAttackCd;
+	
+	private ItemDisplay test;
 	/**
 	 * Constructor of the World.
 	 * @param gsm State of the game.
@@ -45,6 +51,7 @@ public class World extends GameState {
 		this.map = new MiniMapDisplay();
 		this.mobIsDead = false;
 		this.majorAttackCd = 0;
+		this.test = new ItemDisplay(ItemsList.HealthPotion, 1, 50, new Position(500, 500));
 	}
 
 	/** {@inheritDoc} */
@@ -95,7 +102,8 @@ public class World extends GameState {
 		this.map.getRooms().get(this.player.getRoomPosition()).draw(g);
 		this.player.draw(g);
 		this.map.draw(g, this.player);
-	
+		
+		this.test.draw(g);
 	}
 
 	/** {@inheritDoc} */
