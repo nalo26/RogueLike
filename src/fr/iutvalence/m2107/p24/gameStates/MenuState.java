@@ -72,7 +72,6 @@ public class MenuState extends GameState implements ImageObserver {
 		if (k == KeyEvent.VK_ENTER) {
 			switch (this.SelectedOption) {
 				case 0: // New Game
-					this.gsm1.getState().clear();
 					this.gsm1.getState().push(new World(this.gsm1));
 					break;
 				case 1: // Load Save
