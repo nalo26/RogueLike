@@ -23,7 +23,7 @@ public class Player {
 	/** The damage to add to the player's damage. */
 	public static final int DAMAGE_BOOST = +2;
 	/** The default cooldown between two critical attacks. */
-	public static final int DEFAULT_ATTACK_COOLDOWN = 500;
+	public static final int DEFAULT_ATTACK_COOLDOWN = 100;
 	/** The default time the player is taking damage (sprite animation). */
 	public static final int DEFAULT_DAMAGE_COOLDOWN = 100;
 	/** The default room coordinates the player is in. */
