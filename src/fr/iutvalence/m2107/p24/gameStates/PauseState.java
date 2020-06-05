@@ -2,6 +2,7 @@ package fr.iutvalence.m2107.p24.gameStates;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -42,14 +43,14 @@ public class PauseState extends GameState implements ImageObserver {
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(Images.PAUSE_BACKGROUND.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
-		int j = 75;
+		g.setFont(new Font("Montserrat", 0, 72));
+		FontMetrics metrics = g.getFontMetrics();
 		for (int i = 0; i < this.options.length; ++i) {
-			if (i == this.SelectedOption) g.setColor(new Color(0, 255, 128));
-			else g.setColor(new Color(64, 64, 64));
-
-			g.setFont(new Font("Montserrat", 0, 70));
-			g.drawString(this.options[i], GamePanel.WIDTH / 2 - 100 - j, 250 + i * 150);
-			j = 0;
+			if (i == this.SelectedOption) g.setColor(new Color(51, 204, 255));
+			else g.setColor(Color.WHITE);
+			int x = (GamePanel.WIDTH - metrics.stringWidth(this.options[i]))/2;
+			int y = i*(GamePanel.HEIGHT/this.options.length-1)+(GamePanel.HEIGHT/this.options.length)/2+metrics.getHeight()/2;
+			g.drawString(this.options[i], x, y);
 		}
 
 	}

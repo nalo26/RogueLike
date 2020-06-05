@@ -46,7 +46,7 @@ public class MenuState extends GameState implements ImageObserver {
 			if (i == this.SelectedOption) g.setColor(new Color(51, 204, 255));
 			else g.setColor(Color.WHITE);
 			int x = (GamePanel.WIDTH - metrics.stringWidth(this.options[i]))/2;
-			int y = i*(GamePanel.HEIGHT/this.options.length-1)+(GamePanel.HEIGHT/this.options.length)/2;
+			int y = i*(GamePanel.HEIGHT/this.options.length-1)+(GamePanel.HEIGHT/this.options.length)/2+metrics.getHeight()/2;
 			g.drawString(this.options[i], x, y);
 		}
 	}
