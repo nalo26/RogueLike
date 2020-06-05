@@ -7,10 +7,16 @@ import fr.iutvalence.m2107.p24.ressources.Images;
 /**
  * Represent the Health potion.
  */
-public class HealthPotion extends Item{
+public class HealthPotion extends Item {
 
-	public HealthPotion(int prob, Position pos) {
-		super(prob, pos, Images.POTION_HEALTH);
+	/** The probability of spawn. */
+	public static final float PROBABILITY = 0.1F;
+	
+	/** The life the potion adds. */
+	public static final int HEALTH_BOOST = 2;
+	
+	public HealthPotion(Position pos) {
+		super(pos, Images.POTION_HEALTH);
 	}
 	
 	/**
@@ -19,7 +25,7 @@ public class HealthPotion extends Item{
 	 */
 	@Override
 	public void tick(Player p) {
-		p.getHealth().addLife(1);
+		p.getHealth().addLife(HEALTH_BOOST);
 	}
 
 }

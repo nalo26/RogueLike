@@ -6,6 +6,9 @@ import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class SpeedPotion extends Item {
 
+	/** The probability of spawn. */
+	public static final float PROBABILITY = 0.1F;
+	
 	/** The amount of speed to add to the player when used. */
 	private static final int SPEED_POTION = +3;
 	/** The duration of the speed effect. */
@@ -15,11 +18,10 @@ public class SpeedPotion extends Item {
 	
 	/** 
 	 * Create a new Speed potion.
-	 * @param prob The probability of spawning.
 	 * @param pos The position of the item.
 	 */
-	public SpeedPotion(int prob, Position pos) {
-		super(prob, pos, Images.POTION_SPEED);
+	public SpeedPotion(Position pos) {
+		super(pos, Images.POTION_SPEED);
 		this.counter = 0;
 	}
 

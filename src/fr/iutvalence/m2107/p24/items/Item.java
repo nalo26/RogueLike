@@ -14,27 +14,21 @@ import fr.iutvalence.m2107.p24.ressources.Images;
  */
 public abstract class Item {
 	
+	/** The image of the item. */
 	protected BufferedImage image;
-	
-	/** The spawn probability of the item. */
-	protected int probability;
 	/** The position of the item. */
 	protected Position position;
+	
 	/**
 	 * Constructor.
 	 * @param prob The probability of spawn of the item.
 	 * @param pos The position of the item on a room.
 	 * @param im The image of the Item
 	 */
-	public Item(int prob, Position pos, Images im) {
-		this.probability = prob;
+	public Item(Position pos, Images im) {
 		this.position = pos;
 		this.image = im.getImage();
 		
-	}
-	
-	public int getProbabilty()	{
-		return this.probability;
 	}
 	
 	public Position getPos() {
