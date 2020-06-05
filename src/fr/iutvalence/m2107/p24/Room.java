@@ -45,7 +45,7 @@ public class Room {
 		
 		int treeAmount = random.nextInt(5)+5;
 		for(int i = 0; i < treeAmount; i ++) {
-			this.decor.put(Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT), Images.valueOf("TREE" + (random.nextInt(4)+1)));
+			this.decor.put(Position.randomPosition(70, GamePanel.WIDTH - 200, 70, GamePanel.HEIGHT-200), Images.valueOf("TREE" + (random.nextInt(4)+1)));
 		}
 	}
 	
