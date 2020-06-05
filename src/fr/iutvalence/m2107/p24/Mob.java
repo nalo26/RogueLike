@@ -44,7 +44,7 @@ public class Mob {
 	public Mob(MobType theType) {
 		this.health = new HealthDisplay(DEFAULT_HEALTH);
 		this.damage = DEFAULT_DAMAGE;
-		this.position = Position.randomPosition(GamePanel.WIDTH/2-GamePanel.HEIGHT/2, GamePanel.WIDTH/2+GamePanel.HEIGHT/2, 0, GamePanel.HEIGHT); //TODO better positions
+		this.position = Position.randomPosition(GamePanel.WIDTH/2-GamePanel.HEIGHT/2 + 70, GamePanel.WIDTH/2+GamePanel.HEIGHT/2 - 70, 70, GamePanel.HEIGHT-200 ); //TODO better positions
 		this.type = theType;
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
