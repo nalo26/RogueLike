@@ -91,7 +91,7 @@ public class Mob {
 		}
 		
 		updateImage();
-		
+
 		if(this.getHealth().getLife() <= 0) return this;
 		return null;
 	}
@@ -101,7 +101,7 @@ public class Mob {
 	}
 	
 	public Rectangle getBounds() {
-		return null;
+		return new Rectangle(0, 0, 0, 0);
 		//this method is override by PlayerDisplay, which handle bounds.
 	}
 	

@@ -58,8 +58,6 @@ public class RoomDisplay extends Room {
 	 */
 	public RoomDisplay(String config) {
 		this(Room.computeDoors(config), config);
-		this.doors = new HashMap<Direction, Rectangle>();
-		this.walls = new HashMap<Direction, Rectangle>();
 	}
 
 	/**

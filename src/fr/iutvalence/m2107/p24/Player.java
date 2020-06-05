@@ -84,10 +84,10 @@ public class Player {
 		if (this.left  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-this.speed,  0);
 		if (this.up    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -this.speed);
 		if (this.down  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move( 0,  this.speed);
-		
-		if(this.damageCooldown > 0) this.damageCooldown --;
+				
 		if(this.attackCooldown > 0) this.attackCooldown --;
-		if(this.damageCooldown == 0 && this.attackCooldown == 0) this.state = State.NORMAL;
+		if(this.damageCooldown > 0) this.damageCooldown --;
+		if(this.damageCooldown == 0 && this.state != State.ATTACK) this.state = State.NORMAL;
 		
 		if (    this.state == State.DAMAGE && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_DAMAGE_LEFT);
 		else if(this.state == State.DAMAGE && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_DAMAGE_RIGHT);
@@ -114,17 +114,11 @@ public class Player {
 			this.right = true;
 			this.direction = Direction.RIGHT;
 			this.watchingAt = Direction.RIGHT;
-			if (    this.state == State.DAMAGE) this.changeImage(Images.PLAYER_DAMAGE_RIGHT);
-			else if(this.state == State.ATTACK) this.changeImage(Images.PLAYER_ATTACK_RIGHT);
-			else this.changeImage(Images.PLAYER_RIGHT);
 		}
 		if (!this.right && (k == KeyEvent.VK_Q || k == KeyEvent.VK_LEFT)) {
 			this.left = true;
 			this.direction = Direction.LEFT;
 			this.watchingAt = Direction.LEFT;
-			if (    this.state == State.DAMAGE) this.changeImage(Images.PLAYER_DAMAGE_LEFT);
-			else if(this.state == State.ATTACK) this.changeImage(Images.PLAYER_ATTACK_LEFT);
-			else this.changeImage(Images.PLAYER_LEFT);
 		}
 		if(k == KeyEvent.VK_CONTROL || k == KeyEvent.VK_SHIFT) this.speed = DEFAULT_SPEED + SPRINT_SPEED;
 	}
@@ -152,6 +146,7 @@ public class Player {
 		}
 		if(button == MouseEvent.BUTTON3) {
 			if(this.attackCooldown <= 0) {
+				System.out.println("CRITICAL");
 				this.damage = DEFAULT_DAMAGE + DAMAGE_BOOST;
 				this.attackCooldown = DEFAULT_ATTACK_COOLDOWN;
 				this.state = State.ATTACK;
@@ -164,7 +159,9 @@ public class Player {
 	 * @param button the click button value released.
 	 */
 	public void mouseReleased(int button) {
-		// hello boy
+		if(button == MouseEvent.BUTTON1 || button == MouseEvent.BUTTON3) {
+			this.state = State.NORMAL;
+		}
 	}
 	
 	public void takeDamage(float dmg) {

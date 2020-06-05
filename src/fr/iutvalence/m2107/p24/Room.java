@@ -78,11 +78,13 @@ public class Room {
 	 * @param p the player of the room.
 	 */
 	public void tick(RoomDisplay r, Player p) {
-		Mob toDelete = null;
+		Mob isDead = null;
+		List<Mob> toDelete = new ArrayList<Mob>();
 		for(Mob m : this.mobs) {
-			toDelete = m.tick(r, p);
+			isDead = m.tick(r, p);
+			if(isDead != null) toDelete.add(isDead);
 		}
-		if(toDelete != null) this.mobs.remove(toDelete);
+		if(toDelete.size() > 0) this.mobs.removeAll(toDelete);
 	}
 	
 	/**
