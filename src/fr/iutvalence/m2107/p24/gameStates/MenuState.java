@@ -56,7 +56,7 @@ public class MenuState extends GameState implements ImageObserver {
 	    int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
 	    int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
 	    // Draw the String
-	    g.drawString(text, x, y);
+	    g.drawString(text, x, y); 
 	}
 
 	/** {@inheritDoc} */
