@@ -2,8 +2,10 @@ package fr.iutvalence.m2107.p24.gameStates;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.ImageObserver;
 
@@ -37,14 +39,24 @@ public class MenuState extends GameState implements ImageObserver {
 	/** {@inheritDoc} */
 	@Override
 	public void draw(final Graphics g) {
-		g.setColor(new Color(0, 0, 0));
 		g.drawImage(Images.MAIN_MENU_BACKGROUND.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
+		g.setFont(new Font("Montserrat", 0, 72));
+		FontMetrics metrics = g.getFontMetrics();
 		for (int i = 0; i < this.options.length; ++i) {
 			if (i == this.SelectedOption) g.setColor(new Color(51, 204, 255));
-			else g.setColor(new Color(107, 107, 71));
-			g.setFont(new Font("Montserrat", 0, 72));
-			g.drawString(this.options[i], GamePanel.WIDTH / 2 - 50, 250 + i * 150);
+			else g.setColor(Color.WHITE);
+			int x = (GamePanel.WIDTH - metrics.stringWidth(this.options[i]))/2;
+			int y = i*(GamePanel.HEIGHT/this.options.length-1)+(GamePanel.HEIGHT/this.options.length)/2;
+			g.drawString(this.options[i], x, y);
 		}
+	}
+	
+	public void drawCenteredString(Graphics g, String text, Rectangle rect, Font font) {
+	    FontMetrics metrics = g.getFontMetrics(font);
+	    int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
+	    int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
+	    // Draw the String
+	    g.drawString(text, x, y);
 	}
 
 	/** {@inheritDoc} */
