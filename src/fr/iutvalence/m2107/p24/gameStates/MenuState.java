@@ -6,28 +6,18 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
 
-import com.sun.glass.events.KeyEvent;
-
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
-/**
- * Represent the main menu and all of his options.
- *
- */
-public class MenuState extends GameState implements ImageObserver
-{
+/** Represent the main menu and all of his options. */
+public class MenuState extends GameState implements ImageObserver {
 
 	/** This array represent all of the possible options for the main menu. */
 	private String[] options;
-
-	/** This array represent all of the possible options for the death menu. */
+	/** The current selected option. */
 	private int SelectedOption;
-
-	private Graphics g;
-
-	private boolean help;
+	
 	/**
 	 * Initialize the possible options and the selector.
 	 * @param gsm the manager wanted.
@@ -41,28 +31,19 @@ public class MenuState extends GameState implements ImageObserver
 	/** {@inheritDoc} */
 	@Override
 	public void tick() {
-		// Override later.
+		// Not used here.
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void draw(final Graphics g) {
 		g.setColor(new Color(0, 0, 0));
-		if(this.help) {
-			g.drawImage(Images.MAIN_MENU_BACKGROUND.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
-			g.drawImage(Images.JEUHELP.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
-		}
-		else {
-			g.drawImage(Images.MAIN_MENU_BACKGROUND.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
+		g.drawImage(Images.MAIN_MENU_BACKGROUND.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
 		for (int i = 0; i < this.options.length; ++i) {
-			if (i == this.SelectedOption) {
-				g.setColor(new Color(51, 204, 255));
-			} else {
-				g.setColor(new Color(107, 107, 71));
-			}
+			if (i == this.SelectedOption) g.setColor(new Color(51, 204, 255));
+			else g.setColor(new Color(107, 107, 71));
 			g.setFont(new Font("Montserrat", 0, 72));
 			g.drawString(this.options[i], GamePanel.WIDTH / 2 - 50, 250 + i * 150);
-			}
 		}
 	}
 
@@ -70,40 +51,35 @@ public class MenuState extends GameState implements ImageObserver
 	@Override
 	public void keyPressed(final int k) {
 		if (k == 40 || k == 83) {
-			++this.SelectedOption;
-			if (this.SelectedOption >= this.options.length) {
-				this.SelectedOption = 0;
-			}
+			this.SelectedOption++;
+			if (this.SelectedOption >= this.options.length) this.SelectedOption = 0;
 		} else if (k == 38 || k == 90) {
-			--this.SelectedOption;
-			if (this.SelectedOption < 0) {
-				this.SelectedOption = this.options.length - 1;
-			}
+			this.SelectedOption--;
+			if (this.SelectedOption < 0) this.SelectedOption = this.options.length - 1;
 		}
 		if (k == 10) {
 			if (this.SelectedOption == 0) {
+				// New Game
 				this.gsm1.getState().push(new World(this.gsm1));
 			} else if (this.SelectedOption == 1) {
+				// Load Save
 				World world = new World(this.gsm1);
 				world.load();
 				this.gsm1.getState().push(world);
 			} else if (this.SelectedOption == 2) {
-				// TODO help
-				this.help = true;
-				
-		
-				
+				// Help
+				this.gsm1.getState().push(new HelpState(this.gsm1));
 			} else if (this.SelectedOption == 3) {
+				// Quit
 				System.exit(0);
 			}
 		}
-		if(this.help && k==KeyEvent.VK_ESCAPE) this.help = false;
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void keyReleased(final int k) {
-		// Override later.
+		// Not used here.
 	}
 
 	/** {@inheritDoc} */
@@ -114,17 +90,13 @@ public class MenuState extends GameState implements ImageObserver
 
 
 	@Override
-	protected void mousePressed(int button)
-	{
-		// TODO Auto-generated method stub
-		
+	protected void mousePressed(int button) {
+		// Not used here.
 	}
 
 	@Override
-	protected void mouseReleased(int button)
-	{
-		// TODO Auto-generated method stub
-		
+	protected void mouseReleased(int button) {
+		// Not used here.
 	}
 
 }

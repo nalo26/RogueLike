@@ -13,7 +13,11 @@ public class SpeedPotion extends Item {
 	/** The counter of the duration of the speed effect. */
 	private int counter;
 	
-	/** Create a new speed potion. */
+	/** 
+	 * Create a new Speed potion.
+	 * @param prob The probability of spawning.
+	 * @param pos The position of the item.
+	 */
 	public SpeedPotion(int prob, Position pos) {
 		super(prob, pos, Images.POTION_SPEED);
 		this.counter = 0;

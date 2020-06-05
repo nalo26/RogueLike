@@ -22,10 +22,9 @@ public abstract class Item {
 	protected Position position;
 	/**
 	 * Constructor.
-	 * @param type name of the item.
-	 * @param id id of the item.
-	 * @param prob the probability of spawn of the item.
-	 * @param pos the position of the item on a room.
+	 * @param prob The probability of spawn of the item.
+	 * @param pos The position of the item on a room.
+	 * @param im The image of the Item
 	 */
 	public Item(int prob, Position pos, Images im) {
 		this.probability = prob;
