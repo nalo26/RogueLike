@@ -32,6 +32,7 @@ public class MiniMap {
 	
 	/**
 	 * Describe the behavior of the map every tick for a given player.
+	 * @param room the current room.
 	 * @param p the player wanted.
 	 */
 	public void tick(RoomDisplay room, Player p) {		

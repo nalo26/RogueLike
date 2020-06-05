@@ -75,6 +75,7 @@ public class Room {
 	
 	/** Instructions executed every tick. 
 	 * @param r The display room to pass as parameter to Mob.
+	 * @param p the player of the room.
 	 */
 	public void tick(RoomDisplay r, Player p) {
 		Mob toDelete = null;

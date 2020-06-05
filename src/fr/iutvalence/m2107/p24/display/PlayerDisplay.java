@@ -8,6 +8,7 @@ import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
+import fr.iutvalence.m2107.p24.State;
 import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
@@ -46,7 +47,7 @@ public class PlayerDisplay extends Player {
 	 */
 	public void draw(Graphics g) {
 		Position pos;
-		if(this.isFighting && this.watchingAt == Direction.LEFT) pos = new Position(this.position.getX() - (this.image.getWidth()-DEFAULT_IMAGE.getWidth()), this.position.getY()); 
+		if(this.state == State.ATTACK && this.watchingAt == Direction.LEFT) pos = new Position(this.position.getX() - (this.image.getWidth()-DEFAULT_IMAGE.getWidth()), this.position.getY()); 
 		else pos = this.position;
 		
 		this.realPosition = World.updatePosition(pos);

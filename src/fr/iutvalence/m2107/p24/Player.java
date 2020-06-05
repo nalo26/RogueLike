@@ -19,7 +19,13 @@ public class Player {
 	/** The default life of the player. */
 	public static final int DEFAULT_HEALTH = 20;
 	/** The default damage of the player. */
-	public static final int DEFAULT_DAMAGE = 2;
+	public static final int DEFAULT_DAMAGE = 1;
+	/** The damage to add to the player's damage. */
+	public static final int DAMAGE_BOOST = +2;
+	/** The default cooldown between two critical attacks. */
+	public static final int DEFAULT_ATTACK_COOLDOWN = 500;
+	/** The default time the player is taking damage (sprite animation). */
+	public static final int DEFAULT_DAMAGE_COOLDOWN = 100;
 	/** The default room coordinates the player is in. */
 	public static final Position DEFAULT_ROOM_POSITION = new Position(0, 0);
 	/** The default speed of the player (pixels per tick). */
@@ -48,17 +54,14 @@ public class Player {
 	protected boolean right;
 	protected boolean down;
 	protected boolean left;
+	/** The cooldown between two critical attacks. */
+	protected int attackCooldown;
+	/** The time the player is taking damage. */
+	protected int damageCooldown;
 	
-	/** The timer for the damage animation. */
-	protected int dmgTimer;
-	/** True if the player is taking damages, false if not. */
-	protected boolean takingDmg;
-	/** True if the player is fighting, false if not.*/
-	protected boolean isFighting;
+	protected State state;
+
 	
-	protected boolean minorAttack;
-	
-	protected boolean majorAttack;
 	
 	/** Create a new player. */
 	public Player() {
@@ -69,11 +72,9 @@ public class Player {
 		this.watchingAt = Direction.RIGHT;
 		this.roomPosition = DEFAULT_ROOM_POSITION.copy();
 		this.inventory = new InventoryDisplay();
-		this.dmgTimer = 0;
-		this.takingDmg = false;
-		this.isFighting = false;
-		this.minorAttack = false;
-		this.majorAttack = false;
+		this.attackCooldown = 0;
+		this.damageCooldown = 0;
+		this.state = State.NORMAL;
 	}
 	
 	/** Describe the behavior of the player after a key is pressed. 
@@ -83,35 +84,17 @@ public class Player {
 		if (this.left  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-this.speed,  0);
 		if (this.up    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -this.speed);
 		if (this.down  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move( 0,  this.speed);
-		if (this.takingDmg)  {
-			this.dmgTimer = 100;
-			this.takingDmg = false;
-		}
-		this.dmgTimer --;
-		if(this.dmgTimer <= 0) 	this.dmgTimer = 0;
 		
-		if (    this.dmgTimer > 0 && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_DAMAGE_LEFT);
-		else if(this.dmgTimer > 0 && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_DAMAGE_RIGHT);
-		else if(this.isFighting && this.watchingAt == Direction.LEFT)    this.changeImage(Images.PLAYER_ATTACK_LEFT);
-		else if(this.isFighting && this.watchingAt == Direction.RIGHT)   this.changeImage(Images.PLAYER_ATTACK_RIGHT);
-		else if(this.watchingAt == Direction.LEFT) this.changeImage(Images.PLAYER_LEFT);
-		else this.changeImage(Images.PLAYER_RIGHT);
-	}
-	
-	/** 
-	 * Allow to know if the player is fighting or not.
-	 * @return the fighting state of the player.
-	 */
-	public boolean isFighting() {
-		return this.isFighting;
-	}
-
-	/**
-	 * Set it true if the player is taking damages.
-	 * @param takingDmg the state of the player.
-	 */
-	public void setTakingDmg(boolean takingDmg) {
-		this.takingDmg = takingDmg;
+		if(this.damageCooldown > 0) this.damageCooldown --;
+		if(this.attackCooldown > 0) this.attackCooldown --;
+		if(this.damageCooldown == 0 && this.attackCooldown == 0) this.state = State.NORMAL;
+		
+		if (    this.state == State.DAMAGE && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_DAMAGE_LEFT);
+		else if(this.state == State.DAMAGE && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_DAMAGE_RIGHT);
+		else if(this.state == State.ATTACK && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_ATTACK_LEFT);
+		else if(this.state == State.ATTACK && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_ATTACK_RIGHT);
+		else if(this.state == State.NORMAL && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_LEFT);
+		else if(this.state == State.NORMAL && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_RIGHT);
 	}
 
 	/**
@@ -131,16 +114,16 @@ public class Player {
 			this.right = true;
 			this.direction = Direction.RIGHT;
 			this.watchingAt = Direction.RIGHT;
-			if(this.dmgTimer > 0) this.changeImage(Images.PLAYER_DAMAGE_RIGHT);
-			else if(this.isFighting) this.changeImage(Images.PLAYER_ATTACK_RIGHT);
+			if (    this.state == State.DAMAGE) this.changeImage(Images.PLAYER_DAMAGE_RIGHT);
+			else if(this.state == State.ATTACK) this.changeImage(Images.PLAYER_ATTACK_RIGHT);
 			else this.changeImage(Images.PLAYER_RIGHT);
 		}
 		if (!this.right && (k == KeyEvent.VK_Q || k == KeyEvent.VK_LEFT)) {
 			this.left = true;
 			this.direction = Direction.LEFT;
 			this.watchingAt = Direction.LEFT;
-			if(this.dmgTimer > 0) this.changeImage(Images.PLAYER_DAMAGE_LEFT);
-			else if(this.isFighting) this.changeImage(Images.PLAYER_ATTACK_LEFT);
+			if (    this.state == State.DAMAGE) this.changeImage(Images.PLAYER_DAMAGE_LEFT);
+			else if(this.state == State.ATTACK) this.changeImage(Images.PLAYER_ATTACK_LEFT);
 			else this.changeImage(Images.PLAYER_LEFT);
 		}
 		if(k == KeyEvent.VK_CONTROL || k == KeyEvent.VK_SHIFT) this.speed = DEFAULT_SPEED + SPRINT_SPEED;
@@ -164,14 +147,16 @@ public class Player {
 	 */
 	public void mousePressed(int button) {
 		if(button == MouseEvent.BUTTON1) {
-			this.isFighting = true;
-			this.minorAttack = true;
+			this.damage = DEFAULT_DAMAGE;
+			this.state = State.ATTACK;
 		}
 		if(button == MouseEvent.BUTTON3) {
-			this.isFighting = true;
-			this.majorAttack = true;
-		}
-		
+			if(this.attackCooldown <= 0) {
+				this.damage = DEFAULT_DAMAGE + DAMAGE_BOOST;
+				this.attackCooldown = DEFAULT_ATTACK_COOLDOWN;
+				this.state = State.ATTACK;
+			}
+		}	
 	}
 	
 	/**
@@ -179,15 +164,15 @@ public class Player {
 	 * @param button the click button value released.
 	 */
 	public void mouseReleased(int button) {
-		if(button == MouseEvent.BUTTON1) {
-			this.isFighting = false;
-			this.minorAttack = false;
+		// hello boy
+	}
+	
+	public void takeDamage(float dmg) {
+		if(this.canTakeDamage()) {
+			this.health.removeLife(dmg);
+			this.damageCooldown = DEFAULT_DAMAGE_COOLDOWN;
+			this.state = State.DAMAGE;
 		}
-		if(button == MouseEvent.BUTTON3) {
-			this.isFighting = false;
-			this.majorAttack = false;
-		}
-		
 	}
 	
 	/**
@@ -200,6 +185,7 @@ public class Player {
 	
 	protected Rectangle getBounds() {
 		return new Rectangle(0, 0, 0, 0);
+		// This method is override by PlayerDisplay, which handle Bounds.  
 	}
 	
 	/**
@@ -236,6 +222,7 @@ public class Player {
 			default: break;
 		}
 	}
+	
 	/**
 	 * Load a save from a Json file.
 	 * @param save the file that you want to load.
@@ -253,6 +240,14 @@ public class Player {
 		this.roomPosition = new Position(((Long) pos.get("x")).intValue(), ((Long) pos.get("y")).intValue());
 		
 		this.inventory.load((JSONObject) save.get("inventory"));
+	}
+	
+	/**
+	 * Indicates if the player can take damage.
+	 * @return <tt>true</tt> if he can, <tt>false</tt> else.
+	 */
+	public boolean canTakeDamage() {
+		return (this.damageCooldown == 0);
 	}
 	
 	/**
@@ -309,6 +304,14 @@ public class Player {
 	 */
 	public Inventory getInventory() {
 		return this.inventory;
+	}
+	
+	/**
+	 * Get the current state of the player.
+	 * @return the state of the player.
+	 */
+	public State getState() {
+		return this.state;
 	}
 
 	/**

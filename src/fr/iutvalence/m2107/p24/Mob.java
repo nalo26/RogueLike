@@ -57,6 +57,8 @@ public class Mob {
 	
 	/** Describe the behavior of a mob every tick. 
 	 * @param r The room the mob is on.
+	 * @param p The player of the room.
+	 * @return a Mob that have been killed if any.
 	 */
 	public Mob tick(RoomDisplay r, Player p) {
 		if (this.wantToMove) {
@@ -76,26 +78,16 @@ public class Mob {
 			}
 		}
 		
-		if(this.dmgTimer > 0) dmgTimer--;
+		if(this.dmgTimer > 0) this.dmgTimer--;
 
 		if (this.getBounds().intersects(p.getBounds())) {
-			if(!p.isFighting()) {
-				p.getHealth().removeLife(1);
-				p.setTakingDmg(true);
-			}
 			p.collision(this);
-		}
-		if(p.isFighting() && p.getBounds().intersects(this.getBounds())) {
-			 if(p.minorAttack) {
-				 this.health.removeLife(1);
-				 this.takeDamage();
-			 }
-			 if(p.majorAttack && p.majorAttackCd <= 0) {
-				 this.health.removeLife(3);
-				 this.takeDamage();
-				 p.majorAttackCd = 500;
-				 p.isFighting = false;
-			 }
+			if(p.getState() == State.ATTACK) {
+				this.health.removeLife(p.getDamage());
+				this.takeDamage();
+			} else {
+				p.takeDamage(this.damage);
+			}
 		}
 		
 		updateImage();

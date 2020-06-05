@@ -13,7 +13,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
-import fr.iutvalence.m2107.p24.display.MobDisplay;
 import fr.iutvalence.m2107.p24.display.PlayerDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.gameStates.DeathState;
@@ -32,8 +31,6 @@ public class World extends GameState {
 	/** The minimap in the world. */
 	private MiniMapDisplay map;
 	
-	private int majorAttackCd;
-	
 	/**
 	 * Constructor of the World.
 	 * @param gsm State of the game.
@@ -42,7 +39,6 @@ public class World extends GameState {
 		super(gsm);
 		this.player = new PlayerDisplay();
 		this.map = new MiniMapDisplay();
-		this.majorAttackCd = 0;
 	}
 
 	/** {@inheritDoc} */
@@ -54,7 +50,6 @@ public class World extends GameState {
 		this.map.tick(currentRoom, this.player);
 		
 		if(this.player.getHealth().getLife() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
-		if(deadMob != null) currentRoom.getMobs().remove(deadMob);
 	}
 
 	/** {@inheritDoc} */
