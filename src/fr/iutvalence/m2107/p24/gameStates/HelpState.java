@@ -31,7 +31,7 @@ public class HelpState extends GameState implements ImageObserver {
 	public void draw(final Graphics g) {
 		g.setColor(new Color(0, 0, 0));
 		g.drawImage(Images.MAIN_MENU_BACKGROUND.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
-		g.drawImage(Images.JEUHELP.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
+		g.drawImage(Images.HELP.getImage(), 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, this);
 	}
 
 	/** {@inheritDoc} */

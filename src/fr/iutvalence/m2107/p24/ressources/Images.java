@@ -37,9 +37,10 @@ public enum Images {
 	COIN("coin.png"), 
 	MANA("mana.png"),
 	BUTTON("button.jpg"),
-	POTION_HEALTH("healthpotion.png"),
-	POTION_POISON("poisonpotion.png"),
-	POTION_SPEED("speedpotion.png"),
+	
+	POTION_HEALTH("potion_health.png"),
+	POTION_POISON("potion_poison.png"),
+	POTION_SPEED("potion_speed.png"),
 	
 	TREE1("tree_1.png"),
 	TREE2("tree_2.png"),
@@ -63,11 +64,13 @@ public enum Images {
 	ROOM15("room_1111.png"),
 
 	INVENTORY("inventory.png"),
-	INVENTORY_TRANSPARENT("InventoryTransparent.png"),
+	INVENTORY_TRANSPARENT("inventory_hover.png"),
 	
-	MENU_BACKGROUND("MenuWallpaper.jpg"),
-	MAIN_MENU_BACKGROUND("MainMenuWallpaper.jpg"), 
-	JEUHELP("jeuhelp.png");
+	PAUSE_BACKGROUND("wallpaper_pause.jpg"),
+	MAIN_MENU_BACKGROUND("wallpaper_main_menu.jpg"),
+	DEATH_MENU_BACKGROUND("wallpaper_death.jpg"),
+	HELP("help.png");
+	
 	/** The current image. */
 	private final BufferedImage image;
 	

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.awt.image.ImageObserver;
 
 import fr.iutvalence.m2107.p24.GamePanel;
@@ -28,7 +29,6 @@ public class MenuState extends GameState implements ImageObserver {
 		this.SelectedOption = 0;
 	}
 
-	/** {@inheritDoc} */
 	@Override
 	public void tick() {
 		// Not used here.
@@ -57,37 +57,32 @@ public class MenuState extends GameState implements ImageObserver {
 			this.SelectedOption--;
 			if (this.SelectedOption < 0) this.SelectedOption = this.options.length - 1;
 		}
-		if (k == 10) {
-			if (this.SelectedOption == 0) {
-				// New Game
-				this.gsm1.getState().push(new World(this.gsm1));
-			} else if (this.SelectedOption == 1) {
-				// Load Save
-				World world = new World(this.gsm1);
-				world.load();
-				this.gsm1.getState().push(world);
-			} else if (this.SelectedOption == 2) {
-				// Help
-				this.gsm1.getState().push(new HelpState(this.gsm1));
-			} else if (this.SelectedOption == 3) {
-				// Quit
-				System.exit(0);
+		if (k == KeyEvent.VK_ENTER) {
+			switch (this.SelectedOption) {
+				case 0: // New Game
+					this.gsm1.getState().clear();
+					this.gsm1.getState().push(new World(this.gsm1));
+					break;
+				case 1: // Load Save
+					World world = new World(this.gsm1);
+					world.load();
+					this.gsm1.getState().push(world);
+					break;
+				case 2: // Help
+					this.gsm1.getState().push(new HelpState(this.gsm1));
+					break;
+				case 3: // Quit
+					System.exit(0);
+				default: break;
 			}
 		}
+		
 	}
 
-	/** {@inheritDoc} */
 	@Override
 	public void keyReleased(final int k) {
 		// Not used here.
 	}
-
-	/** {@inheritDoc} */
-	@Override
-	public boolean imageUpdate(final Image arg0, final int arg1, final int arg2, final int arg3, final int arg4, final int arg5) {
-		return false;
-	}
-
 
 	@Override
 	protected void mousePressed(int button) {
@@ -99,4 +94,8 @@ public class MenuState extends GameState implements ImageObserver {
 		// Not used here.
 	}
 
+	@Override
+	public boolean imageUpdate(final Image arg0, final int arg1, final int arg2, final int arg3, final int arg4, final int arg5) {
+		return false;
+	}
 }
