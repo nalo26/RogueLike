@@ -10,6 +10,7 @@ import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.Room;
 import fr.iutvalence.m2107.p24.World;
+import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -72,12 +73,8 @@ public class RoomDisplay extends Room {
 			g.drawImage(im, pos.getX(), pos.getY(), dim.getX(), dim.getY(), null);
 		}
 		
-		for(int i = 0; i < this.allItems.length; i++)
-		{
-			if(this.allItems[i] != null)
-			{
-				this.allItems[i].draw(g);
-			}
+		for(Item i : this.allItems) {
+				i.draw(g);	
 		}
 	}
 

@@ -34,7 +34,7 @@ public class Room {
 	
 	public static final int MAX_ITEMS = 3;
 	
-	protected Item[] allItems;
+	protected List<Item> allItems;
 	/**
 	 * Construct of a new room.
 	 * It gets the images according to the binary order of doors.
@@ -58,14 +58,10 @@ public class Room {
 		}
 		
 		int itemAmount = random.nextInt(MAX_ITEMS);
-		this.allItems = new Item[MAX_ITEMS];
+		this.allItems = new ArrayList<Item>();
 		for(int i =0; i < itemAmount; i++)
 		{
-			for(int j = 0; j < this.allItems.length; j++)
-			{
-				this.allItems[j] = ItemsList.randomItem();
-				
-			}
+				this.allItems.add(ItemsList.randomItem());
 		}
 	}
 	
@@ -179,14 +175,12 @@ public class Room {
 	/** Give an array of all items in the room.
 	 * @return all of the items in the room.
 	 */
-	public Item[] getAllItems()	{
+	public List<Item> getAllItems()	{
 		return this.allItems;
 	}
 	
 	public void removeItem(Item i) {
-		for (int j = 0; j < this.allItems.length; j++) {
-			if(this.allItems[j].equals(i)) this.allItems[j] = null;
-		}
+		this.allItems.remove(i);
 	}
 	
 	

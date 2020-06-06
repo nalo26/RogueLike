@@ -3,6 +3,7 @@ package fr.iutvalence.m2107.p24;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -103,16 +104,19 @@ public class Player {
 		
 	}
 
+	/**
+	 * Update all items in the given room.
+	 * @param r the room where it has to update items.
+	 */
 	public void updateItems(RoomDisplay r)
 	{
-		Item[] items = r.getAllItems();
+		List<Item> items = r.getAllItems();
 		Item itemToRemove = null;
 		if(items != null) {
-		for(int i = 0; i < items.length; i++) {
-			if( this.getBounds().intersects(items[i].getBounds())) {
-				itemToRemove = items[i];
-				this.inventory.addItem(items[i]);
-				System.out.println(this.inventory.toString());
+		for(Item i : items) {
+			if( this.getBounds().intersects(i.getBounds())) {
+				itemToRemove = i;
+				this.inventory.addItem(i);
 				}
 		}
 		r.removeItem(itemToRemove);
