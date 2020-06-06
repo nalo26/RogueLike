@@ -10,6 +10,7 @@ import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
+import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -96,6 +97,26 @@ public class Player {
 		else if(this.state == State.ATTACK && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_ATTACK_RIGHT);
 		else if(this.state == State.NORMAL && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_LEFT);
 		else if(this.state == State.NORMAL && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_RIGHT);
+		
+		this.updateItems(r);
+		
+		
+	}
+
+	public void updateItems(RoomDisplay r)
+	{
+		Item[] items = r.getAllItems();
+		Item itemToRemove = null;
+		if(items != null) {
+		for(int i = 0; i < items.length; i++) {
+			if( this.getBounds().intersects(items[i].getBounds())) {
+				itemToRemove = items[i];
+				this.inventory.addItem(items[i]);
+				System.out.println(this.inventory.toString());
+				}
+		}
+		r.removeItem(itemToRemove);
+		}
 	}
 
 	/**

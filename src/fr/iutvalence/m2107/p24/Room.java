@@ -175,5 +175,19 @@ public class Room {
 	public String toString() {
 		return "Room [doors=" + Arrays.toString(this.doors) + "]";
 	}
+
+	/** Give an array of all items in the room.
+	 * @return all of the items in the room.
+	 */
+	public Item[] getAllItems()	{
+		return this.allItems;
+	}
+	
+	public void removeItem(Item i) {
+		for (int j = 0; j < this.allItems.length; j++) {
+			if(this.allItems[j].equals(i)) this.allItems[j] = null;
+		}
+	}
+	
 	
 }
