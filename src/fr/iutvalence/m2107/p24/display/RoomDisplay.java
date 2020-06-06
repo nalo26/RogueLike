@@ -71,6 +71,14 @@ public class RoomDisplay extends Room {
 			Position dim = World.updatePosition(new Position(im.getWidth(), im.getHeight()));
 			g.drawImage(im, pos.getX(), pos.getY(), dim.getX(), dim.getY(), null);
 		}
+		
+		for(int i = 0; i < this.allItems.length; i++)
+		{
+			if(this.allItems[i] != null)
+			{
+				this.allItems[i].draw(g);
+			}
+		}
 	}
 
 }

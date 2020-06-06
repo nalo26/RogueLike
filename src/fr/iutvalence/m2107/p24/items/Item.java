@@ -4,8 +4,10 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
+import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -30,6 +32,16 @@ public abstract class Item {
 		
 	}
 	
+	public Item(Images im) {
+		this.image = im.getImage();
+		this.position = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
+		Rectangle rect = new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
+		while(!MiniMapDisplay.canBeCreatedAt(rect)) {
+			this.position = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
+			rect = new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
+		}
+	}
+	
 	public Position getPos() {
 		return this.position;
 	}
@@ -39,7 +51,7 @@ public abstract class Item {
 	}
 
 	public void draw(Graphics g) {
-		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
+		g.drawImage(this.image, this.position.getX(), this.position.getY(), this.image.getWidth()/2, this.image.getHeight()/2, null);
 	}
 	
 	public abstract void tick(Player p);

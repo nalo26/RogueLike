@@ -10,6 +10,8 @@ import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.MobDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
+import fr.iutvalence.m2107.p24.items.Item;
+import fr.iutvalence.m2107.p24.items.ItemsList;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -30,6 +32,9 @@ public class Room {
 	/** The maximal number of tree on a room. */
 	public static final int MAX_TREES = 10;
 	
+	public static final int MAX_ITEMS = 3;
+	
+	protected Item[] allItems;
 	/**
 	 * Construct of a new room.
 	 * It gets the images according to the binary order of doors.
@@ -50,6 +55,17 @@ public class Room {
 		int decorAmount = random.nextInt(MAX_TREES-MIN_TREES)+MIN_TREES;
 		for(int i = 0; i < decorAmount; i ++) {
 			this.generateDecorElement();
+		}
+		
+		int itemAmount = random.nextInt(MAX_ITEMS);
+		this.allItems = new Item[MAX_ITEMS];
+		for(int i =0; i < itemAmount; i++)
+		{
+			for(int j = 0; j < this.allItems.length; j++)
+			{
+				this.allItems[j] = ItemsList.randomItem();
+				
+			}
 		}
 	}
 	

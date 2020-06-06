@@ -1,13 +1,12 @@
 package fr.iutvalence.m2107.p24.items;
 
 import fr.iutvalence.m2107.p24.Player;
-import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class SpeedPotion extends Item {
 
 	/** The probability of spawn. */
-	public static final float PROBABILITY = 0.1F;
+	public static final float PROBABILITY = 0.01F;
 	
 	/** The amount of speed to add to the player when used. */
 	private static final int SPEED_POTION = +3;
@@ -18,10 +17,9 @@ public class SpeedPotion extends Item {
 	
 	/** 
 	 * Create a new Speed potion.
-	 * @param pos The position of the item.
 	 */
-	public SpeedPotion(Position pos) {
-		super(pos, Images.POTION_SPEED);
+	public SpeedPotion() {
+		super(Images.POTION_SPEED);
 		this.counter = 0;
 	}
 
