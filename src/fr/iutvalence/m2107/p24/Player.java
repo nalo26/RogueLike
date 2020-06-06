@@ -327,5 +327,8 @@ public class Player {
 		this.speed = speed;
 	}
 
+	public void setDamage(float damage) {
+		this.damage = damage;
+	}
 	
 }

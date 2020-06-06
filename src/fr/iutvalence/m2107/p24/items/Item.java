@@ -21,7 +21,6 @@ public abstract class Item {
 	
 	/**
 	 * Constructor.
-	 * @param prob The probability of spawn of the item.
 	 * @param pos The position of the item on a room.
 	 * @param im The image of the Item
 	 */
