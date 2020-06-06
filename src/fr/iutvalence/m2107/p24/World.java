@@ -37,6 +37,7 @@ public class World extends GameState {
 	 */
 	public World(GameStateManager gsm) {
 		super(gsm);
+		MiniMapDisplay.updateBounds();
 		this.player = new PlayerDisplay();
 		this.map = new MiniMapDisplay();
 	}

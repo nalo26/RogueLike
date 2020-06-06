@@ -23,8 +23,12 @@ public class Room {
 	protected HashMap<Position, Images> decor = new HashMap<Position, Images>();
 	/** The state of the doors in the room. */
 	protected boolean[] doors;
-	/**  The maximum mob who can spawn at the same time in the room. */
+	/**  The maximum amount of mobs that can spawn at the same time on a room. */
 	public static final int MAX_MOBS = 10;
+	/** The minimal number of tree on a room. */
+	public static final int MIN_TREES = 5;
+	/** The maximal number of tree on a room. */
+	public static final int MAX_TREES = 10;
 	
 	/**
 	 * Construct of a new room.
@@ -43,9 +47,9 @@ public class Room {
 			this.mobs.add(new MobDisplay(MobType.randomMobType()));
 		}
 		
-		int treeAmount = random.nextInt(5)+5;
-		for(int i = 0; i < treeAmount; i ++) {
-			this.decor.put(Position.randomPosition(70, GamePanel.WIDTH - 200, 70, GamePanel.HEIGHT-200), Images.valueOf("TREE" + (random.nextInt(4)+1)));
+		int decorAmount = random.nextInt(MAX_TREES-MIN_TREES)+MIN_TREES;
+		for(int i = 0; i < decorAmount; i ++) {
+			this.generateDecorElement();
 		}
 	}
 	
@@ -71,6 +75,10 @@ public class Room {
 		}
 		
 		return res;
+	}
+	
+	protected void generateDecorElement() {
+		// Override later.
 	}
 	
 	/** Instructions executed every tick. 

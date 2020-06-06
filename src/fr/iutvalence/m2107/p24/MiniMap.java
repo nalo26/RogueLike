@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.json.simple.JSONObject;
 
+import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 
 /**
@@ -39,16 +40,16 @@ public class MiniMap {
 		// Changing of room
 		// TODO TP the player to the other side of the room
 		
-		if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.LEFT)) && room.isOpen(Direction.LEFT)) {
+		if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.LEFT)) && room.isOpen(Direction.LEFT)) {
 			p.getRoomPosition().move(-1, 0);
 			p.getPosition().move(GamePanel.WIDTH/2, 0);
-		} else if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.RIGHT)) && room.isOpen(Direction.RIGHT)) {
+		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.RIGHT)) && room.isOpen(Direction.RIGHT)) {
 			p.getRoomPosition().move(1, 0);
 			p.getPosition().move(-GamePanel.WIDTH/2, 0);
-		} else if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.UP)) && room.isOpen(Direction.UP)) {
+		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.UP)) && room.isOpen(Direction.UP)) {
 			p.getRoomPosition().move(0, -1);
 			p.getPosition().move(0, GamePanel.HEIGHT/2);
-		} else if (p.getBounds().intersects(room.getDoorBoundFromKey(Direction.DOWN)) && room.isOpen(Direction.DOWN)) {
+		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.DOWN)) && room.isOpen(Direction.DOWN)) {
 			p.getRoomPosition().move(0, 1);
 			p.getPosition().move(0, -GamePanel.HEIGHT/2);
 		}
@@ -59,7 +60,7 @@ public class MiniMap {
 		room = this.rooms.get(p.getRoomPosition());
 		room.tick(room, p);
 	}
-	
+		
 	/**
 	 * Create a random room from a given position.
 	 * This generation is procedural :

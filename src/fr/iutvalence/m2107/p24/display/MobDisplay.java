@@ -6,12 +6,13 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.Direction;
+import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Mob;
 import fr.iutvalence.m2107.p24.MobType;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.ressources.Images;
-/** Display a mob depending on his type. */
+/** Display a mob depending on its type. */
 public class MobDisplay extends Mob {
 	
 	/** The image of the mob. */
@@ -20,12 +21,17 @@ public class MobDisplay extends Mob {
 	private Position realPosition;
 	/**
 	 * Constructor : call his super class Mob.
-	 * @param theType Type of the mob.
+	 * @param type Type of the mob.
 	 */
-	public MobDisplay(MobType theType) {
-		super(theType);
-		this.realPosition = this.position;
+	public MobDisplay(MobType type) {
+		super(type);
 		updateImage();
+		
+		this.realPosition = World.updatePosition(this.position);
+		while(!MiniMapDisplay.canBeCreatedAt(this.getBounds())) {
+			this.position = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
+			this.realPosition = World.updatePosition(this.position);
+		}
 	}
 
 /** {@inheritDoc} */

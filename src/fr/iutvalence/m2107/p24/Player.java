@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
+import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
@@ -80,10 +81,10 @@ public class Player {
 	/** Describe the behavior of the player after a key is pressed. 
 	 * @param r the current room the player interacts with. */
 	public void tick(RoomDisplay r) {
-		if (this.right && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.RIGHT))) this.position.move( this.speed,  0);
-		if (this.left  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-this.speed,  0);
-		if (this.up    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -this.speed);
-		if (this.down  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move( 0,  this.speed);
+		if (this.right && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.RIGHT))) this.position.move( this.speed,  0);
+		if (this.left  && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-this.speed,  0);
+		if (this.up    && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -this.speed);
+		if (this.down  && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.DOWN)))  this.position.move( 0,  this.speed);
 				
 		if(this.attackCooldown > 0) this.attackCooldown --;
 		if(this.damageCooldown > 0) this.damageCooldown --;

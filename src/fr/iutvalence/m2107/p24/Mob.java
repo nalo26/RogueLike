@@ -6,6 +6,7 @@ import java.util.Random;
 import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
+import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 
 /**
@@ -44,7 +45,7 @@ public class Mob {
 	public Mob(MobType theType) {
 		this.health = new HealthDisplay(DEFAULT_HEALTH);
 		this.damage = DEFAULT_DAMAGE;
-		this.position = Position.randomPosition(GamePanel.WIDTH/2-GamePanel.HEIGHT/2 + 70, GamePanel.WIDTH/2+GamePanel.HEIGHT/2 - 70, 70, GamePanel.HEIGHT-200 ); //TODO better positions
+		this.position = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
 		this.type = theType;
 		this.direction = Direction.RIGHT;
 		this.watchingAt = Direction.RIGHT;
@@ -62,10 +63,10 @@ public class Mob {
 	 */
 	public Mob tick(RoomDisplay r, Player p) {
 		if (this.wantToMove) {
-			if (this.direction == Direction.RIGHT && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.RIGHT))) this.position.move(1, 0);
-			if (this.direction == Direction.LEFT  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-1, 0);
-			if (this.direction == Direction.DOWN  && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.DOWN)))  this.position.move(0, 1);
-			if (this.direction == Direction.UP    && !this.getBounds().intersects(r.getWallBoundFromKey(Direction.UP)))    this.position.move(0, -1);
+			if (this.direction == Direction.RIGHT && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.RIGHT))) this.position.move(1, 0);
+			if (this.direction == Direction.LEFT  && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-1, 0);
+			if (this.direction == Direction.DOWN  && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.DOWN)))  this.position.move(0, 1);
+			if (this.direction == Direction.UP    && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.UP)))    this.position.move(0, -1);
 			
 			this.lengthOfMove -= 1;
 			if(this.lengthOfMove == 0) this.wantToMove = false;
