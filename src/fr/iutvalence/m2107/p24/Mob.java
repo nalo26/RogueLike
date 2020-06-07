@@ -34,10 +34,14 @@ public class Mob {
 	protected boolean wantToMove;
 	/** Indicates the length of the move of the mob. */
 	protected int lengthOfMove;
-
-	protected boolean isTakingDamages;
+	/** The current state of the mob, Normal or taking Damage. */
+	protected State state;
+	/** The time the mob is taking damages, and invincible. */
+	protected int damageCooldown;
+	/** */
+	protected float slimeHeight;
+	protected int slimeSpeedHeight;
 	
-	protected int dmgTimer;
 	/**
 	 * Create a new mob, with its specific attributes.
 	 * @param theType of the mob
@@ -51,9 +55,12 @@ public class Mob {
 		this.watchingAt = Direction.RIGHT;
 		this.wantToMove = false;
 		this.lengthOfMove = 0;
-		this.isTakingDamages = false;
-		this.dmgTimer = 0;
-
+		this.state = State.NORMAL;
+		this.damageCooldown = 0;
+		if(this.type == MobType.SLIME) {
+			this.slimeHeight = (float)new Random().nextInt(50);
+			this.slimeSpeedHeight = new Random().nextInt(100)+50;
+		}
 	}
 	
 	/** Describe the behavior of a mob every tick. 
@@ -79,7 +86,13 @@ public class Mob {
 			}
 		}
 		
-		if(this.dmgTimer > 0) this.dmgTimer--;
+		if(this.type == MobType.SLIME) {
+			this.slimeHeight += (float)this.slimeSpeedHeight/100;
+			if(this.slimeHeight >= 50) this.slimeHeight = 0;
+		}
+		
+		if(this.damageCooldown > 0) this.damageCooldown--;
+		else this.state = State.NORMAL;
 
 		if (this.getBounds().intersects(p.getBounds())) {
 			p.collision(this);
@@ -98,7 +111,8 @@ public class Mob {
 	}
 	
 	public void takeDamage() {
-		this.dmgTimer = 50;
+		this.state = State.DAMAGE;
+		this.damageCooldown = 50;
 	}
 	
 	public Rectangle getBounds() {
