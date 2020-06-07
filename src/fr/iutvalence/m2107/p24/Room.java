@@ -12,6 +12,7 @@ import fr.iutvalence.m2107.p24.display.MobDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.items.ItemsList;
+import fr.iutvalence.m2107.p24.items.Key;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -59,8 +60,7 @@ public class Room {
 		
 		int itemAmount = random.nextInt(MAX_ITEMS);
 		this.allItems = new ArrayList<Item>();
-		for(int i =0; i < itemAmount; i++)
-		{
+		for(int i =0; i < itemAmount; i++) {
 				this.allItems.add(ItemsList.randomItem());
 		}
 	}
@@ -71,6 +71,25 @@ public class Room {
 	 */
 	public Room(String config) {
 		this(Room.computeDoors(config), config);
+	}
+	
+	/**
+	 * Create a room that MUST have a key on it.
+	 * @param config the String configuration of doors of the room.
+	 * @return the special room with the key on it.
+	 */
+	public Room keyRoom(String config) {
+		Room r = new Room(config);
+		r.allItems.add(new Key());
+		return r;
+	}
+	
+	public Room bossRoom(String config) {
+		Room r = new Room(config);
+		r.mobs.clear(); //no mob on it.
+		r.decor.clear(); //no decor on it.
+		r.allItems.clear(); //no item on it.
+		return r;
 	}
 	
 	/**

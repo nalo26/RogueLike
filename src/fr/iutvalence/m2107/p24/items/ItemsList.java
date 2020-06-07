@@ -6,7 +6,8 @@ public enum ItemsList {
 	
 	POTION_HEALTH(HealthPotion.PROBABILITY),
 	POTION_SPEED(SpeedPotion.PROBABILITY),
-	POTION_POISON(PoisonPotion.PROBABILITY);
+	POTION_POISON(PoisonPotion.PROBABILITY),
+	KEY(0); //special item, can't be randomly generate.
 
 	public float probability;
 	

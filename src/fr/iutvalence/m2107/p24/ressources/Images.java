@@ -69,6 +69,11 @@ public enum Images {
 	KEY_ROOM_OPEN2("key_room_open_0010.png"),
 	KEY_ROOM_OPEN4("key_room_open_0100.png"),
 	KEY_ROOM_OPEN8("key_room_open_1000.png"),
+	
+	BOSS_ROOM_RIGHT("boss_room_right.png"),
+	BOSS_ROOM_LEFT("boss_room_left.png"),
+	BOSS_ROOM_UP("boss_room_up.png"),
+	BOSS_ROOM_DOWN("boss_room_down.png"),
 
 	INVENTORY("inventory.png"),
 	INVENTORY_TRANSPARENT("inventory_hover.png"),

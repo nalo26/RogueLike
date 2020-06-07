@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fr.iutvalence.m2107.p24.BossRoom;
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.MiniMap;
@@ -67,8 +68,9 @@ public class MiniMapDisplay extends MiniMap {
 		g.fillRect(minimapPosition.getX(), minimapPosition.getY(), MINIMAP_SIZE, MINIMAP_SIZE);
 		
 		Room query = null;
-		for(Position pos: this.rooms.keySet()) {
-			//Position pos = entry.getKey();
+		for(HashMap.Entry<Position, RoomDisplay> entry : this.rooms.entrySet()) {
+			Position pos = entry.getKey();
+			Room room = entry.getValue();
 			g.setColor(Color.WHITE);
 			
 			int roomOffsetX = pos.getX() - p.getRoomPosition().getX();
@@ -85,6 +87,8 @@ public class MiniMapDisplay extends MiniMap {
 			
 			if(pos.equals(Player.DEFAULT_ROOM_POSITION)) g.setColor(Color.GREEN);
 			if(pos.equals(p.getRoomPosition())) g.setColor(Color.YELLOW);
+			if(room instanceof BossRoom) g.setColor(Color.MAGENTA);
+			
 			g.fillRect(x, y, ROOM_SIZE, ROOM_SIZE);
 		}
 	}
