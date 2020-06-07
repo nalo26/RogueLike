@@ -34,10 +34,7 @@ public enum Images {
 	ZOMBIE_WALK_RIGHT("zombie_walk_right.png"),
 	ZOMBIE_WALK_LEFT("zombie_walk_left.png"),
 	
-	KEY1("key_1.png"),
-	KEY2("key_2.png"),
-	KEY3("key_3.png"),
-	KEY4("key_4.png"),
+	KEY("key.png"),
 	
 	POTION_HEALTH("potion_health.png"),
 	POTION_POISON("potion_poison.png"),
@@ -63,6 +60,15 @@ public enum Images {
 	ROOM13("room_1101.png"),
 	ROOM14("room_1110.png"),
 	ROOM15("room_1111.png"),
+
+	KEY_ROOM_CLOSE1("key_room_close_0001.png"),
+	KEY_ROOM_CLOSE2("key_room_close_0010.png"),
+	KEY_ROOM_CLOSE4("key_room_close_0100.png"),
+	KEY_ROOM_CLOSE8("key_room_close_1000.png"),
+	KEY_ROOM_OPEN1("key_room_open_0001.png"),
+	KEY_ROOM_OPEN2("key_room_open_0010.png"),
+	KEY_ROOM_OPEN4("key_room_open_0100.png"),
+	KEY_ROOM_OPEN8("key_room_open_1000.png"),
 
 	INVENTORY("inventory.png"),
 	INVENTORY_TRANSPARENT("inventory_hover.png"),
