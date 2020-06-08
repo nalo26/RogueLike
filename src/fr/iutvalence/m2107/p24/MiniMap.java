@@ -39,8 +39,8 @@ public class MiniMap {
 	private void generateBossRoom() {
 		/*Position bossPos = Position.randomPosition(-9, 10, -9, 10);
 		Direction bossDir = Direction.randomDirection();*/
-		Position bossPos = new Position(0, -2);
-		Direction bossDir = Direction.DOWN;
+		Position bossPos = new Position(0, 2);
+		Direction bossDir = Direction.UP;
 		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
 			bossPos = Position.randomPosition(-9, 10, -9, 10);
 		}

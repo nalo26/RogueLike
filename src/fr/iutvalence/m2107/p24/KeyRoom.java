@@ -12,6 +12,7 @@ import fr.iutvalence.m2107.p24.ressources.Images;
 public class KeyRoom extends Room {
 	
 	private static int KEY_WIDTH = Math.round((float)32/(float)1920*GamePanel.WIDTH);
+	private static final BufferedImage KEY_WALL = Images.KEY_WALL.getImage();
 	
 	/** The image of the room. */
 	private BufferedImage image;
@@ -34,9 +35,9 @@ public class KeyRoom extends Room {
 		this.keys = new Key[4];
 		
 		this.keys[0] = new Key();
-		/*this.keys[1] = new Key();
+		this.keys[1] = new Key();
 		this.keys[2] = new Key();
-		this.keys[3] = new Key();*/
+		this.keys[3] = new Key();
 		
 		this.image = Images.valueOf("KEY_ROOM_CLOSE_" + this.direction).getImage();
 	}
@@ -86,9 +87,11 @@ public class KeyRoom extends Room {
 				}
 				
 				Position pos = KeyLockPosition.valueOf(this.direction + "_" + i).getPosition().copy();
-				AffineTransform tx = AffineTransform.getRotateInstance(rot, pos.getX(), pos.getY());
+				System.out.println(pos);
+				AffineTransform tx = AffineTransform.getRotateInstance(rot, KEY_WIDTH, KEY_WIDTH);
 				AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-				g.drawImage(op.filter(Images.KEY_WALL.getImage(), null), pos.getX(), pos.getY(), KEY_WIDTH, KEY_WIDTH, null);
+				g.drawImage(op.filter(KEY_WALL, null), pos.getX(), pos.getY(), KEY_WIDTH, KEY_WIDTH, null);
+				//g.drawImage(KEY_WALL, pos.getX(), pos.getY(), KEY_WIDTH, KEY_WIDTH, null);
 			}
 		}
 	}

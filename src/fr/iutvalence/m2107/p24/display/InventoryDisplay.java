@@ -21,7 +21,8 @@ public class InventoryDisplay extends Inventory {
 	/** The offset of the inventory display. */
 	private static final int OFFSET = 15;
 	/** The size of the inventory display. */
-	private static final int SIZE = 250;
+	private static final int WIDTH = 250;
+	private static final int HEIGHT = 119;
 	
 	/**
 	 * Initialize the inventory image to draw it later.
@@ -37,9 +38,9 @@ public class InventoryDisplay extends Inventory {
 	 * @param p the player of the game.
 	 */
 	public void draw(Graphics g, PlayerDisplay p) {
-		if(p.getBounds().intersects(new Rectangle(OFFSET, GamePanel.HEIGHT - SIZE - OFFSET, SIZE, SIZE))) {
-			g.drawImage(this.transparentInventoryImage,  OFFSET, GamePanel.HEIGHT - SIZE - OFFSET, SIZE, SIZE, null);
-		} else g.drawImage(this.inventoryImage, OFFSET, GamePanel.HEIGHT - SIZE - OFFSET, SIZE, SIZE, null);
+		if(p.getBounds().intersects(new Rectangle(OFFSET, GamePanel.HEIGHT - HEIGHT - OFFSET, WIDTH, HEIGHT))) {
+			g.drawImage(this.transparentInventoryImage,  OFFSET, GamePanel.HEIGHT - HEIGHT - OFFSET, WIDTH, HEIGHT, null);
+		} else g.drawImage(this.inventoryImage, OFFSET, GamePanel.HEIGHT - HEIGHT - OFFSET, WIDTH, HEIGHT, null);
 		
 		if (this.items != null) {
 			// TODO draw items here
