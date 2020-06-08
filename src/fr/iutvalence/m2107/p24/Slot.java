@@ -21,5 +21,15 @@ public class Slot
 	{
 		return this.quantity;
 	}
+
+	public void setItem(Item item)
+	{
+		this.item = item;
+	}
+
+	public void setQuantity(int quantity)
+	{
+		this.quantity = quantity;
+	}
 	
 }
