@@ -19,17 +19,12 @@ public class PlayerDisplay extends Player {
 
 	/** The default image of the player.*/
 	public static final BufferedImage DEFAULT_IMAGE = Images.PLAYER_RIGHT.getImage();
-	
 	/** The default position of the player. */
 	public static final Position DEFAULT_POSITON = new Position(GamePanel.WIDTH/2 - (DEFAULT_IMAGE.getWidth()/2), GamePanel.HEIGHT/2 - (DEFAULT_IMAGE.getHeight()/2));
-
 	/** The real position of the player. */
 	private Position realPosition;
-	
 	/** The image of the player. */
 	private BufferedImage image;
-	
-
 	
 	/**
 	 * Constructor : initialize fields with default values.
@@ -56,7 +51,7 @@ public class PlayerDisplay extends Player {
 
 		g.drawImage(this.image, this.realPosition.getX(), this.realPosition.getY(), null);
 		
-		this.health.draw(g, this.realPosition, this.image.getWidth());
+		this.health.draw(g, this.realPosition, this.image.getWidth(), HealthDisplay.NORMAL_STYLE);
 		this.inventory.draw(g, this);
 	}
 	

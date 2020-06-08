@@ -32,6 +32,10 @@ public class BossRoom extends Room {
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(this.image, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
+		
+		for(Mob m : this.mobs) {
+			m.draw(g);
+		}
 	}
 	
 	public void tick() {

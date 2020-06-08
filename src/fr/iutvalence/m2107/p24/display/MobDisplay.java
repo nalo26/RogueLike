@@ -57,7 +57,7 @@ public class MobDisplay extends Mob {
 		
 		g.drawImage(this.image, this.realPosition.getX(), this.realPosition.getY(), null);
 		
-		this.health.draw(g, this.realPosition, this.image.getWidth());
+		this.health.draw(g, this.realPosition, this.image.getWidth(), HealthDisplay.NORMAL_STYLE);
 	}
 	
 	@Override
