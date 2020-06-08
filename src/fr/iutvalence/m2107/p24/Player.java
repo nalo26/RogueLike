@@ -65,7 +65,7 @@ public class Player {
 
 	
 	
-	/** Create a new player. */
+	/** Create a new player, with all its caracteristics (health, speed, etc)  */
 	public Player() {
 		this.speed = DEFAULT_SPEED;
 		this.health = new HealthDisplay(DEFAULT_HEALTH);
@@ -184,7 +184,10 @@ public class Player {
 			this.state = State.NORMAL;
 		}
 	}
-	
+	/**
+	 * Describe what to do when the player take damage/get hitten by a mob.
+	 * @param dmg the damage taken by the player
+	 */
 	public void takeDamage(float dmg) {
 		if(this.canTakeDamage()) {
 			this.health.removeLife(dmg);
@@ -200,7 +203,10 @@ public class Player {
 	protected void changeImage(Images img) {
 		// This method is override by PlayerDisplay, which handle images.  
 	}
-	
+	/**
+	 * 
+	 * @return a new Rectangle of 0x0 in 0x0.
+	 */
 	protected Rectangle getBounds() {
 		return new Rectangle(0, 0, 0, 0);
 		// This method is override by PlayerDisplay, which handle Bounds.  

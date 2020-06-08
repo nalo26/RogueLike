@@ -140,14 +140,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 		//never used
 		
 	}
-
+	 /** Triggered when the mouse is clicked. */
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
 		this.gsm.mousePressed(e.getButton());
 		
 	}
-
+	 /** Triggered when the click is released. */
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{

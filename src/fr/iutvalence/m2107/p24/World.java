@@ -77,13 +77,20 @@ public class World extends GameState {
 		this.player.keyReleased(k);
 	}
 
-	
+	/**
+	 * Update the position of our object with the width and height of your game.
+	 * @param p the position of our object.
+	 * @return a new position(x and y)
+	 */
 	public static Position updatePosition(Position p) {
 		int x = Math.round((float)GamePanel.WIDTH/(float)GamePanel.DEFAULT_WIDTH * p.getX());
 		int y = Math.round((float)GamePanel.HEIGHT/(float)GamePanel.DEFAULT_HEIGHT * p.getY());
 		return new Position(x, y);
 	}
 
+	/**
+	 * Save all the things need to be saved, so we can later play at the same status we were at when we backed up.
+	 */
 	public void save() {
 		HashMap<String, HashMap<String, Object>> save = new HashMap<String, HashMap<String, Object>>();
 		
@@ -151,7 +158,9 @@ public class World extends GameState {
 			e.printStackTrace();
 		}
 	}
-
+/**
+ * Calls all functions that have been created to load the saved progress.
+ */
 	public void load() {
 		JSONParser parser = new JSONParser();
 		
@@ -171,12 +180,12 @@ public class World extends GameState {
 			e.printStackTrace();
 		}
 	}
-
+	  /** Triggered when the mouse is clicked. */
 	@Override
 	protected void mousePressed(int button)	{
 		this.player.mousePressed(button);
 	}
-
+	 /** Triggered when the click is released. */
 	@Override
 	protected void mouseReleased(int button) {
 		this.player.mouseReleased(button);

@@ -43,7 +43,10 @@ public class Inventory {
 		if (quantity.intValue() == 1) this.items.remove(i);
 		else this.items.put(i, quantity.intValue()-1);
 	}
-
+/**
+ * Save items in inventory
+ * @param save the item wanted to be save
+ */
 	public void load(JSONObject save) {
 		@SuppressWarnings("unchecked")
 		HashMap<Item, Integer> inv = (HashMap<Item, Integer>) save;

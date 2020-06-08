@@ -101,6 +101,10 @@ public class MiniMap {
 		return new RoomDisplay(doors);
 	}
 	
+	/**
+	 * Load all the rooms configs and positions.
+	 * @param save the game that was saved
+	 */
 	@SuppressWarnings("unchecked")
 	public void load(JSONObject save) {
 		this.rooms.clear();

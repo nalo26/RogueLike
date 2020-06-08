@@ -70,7 +70,10 @@ public class Position {
 		result = prime * result + this.y;
 		return result;
 	}
-
+/**
+ * Test if 2 object have equals position.
+ * @param obj the object with which we want to test.
+ */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
@@ -82,11 +85,18 @@ public class Position {
 		return true;
 	}
 
+	/**
+	 * @return the x and y position of our object.
+	 */
 	@Override
 	public String toString() {
 		return "(" + this.x + ", " + this.y + ")";
 	}
 
+	/**
+	 * Create a copy of the object position.
+	 * @return Position(X,Y) the position of our object.
+	 */
 	public Position copy() {
 		return new Position(this.getX(), this.getY());
 	}

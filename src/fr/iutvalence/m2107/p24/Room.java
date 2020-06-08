@@ -22,19 +22,19 @@ public class Room {
 	
 	/** List of all mobs in this room. */
 	protected List<MobDisplay> mobs = new ArrayList<MobDisplay>();
-	
+	/** List of all decorations in this room. */
 	protected HashMap<Position, Images> decor = new HashMap<Position, Images>();
 	/** The state of the doors in the room. */
 	protected boolean[] doors;
 	/**  The maximum amount of mobs that can spawn at the same time on a room. */
 	public static final int MAX_MOBS = 10;
-	/** The minimal number of tree on a room. */
+	/** The minimal number of trees on a room. */
 	public static final int MIN_TREES = 5;
-	/** The maximal number of tree on a room. */
+	/** The maximal number of trees on a room. */
 	public static final int MAX_TREES = 10;
-	
+	/** The maximal number of items on a room. */
 	public static final int MAX_ITEMS = 3;
-	
+	/** List of all items in this room. */
 	protected List<Item> allItems;
 	/**
 	 * Construct of a new room.
@@ -83,7 +83,11 @@ public class Room {
 		r.allItems.add(new Key());
 		return r;
 	}
-	
+	/**
+	 * Create a special room for the boss, who have no mobs, no decor and no items, just the boss.
+	 * @param config the String configuration of doors of the room.
+	 * @return the boss room
+	 */
 	public Room bossRoom(String config) {
 		Room r = new Room(config);
 		r.mobs.clear(); //no mob on it.
@@ -168,7 +172,9 @@ public class Room {
 			default: return false;
 		}
 	}
-	
+	 /** Load a save from a Json file.
+	 * @param save the file that you want to load.
+	 */
 	@SuppressWarnings("unchecked")
 	public void load(JSONObject save) {
 		this.mobs.clear();
