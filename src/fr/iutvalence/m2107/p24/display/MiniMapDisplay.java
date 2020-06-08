@@ -119,11 +119,17 @@ public class MiniMapDisplay extends MiniMap {
 		paths.add(new Rectangle(0, GamePanel.HEIGHT/2 - doorHeight, GamePanel.WIDTH, doorHeight));
 		
 	}
-	
+	/**
+	 * Update the position of the mini-map compare to the game size
+	 * @return a new position.
+	 */
 	private static Position updatePosition() {
 		return new Position(GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE, MINIMAP_OFFSET);
 	}
-	
+	/**
+	 * @param rect the rectangle who represent the mini-map.
+	 * @return if the mini-map can be created.
+	 */
 	public static boolean canBeCreatedAt(Rectangle rect) {
 		return !(rect.intersects(getWallBoundFromKey(Direction.UP)) || 
 		  rect.intersects(getWallBoundFromKey(Direction.RIGHT)) ||

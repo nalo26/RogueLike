@@ -7,15 +7,26 @@ import fr.iutvalence.m2107.p24.Health;
 import fr.iutvalence.m2107.p24.Position;
 
 public class HealthDisplay extends Health {
-
+	/** The width of the health display. */
 	private static final int HEALTH_WIDTH = 52;
+	/** The height of the health display. */
 	private static final int HEALTH_HEIGHT = 10;
+	/** The offset of the health display. */
 	private static final int OFFSET = 20;
 	
+	/**
+	 * Call the Builder of Health for your health on the display.
+	 * @param defaultHealth the defaultHealth of a mob or of the player.
+	 */
 	public HealthDisplay(float defaultHealth) {
 		super(defaultHealth);
 	}
-	
+	/**
+	 * Draw the Health Display of our object (mob or player)
+	 * @param g the draw component.
+	 * @param p the position of our display
+	 * @param size the size of our display
+	 */
 	public void draw(Graphics g, Position p, int size) {
 		g.setColor(Color.WHITE);
 		g.fillRect(p.getX() + size/2 - HEALTH_WIDTH/2, p.getY() - OFFSET, HEALTH_WIDTH, HEALTH_HEIGHT);

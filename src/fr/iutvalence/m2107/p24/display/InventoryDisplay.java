@@ -18,8 +18,9 @@ public class InventoryDisplay extends Inventory {
 	private BufferedImage inventoryImage;
 	/** The transparent image of  the inventory (when player under it). */
 	private BufferedImage transparentInventoryImage;
-	
+	/** The offset of the inventory display. */
 	private static final int OFFSET = 15;
+	/** The size of the inventory display. */
 	private static final int SIZE = 250;
 	
 	/**

@@ -22,14 +22,14 @@ public class PlayerDisplay extends Player {
 	
 	/** The default position of the player. */
 	public static final Position DEFAULT_POSITON = new Position(GamePanel.WIDTH/2 - (DEFAULT_IMAGE.getWidth()/2), GamePanel.HEIGHT/2 - (DEFAULT_IMAGE.getHeight()/2));
-	
+
+	/** The real position of the player. */
 	private Position realPosition;
 	
 	/** The image of the player. */
 	private BufferedImage image;
 	
 
-	/** The real position of the player. */
 	
 	/**
 	 * Constructor : initialize fields with default values.
@@ -68,7 +68,9 @@ public class PlayerDisplay extends Player {
 	public Rectangle getBounds() {
 		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), DEFAULT_IMAGE.getWidth(), DEFAULT_IMAGE.getHeight());
 	}
-	
+	/**
+	 * @return the realPosition of the player.
+	 */
 	public Position getRealPosition() {
 		return this.realPosition;
 	}
