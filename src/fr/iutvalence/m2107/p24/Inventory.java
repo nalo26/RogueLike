@@ -18,6 +18,10 @@ public class Inventory {
 	
 	protected int selectedSlot;
 	
+	protected Slot[] slots;
+	
+	public static final int MAX_SLOTS = 10;
+	
 	/**
 	 * Constructor of the inventory.
 	 * Initialize the list of items.
@@ -25,6 +29,7 @@ public class Inventory {
 	public Inventory() {
 		this.items = new HashMap<Item, Integer>();
 		this.selectedSlot = 0;
+		this.slots = new Slot[MAX_SLOTS];
 	}
 	
 	/**
@@ -32,9 +37,26 @@ public class Inventory {
 	 * @param i the item wanted to add.
 	 */
 	public void addItem(Item i) {
-		Integer quantity = this.items.get(i);
-		if (quantity != null) this.items.put(i, quantity.intValue()+1);
-		else this.items.put(i, 1);
+		//Integer quantity = this.items.get(i);
+
+		boolean pass = false;
+		//if (quantity != null) this.items.put(i, quantity.intValue()+1);
+		
+		for(int j = 0; j < this.slots.length; j++) {
+			if(this.slots[j].getItem().equals(i) && this.slots[j].getItem() != null) {
+				this.slots[j] = new Slot(i, +1);
+				pass = true;
+			}
+		}
+		 
+		if(!pass) {
+			this.slots[this.getFirstEmpty()] = new Slot(i, 1);
+		}
+		/*else {
+			this.items.put(i, 1);
+			this.slots[this.getFirstEmpty()].setItem(i);
+			this.slots[this.getFirstEmpty()].setQuantity(quantity.intValue());
+		}*/
 	}
 	
 	/**
@@ -48,10 +70,13 @@ public class Inventory {
 		else this.items.put(i, quantity.intValue()-1);
 	}
 	
-	public void KeyPressed(int k) {
+	public void KeyPressed(int k, Player p) {
 		if (k >= KeyEvent.VK_0 && k <= KeyEvent.VK_9) {
 			if (k == KeyEvent.VK_0) this.selectedSlot = 9;
 			else this.selectedSlot = k - KeyEvent.VK_1;
+		}
+		if(k == KeyEvent.VK_ENTER) {
+			this.slots[this.selectedSlot].getItem().tick(p);
 		}
 	}
 	
@@ -71,6 +96,16 @@ public class Inventory {
 	 */
 	public HashMap<Item, Integer> getItems(){
 		return this.items;
+	}
+	
+	public int getFirstEmpty() {
+		int res = 0;
+		for(int i = 0; i < this.slots.length; i++) {
+			if(this.slots[i] == null) {
+				res = i;
+			}
+		}
+		return res;
 	}
 
 }

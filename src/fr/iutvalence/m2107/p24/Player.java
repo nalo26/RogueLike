@@ -141,7 +141,7 @@ public class Player {
 			this.watchingAt = Direction.LEFT;
 		}
 		if(k == KeyEvent.VK_CONTROL || k == KeyEvent.VK_SHIFT) this.speed = DEFAULT_SPEED + SPRINT_SPEED;
-		this.inventory.KeyPressed(k);
+		this.inventory.KeyPressed(k, this);
 	}
 	
 	/**
