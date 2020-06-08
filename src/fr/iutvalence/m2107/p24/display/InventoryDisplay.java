@@ -54,13 +54,13 @@ public class InventoryDisplay extends Inventory {
 			String quantity = String.valueOf(i.getValue());
 			if(slot == 5) {
 				x = 30;
-				y =  GamePanel.HEIGHT - 50;		
+				y = GamePanel.HEIGHT - 50;		
 			}
 			g.drawImage(item.getImage(), x, y, item.getImage().getWidth()/4, item.getImage().getHeight()/4, null);
 			g.setFont(new Font("Montserrat", 0, 20));
 			g.setColor(new Color(0, 230, 11));
 			g.drawString(quantity, x + 20, y + 30);
-			
+			if(slot == this.selectedSlot) g.drawRect(x, y, item.getImage().getWidth()/4, item.getImage().getHeight()/4);
 			x += 50;
 			slot++;
 		}

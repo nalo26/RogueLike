@@ -16,12 +16,15 @@ public class Inventory {
 	/** List of the player's items. */
 	protected HashMap<Item, Integer> items;
 	
+	protected int selectedSlot;
+	
 	/**
 	 * Constructor of the inventory.
 	 * Initialize the list of items.
 	 */
 	public Inventory() {
 		this.items = new HashMap<Item, Integer>();
+		this.selectedSlot = 0;
 	}
 	
 	/**
@@ -44,10 +47,18 @@ public class Inventory {
 		if (quantity.intValue() == 1) this.items.remove(i);
 		else this.items.put(i, quantity.intValue()-1);
 	}
-/**
- * Save items in inventory
- * @param save the item wanted to be save
- */
+	
+	public void KeyPressed(int k) {
+		if (k >= KeyEvent.VK_0 && k <= KeyEvent.VK_9) {
+			if (k == KeyEvent.VK_0) this.selectedSlot = 9;
+			else this.selectedSlot = k - KeyEvent.VK_1;
+		}
+	}
+	
+	/**
+	 * Load the inventory from the save.
+	 * @param save the save of the inventory to be restored.
+	 */
 	public void load(JSONObject save) {
 		@SuppressWarnings("unchecked")
 		HashMap<Item, Integer> inv = (HashMap<Item, Integer>) save;
@@ -60,16 +71,6 @@ public class Inventory {
 	 */
 	public HashMap<Item, Integer> getItems(){
 		return this.items;
-	}
-	
-	public void KeyPressed(int k)
-	{
-		switch(k) {
-		case KeyEvent.VK_AMPERSAND:
-			
-			
-		}
-		
 	}
 
 }
