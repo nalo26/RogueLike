@@ -12,8 +12,10 @@ import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.Room;
 
 public class FullMapState extends GameState {
-
+	/** The mini-map of the game. */
 	private MiniMap map;
+	
+	/** The player of the game. */
 	private Player player;
 	
 	/** The width of the room. */
@@ -24,7 +26,12 @@ public class FullMapState extends GameState {
 	private static final int CORRIDOR_WIDTH = 20;
 	/** The height of the corridor. */
 	private static final int CORRIDOR_HEIGHT = 36;
-
+/**
+ * Constructor of of the state of the entire map.
+ * @param gsm the manager wanted.
+ * @param map the mini-map of the game.
+ * @param p the player of the game.
+ */
 	public FullMapState(GameStateManager gsm, MiniMap map, Player p) {
 		super(gsm);
 		this.map = map;
@@ -36,6 +43,10 @@ public class FullMapState extends GameState {
 		// Not used here.
 	}
 
+	/**
+	 * Draw the map.
+	 * @param g the draw component. 
+	 */
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(new Color((float)0, (float)0, (float)0, (float)0.5));

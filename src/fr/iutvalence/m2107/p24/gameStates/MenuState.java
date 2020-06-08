@@ -51,6 +51,13 @@ public class MenuState extends GameState implements ImageObserver {
 		}
 	}
 	
+	/**
+	 * Draw the text in the center of the rectangle.
+	 * @param g the draw component. 
+	 * @param text the text who's write.
+	 * @param rect the rectangle in which one we write.
+	 * @param font the font of the writes.
+	 */
 	public void drawCenteredString(Graphics g, String text, Rectangle rect, Font font) {
 	    FontMetrics metrics = g.getFontMetrics(font);
 	    int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
