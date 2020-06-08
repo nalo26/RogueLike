@@ -3,9 +3,12 @@ package fr.iutvalence.m2107.p24.display;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+
 
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Inventory;
+import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -42,8 +45,19 @@ public class InventoryDisplay extends Inventory {
 			g.drawImage(this.transparentInventoryImage,  OFFSET, GamePanel.HEIGHT - HEIGHT - OFFSET, WIDTH, HEIGHT, null);
 		} else g.drawImage(this.inventoryImage, OFFSET, GamePanel.HEIGHT - HEIGHT - OFFSET, WIDTH, HEIGHT, null);
 		
-		if (this.items != null) {
-			// TODO draw items here
+		int slot = 0;
+		int x = 30;
+		int y = GamePanel.HEIGHT - 100;
+		for(HashMap.Entry<Item, Integer> i : this.items.entrySet()){
+			Item item = i.getKey();
+			int quantity = i.getValue();
+			if(slot == 5) {
+				x = 30;
+				y =  GamePanel.HEIGHT - 50;		
+			}
+			g.drawImage(item.getImage(), x, y, item.getImage().getWidth()/4, item.getImage().getHeight()/4, null);
+			x += 50;
+			slot++;
 		}
 	}
 

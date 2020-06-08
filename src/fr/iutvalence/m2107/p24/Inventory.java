@@ -60,4 +60,6 @@ public class Inventory {
 	public HashMap<Item, Integer> getItems(){
 		return this.items;
 	}
+	
+
 }

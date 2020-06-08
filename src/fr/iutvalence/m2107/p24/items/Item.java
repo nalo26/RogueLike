@@ -59,4 +59,10 @@ public abstract class Item {
 	public Rectangle getBounds() {
 		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth()/2, this.image.getHeight()/2);
 	}
+
+	public BufferedImage getImage()
+	{
+		return this.image;
+	}
+	
 }
