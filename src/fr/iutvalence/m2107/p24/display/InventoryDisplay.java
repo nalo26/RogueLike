@@ -1,10 +1,11 @@
 package fr.iutvalence.m2107.p24.display;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.awt.Color;
 import java.util.HashMap;
-
 
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Inventory;
@@ -50,15 +51,21 @@ public class InventoryDisplay extends Inventory {
 		int y = GamePanel.HEIGHT - 100;
 		for(HashMap.Entry<Item, Integer> i : this.items.entrySet()){
 			Item item = i.getKey();
-			int quantity = i.getValue();
+			String quantity = String.valueOf(i.getValue());
 			if(slot == 5) {
 				x = 30;
 				y =  GamePanel.HEIGHT - 50;		
 			}
 			g.drawImage(item.getImage(), x, y, item.getImage().getWidth()/4, item.getImage().getHeight()/4, null);
+			g.setFont(new Font("Montserrat", 0, 20));
+			g.setColor(new Color(0, 230, 11));
+			g.drawString(quantity, x + 20, y + 30);
+			
 			x += 50;
 			slot++;
 		}
 	}
+
+
 
 }
