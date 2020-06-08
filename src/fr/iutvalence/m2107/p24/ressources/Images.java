@@ -35,7 +35,6 @@ public enum Images {
 	ZOMBIE_WALK_LEFT("zombie_walk_left.png"),
 	
 	KEY("key.png"),
-	
 	POTION_HEALTH("potion_health.png"),
 	POTION_POISON("potion_poison.png"),
 	POTION_SPEED("potion_speed.png"),
@@ -44,6 +43,8 @@ public enum Images {
 	TREE2("tree_2.png"),
 	TREE3("tree_3.png"),
 	TREE4("tree_4.png"),
+	
+	KEY_WALL("key_wall.png"),
 	
 	ROOM1("room_0001.png"), //binary order, will be useful.
 	ROOM2("room_0010.png"),

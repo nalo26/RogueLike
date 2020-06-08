@@ -32,9 +32,15 @@ public class MiniMap {
 		this.random.setSeed(this.seed);
 	}
 	
+	/**
+	 * Create a random boss room on the map,
+	 * with its key room next to it.
+	 */
 	private void generateBossRoom() {
-		Position bossPos = Position.randomPosition(-9, 10, -9, 10);
-		Direction bossDir = Direction.randomDirection();
+		/*Position bossPos = Position.randomPosition(-9, 10, -9, 10);
+		Direction bossDir = Direction.randomDirection();*/
+		Position bossPos = new Position(0, -2);
+		Direction bossDir = Direction.DOWN;
 		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
 			bossPos = Position.randomPosition(-9, 10, -9, 10);
 		}

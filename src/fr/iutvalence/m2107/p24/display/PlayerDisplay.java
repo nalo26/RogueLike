@@ -47,7 +47,9 @@ public class PlayerDisplay extends Player {
 	 */
 	public void draw(Graphics g) {
 		Position pos;
-		if(this.state == State.ATTACK && this.watchingAt == Direction.LEFT) pos = new Position(this.position.getX() - (this.image.getWidth()-DEFAULT_IMAGE.getWidth()), this.position.getY()); 
+		if(this.state == State.ATTACK && this.watchingAt == Direction.LEFT) {
+			pos = new Position(this.position.getX() - (this.image.getWidth()-DEFAULT_IMAGE.getWidth()), this.position.getY()); 
+		}
 		else pos = this.position;
 		
 		this.realPosition = World.updatePosition(pos);

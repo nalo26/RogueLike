@@ -16,12 +16,11 @@ import fr.iutvalence.m2107.p24.ressources.Images;
 public class MobDisplay extends Mob {
 	/** The color of the mob. */
 	private Colors color;
-	
 	/** The image of the mob. */
 	private BufferedImage image;
-
 	/** The real position of the mob. */
 	private Position realPosition;
+	
 	/**
 	 * Constructor : call his super class Mob.
 	 * @param type Type of the mob.
