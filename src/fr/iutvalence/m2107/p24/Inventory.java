@@ -1,5 +1,6 @@
 package fr.iutvalence.m2107.p24;
 
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
@@ -61,5 +62,14 @@ public class Inventory {
 		return this.items;
 	}
 	
+	public void KeyPressed(int k)
+	{
+		switch(k) {
+		case KeyEvent.VK_AMPERSAND:
+			
+			
+		}
+		
+	}
 
 }
