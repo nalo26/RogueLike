@@ -25,14 +25,11 @@ public class SpeedPotion extends Item {
 
 	@Override
 	public void tick(Player p) {
+		this.counter = SPEED_TIME;
 		if(this.counter > 0) {
 			p.setSpeed(Player.DEFAULT_SPEED + SPEED_POTION);
 			this.counter--;
 		}	
 	}
 	
-	public void use() {
-		this.counter = SPEED_TIME;
-	}
-
 }
