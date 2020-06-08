@@ -9,7 +9,6 @@ import org.json.simple.JSONObject;
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
-import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
@@ -80,8 +79,8 @@ public class Player {
 	}
 	
 	/** Describe the behavior of the player after a key is pressed. 
-	 * @param r the current room the player interacts with. */
-	public void tick(RoomDisplay r) {
+	 * @param currentRoom the current room the player interacts with. */
+	public void tick(Room currentRoom) {
 		if (this.right && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.RIGHT))) this.position.move( this.speed,  0);
 		if (this.left  && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-this.speed,  0);
 		if (this.up    && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.UP)))    this.position.move( 0, -this.speed);
@@ -98,24 +97,24 @@ public class Player {
 		else if(this.state == State.NORMAL && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_LEFT);
 		else if(this.state == State.NORMAL && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_RIGHT);
 		
-		this.updateItems(r);
+		this.updateItems(currentRoom);
 		
 		
 	}
 
 	/**
 	 * Update all items in the given room.
-	 * @param r the room where it has to update items.
+	 * @param currentRoom the room where it has to update items.
 	 */
-	public void updateItems(RoomDisplay r) {
+	public void updateItems(Room currentRoom) {
 		Item itemToRemove = null;
-		for(Item i : r.getAllItems()) {
+		for(Item i : currentRoom.getAllItems()) {
 			if(this.getBounds().intersects(i.getBounds())) {
 				itemToRemove = i;
 				this.inventory.addItem(i);
 			}
 		}
-		r.removeItem(itemToRemove);
+		currentRoom.removeItem(itemToRemove);
 	}
 
 	/**

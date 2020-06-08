@@ -1,5 +1,6 @@
 package fr.iutvalence.m2107.p24;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,7 +10,6 @@ import java.util.Random;
 import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.MobDisplay;
-import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.items.ItemsList;
 import fr.iutvalence.m2107.p24.items.Key;
@@ -61,7 +61,8 @@ public class Room {
 		int itemAmount = random.nextInt(MAX_ITEMS);
 		this.allItems = new ArrayList<Item>();
 		for(int i =0; i < itemAmount; i++) {
-				this.allItems.add(ItemsList.randomItem());
+			Item it = ItemsList.randomItem();
+			if(it != null) this.allItems.add(it);
 		}
 	}
 	
@@ -81,18 +82,6 @@ public class Room {
 	public Room keyRoom(String config) {
 		Room r = new Room(config);
 		r.allItems.add(new Key());
-		return r;
-	}
-	/**
-	 * Create a special room for the boss, who have no mobs, no decor and no items, just the boss.
-	 * @param config the String configuration of doors of the room.
-	 * @return the boss room
-	 */
-	public Room bossRoom(String config) {
-		Room r = new Room(config);
-		r.mobs.clear(); //no mob on it.
-		r.decor.clear(); //no decor on it.
-		r.allItems.clear(); //no item on it.
 		return r;
 	}
 	
@@ -117,17 +106,21 @@ public class Room {
 	}
 	
 	/** Instructions executed every tick. 
-	 * @param r The display room to pass as parameter to Mob.
+	 * @param room The display room to pass as parameter to Mob.
 	 * @param p the player of the room.
 	 */
-	public void tick(RoomDisplay r, Player p) {
+	public void tick(Room room, Player p) {
 		Mob isDead = null;
 		List<Mob> toDelete = new ArrayList<Mob>();
 		for(Mob m : this.mobs) {
-			isDead = m.tick(r, p);
+			isDead = m.tick(room, p);
 			if(isDead != null) toDelete.add(isDead);
 		}
 		if(toDelete.size() > 0) this.mobs.removeAll(toDelete);
+	}
+	
+	public void draw(Graphics g) {
+		//Override later.
 	}
 	
 	/**

@@ -68,7 +68,7 @@ public class MiniMapDisplay extends MiniMap {
 		g.fillRect(minimapPosition.getX(), minimapPosition.getY(), MINIMAP_SIZE, MINIMAP_SIZE);
 		
 		Room query = null;
-		for(HashMap.Entry<Position, RoomDisplay> entry : this.rooms.entrySet()) {
+		for(HashMap.Entry<Position, Room> entry : this.rooms.entrySet()) {
 			Position pos = entry.getKey();
 			Room room = entry.getValue();
 			g.setColor(Color.WHITE);

@@ -7,7 +7,6 @@ import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
-import fr.iutvalence.m2107.p24.display.RoomDisplay;
 
 /**
  * Represent a mob with all of his characteristics (health, damage, type, direction, ...).
@@ -64,11 +63,11 @@ public class Mob {
 	}
 	
 	/** Describe the behavior of a mob every tick. 
-	 * @param r The room the mob is on.
+	 * @param room The room the mob is on.
 	 * @param p The player of the room.
 	 * @return a Mob that have been killed if any.
 	 */
-	public Mob tick(RoomDisplay r, Player p) {
+	public Mob tick(Room room, Player p) {
 		if (this.wantToMove) {
 			if (this.direction == Direction.RIGHT && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.RIGHT))) this.position.move(1, 0);
 			if (this.direction == Direction.LEFT  && !this.getBounds().intersects(MiniMapDisplay.getWallBoundFromKey(Direction.LEFT)))  this.position.move(-1, 0);

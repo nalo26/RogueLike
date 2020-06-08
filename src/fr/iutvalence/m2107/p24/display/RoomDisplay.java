@@ -61,20 +61,23 @@ public class RoomDisplay extends Room {
 	 * Draw the room.
 	 * @param g the draw component
 	 */
+	@Override
 	public void draw(Graphics g) {
 		g.drawImage(this.image, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
+		
+		for(Item i : this.allItems) {
+			i.draw(g);
+		}
+		
 		for(MobDisplay m : this.mobs) {
 			m.draw(g);
 		}
+		
 		for(HashMap.Entry<Position, Images> entry : this.decor.entrySet()) {
 			Position pos = World.updatePosition(entry.getKey());
 			BufferedImage im = entry.getValue().getImage();
 			Position dim = World.updatePosition(new Position(im.getWidth(), im.getHeight()));
 			g.drawImage(im, pos.getX(), pos.getY(), dim.getX(), dim.getY(), null);
-		}
-		
-		for(Item i : this.allItems) {
-				i.draw(g);	
 		}
 	}
 

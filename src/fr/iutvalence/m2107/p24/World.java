@@ -14,7 +14,6 @@ import org.json.simple.parser.ParseException;
 
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.PlayerDisplay;
-import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.gameStates.DeathState;
 import fr.iutvalence.m2107.p24.gameStates.FullMapState;
 import fr.iutvalence.m2107.p24.gameStates.GameState;
@@ -45,7 +44,7 @@ public class World extends GameState {
 	/** {@inheritDoc} */
 	@Override
 	public void tick() {
-		RoomDisplay currentRoom = this.map.getRooms().get(this.player.getRoomPosition());
+		Room currentRoom = this.map.getRooms().get(this.player.getRoomPosition());
 		
 		this.player.tick(currentRoom);
 		this.map.tick(currentRoom, this.player);
@@ -114,9 +113,9 @@ public class World extends GameState {
 		HashMap<String, Object> rooms = new HashMap<String, Object>();
 		
 		int i = 0;
-		for(HashMap.Entry<Position, RoomDisplay> entry : this.map.getRooms().entrySet()) {
+		for(HashMap.Entry<Position, Room> entry : this.map.getRooms().entrySet()) {
 			Position p = entry.getKey();
-			RoomDisplay r = entry.getValue();
+			Room r = entry.getValue();
 			HashMap<String, Object> room = new HashMap<String, Object>();
 			
 			room.put("connections", r.getDoorsString());

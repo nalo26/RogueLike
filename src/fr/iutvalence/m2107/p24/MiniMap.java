@@ -14,7 +14,7 @@ import fr.iutvalence.m2107.p24.display.RoomDisplay;
 public class MiniMap {
 
 	/** Rooms of the World. */
-	protected HashMap<Position, RoomDisplay> rooms;
+	protected HashMap<Position, Room> rooms;
 	/** A random object to create random values. */
 	private Random random = new Random();
 	/** The seed of the map. */
@@ -25,10 +25,43 @@ public class MiniMap {
 	 * Create a new room of 4 doors, and set a seed.
 	 */
 	public MiniMap() {
-		this.rooms = new HashMap<Position, RoomDisplay>();
+		this.rooms = new HashMap<Position, Room>();
 		this.rooms.put(Player.DEFAULT_ROOM_POSITION.copy(), new RoomDisplay("1111"));
+		this.generateBossRoom();
 		this.seed = this.random.nextLong();
 		this.random.setSeed(this.seed);
+	}
+	
+	private void generateBossRoom() {
+		Position bossPos = Position.randomPosition(-9, 10, -9, 10);
+		Direction bossDir = Direction.randomDirection();
+		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
+			bossPos = Position.randomPosition(-9, 10, -9, 10);
+		}
+		this.rooms.put(bossPos, new BossRoom(bossDir));
+
+		Position keyPos = null;
+		Direction keyDir = null;
+		switch (bossDir) {
+			case UP:
+				keyDir = Direction.DOWN;
+				keyPos = new Position(bossPos.getX(), bossPos.getY()-1);
+				break;
+			case RIGHT: 
+				keyDir = Direction.LEFT;
+				keyPos = new Position(bossPos.getX()+1, bossPos.getY());
+				break;
+			case DOWN:
+				keyDir = Direction.UP;
+				keyPos = new Position(bossPos.getX(), bossPos.getY()+1);
+				break;
+			case LEFT: 
+				keyDir = Direction.RIGHT;
+				keyPos = new Position(bossPos.getX()-1, bossPos.getY());
+				break;
+			default: break;
+		}
+		this.rooms.put(keyPos, new KeyRoom(keyDir));
 	}
 	
 	/**
@@ -36,7 +69,7 @@ public class MiniMap {
 	 * @param room the current room.
 	 * @param p the player wanted.
 	 */
-	public void tick(RoomDisplay room, Player p) {		
+	public void tick(Room room, Player p) {		
 		// Changing of room
 		// TODO TP the player to the other side of the room
 		
@@ -123,7 +156,7 @@ public class MiniMap {
 		}
 	}
 	
-	public HashMap<Position, RoomDisplay> getRooms(){
+	public HashMap<Position, Room> getRooms(){
 		return this.rooms;
 	}
 	
