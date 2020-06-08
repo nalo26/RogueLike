@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 
 import org.json.simple.JSONObject;
 
+import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.items.Item;
 
 /**

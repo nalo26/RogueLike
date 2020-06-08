@@ -14,11 +14,13 @@ import org.json.simple.parser.ParseException;
 
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.PlayerDisplay;
+import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.gameStates.DeathState;
 import fr.iutvalence.m2107.p24.gameStates.FullMapState;
 import fr.iutvalence.m2107.p24.gameStates.GameState;
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
 import fr.iutvalence.m2107.p24.gameStates.PauseState;
+import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
  * Create the whole map.

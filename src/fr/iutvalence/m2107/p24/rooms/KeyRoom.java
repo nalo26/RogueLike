@@ -1,10 +1,16 @@
-package fr.iutvalence.m2107.p24;
+package fr.iutvalence.m2107.p24.rooms;
 
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
+import fr.iutvalence.m2107.p24.Direction;
+import fr.iutvalence.m2107.p24.GamePanel;
+import fr.iutvalence.m2107.p24.KeyLockPosition;
+import fr.iutvalence.m2107.p24.Position;
+import fr.iutvalence.m2107.p24.entities.Mob;
+import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.items.Key;
 import fr.iutvalence.m2107.p24.ressources.Images;
 

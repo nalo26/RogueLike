@@ -1,4 +1,4 @@
-package fr.iutvalence.m2107.p24.display;
+package fr.iutvalence.m2107.p24.entities;
 
 import java.util.Random;
 /**

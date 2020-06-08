@@ -7,6 +7,10 @@ import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
+import fr.iutvalence.m2107.p24.entities.Player;
+import fr.iutvalence.m2107.p24.rooms.BossRoom;
+import fr.iutvalence.m2107.p24.rooms.KeyRoom;
+import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
  * Represent the operation of the minimap.

@@ -1,4 +1,4 @@
-package fr.iutvalence.m2107.p24;
+package fr.iutvalence.m2107.p24.rooms;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -9,7 +9,12 @@ import java.util.Random;
 
 import org.json.simple.JSONObject;
 
+import fr.iutvalence.m2107.p24.Direction;
+import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.display.MobDisplay;
+import fr.iutvalence.m2107.p24.entities.Mob;
+import fr.iutvalence.m2107.p24.entities.MobType;
+import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.items.ItemsList;
 import fr.iutvalence.m2107.p24.items.Key;

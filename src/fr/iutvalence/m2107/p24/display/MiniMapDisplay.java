@@ -6,13 +6,13 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import fr.iutvalence.m2107.p24.BossRoom;
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.MiniMap;
-import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
-import fr.iutvalence.m2107.p24.Room;
+import fr.iutvalence.m2107.p24.entities.Player;
+import fr.iutvalence.m2107.p24.rooms.BossRoom;
+import fr.iutvalence.m2107.p24.rooms.Room;
 /**
  * Display the minimap.
  */

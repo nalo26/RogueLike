@@ -1,8 +1,12 @@
-package fr.iutvalence.m2107.p24;
+package fr.iutvalence.m2107.p24.rooms;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import fr.iutvalence.m2107.p24.Direction;
+import fr.iutvalence.m2107.p24.GamePanel;
+import fr.iutvalence.m2107.p24.entities.Boss;
+import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class BossRoom extends Room {

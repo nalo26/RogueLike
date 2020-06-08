@@ -1,4 +1,4 @@
-package fr.iutvalence.m2107.p24;
+package fr.iutvalence.m2107.p24.entities;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -6,8 +6,12 @@ import java.util.Random;
 
 import org.json.simple.JSONObject;
 
+import fr.iutvalence.m2107.p24.Direction;
+import fr.iutvalence.m2107.p24.GamePanel;
+import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
+import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
  * Represent a mob with all of his characteristics (health, damage, type, direction, ...).

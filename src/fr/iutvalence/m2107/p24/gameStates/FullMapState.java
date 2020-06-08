@@ -7,9 +7,9 @@ import java.awt.event.KeyEvent;
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.MiniMap;
-import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
-import fr.iutvalence.m2107.p24.Room;
+import fr.iutvalence.m2107.p24.entities.Player;
+import fr.iutvalence.m2107.p24.rooms.Room;
 
 public class FullMapState extends GameState {
 	/** The mini-map of the game. */

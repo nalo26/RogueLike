@@ -5,11 +5,12 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.GamePanel;
-import fr.iutvalence.m2107.p24.Mob;
-import fr.iutvalence.m2107.p24.MobType;
 import fr.iutvalence.m2107.p24.Position;
-import fr.iutvalence.m2107.p24.State;
 import fr.iutvalence.m2107.p24.World;
+import fr.iutvalence.m2107.p24.entities.Colors;
+import fr.iutvalence.m2107.p24.entities.Mob;
+import fr.iutvalence.m2107.p24.entities.MobType;
+import fr.iutvalence.m2107.p24.entities.State;
 import fr.iutvalence.m2107.p24.ressources.Images;
 /** Display a mob depending on its type. */
 public class MobDisplay extends Mob {

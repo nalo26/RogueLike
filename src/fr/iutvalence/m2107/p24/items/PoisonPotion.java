@@ -1,6 +1,6 @@
 package fr.iutvalence.m2107.p24.items;
 
-import fr.iutvalence.m2107.p24.Player;
+import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 public class PoisonPotion extends Item {

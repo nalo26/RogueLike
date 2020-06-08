@@ -5,9 +5,9 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.GamePanel;
-import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
+import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**

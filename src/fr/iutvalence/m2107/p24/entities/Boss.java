@@ -1,11 +1,15 @@
-package fr.iutvalence.m2107.p24;
+package fr.iutvalence.m2107.p24.entities;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import fr.iutvalence.m2107.p24.GamePanel;
+import fr.iutvalence.m2107.p24.Position;
+import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
+import fr.iutvalence.m2107.p24.rooms.Room;
 
 public class Boss extends Mob {
 	
@@ -25,6 +29,12 @@ public class Boss extends Mob {
 	/** The different health of the boss. */
 	private HealthDisplay[] healths;
 	
+	/**
+	 * Create a new boss, with its specific attributes.
+	 * Unlike a classic boss, it has more life, and deals a lot more damage,
+	 * according to its phase of combat.
+	 * Its picture is different in each phase.
+	 */
 	public Boss() {
 		super(null);
 		this.healths = new HealthDisplay[PHASE_AMOUNT];
@@ -38,9 +48,10 @@ public class Boss extends Mob {
 		this.realPosition = World.updatePosition(this.position);
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public Mob tick(Room r, Player p) {
-		this.phase = this.getLastLifeBar()+1;
+		this.phase = PHASE_AMOUNT - this.getLastLifeBar();
 		this.damage = DEFAULT_DAMAGE[this.phase-1];
 		
 		if(this.damageCooldown > 0) this.damageCooldown--;
@@ -58,6 +69,7 @@ public class Boss extends Mob {
 		return null;
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public void draw(Graphics g) {
 		this.image = Images.valueOf("BOSS" + this.phase + "_" + this.state).getImage();
@@ -72,7 +84,10 @@ public class Boss extends Mob {
 		}
 	}
 	
-	
+	/**
+	 * Get the last life bar of the boss which is not empty.
+	 * @return the index of the last life bar.
+	 */
 	private int getLastLifeBar() {
 		for(int i = this.healths.length-1; i >= 0; i --) {
 			if(this.healths[i].getLife() > 0) return i;
@@ -80,6 +95,7 @@ public class Boss extends Mob {
 		return this.healths.length-1;
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());

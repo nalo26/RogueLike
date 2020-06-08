@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.GamePanel;
-import fr.iutvalence.m2107.p24.Player;
 import fr.iutvalence.m2107.p24.Position;
-import fr.iutvalence.m2107.p24.State;
 import fr.iutvalence.m2107.p24.World;
+import fr.iutvalence.m2107.p24.entities.Player;
+import fr.iutvalence.m2107.p24.entities.State;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -51,7 +51,7 @@ public class PlayerDisplay extends Player {
 
 		g.drawImage(this.image, this.realPosition.getX(), this.realPosition.getY(), null);
 		
-		this.health.draw(g, this.realPosition, this.image.getWidth(), HealthDisplay.NORMAL_STYLE);
+		this.health.draw(g, this.realPosition, DEFAULT_IMAGE.getWidth(), HealthDisplay.NORMAL_STYLE);
 		this.inventory.draw(g, this);
 	}
 	

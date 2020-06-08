@@ -1,4 +1,4 @@
-package fr.iutvalence.m2107.p24;
+package fr.iutvalence.m2107.p24.entities;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -6,11 +6,15 @@ import java.awt.event.MouseEvent;
 
 import org.json.simple.JSONObject;
 
+import fr.iutvalence.m2107.p24.Direction;
+import fr.iutvalence.m2107.p24.Inventory;
+import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.ressources.Images;
+import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
  * Represent the player and all of his possible actions (moves, directions, ...).
@@ -213,7 +217,7 @@ public class Player {
 	 * and his dimensions.
 	 * @return the bounds of the player.
 	 */
-	protected Rectangle getBounds() {
+	public Rectangle getBounds() {
 		return new Rectangle(0, 0, 0, 0);
 		// This method is override by PlayerDisplay, which handle Bounds.  
 	}
