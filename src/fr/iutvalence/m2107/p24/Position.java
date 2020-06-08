@@ -100,5 +100,15 @@ public class Position {
 	public Position copy() {
 		return new Position(this.getX(), this.getY());
 	}
+
+	/**
+	 * Set the position to a new one.
+	 * @param x the X coordinate of the position.
+	 * @param y the Y coordinate of the position.
+	 */
+	public void set(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 	
 }

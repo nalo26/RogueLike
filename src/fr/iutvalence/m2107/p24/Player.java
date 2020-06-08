@@ -202,9 +202,15 @@ public class Player {
 	protected void changeImage(Images img) {
 		// This method is override by PlayerDisplay, which handle images.  
 	}
+	
+	public void updateRealPosition() {
+		// Override later.
+	}
+	
 	/**
-	 * 
-	 * @return a new Rectangle of 0x0 in 0x0.
+	 * Get the bounds of the player, according to his position,
+	 * and his dimensions.
+	 * @return the bounds of the player.
 	 */
 	protected Rectangle getBounds() {
 		return new Rectangle(0, 0, 0, 0);

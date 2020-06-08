@@ -106,21 +106,26 @@ public class Room {
 	}
 	
 	/** Instructions executed every tick. 
-	 * @param room The display room to pass as parameter to Mob.
 	 * @param p the player of the room.
 	 */
-	public void tick(Room room, Player p) {
+	public void tick(Player p) {
 		Mob isDead = null;
 		List<Mob> toDelete = new ArrayList<Mob>();
 		for(Mob m : this.mobs) {
-			isDead = m.tick(room, p);
+			isDead = m.tick(this, p);
 			if(isDead != null) toDelete.add(isDead);
 		}
 		if(toDelete.size() > 0) this.mobs.removeAll(toDelete);
+		
+		if(this instanceof KeyRoom) this.update(p);
 	}
 	
 	public void draw(Graphics g) {
-		//Override later.
+		// Override later.
+	}
+	
+	protected void update(Player p) {
+		// Override later.
 	}
 	
 	/**

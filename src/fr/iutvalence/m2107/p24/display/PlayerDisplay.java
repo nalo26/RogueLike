@@ -59,6 +59,11 @@ public class PlayerDisplay extends Player {
 		this.health.draw(g, this.realPosition, this.image.getWidth());
 		this.inventory.draw(g, this);
 	}
+	
+	@Override
+	public void updateRealPosition() {
+		this.realPosition = World.updatePosition(this.position);
+	}
 
 	/** {@inheritDoc} */
 	@Override
@@ -66,6 +71,7 @@ public class PlayerDisplay extends Player {
 		this.image = img.getImage();
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), DEFAULT_IMAGE.getWidth(), DEFAULT_IMAGE.getHeight());

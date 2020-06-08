@@ -75,29 +75,31 @@ public class MiniMap {
 	 * @param room the current room.
 	 * @param p the player wanted.
 	 */
-	public void tick(Room room, Player p) {		
+	public void tick(Room room, Player p) {
 		// Changing of room
 		// TODO TP the player to the other side of the room
 		
 		if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.LEFT)) && room.isOpen(Direction.LEFT)) {
 			p.getRoomPosition().move(-1, 0);
-			p.getPosition().move(GamePanel.WIDTH/2, 0);
+			p.getPosition().set(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
 		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.RIGHT)) && room.isOpen(Direction.RIGHT)) {
 			p.getRoomPosition().move(1, 0);
-			p.getPosition().move(-GamePanel.WIDTH/2, 0);
+			p.getPosition().set(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
 		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.UP)) && room.isOpen(Direction.UP)) {
 			p.getRoomPosition().move(0, -1);
-			p.getPosition().move(0, GamePanel.HEIGHT/2);
+			p.getPosition().set(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
 		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.DOWN)) && room.isOpen(Direction.DOWN)) {
 			p.getRoomPosition().move(0, 1);
-			p.getPosition().move(0, -GamePanel.HEIGHT/2);
+			p.getPosition().set(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
 		}
+		
+		p.updateRealPosition();
 		
 		if(this.rooms.get(p.getRoomPosition()) == null) {
 			this.rooms.put(p.getRoomPosition().copy(), this.randomRoom(p.getRoomPosition()));
 		}
 		room = this.rooms.get(p.getRoomPosition());
-		room.tick(room, p);
+		room.tick(p);
 	}
 		
 	/**

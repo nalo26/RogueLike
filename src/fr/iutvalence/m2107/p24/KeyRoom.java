@@ -34,9 +34,9 @@ public class KeyRoom extends Room {
 		this.keys = new Key[4];
 		
 		this.keys[0] = new Key();
-		this.keys[1] = new Key();
+		/*this.keys[1] = new Key();
 		this.keys[2] = new Key();
-		this.keys[3] = new Key();
+		this.keys[3] = new Key();*/
 		
 		this.image = Images.valueOf("KEY_ROOM_CLOSE_" + this.direction).getImage();
 	}
@@ -68,9 +68,7 @@ public class KeyRoom extends Room {
 		
 		for(int i = 0; i < this.keys.length; i++) {
 			if(this.keys[i] != null) {
-				
 				double rot;
-				
 				switch(this.direction) {
 					case UP:
 						rot = Math.toRadians(0);
@@ -87,17 +85,17 @@ public class KeyRoom extends Room {
 					default: rot = 0;
 				}
 				
-				Position pos = KeyLockPosition.valueOf(this.direction + "_" + i).getPosition();
+				Position pos = KeyLockPosition.valueOf(this.direction + "_" + i).getPosition().copy();
 				AffineTransform tx = AffineTransform.getRotateInstance(rot, pos.getX(), pos.getY());
 				AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-				g.drawImage(op.filter(this.image, null), pos.getX(), pos.getY(), KEY_WIDTH, KEY_WIDTH, null);
+				g.drawImage(op.filter(Images.KEY_WALL.getImage(), null), pos.getX(), pos.getY(), KEY_WIDTH, KEY_WIDTH, null);
 			}
 		}
 	}
 	
 	/** {@inheritDoc} */
 	@Override
-	public void tick(Room r, Player p) {
+	protected void update(Player p) {
 		if(isOpen()) this.image = Images.valueOf("KEY_ROOM_OPEN_"+ this.direction).getImage();
 		
 		KEY_WIDTH = Math.round((float)32/(float)1920*GamePanel.WIDTH);
