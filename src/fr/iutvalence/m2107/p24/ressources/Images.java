@@ -34,6 +34,10 @@ public enum Images {
 	ZOMBIE_WALK_RIGHT("zombie_walk_right.png"),
 	ZOMBIE_WALK_LEFT("zombie_walk_left.png"),
 	
+	BOSS1("boss_1.png"),
+	BOSS2("boss_2.png"),
+	BOSS3("boss_3.png"),
+	
 	KEY("key.png"),
 	POTION_HEALTH("potion_health.png"),
 	POTION_POISON("potion_poison.png"),

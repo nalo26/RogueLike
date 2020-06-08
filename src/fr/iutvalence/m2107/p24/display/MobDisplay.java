@@ -1,6 +1,5 @@
 package fr.iutvalence.m2107.p24.display;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -51,17 +50,14 @@ public class MobDisplay extends Mob {
 		}
 	}
 
-	/** Draw the mob.
-	 * @param g the draw component
-	 */
+	/** {@inheritDoc} */
+	@Override
 	public void draw(Graphics g) {
 		this.realPosition = World.updatePosition(this.position);
 		
 		g.drawImage(this.image, this.realPosition.getX(), this.realPosition.getY(), null);
-		g.setColor(Color.BLACK);
-		g.drawRect(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
 		
-		this.getHealth().draw(g, this.realPosition, this.image.getWidth());
+		this.health.draw(g, this.realPosition, this.image.getWidth());
 	}
 	
 	@Override

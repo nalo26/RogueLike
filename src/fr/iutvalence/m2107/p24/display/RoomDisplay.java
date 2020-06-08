@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import fr.iutvalence.m2107.p24.GamePanel;
+import fr.iutvalence.m2107.p24.Mob;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.Room;
 import fr.iutvalence.m2107.p24.World;
@@ -69,7 +70,7 @@ public class RoomDisplay extends Room {
 			i.draw(g);
 		}
 		
-		for(MobDisplay m : this.mobs) {
+		for(Mob m : this.mobs) {
 			m.draw(g);
 		}
 		

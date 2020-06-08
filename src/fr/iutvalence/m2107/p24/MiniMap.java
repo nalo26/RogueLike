@@ -30,6 +30,12 @@ public class MiniMap {
 		this.generateBossRoom();
 		this.seed = this.random.nextLong();
 		this.random.setSeed(this.seed);
+		/*for(int y = -10; y <= 10; y++) {
+			for(int x = -10; x <= 10; x++) {
+				this.rooms.put(new Position(x, y), new Room());
+			}
+		}
+		*/
 	}
 	
 	/**
@@ -39,8 +45,8 @@ public class MiniMap {
 	private void generateBossRoom() {
 		/*Position bossPos = Position.randomPosition(-9, 10, -9, 10);
 		Direction bossDir = Direction.randomDirection();*/
-		Position bossPos = new Position(0, 2);
-		Direction bossDir = Direction.UP;
+		Position bossPos = new Position(0, -2);
+		Direction bossDir = Direction.DOWN;
 		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
 			bossPos = Position.randomPosition(-9, 10, -9, 10);
 		}

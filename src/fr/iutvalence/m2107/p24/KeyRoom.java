@@ -5,7 +5,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
-import fr.iutvalence.m2107.p24.display.MobDisplay;
 import fr.iutvalence.m2107.p24.items.Key;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
@@ -63,7 +62,7 @@ public class KeyRoom extends Room {
 	public void draw(Graphics g) {
 		g.drawImage(this.image, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		
-		for(MobDisplay m : this.mobs) {
+		for(Mob m : this.mobs) {
 			m.draw(g);
 		}
 		
@@ -87,11 +86,9 @@ public class KeyRoom extends Room {
 				}
 				
 				Position pos = KeyLockPosition.valueOf(this.direction + "_" + i).getPosition().copy();
-				System.out.println(pos);
-				AffineTransform tx = AffineTransform.getRotateInstance(rot, KEY_WIDTH, KEY_WIDTH);
+				AffineTransform tx = AffineTransform.getRotateInstance(rot, KEY_WALL.getWidth()/2, KEY_WALL.getHeight()/2);
 				AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 				g.drawImage(op.filter(KEY_WALL, null), pos.getX(), pos.getY(), KEY_WIDTH, KEY_WIDTH, null);
-				//g.drawImage(KEY_WALL, pos.getX(), pos.getY(), KEY_WIDTH, KEY_WIDTH, null);
 			}
 		}
 	}

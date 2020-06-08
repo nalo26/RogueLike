@@ -21,7 +21,7 @@ import fr.iutvalence.m2107.p24.ressources.Images;
 public class Room {
 	
 	/** List of all mobs in this room. */
-	protected List<MobDisplay> mobs = new ArrayList<MobDisplay>();
+	protected List<Mob> mobs = new ArrayList<Mob>();
 	/** List of all decorations in this room. */
 	protected HashMap<Position, Images> decor = new HashMap<Position, Images>();
 	/** The state of the doors in the room. */
@@ -132,7 +132,7 @@ public class Room {
 	 * Get the list of mobs of the room.
 	 * @return the list of mobs (Getter).
 	 */
-	public List<MobDisplay> getMobs() {
+	public List<Mob> getMobs() {
 		return this.mobs;
 	}
 

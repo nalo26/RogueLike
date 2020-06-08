@@ -1,5 +1,6 @@
 package fr.iutvalence.m2107.p24;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
@@ -107,6 +108,13 @@ public class Mob {
 
 		if(this.getHealth().getLife() <= 0) return this;
 		return null;
+	}
+	
+	/** Draw the mob.
+	 * @param g the draw component
+	 */
+	public void draw(Graphics g) {
+		// Override later.
 	}
 	
 	public void takeDamage() {
