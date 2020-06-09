@@ -61,6 +61,7 @@ public class MiniMap {
 		// Finished up generation.
 		for(Room r : this.rooms) {
 			r.setImage();
+			r.setVisited(false);
 		}
 	}
 	
@@ -167,6 +168,7 @@ public class MiniMap {
 		p.updateRealPosition();
 		
 		room = this.getRoomAt(p.getRoomPosition());
+		room.setVisited(true);
 		room.tick(p);
 	}
 	
