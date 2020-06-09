@@ -102,8 +102,6 @@ public class Player {
 		else if(this.state == State.NORMAL && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_RIGHT);
 		
 		this.updateItems(currentRoom);
-		
-		
 	}
 
 	/**

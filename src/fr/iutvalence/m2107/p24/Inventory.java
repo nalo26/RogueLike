@@ -56,8 +56,11 @@ public class Inventory {
 	 * @param i the item wanted to remove.
 	 */
 	public void removeItem(int i) {
-		this.slots[i].setItem(null);
-		this.slots[i].setQuantity(0);
+		this.slots[i].remove();
+		if(this.slots[i].getQuantity() <= 0) {
+			this.slots[i].setItem(null);
+			this.slots[i].setQuantity(0);
+		}
 	}
 	
 	public void KeyPressed(int k, Player p) {
@@ -67,6 +70,7 @@ public class Inventory {
 		}
 		if(k == KeyEvent.VK_ENTER && this.slots[this.selectedSlot].getItem() != null) {
 			this.slots[this.selectedSlot].getItem().tick(p);
+			this.removeItem(this.selectedSlot);
 		}
 	}
 	

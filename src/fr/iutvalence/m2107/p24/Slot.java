@@ -53,5 +53,10 @@ public class Slot {
 	public void add() {
 		this.quantity ++;
 	}
+
+
+	public void remove() {
+		this.quantity --;
+	}
 	
 }
