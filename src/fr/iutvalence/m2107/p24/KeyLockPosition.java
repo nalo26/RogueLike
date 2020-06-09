@@ -1,5 +1,7 @@
 package fr.iutvalence.m2107.p24;
-
+/**
+ * Represent all of the possible Key Lock Position.
+ */
 public enum KeyLockPosition {
 
 	UP_0(new Position(491, 21)),

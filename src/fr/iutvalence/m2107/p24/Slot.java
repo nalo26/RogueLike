@@ -1,7 +1,9 @@
 package fr.iutvalence.m2107.p24;
 
 import fr.iutvalence.m2107.p24.items.Item;
-
+/**
+ * Represent the slots of the inventory.
+ */
 public class Slot {
 	/** The item stored on the slot. */
 	private Item item;
@@ -54,7 +56,7 @@ public class Slot {
 		this.quantity ++;
 	}
 
-
+	/** Remove one to the quantity of the slot. */
 	public void remove() {
 		this.quantity --;
 	}

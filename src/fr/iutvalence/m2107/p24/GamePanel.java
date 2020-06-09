@@ -10,7 +10,9 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
-
+/**
+ * Represents the panel of the game, which represents the game window and what we're going to display on it..
+ */
 public class GamePanel extends JPanel implements Runnable, KeyListener, MouseListener {	
 	
     private static final long serialVersionUID = 1L;
@@ -40,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
     
     /** The travel time of your player  */
     private long travelTime;
-    
+
     private GameStateManager gsm;
     
     

@@ -10,7 +10,7 @@ import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.items.ItemsList;
 
 /**
- * Represent the inventory of the player
+ * Represent the inventory of the player.
  */
 public class Inventory {
 	/** The amount of slot. */

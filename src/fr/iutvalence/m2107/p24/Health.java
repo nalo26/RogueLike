@@ -1,5 +1,7 @@
 package fr.iutvalence.m2107.p24;
-
+/**
+ * Represent the health of the entity.
+ */
 public class Health {
 
 	/** The default life. Will never change. */
@@ -18,7 +20,7 @@ public class Health {
 	
 	
 	/**
-	 * SET the life to <tt>h</tt>.
+	 * Set the life to <tt>h</tt>.
 	 * @param h the life amount.
 	 */
 	public void setHealth(float h) {
@@ -26,7 +28,7 @@ public class Health {
 	}
 	
 	/**
-	 * REMOVE <tt>h</tt> life.
+	 * Remove <tt>h</tt> life.
 	 * @param h the life amount.
 	 */
 	public void removeLife(float h) {
@@ -35,7 +37,7 @@ public class Health {
 	}
 	
 	/**
-	 * ADD <tt>h</tt> life.
+	 * Add <tt>h</tt> life.
 	 * @param h the life amount.
 	 */
 	public void addLife(float h) {

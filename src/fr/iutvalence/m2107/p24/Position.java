@@ -2,7 +2,7 @@ package fr.iutvalence.m2107.p24;
 
 import java.util.Random;
 /**
- * All of positions of every objects in the game
+ * All positions of every objects in the game.
  */
 public class Position {
 
@@ -13,8 +13,8 @@ public class Position {
 	
 	/**
 	 * Constructor of Position, set X and Y position.
-	 * @param theX position in the map
-	 * @param theY position in the map
+	 * @param theX position in the map.
+	 * @param theY position in the map.
 	 */
 	public Position(int theX, int theY) {
 		this.x = theX;
