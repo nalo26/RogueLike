@@ -42,7 +42,7 @@ public class Mob {
 	protected State state;
 	/** The time the mob is taking damages, and invincible. */
 	protected int damageCooldown;
-	/** */
+	/** The height of a slime. */
 	protected float slimeHeight;
 	protected int slimeSpeedHeight;
 	
@@ -120,7 +120,9 @@ public class Mob {
 	public void draw(Graphics g) {
 		// Override later.
 	}
-	
+	/**
+	 * Set the state on damage, and set the Cooldown on 50 when the mob is taking a damage.
+	 */
 	public void takeDamage() {
 		this.state = State.DAMAGE;
 		this.damageCooldown = 50;
@@ -141,6 +143,10 @@ public class Mob {
 		// Override by sub MobDisplay, which handle images.		
 	}
 
+	/**
+	 * Load the saved mobs.
+	 * @param save our save.
+	 */
 	public void load(JSONObject save) {
 		this.health.setHealth(((Double) save.get("health")).floatValue());
 		this.damage = ((Double) save.get("damage")).floatValue();

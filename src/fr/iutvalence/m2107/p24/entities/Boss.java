@@ -10,7 +10,9 @@ import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 import fr.iutvalence.m2107.p24.rooms.Room;
-
+/**
+ * Represent the boss of the game with all of his characteristics (health, damage, type, direction, ...).
+ */
 public class Boss extends Mob {
 	
 	/** The different life bar the boss have. */

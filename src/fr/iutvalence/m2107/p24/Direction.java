@@ -6,9 +6,7 @@ import java.util.Random;
  * Represent all of the possible directions.
  */
 public enum Direction {
-/**
- * All possible directions
- */
+
 	UP,
 	RIGHT,
 	DOWN,
