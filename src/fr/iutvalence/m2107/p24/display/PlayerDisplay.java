@@ -53,6 +53,7 @@ public class PlayerDisplay extends Player {
 		
 		this.health.draw(g, this.realPosition, DEFAULT_IMAGE.getWidth(), HealthDisplay.NORMAL_STYLE);
 		this.inventory.draw(g, this);
+		this.xp.draw(g);
 	}
 	
 	@Override

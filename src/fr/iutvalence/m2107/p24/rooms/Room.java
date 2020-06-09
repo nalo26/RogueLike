@@ -159,7 +159,10 @@ public class Room {
 			isDead = m.tick(this, p);
 			if(isDead != null) toDelete.add(isDead);
 		}
-		if(toDelete.size() > 0) this.mobs.removeAll(toDelete);
+		if(toDelete.size() > 0) {
+			this.mobs.removeAll(toDelete);
+			p.setXp(2);
+		}
 		
 		if(this instanceof KeyRoom) this.update(p);
 	}

@@ -9,9 +9,11 @@ import org.json.simple.JSONObject;
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.Inventory;
 import fr.iutvalence.m2107.p24.Position;
+import fr.iutvalence.m2107.p24.Xp;
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
+import fr.iutvalence.m2107.p24.display.XpDisplay;
 import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.ressources.Images;
 import fr.iutvalence.m2107.p24.rooms.Room;
@@ -66,7 +68,7 @@ public class Player {
 	
 	protected State state;
 
-	
+	protected XpDisplay xp;
 	
 	/** Create a new player, with all its caracteristics (health, speed, etc)  */
 	public Player() {
@@ -80,6 +82,7 @@ public class Player {
 		this.attackCooldown = 0;
 		this.damageCooldown = 0;
 		this.state = State.NORMAL;
+		this.xp = new XpDisplay(0);
 	}
 	
 	/** Describe the behavior of the player after a key is pressed. 
@@ -365,5 +368,16 @@ public class Player {
 	public void setDamage(float damage) {
 		this.damage = damage;
 	}
+
+	public float getXp()
+	{
+		return this.xp.getXp();
+	}
+
+	public void setXp(float xp)
+	{
+		this.xp.addXp(xp);
+	}
+	
 	
 }
