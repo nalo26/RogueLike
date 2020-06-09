@@ -49,20 +49,23 @@ public class InventoryDisplay extends Inventory {
 		g.setColor(Color.BLACK);
 		
 		int x = 30;
-		int y = GamePanel.HEIGHT - 100;
+		int y = GamePanel.HEIGHT - 92;
 		for(int s = 0; s < this.slots.length; s++){
 			Item item = this.slots[s].getItem();
 			int quantity = this.slots[s].getQuantity();
 			if(s == 5) {
 				x = 30;
-				y = GamePanel.HEIGHT - 50;		
+				y += 47;		
 			}
 			if(item != null) {
-				g.drawImage(item.getImage(), x, y, item.getImage().getWidth()/4, item.getImage().getHeight()/4, null);
+				g.drawImage(item.getImage(), x, y, 30, 30, null);
 				g.drawString(""+quantity, x + 20, y + 30);
 			}
-			if(s == this.selectedSlot) g.drawRect(x, y, 40, 40);
-			x += 50;
+			if(s == this.selectedSlot) {
+				g.drawRect(x, y, 35, 26);
+				g.drawRect(x-1, y-1, 37, 28);
+			}
+			x += 46;
 		}
 	}
 

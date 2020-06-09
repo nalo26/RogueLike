@@ -133,12 +133,12 @@ public class MiniMap {
 	 * Also put key item on four random room on the map.
 	 */
 	private void generateBossRoom() {
-		Position bossPos = Position.randomPosition(-9, 10, -9, 10);
+		Position bossPos = Position.randomPosition(-8, 8, -8, 8);
 		Direction bossDir = Direction.randomDirection();
 		/*Position bossPos = new Position(0, -2);
 		Direction bossDir = Direction.DOWN;*/
 		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
-			bossPos = Position.randomPosition(-9, 10, -9, 10);
+			bossPos = Position.randomPosition(-8, 8, -8, 8);
 		}
 		
 		int i;
@@ -150,46 +150,71 @@ public class MiniMap {
 
 		Position keyPos = bossPos.copy();
 		Direction keyDir = null;
+		Room r = null;
 		switch (bossDir) {
 			case UP:
-				this.getRoomAt(new Position(bossPos.getX()+1, bossPos.getY())).setDoor(Direction.LEFT, false);
-				this.getRoomAt(new Position(bossPos.getX()-1, bossPos.getY())).setDoor(Direction.RIGHT, false);
-				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()+1)).setDoor(Direction.UP, false);
+				r = this.getRoomAt(new Position(bossPos.getX()+1, bossPos.getY()));
+				if(r != null) r.setDoor(Direction.LEFT, false);
+				r = this.getRoomAt(new Position(bossPos.getX()-1, bossPos.getY()));
+				if(r != null) r.setDoor(Direction.RIGHT, false);
+				r = this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()+1));
+				if(r != null) r.setDoor(Direction.UP, false);
 				keyDir = Direction.DOWN;
 				keyPos.move(0, -1);
-				this.getRoomAt(new Position(keyPos.getX()+1, keyPos.getY())).setDoor(Direction.LEFT, false);
-				this.getRoomAt(new Position(keyPos.getX()-1, keyPos.getY())).setDoor(Direction.RIGHT, false);
-				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()-1)).setDoor(Direction.DOWN, true);
+				r = this.getRoomAt(new Position(keyPos.getX()+1, keyPos.getY()));
+				if(r != null) r.setDoor(Direction.LEFT, false);
+				r = this.getRoomAt(new Position(keyPos.getX()-1, keyPos.getY()));
+				if(r != null) r.setDoor(Direction.RIGHT, false);
+				r = this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()-1));
+				if(r != null) r.setDoor(Direction.DOWN, true);
 				break;
 			case RIGHT: 
-				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()+1)).setDoor(Direction.UP, false);
-				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()-1)).setDoor(Direction.DOWN, false);
-				this.getRoomAt(new Position(bossPos.getX()-1, bossPos.getY())).setDoor(Direction.RIGHT, false);
+				r = this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()+1));
+				if(r != null) r.setDoor(Direction.UP, false);
+				r = this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()-1));
+				if(r != null) r.setDoor(Direction.DOWN, false);
+				r = this.getRoomAt(new Position(bossPos.getX()-1, bossPos.getY()));
+				if(r != null) r.setDoor(Direction.RIGHT, false);
 				keyDir = Direction.LEFT;
 				keyPos.move(+1, 0);
-				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()+1)).setDoor(Direction.UP, false);
-				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()-1)).setDoor(Direction.DOWN, false);
-				this.getRoomAt(new Position(keyPos.getX()+1, keyPos.getY())).setDoor(Direction.LEFT, true);
+				r = this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()+1));
+				if(r != null) r.setDoor(Direction.UP, false);
+				r = this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()-1));
+				if(r != null) r.setDoor(Direction.DOWN, false);
+				r = this.getRoomAt(new Position(keyPos.getX()+1, keyPos.getY()));
+				if(r != null) r.setDoor(Direction.LEFT, true);
 				break;
 			case DOWN:
-				this.getRoomAt(new Position(bossPos.getX()+1, bossPos.getY())).setDoor(Direction.LEFT, false);
-				this.getRoomAt(new Position(bossPos.getX()-1, bossPos.getY())).setDoor(Direction.RIGHT, false);
-				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()-1)).setDoor(Direction.DOWN, false);
+				r = this.getRoomAt(new Position(bossPos.getX()+1, bossPos.getY()));
+				if(r != null) r.setDoor(Direction.LEFT, false);
+				r = this.getRoomAt(new Position(bossPos.getX()-1, bossPos.getY()));
+				if(r != null) r.setDoor(Direction.RIGHT, false);
+				r = this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()-1));
+				if(r != null) r.setDoor(Direction.DOWN, false);
 				keyDir = Direction.UP;
 				keyPos.move(0, +1);
-				this.getRoomAt(new Position(keyPos.getX()+1, keyPos.getY())).setDoor(Direction.LEFT, false);
-				this.getRoomAt(new Position(keyPos.getX()-1, keyPos.getY())).setDoor(Direction.RIGHT, false);
-				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()+1)).setDoor(Direction.UP, true);
+				r = this.getRoomAt(new Position(keyPos.getX()+1, keyPos.getY()));
+				if(r != null) r.setDoor(Direction.LEFT, false);
+				r = this.getRoomAt(new Position(keyPos.getX()-1, keyPos.getY()));
+				if(r != null) r.setDoor(Direction.RIGHT, false);
+				r = this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()+1));
+				if(r != null) r.setDoor(Direction.UP, true);
 				break;
 			case LEFT: 
-				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()+1)).setDoor(Direction.UP, false);
-				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()-1)).setDoor(Direction.DOWN, false);
-				this.getRoomAt(new Position(bossPos.getX()+1, bossPos.getY())).setDoor(Direction.LEFT, false);
+				r = this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()+1));
+				if(r != null) r.setDoor(Direction.UP, false);
+				r = this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()-1));
+				if(r != null) r.setDoor(Direction.DOWN, false);
+				r = this.getRoomAt(new Position(bossPos.getX()+1, bossPos.getY()));
+				if(r != null) r.setDoor(Direction.LEFT, false);
 				keyDir = Direction.RIGHT;
 				keyPos.move(-1, 0);
-				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()+1)).setDoor(Direction.UP, false);
-				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()-1)).setDoor(Direction.DOWN, false);
-				this.getRoomAt(new Position(keyPos.getX()-1, keyPos.getY())).setDoor(Direction.RIGHT, true);
+				r = this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()+1));
+				if(r != null) r.setDoor(Direction.UP, false);
+				r = this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()-1));
+				if(r != null) r.setDoor(Direction.DOWN, false);
+				r = this.getRoomAt(new Position(keyPos.getX()-1, keyPos.getY()));
+				if(r != null) r.setDoor(Direction.RIGHT, true);
 				break;
 			default: break;
 		}
@@ -201,7 +226,9 @@ public class MiniMap {
 		this.rooms.add(new KeyRoom(keyPos, keyDir));
 		
 		for(i = 0; i < 4; i++) { // add the key on random rooms.
-			this.rooms.get(random.nextInt(this.rooms.size())).addItem(new Key());
+			Room k = this.getRoomAt(Player.DEFAULT_ROOM_POSITION);
+			//this.rooms.get(random.nextInt(this.rooms.size())).addItem(new Key());
+			k.addItem(new Key());
 		}
 	}
 	
