@@ -10,6 +10,9 @@ import org.json.simple.JSONObject;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.entities.Player;
+import fr.iutvalence.m2107.p24.items.Key;
+import fr.iutvalence.m2107.p24.rooms.BossRoom;
+import fr.iutvalence.m2107.p24.rooms.KeyRoom;
 import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
@@ -20,7 +23,7 @@ public class MiniMap {
 	/** Rooms of the World. */
 	protected ArrayList<Room> rooms;
 	/** A random object to create random values. */
-	private Random random = new Random();
+	public static final Random random = new Random();
 	/** The seed of the map. */
 	private long seed;
 	
@@ -29,8 +32,8 @@ public class MiniMap {
 	 * https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_backtracker
 	 */
 	public MiniMap() {
-		this.seed = this.random.nextLong();
-		this.random.setSeed(this.seed);
+		this.seed = random.nextLong();
+		random.setSeed(this.seed);
 		
 		this.rooms = new ArrayList<Room>();
 		
@@ -52,11 +55,31 @@ public class MiniMap {
 			next = checkNeighbors(current.getPosition());
 			if(next != null) {
 				stack.push(current);
-				current.addDoors(next);
+				current.generateDoors(next);
 				next.setVisited(true);
 				stack.push(next);
 			}
 		}
+		
+		// Add some connections between rooms.
+		for(Room r : this.rooms) {
+			if(random.nextFloat() > 0.5) {
+				int index = MiniMap.random.nextInt(r.getDoors().length);
+				Position pos = r.getPosition().copy();
+				if(index == 0) pos.move( 0, -1);
+				if(index == 1) pos.move(+1,  0);
+				if(index == 2) pos.move( 0, +1);
+				if(index == 3) pos.move(-1,  0);
+				Room n = this.getRoomAt(pos);
+				if(n != null) {
+					r.openDoor(index);
+					n.openDoor((index + 2) % 4);
+				}
+			}
+		}
+		
+		// Create boss room
+		this.generateBossRoom();
 		
 		// Finished up generation.
 		for(Room r : this.rooms) {
@@ -97,51 +120,91 @@ public class MiniMap {
 		if(left != null && !left.isVisited()) neighbors.add(left);
 		
 		if(neighbors.size() > 0) {
-			int r = this.random.nextInt(neighbors.size());
+			int r = random.nextInt(neighbors.size());
 			return neighbors.get(r);
 		}
 		return null;
 		
 	}
 	
-//	/**
-//	 * Create a random boss room on the map,
-//	 * with its key room next to it.
-//	 */
-//	private void generateBossRoom() {
-//		/*Position bossPos = Position.randomPosition(-9, 10, -9, 10);
-//		Direction bossDir = Direction.randomDirection();*/
-//		Position bossPos = new Position(0, -2);
-//		Direction bossDir = Direction.DOWN;
-//		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
-//			bossPos = Position.randomPosition(-9, 10, -9, 10);
-//		}
-//		this.rooms.put(bossPos, new BossRoom(bossDir));
-//
-//		Position keyPos = null;
-//		Direction keyDir = null;
-//		switch (bossDir) {
-//			case UP:
-//				keyDir = Direction.DOWN;
-//				keyPos = new Position(bossPos.getX(), bossPos.getY()-1);
-//				break;
-//			case RIGHT: 
-//				keyDir = Direction.LEFT;
-//				keyPos = new Position(bossPos.getX()+1, bossPos.getY());
-//				break;
-//			case DOWN:
-//				keyDir = Direction.UP;
-//				keyPos = new Position(bossPos.getX(), bossPos.getY()+1);
-//				break;
-//			case LEFT: 
-//				keyDir = Direction.RIGHT;
-//				keyPos = new Position(bossPos.getX()-1, bossPos.getY());
-//				break;
-//			default: break;
-//		}
-//		this.rooms.put(keyPos, new KeyRoom(keyDir));
-//	}
-//	
+	/**
+	 * Create a random boss room on the map,
+	 * with its key room next to it.
+	 * Also put key item on four random room on the map.
+	 */
+	private void generateBossRoom() {
+		Position bossPos = Position.randomPosition(-9, 10, -9, 10);
+		Direction bossDir = Direction.randomDirection();
+		/*Position bossPos = new Position(0, -2);
+		Direction bossDir = Direction.DOWN;*/
+		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
+			bossPos = Position.randomPosition(-9, 10, -9, 10);
+		}
+		
+		int i;
+		for(i = 0; i < this.rooms.size(); i++) {
+			if(this.rooms.get(i).getPosition().equals(bossPos)) break;
+		}
+		this.rooms.remove(i);
+		this.rooms.add(new BossRoom(bossPos, bossDir));
+
+		Position keyPos = bossPos.copy();
+		Direction keyDir = null;
+		switch (bossDir) {
+			case UP:
+				this.getRoomAt(new Position(bossPos.getX()+1, bossPos.getY())).setDoor(Direction.LEFT, false);
+				this.getRoomAt(new Position(bossPos.getX()-1, bossPos.getY())).setDoor(Direction.RIGHT, false);
+				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()+1)).setDoor(Direction.UP, false);
+				keyDir = Direction.DOWN;
+				keyPos.move(0, -1);
+				this.getRoomAt(new Position(keyPos.getX()+1, keyPos.getY())).setDoor(Direction.LEFT, false);
+				this.getRoomAt(new Position(keyPos.getX()-1, keyPos.getY())).setDoor(Direction.RIGHT, false);
+				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()-1)).setDoor(Direction.DOWN, true);
+				break;
+			case RIGHT: 
+				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()+1)).setDoor(Direction.UP, false);
+				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()-1)).setDoor(Direction.DOWN, false);
+				this.getRoomAt(new Position(bossPos.getX()-1, bossPos.getY())).setDoor(Direction.RIGHT, false);
+				keyDir = Direction.LEFT;
+				keyPos.move(+1, 0);
+				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()+1)).setDoor(Direction.UP, false);
+				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()-1)).setDoor(Direction.DOWN, false);
+				this.getRoomAt(new Position(keyPos.getX()+1, keyPos.getY())).setDoor(Direction.LEFT, true);
+				break;
+			case DOWN:
+				this.getRoomAt(new Position(bossPos.getX()+1, bossPos.getY())).setDoor(Direction.LEFT, false);
+				this.getRoomAt(new Position(bossPos.getX()-1, bossPos.getY())).setDoor(Direction.RIGHT, false);
+				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()-1)).setDoor(Direction.DOWN, false);
+				keyDir = Direction.UP;
+				keyPos.move(0, +1);
+				this.getRoomAt(new Position(keyPos.getX()+1, keyPos.getY())).setDoor(Direction.LEFT, false);
+				this.getRoomAt(new Position(keyPos.getX()-1, keyPos.getY())).setDoor(Direction.RIGHT, false);
+				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()+1)).setDoor(Direction.UP, true);
+				break;
+			case LEFT: 
+				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()+1)).setDoor(Direction.UP, false);
+				this.getRoomAt(new Position(bossPos.getX(), bossPos.getY()-1)).setDoor(Direction.DOWN, false);
+				this.getRoomAt(new Position(bossPos.getX()+1, bossPos.getY())).setDoor(Direction.LEFT, false);
+				keyDir = Direction.RIGHT;
+				keyPos.move(-1, 0);
+				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()+1)).setDoor(Direction.UP, false);
+				this.getRoomAt(new Position(keyPos.getX(), keyPos.getY()-1)).setDoor(Direction.DOWN, false);
+				this.getRoomAt(new Position(keyPos.getX()-1, keyPos.getY())).setDoor(Direction.RIGHT, true);
+				break;
+			default: break;
+		}
+		
+		for(i = 0; i < this.rooms.size(); i++) {
+			if(this.rooms.get(i).getPosition().equals(keyPos)) break;
+		}
+		this.rooms.remove(i);
+		this.rooms.add(new KeyRoom(keyPos, keyDir));
+		
+		for(i = 0; i < 4; i++) { // add the key on random rooms.
+			this.rooms.get(random.nextInt(this.rooms.size())).addItem(new Key());
+		}
+	}
+	
 	/**
 	 * Describe the behavior of the map every tick for a given player.
 	 * @param room the current room.

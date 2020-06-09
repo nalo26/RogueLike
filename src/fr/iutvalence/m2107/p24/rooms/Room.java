@@ -98,7 +98,7 @@ public class Room {
 		return res;
 	}
 	
-	public void addDoors(Room r) {
+	public void generateDoors(Room r) {
 		int x = this.position.getX() - r.position.getX();
 		if(x == 1) {
 			this.doors[3] = true;
@@ -115,6 +115,28 @@ public class Room {
 		} else if (y == -1) {
 			this.doors[2] =  true;
 			r.doors[0] = true;
+		}
+	}
+	
+	public void openDoor(int d) {
+		this.doors[d] = true;
+	}
+	
+	public void setDoor(Direction d, boolean b) {
+		switch(d) {
+			case UP:
+				this.doors[0] = b;
+				break;
+			case RIGHT:
+				this.doors[1] = b;
+				break;
+			case DOWN:
+				this.doors[2] = b;
+				break;
+			case LEFT:
+				this.doors[3] = b;
+				break;
+			default: break;
 		}
 	}
 	
@@ -189,6 +211,10 @@ public class Room {
 		return this.items;
 	}
 
+	public void addItem(Item i) {
+		this.items.add(i);
+	}
+	
 	public void removeItem(Item i) {
 		this.items.remove(i);
 	}
