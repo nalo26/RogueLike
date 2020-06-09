@@ -4,8 +4,11 @@ public class Xp
 {
 	protected float xp;
 	
+	protected boolean lvlUp;
+	
 	public Xp(float theXp) {
 		this.xp = theXp;
+		this.lvlUp = false;
 	}
 
 	public void addXp(float xp) {
@@ -15,6 +18,8 @@ public class Xp
 	{
 		return this.xp;
 	}
+	
+
 	
 	
 }
