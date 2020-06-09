@@ -45,7 +45,10 @@ public abstract class GameState {
      * @param button the pressed button.
      */
 	protected abstract void mousePressed(int button);
-
+	
+	/** Describe how to manage the current button is released. 
+     * @param button the released button.
+     */
 	protected abstract void mouseReleased(int button);
     
 }

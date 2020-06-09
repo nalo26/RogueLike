@@ -389,5 +389,4 @@ public class Player {
 		this.xp.addXp(xp);
 	}
 	
-	
 }

@@ -2,7 +2,9 @@ package fr.iutvalence.m2107.p24.items;
 
 import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.ressources.Images;
-
+/**
+ * Represent the Speed potion.
+ */
 public class SpeedPotion extends Item {
 
 	/** The probability of spawn. */
@@ -22,7 +24,11 @@ public class SpeedPotion extends Item {
 		super(Images.POTION_SPEED);
 		this.counter = 0;
 	}
-
+	
+	/**
+	 * Add speed to the player's movements.
+	 * @param p the player to speed.
+	 */
 	@Override
 	public void tick(Player p) {
 		this.counter = SPEED_TIME;

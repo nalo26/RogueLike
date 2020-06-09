@@ -11,10 +11,12 @@ public class HealthPotion extends Item {
 	/** The probability of spawn. */
 	public static final float PROBABILITY = 0.01F;
 	
-	/** The life the potion adds. */
+	/** The life the potion adds depending of the player life. */
 	public static final int HEALTH_BOOST = 2;
 	
-	
+	/** 
+	 * Create a new Health potion.
+	 */
 	public HealthPotion() {
 		super(Images.POTION_HEALTH);
 	}

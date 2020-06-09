@@ -10,7 +10,9 @@ import fr.iutvalence.m2107.p24.MiniMap;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.rooms.Room;
-
+/**
+ * Represents the state of the map.
+ */
 public class FullMapState extends GameState {
 	
 	/** The mini-map of the game. */
@@ -74,6 +76,9 @@ public class FullMapState extends GameState {
 		}
 	}
 
+	/**
+	 * Reduce the map when M or Escape is pressed.
+	 */
 	@Override
 	public void keyPressed(int k) {
 		// Leave the map.
