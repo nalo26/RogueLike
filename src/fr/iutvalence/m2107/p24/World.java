@@ -115,6 +115,7 @@ public class World extends GameState {
 		HashMap<String, Integer> inventory = new HashMap<String, Integer>();
 		for(Slot s : this.player.getInventory().getItems()) {
 			if(s.getItem() != null)	inventory.put(s.getItem().getImage().toString(), s.getQuantity());
+			else inventory.put("", 0);
 		}
 		player.put("inventory", inventory);
 		save.put("player", player);
@@ -171,21 +172,12 @@ public class World extends GameState {
 		save.put("rooms", rooms);
 		
 		JSONObject saveJSON = new JSONObject(save);
-		/*FileWriter file;
-		try {
-			file = new FileWriter("saves/save.json");
-			file.write(saveJSON.toString());
-			file.flush();
-			saveJSON.writeJSONString(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 		
 		File file = new File("saves/save.json");
 		String data = saveJSON.toString();
 		
 		try(BufferedWriter writer = Files.newBufferedWriter(file.toPath())) {
-			for(Byte b : data.getBytes()) {
+			for(Byte b : data.getBytes()) { //writing byte per byte, the String is to big to be write at once.
 				writer.write(b);
 				writer.flush();
 			}

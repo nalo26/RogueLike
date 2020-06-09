@@ -28,7 +28,6 @@ public class RoomDisplay extends Room {
 	 */
 	public RoomDisplay(Position p) {
 		super(p);
-		//this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
 	}
 	
 	/**
@@ -39,6 +38,7 @@ public class RoomDisplay extends Room {
 	 */
 	public RoomDisplay(Position p, String config) {
 		super(p, config);
+		this.image = Images.valueOf("ROOM"+Integer.parseInt(config, 2)).getImage();
 	}
 	
 	/** {@inheritDoc} */

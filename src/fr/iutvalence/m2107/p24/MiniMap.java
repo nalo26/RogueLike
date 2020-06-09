@@ -278,7 +278,8 @@ public class MiniMap {
 			JSONObject pos = (JSONObject) room.get("position");
 			Position roomPos = new Position(((Long) pos.get("x")).intValue(), ((Long) pos.get("y")).intValue());
 			Room newRoom = new RoomDisplay(roomPos, config);
-			newRoom.load((JSONObject) room.get("mobs"));
+			newRoom.load(room);
+			newRoom.setVisited((boolean) room.get("visited"));
 			
 			this.rooms.add(newRoom);
 		}

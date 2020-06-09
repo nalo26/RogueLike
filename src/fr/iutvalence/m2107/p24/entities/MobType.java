@@ -9,7 +9,8 @@ public enum MobType {
 
 	SKELETON,
 	ZOMBIE,
-	SLIME;
+	SLIME,
+	BOSS;
 	
 	/**
 	 * Randomly choose a mob type.
@@ -18,7 +19,7 @@ public enum MobType {
 	public static MobType randomMobType() {
 		MobType[] allMobs = MobType.values();
 		Random random = new Random();
-		return allMobs[random.nextInt(allMobs.length)];
+		return allMobs[random.nextInt(allMobs.length-1)];
 	}
 	
 }

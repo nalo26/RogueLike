@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.display.MobDisplay;
+import fr.iutvalence.m2107.p24.entities.Boss;
 import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.entities.MobType;
 import fr.iutvalence.m2107.p24.entities.Player;
@@ -189,17 +190,33 @@ public class Room {
 	@SuppressWarnings("unchecked")
 	public void load(JSONObject save) {
 		this.mobs.clear();
+		this.items.clear();
 		
-		HashMap<String, Object> mobs = (HashMap<String, Object>) save;
+		HashMap<String, Object> mobs = (HashMap<String, Object>) save.get("mobs");
 		for(HashMap.Entry<String, Object> m : mobs.entrySet()) {
 			JSONObject mob = (JSONObject) m.getValue();
 			
-			MobType type = MobType.valueOf((String) mob.get("type"));
-			MobDisplay newMob = new MobDisplay(type);
-			newMob.load(mob);
+			Mob newMob = new Mob(MobType.randomMobType());
+			String sType = (String) mob.get("type");
+			if(MobType.valueOf(sType) != MobType.BOSS) {
+				MobType type = MobType.valueOf(sType);
+				newMob = new MobDisplay(type);
+			} else newMob = new Boss();
 			
+			newMob.load(mob);
 			this.mobs.add(newMob);
 		}
+		
+		HashMap<String, Object> items = (HashMap<String, Object>) save.get("items");
+		for(HashMap.Entry<String, Object> i : items.entrySet()) {
+			JSONObject item = (JSONObject) i.getValue();
+			
+			Item newItem = ItemsList.valueOf((String) item.get("item")).item;
+			JSONObject pos = (JSONObject) item.get("position");
+			newItem.setPosition(((Long) pos.get("x")).intValue(), ((Long) pos.get("y")).intValue());
+			
+			this.items.add(newItem);
+		}	
 	}
 
 	public boolean isVisited() {

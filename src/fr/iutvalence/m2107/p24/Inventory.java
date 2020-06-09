@@ -1,11 +1,13 @@
 package fr.iutvalence.m2107.p24;
 
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.items.Item;
+import fr.iutvalence.m2107.p24.items.ItemsList;
 
 /**
  * Represent the inventory of the player
@@ -78,8 +80,15 @@ public class Inventory {
 	 * Load the inventory from the save.
 	 * @param save the save of the inventory to be restored.
 	 */
+	@SuppressWarnings("unchecked")
 	public void load(JSONObject save) {
-		//TODO load inventory
+		HashMap<String, Long> inventory = (HashMap<String, Long>) save;
+		for(HashMap.Entry<String, Long> entry : inventory.entrySet()) {
+			int empty = this.getFirstEmpty();
+			if(entry.getValue().intValue() > 0) {
+				this.slots[empty] = new Slot(ItemsList.valueOf(entry.getKey()).item, entry.getValue().intValue());
+			}
+		}
 	}
 	
 	/**

@@ -4,15 +4,15 @@ import java.util.Random;
 
 public enum ItemsList {
 	
-	POTION_HEALTH(HealthPotion.PROBABILITY),
-	POTION_SPEED(SpeedPotion.PROBABILITY),
-	POTION_POISON(PoisonPotion.PROBABILITY),
-	KEY(0); //special item, can't be randomly generate.
+	POTION_HEALTH(new HealthPotion()),
+	POTION_SPEED(new SpeedPotion()),
+	POTION_POISON(new PoisonPotion()),
+	KEY(new Key());
 
-	public float probability;
+	public Item item;
 	
-	ItemsList(float prob) {
-		this.probability = prob;
+	ItemsList(Item i) {
+		this.item = i;
 	}
 
 	public static Item randomItem() {
