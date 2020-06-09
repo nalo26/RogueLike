@@ -32,9 +32,11 @@ public class Room {
 	public static final int MAX_TREES = 10;
 	/** The maximal number of items on a room. */
 	public static final int MAX_ITEMS = 3;
-	
+	/** The position of the room. */
 	private Position position;
+	/** The different doors of the room. */
 	private boolean[] doors = {false, false, false, false};
+	/** If the room has been visited. */
 	private boolean visited;
 	
 	/** List of all items in this room. */
@@ -98,7 +100,10 @@ public class Room {
 		
 		return res;
 	}
-	
+	/**
+	 * Generate doors in the room.
+	 * @param r The room that is generated.
+	 */
 	public void generateDoors(Room r) {
 		int x = this.position.getX() - r.position.getX();
 		if(x == 1) {
@@ -122,7 +127,7 @@ public class Room {
 	public void openDoor(int d) {
 		this.doors[d] = true;
 	}
-	
+
 	public void setDoor(Direction d, boolean b) {
 		switch(d) {
 			case UP:
@@ -218,31 +223,48 @@ public class Room {
 			this.items.add(newItem);
 		}	
 	}
-
+	/**
+	 * @return if the room has been visited.
+	 */
 	public boolean isVisited() {
 		return this.visited;
 	}
-	
+	/**
+	 * Set if the room has already been visited.
+	 * @param v if the room is already visited.
+	 */
 	public void setVisited(boolean v) {
 		this.visited = v;
 	}
-	
+	/**
+	 * @return items on the room.
+	 */
 	public ArrayList<Item> getItems() {
 		return this.items;
 	}
-
+	/**
+	 * Add an item to the room.
+	 * @param i the item who's going to be add.
+	 */
 	public void addItem(Item i) {
 		this.items.add(i);
 	}
-	
+	/**
+	 * Remove an item to the room.
+	 * @param i the item who's going to be remove.
+	 */
 	public void removeItem(Item i) {
 		this.items.remove(i);
 	}
-	
+	/**
+	 * @return the mobs in the room.
+	 */
 	public ArrayList<Mob> getMobs() {
 		return this.mobs;
 	}
-	
+	/**
+	 * @return the room position.
+	 */
 	public Position getPosition() {
 		return this.position;
 	}

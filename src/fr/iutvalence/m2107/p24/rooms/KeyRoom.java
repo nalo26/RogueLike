@@ -13,10 +13,13 @@ import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.items.Key;
 import fr.iutvalence.m2107.p24.ressources.Images;
-
+/**
+ * This is in this room that the player must put all 4 keys he will found on the dungeon to unlock boss room. 
+ */
 public class KeyRoom extends Room {
-	
+	/** The Width of the key depending on screen size. */
 	private static int KEY_WIDTH = Math.round((float)32/(float)1920*GamePanel.WIDTH);
+	/** The image of the wall with the keys. */
 	private static final BufferedImage KEY_WALL = Images.KEY_WALL.getImage();
 	
 	/** The image of the room. */
@@ -27,9 +30,7 @@ public class KeyRoom extends Room {
 	private Key[] keys;
 	
 	/** 
-	 * Create a new keys room.
-	 * This is in this room that the player must put
-	 * all 4 keys he will found on the dungeon. 
+	 * Create a new keys room. 
 	 * @param p The position of the room on the map.
 	 * @param d The direction of the room.
 	 */

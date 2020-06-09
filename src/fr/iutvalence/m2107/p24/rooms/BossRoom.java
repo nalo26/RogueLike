@@ -9,9 +9,12 @@ import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.entities.Boss;
 import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.ressources.Images;
-
+/**
+ * The room where the boss is.
+ */
 public class BossRoom extends Room {
 	
+	/** The image of the room. */
 	private BufferedImage image;
 	
 	/** 
