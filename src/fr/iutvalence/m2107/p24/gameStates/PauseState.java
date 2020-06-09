@@ -36,7 +36,7 @@ public class PauseState extends GameState implements ImageObserver {
 	/** {@inheritDoc} */
 	@Override
 	public void tick() {
-		// Override later.
+		// Not used here.
 	}
 
 	/** {@inheritDoc} */

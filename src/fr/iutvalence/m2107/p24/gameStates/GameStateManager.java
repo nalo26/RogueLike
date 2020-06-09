@@ -19,7 +19,7 @@ public class GameStateManager
     
     /** Look at which state is at the top of the stack and call his tick method. */
     public void tick() {
-        this.state.peek().tick();
+    	if(this.state.size() > 0) this.state.peek().tick();
     }
     
     /**
