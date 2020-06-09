@@ -58,7 +58,7 @@ public class InventoryDisplay extends Inventory {
 				y += 47;		
 			}
 			if(item != null) {
-				g.drawImage(item.getImage(), x, y, 30, 30, null);
+				g.drawImage(item.getImageDisplay(), x, y, 30, 30, null);
 				g.drawString(""+quantity, x + 20, y + 30);
 			}
 			if(s == this.selectedSlot) {

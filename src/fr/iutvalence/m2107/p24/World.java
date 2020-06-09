@@ -2,10 +2,12 @@ package fr.iutvalence.m2107.p24;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
@@ -20,6 +22,7 @@ import fr.iutvalence.m2107.p24.gameStates.FullMapState;
 import fr.iutvalence.m2107.p24.gameStates.GameState;
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
 import fr.iutvalence.m2107.p24.gameStates.PauseState;
+import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
@@ -109,7 +112,11 @@ public class World extends GameState {
 		playerRoomPosition.put("x", this.player.getRoomPosition().getX());
 		playerRoomPosition.put("y", this.player.getRoomPosition().getY());
 		player.put("roomPosition", playerRoomPosition);
-		player.put("inventory", this.player.getInventory().getItems());
+		HashMap<String, Integer> inventory = new HashMap<String, Integer>();
+		for(Slot s : this.player.getInventory().getItems()) {
+			if(s.getItem() != null)	inventory.put(s.getItem().getImage().toString(), s.getQuantity());
+		}
+		player.put("inventory", inventory);
 		save.put("player", player);
 
 		HashMap<String, Object> rooms = new HashMap<String, Object>();
@@ -120,6 +127,7 @@ public class World extends GameState {
 			HashMap<String, Object> room = new HashMap<String, Object>();
 			
 			room.put("connections", r.getDoorsString());
+			room.put("visited", r.isVisited());
 			HashMap<String, Integer> roomPosition = new HashMap<String, Integer>();
 			roomPosition.put("x", p.getX());
 			roomPosition.put("y", p.getY());
@@ -128,7 +136,7 @@ public class World extends GameState {
 			int j = 0;
 			for(Mob m : r.getMobs()) {
 				HashMap<String, Object> mob = new HashMap<String, Object>();
-				mob.put("type", m.getType().toString());
+				mob.put("type", (m.getType() != null ? m.getType().toString() : "BOSS"));
 				mob.put("health", m.getHealth().getLife());
 				mob.put("damage", m.getDamage());
 				mob.put("direction", m.getWatching().toString());
@@ -142,13 +150,28 @@ public class World extends GameState {
 			}
 			room.put("mobs", mobs);
 			
+			HashMap<String, Object> items = new HashMap<String, Object>();
+			j = 0;
+			for(Item it : r.getItems()) {
+				HashMap<String, Object> item = new HashMap<String, Object>();
+				item.put("item", it.getImage().toString());
+				HashMap<String, Integer> itemPos = new HashMap<String, Integer>();
+				itemPos.put("x", it.getPos().getX());
+				itemPos.put("y", it.getPos().getY());
+				item.put("position", itemPos);
+				
+				items.put(""+j, item);
+				j++;
+			}
+			room.put("items", items);
+			
 			rooms.put(""+i, room);
 			i++;
 		}
 		save.put("rooms", rooms);
 		
 		JSONObject saveJSON = new JSONObject(save);
-		FileWriter file;
+		/*FileWriter file;
 		try {
 			file = new FileWriter("saves/save.json");
 			file.write(saveJSON.toString());
@@ -156,7 +179,20 @@ public class World extends GameState {
 			saveJSON.writeJSONString(file);
 		} catch (IOException e) {
 			e.printStackTrace();
+		}*/
+		
+		File file = new File("saves/save.json");
+		String data = saveJSON.toString();
+		
+		try(BufferedWriter writer = Files.newBufferedWriter(file.toPath())) {
+			for(Byte b : data.getBytes()) {
+				writer.write(b);
+				writer.flush();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
 	}
 	
 	/**

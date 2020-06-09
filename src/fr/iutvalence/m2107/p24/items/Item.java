@@ -17,7 +17,9 @@ import fr.iutvalence.m2107.p24.ressources.Images;
 public abstract class Item {
 	
 	/** The image of the item. */
-	protected BufferedImage image;
+	protected BufferedImage imageDisplay;
+	
+	protected Images image;
 	/** The position of the item. */
 	protected Position position;
 	
@@ -28,17 +30,19 @@ public abstract class Item {
 	 */
 	public Item(Position pos, Images im) {
 		this.position = pos;
-		this.image = im.getImage();
+		this.image = im;
+		this.imageDisplay = im.getImage();
 		
 	}
 	
 	public Item(Images im) {
-		this.image = im.getImage();
+		this.image = im;
+		this.imageDisplay = im.getImage();
 		this.position = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
-		Rectangle rect = new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
+		Rectangle rect = new Rectangle(this.position.getX(), this.position.getY(), this.imageDisplay.getWidth(), this.imageDisplay.getHeight());
 		while(!MiniMapDisplay.canBeCreatedAt(rect)) {
 			this.position = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
-			rect = new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
+			rect = new Rectangle(this.position.getX(), this.position.getY(), this.imageDisplay.getWidth(), this.imageDisplay.getHeight());
 		}
 	}
 	
@@ -51,23 +55,25 @@ public abstract class Item {
 	}
 
 	public void draw(Graphics g) {
-		g.drawImage(this.image, this.position.getX(), this.position.getY(), this.image.getWidth()/2, this.image.getHeight()/2, null);
+		g.drawImage(this.imageDisplay, this.position.getX(), this.position.getY(), this.imageDisplay.getWidth()/2, this.imageDisplay.getHeight()/2, null);
 	}
 	
 	public abstract void tick(Player p);
 	
 	public Rectangle getBounds() {
-		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth()/2, this.image.getHeight()/2);
+		return new Rectangle(this.position.getX(), this.position.getY(), this.imageDisplay.getWidth(), this.imageDisplay.getHeight());
 	}
 
-	public BufferedImage getImage()
-	{
+	public BufferedImage getImageDisplay() {
+		return this.imageDisplay;
+	}
+	
+	public Images getImage() {
 		return this.image;
 	}
 
 	@Override
-	public int hashCode()
-	{
+	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((this.image == null) ? 0 : this.image.hashCode());
@@ -75,21 +81,14 @@ public abstract class Item {
 	}
 
 	@Override
-	public boolean equals(Object obj)
-	{
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
 		Item other = (Item) obj;
-		if (this.image == null)
-		{
-			if (other.image != null)
-				return false;
-		} else if (!this.image.equals(other.image))
-			return false;
+		if (this.image == null) {
+			if (other.image != null) return false;
+		} else if (!this.image.equals(other.image)) return false;
 		return true;
 	}
 	

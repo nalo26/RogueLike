@@ -9,7 +9,6 @@ import org.json.simple.JSONObject;
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.Inventory;
 import fr.iutvalence.m2107.p24.Position;
-import fr.iutvalence.m2107.p24.Xp;
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
