@@ -5,18 +5,29 @@ import java.awt.Graphics;
 
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Xp;
-
+/**
+ * Display the XP with a colored bar.
+ */
 public class XpDisplay extends Xp
 {
-
+	/** The width of the xp display for the player. */
 	public static final int XP_WIDTH = 500;
+	/** The height of the xp display for the player. */
 	public static final int XP_HEIGHT = 20;
 	
+	/**
+	 * Call the Builder of Xp for your xp on the display.
+	 * @param theXp the current xp of the player.
+	 */
 	public XpDisplay(float theXp)
 	{
 		super(theXp);
 	}
 
+	/**
+	 * Draw the XP Display of our player.
+	 * @param g the draw component.
+	 */
 	public void draw(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.drawRect(GamePanel.WIDTH/2-250, GamePanel.HEIGHT - 30, XP_WIDTH, XP_HEIGHT);

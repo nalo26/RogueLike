@@ -12,8 +12,7 @@ import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
- * display the inventory with an image
- *
+ * Display the inventory with an image.
  */
 public class InventoryDisplay extends Inventory {
 
@@ -23,8 +22,9 @@ public class InventoryDisplay extends Inventory {
 	private BufferedImage transparentInventoryImage;
 	/** The offset of the inventory display. */
 	private static final int OFFSET = 15;
-	/** The size of the inventory display. */
+	/** The width of the inventory display. */
 	private static final int WIDTH = 250;
+	/** The height of the inventory display. */
 	private static final int HEIGHT = 119;
 	
 	/**

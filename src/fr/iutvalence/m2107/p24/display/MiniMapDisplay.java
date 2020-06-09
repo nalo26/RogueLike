@@ -29,9 +29,9 @@ public class MiniMapDisplay extends MiniMap {
 	/** The height of the corridor. */
 	private static final int CORRIDOR_HEIGHT = 6;
 	
-	/** The width offset of the walls. */
+	/** The width offset of the walls depending on the screen size. */
 	public static int offsetW = (int) (0.05 * GamePanel.WIDTH);
-	/** The height offset of the walls. */
+	/** The height offset of the walls depending on the screen size. */
 	public static int offsetH = (int) ((96/1088) * GamePanel.HEIGHT);
 	/** The width of the door depending on the screen size. */
 	public static int doorWidth = GamePanel.WIDTH*64/1920;

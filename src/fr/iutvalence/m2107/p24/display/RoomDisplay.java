@@ -79,6 +79,9 @@ public class RoomDisplay extends Room {
 		}
 	}
 	
+	/**
+	 * Set the image who's going to be draw.
+	 */
 	@Override
 	public void setImage() {
 		this.image = Images.valueOf("ROOM"+Integer.parseInt(this.getDoorsString(), 2)).getImage();

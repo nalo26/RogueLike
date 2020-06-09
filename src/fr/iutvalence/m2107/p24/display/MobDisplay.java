@@ -61,6 +61,9 @@ public class MobDisplay extends Mob {
 		this.health.draw(g, this.realPosition, this.image.getWidth(), HealthDisplay.NORMAL_STYLE);
 	}
 	
+	/**
+	 * @return a rectangle depending on the position of the entity and his size.
+	 */
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());

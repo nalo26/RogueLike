@@ -5,7 +5,9 @@ import java.awt.Graphics;
 
 import fr.iutvalence.m2107.p24.Health;
 import fr.iutvalence.m2107.p24.Position;
-
+/**
+ * Display the health with a colored bar.
+ */
 public class HealthDisplay extends Health {
 	/** The width of the health display for normal mobs. */
 	public static final int NORMAL_STYLE = 52;
@@ -25,7 +27,7 @@ public class HealthDisplay extends Health {
 	}
 	
 	/**
-	 * Draw the Health Display of our object (mob or player)
+	 * Draw the Health Display of our object (mob or player).
 	 * @param g the draw component.
 	 * @param p the position of our display
 	 * @param size the size of our display

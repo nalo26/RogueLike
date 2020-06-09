@@ -20,7 +20,6 @@ public class Slot {
 
 	
 	/**
-	 * Get the Item of the slot.
 	 * @return the Item of the slot.
 	 */
 	public Item getItem() {
@@ -28,7 +27,6 @@ public class Slot {
 	}
 
 	/**
-	 * Get the quantity of the Item of the slot.
 	 * @return the quantity of the Item of the slot.
 	 */
 	public int getQuantity() {

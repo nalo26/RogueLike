@@ -27,7 +27,6 @@ public class Xp
 	}
 	
 	/**
-	 * Get the current xp.
 	 * @return the current xp.
 	 */
 	public float getXp()

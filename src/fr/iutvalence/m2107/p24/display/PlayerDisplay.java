@@ -59,6 +59,9 @@ public class PlayerDisplay extends Player {
 		g.drawString(String.valueOf(this.lvl), GamePanel.WIDTH/2, GamePanel.HEIGHT - 40);
 	}
 	
+	/**
+	 * Updating the true position based on the current position of the entity.
+	 */
 	@Override
 	public void updateRealPosition() {
 		this.realPosition = World.updatePosition(this.position);
