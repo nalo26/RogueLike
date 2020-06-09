@@ -33,6 +33,7 @@ public class Inventory {
 	/**
 	 * Add an item to the list.
 	 * @param i the item wanted to add.
+	 * @return <tt>true</tt> if the Item has successfully been added to inventory, <tt>false</tt> else.
 	 */
 	public boolean addItem(Item i) {
 		for(int j = 0; j < this.slots.length; j++) { //seek if item already on inventory.

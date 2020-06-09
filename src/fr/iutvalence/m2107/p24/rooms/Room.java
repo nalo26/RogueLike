@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 import org.json.simple.JSONObject;
@@ -17,7 +16,6 @@ import fr.iutvalence.m2107.p24.entities.MobType;
 import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.items.ItemsList;
-import fr.iutvalence.m2107.p24.items.Key;
 import fr.iutvalence.m2107.p24.ressources.Images;
 
 /**
@@ -25,13 +23,7 @@ import fr.iutvalence.m2107.p24.ressources.Images;
  */
 public class Room {
 	
-	/** List of all mobs in this room. */
-	protected List<Mob> mobs = new ArrayList<Mob>();
-	/** List of all decorations in this room. */
-	protected HashMap<Position, Images> decor = new HashMap<Position, Images>();
-	/** The state of the doors in the room. */
-	protected boolean[] doors;
-	/**  The maximum amount of mobs that can spawn at the same time on a room. */
+	/** The maximum amount of mobs that can spawn at the same time on a room. */
 	public static final int MAX_MOBS = 10;
 	/** The minimal number of trees on a room. */
 	public static final int MIN_TREES = 5;
@@ -39,18 +31,26 @@ public class Room {
 	public static final int MAX_TREES = 10;
 	/** The maximal number of items on a room. */
 	public static final int MAX_ITEMS = 3;
+	
+	private Position position;
+	private boolean[] doors = {false, false, false, false};
+	private boolean visited;
+	
 	/** List of all items in this room. */
-	protected List<Item> allItems;
+	protected ArrayList<Item> items = new ArrayList<Item>();
+	/** List of all mobs in this room. */
+	protected ArrayList<Mob> mobs = new ArrayList<Mob>();
+	/** List of all decorations in this room. */
+	protected HashMap<Position, Images> decor = new HashMap<Position, Images>();
+	
 	/**
-	 * Construct of a new room.
-	 * It gets the images according to the binary order of doors.
-	 * For example: "1010" will be open on right and left, but close on up and down.
-	 * This will be the image "ROOM10".
-	 * @param config the configuration of doors of the room (i.e. {false, true, true, false}).
-	 * @param bin the binary configuration of doors.
+	 * Create a new Room, fully close.
+	 * Generate some mobs, items & decoration on it.
+	 * @param p The position of the room on the map.
 	 */
-	public Room(boolean[] config, String bin) {
-		this.doors = config;
+	public Room(Position p) {
+		this.position = p;
+		this.visited = false;
 		
 		Random random = new Random();
 		int mobAmount = random.nextInt(MAX_MOBS);
@@ -64,36 +64,28 @@ public class Room {
 		}
 		
 		int itemAmount = random.nextInt(MAX_ITEMS);
-		this.allItems = new ArrayList<Item>();
-		for(int i =0; i < itemAmount; i++) {
+		for(int i = 0; i < itemAmount; i ++) {
 			Item it = ItemsList.randomItem();
-			if(it != null) this.allItems.add(it);
+			if(it != null) this.items.add(it);
 		}
 	}
 	
 	/**
-	 * Create a new room, with the configuration as String. 
-	 * @param config the String configuration of doors of the room (i.e. "0110").
+	 * Create a room with a specific configuration.
+	 * @param p The position of the room on the map.
+	 * @param config The doors' configuration. (i.e. "0110");
+	 * @see #getDoors()
 	 */
-	public Room(String config) {
-		this(Room.computeDoors(config), config);
-	}
-	
-	/**
-	 * Create a room that MUST have a key on it.
-	 * @param config the String configuration of doors of the room.
-	 * @return the special room with the key on it.
-	 */
-	public Room keyRoom(String config) {
-		Room r = new Room(config);
-		r.allItems.add(new Key());
-		return r;
+	public Room(Position p, String config) {
+		this(p);
+		this.doors = computeDoors(config);
 	}
 	
 	/**
 	 * Compute the string configuration to convert it in a boolean array.
 	 * @param config the String configuration of doors (i.e. "0110").
 	 * @return a boolean array of door values (i.e. {false, true, true, false}).
+	 * @see #getDoors()
 	 */
 	protected static boolean[] computeDoors(String config) {
 		if(config.length() != 4) return null;
@@ -106,16 +98,41 @@ public class Room {
 		return res;
 	}
 	
+	public void addDoors(Room r) {
+		int x = this.position.getX() - r.position.getX();
+		if(x == 1) {
+			this.doors[3] = true;
+			r.doors[1] = true;
+		} else if (x == -1) {
+			this.doors[1] =  true;
+			r.doors[3] = true;
+		}
+		
+		int y = this.position.getY() - r.position.getY();
+		if(y == 1) {
+			this.doors[0] = true;
+			r.doors[2] = true;
+		} else if (y == -1) {
+			this.doors[2] =  true;
+			r.doors[0] = true;
+		}
+	}
+	
 	protected void generateDecorElement() {
 		// Override later.
 	}
 	
-	/** Instructions executed every tick. 
-	 * @param p the player of the room.
-	 */
+	protected void update(Player p) {
+		// Override later.
+	}
+	
+	public void setImage() {
+		// Override later.
+	}
+	
 	public void tick(Player p) {
 		Mob isDead = null;
-		List<Mob> toDelete = new ArrayList<Mob>();
+		ArrayList<Mob> toDelete = new ArrayList<Mob>();
 		for(Mob m : this.mobs) {
 			isDead = m.tick(this, p);
 			if(isDead != null) toDelete.add(isDead);
@@ -129,55 +146,21 @@ public class Room {
 		// Override later.
 	}
 	
-	protected void update(Player p) {
-		// Override later.
-	}
-	
 	/**
-	 * Get the list of mobs of the room.
-	 * @return the list of mobs (Getter).
-	 */
-	public List<Mob> getMobs() {
-		return this.mobs;
-	}
-
-	/**
-	 * Get the doors of the room.
-	 * @return the boolean array of doors:
-	 *  [0] right
-	 *  [1] up
-	 *  [2] left
-	 *  [3] down
-	 */
-	public boolean[] getDoors() {
-		return this.doors;
-	}
-
-	public String getDoorsString() {
-		String res = "";
-		for(Boolean door : this.doors) {
-			res += (door.booleanValue() ? "1" : "0");
-		}
-		return res;
-	}
-	
-	/**
-	 * Check if the given door is open.
-	 * @param dir the direction of the door.
-	 * @return true is the door is open.
+	 * Check if the door at the given Direction on the room is open.
+	 * @param dir The direction of the door.
+	 * @return <tt>true</tt> is the door is open, <tt>false</tt> else.
 	 */
 	public boolean isOpen(Direction dir) {
 		switch (dir) {
-			case RIGHT: return (this.doors[0]);
-			case UP: return (this.doors[1]);
-			case LEFT: return (this.doors[2]);
-			case DOWN: return (this.doors[3]);
+			case UP: return this.doors[0];
+			case RIGHT: return this.doors[1];
+			case DOWN: return this.doors[2];
+			case LEFT: return this.doors[3];
 			default: return false;
 		}
 	}
-	 /** Load a save from a Json file.
-	 * @param save the file that you want to load.
-	 */
+	
 	@SuppressWarnings("unchecked")
 	public void load(JSONObject save) {
 		this.mobs.clear();
@@ -193,23 +176,55 @@ public class Room {
 			this.mobs.add(newMob);
 		}
 	}
+
+	public boolean isVisited() {
+		return this.visited;
+	}
+	
+	public void setVisited(boolean v) {
+		this.visited = v;
+	}
+	
+	public ArrayList<Item> getItems() {
+		return this.items;
+	}
+
+	public void removeItem(Item i) {
+		this.items.remove(i);
+	}
+	
+	public ArrayList<Mob> getMobs() {
+		return this.mobs;
+	}
+	
+	public Position getPosition() {
+		return this.position;
+	}
+	
+	/**
+	 * Get the doors of the room.
+	 * @return the boolean array of doors:
+	 *  [0] up
+	 *  [1] right
+	 *  [2] down
+	 *  [3] left
+	 */
+	public boolean[] getDoors() {
+		return this.doors;
+	}
+	
+	public String getDoorsString() {
+		String res = "";
+		for(boolean d : this.doors) {
+			res += (d ? "1" : "0");
+		}
+		return res;
+	}
 	
 	/** {@inheritDoc} */
 	@Override
 	public String toString() {
-		return "Room [doors=" + Arrays.toString(this.doors) + "]";
+		return "Room [position=" + this.position + ", doors=" + Arrays.toString(this.doors) + "]";
 	}
-
-	/** Give an array of all items in the room.
-	 * @return all of the items in the room.
-	 */
-	public List<Item> getAllItems()	{
-		return this.allItems;
-	}
-	
-	public void removeItem(Item i) {
-		this.allItems.remove(i);
-	}
-	
 	
 }

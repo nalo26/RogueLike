@@ -46,7 +46,7 @@ public class World extends GameState {
 	/** {@inheritDoc} */
 	@Override
 	public void tick() {
-		Room currentRoom = this.map.getRooms().get(this.player.getRoomPosition());
+		Room currentRoom = this.map.getRoomAt(this.player.getRoomPosition());
 		
 		this.player.tick(currentRoom);
 		this.map.tick(currentRoom, this.player);
@@ -57,7 +57,7 @@ public class World extends GameState {
 	/** {@inheritDoc} */
 	@Override
 	public void draw(Graphics g) {
-		this.map.getRooms().get(this.player.getRoomPosition()).draw(g);
+		this.map.getRoomAt(this.player.getRoomPosition()).draw(g);
 		this.player.draw(g);
 		this.map.draw(g, this.player);
 	}
@@ -115,9 +115,8 @@ public class World extends GameState {
 		HashMap<String, Object> rooms = new HashMap<String, Object>();
 		
 		int i = 0;
-		for(HashMap.Entry<Position, Room> entry : this.map.getRooms().entrySet()) {
-			Position p = entry.getKey();
-			Room r = entry.getValue();
+		for(Room r: this.map.getRooms()) {
+			Position p = r.getPosition();
 			HashMap<String, Object> room = new HashMap<String, Object>();
 			
 			room.put("connections", r.getDoorsString());
@@ -159,9 +158,10 @@ public class World extends GameState {
 			e.printStackTrace();
 		}
 	}
-/**
- * Calls all functions that have been created to load the saved progress.
- */
+	
+	/**
+	 * Calls all functions that have been created to load the saved progress.
+	 */
 	public void load() {
 		JSONParser parser = new JSONParser();
 		
@@ -181,12 +181,14 @@ public class World extends GameState {
 			e.printStackTrace();
 		}
 	}
-	  /** Triggered when the mouse is clicked. */
+	
+	/** Triggered when the mouse is clicked. */
 	@Override
 	protected void mousePressed(int button)	{
 		this.player.mousePressed(button);
 	}
-	 /** Triggered when the click is released. */
+	
+	/** Triggered when the click is released. */
 	@Override
 	protected void mouseReleased(int button) {
 		this.player.mouseReleased(button);

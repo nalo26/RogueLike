@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <enumeration id="1" language="java" name="fr.iutvalence.m2107.p24.Direction" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/Direction.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="119" x="117" y="85"/>    
+    <position height="-1" width="-1" x="1229" y="-21"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -14,7 +14,7 @@
     project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/gameStates/GameStateManager.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="171" width="169" x="463" y="476"/>    
+    <position height="-1" width="-1" x="369" y="391"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -23,7 +23,7 @@
   </class>  
   <class id="3" language="java" name="fr.iutvalence.m2107.p24.GamePanel" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/GamePanel.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="531" y="247"/>    
+    <position height="-1" width="-1" x="349" y="-52"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -33,427 +33,568 @@
   <class id="4" language="java" name="fr.iutvalence.m2107.p24.gameStates.GameState" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/gameStates/GameState.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="794" y="237"/>    
+    <position height="-1" width="-1" x="772" y="141"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="fr.iutvalence.m2107.p24.Mob" project="M2107-P2.4-RogueLike" 
-    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/Mob.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1036" y="724"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="fr.iutvalence.m2107.p24.RogueLikeLauncher" project="M2107-P2.4-RogueLike" 
+  <class id="5" language="java" name="fr.iutvalence.m2107.p24.RogueLikeLauncher" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/RogueLikeLauncher.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="257" y="-66"/>    
+    <position height="-1" width="-1" x="313" y="-520"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="fr.iutvalence.m2107.p24.Position" project="M2107-P2.4-RogueLike" 
+  <class id="6" language="java" name="fr.iutvalence.m2107.p24.Position" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/Position.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1396" y="863"/>    
+    <position height="-1" width="-1" x="982" y="342"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="fr.iutvalence.m2107.p24.Room" project="M2107-P2.4-RogueLike" 
-    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/Room.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1485" y="-154"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="fr.iutvalence.m2107.p24.Player" project="M2107-P2.4-RogueLike" 
-    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1936" y="369"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="fr.iutvalence.m2107.p24.gameStates.MenuState" project="M2107-P2.4-RogueLike" 
+  <class id="7" language="java" name="fr.iutvalence.m2107.p24.gameStates.MenuState" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/gameStates/MenuState.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="189" width="235" x="672" y="476"/>    
+    <position height="-1" width="-1" x="689" y="538"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="11" language="java" name="fr.iutvalence.m2107.p24.MobType" project="M2107-P2.4-RogueLike" 
-    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/MobType.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1027" y="996"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <class id="12" language="java" name="fr.iutvalence.m2107.p24.World" project="M2107-P2.4-RogueLike" 
+  <class id="8" language="java" name="fr.iutvalence.m2107.p24.World" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/World.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1006" y="90"/>    
+    <position height="-1" width="-1" x="1009" y="-17"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="13" language="java" name="fr.iutvalence.m2107.p24.ressources.Images" project="M2107-P2.4-RogueLike" 
+  <enumeration id="9" language="java" name="fr.iutvalence.m2107.p24.ressources.Images" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/ressources/Images.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="214" y="764"/>    
+    <position height="-1" width="-1" x="118" y="128"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="14" language="java" name="fr.iutvalence.m2107.p24.display.PlayerDisplay" project="M2107-P2.4-RogueLike" 
+  <class id="10" language="java" name="fr.iutvalence.m2107.p24.display.PlayerDisplay" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/display/PlayerDisplay.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1011" y="332"/>    
+    <position height="-1" width="-1" x="1271" y="834"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="fr.iutvalence.m2107.p24.display.MobDisplay" project="M2107-P2.4-RogueLike" 
+  <class id="11" language="java" name="fr.iutvalence.m2107.p24.display.MobDisplay" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/display/MobDisplay.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1226" y="-49"/>    
+    <position height="-1" width="-1" x="1670" y="598"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="fr.iutvalence.m2107.p24.display.InventoryDisplay" project="M2107-P2.4-RogueLike" 
+  <class id="12" language="java" name="fr.iutvalence.m2107.p24.display.InventoryDisplay" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/display/InventoryDisplay.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2028" y="-161"/>    
+    <position height="-1" width="-1" x="1535" y="1381"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="fr.iutvalence.m2107.p24.display.HealthDisplay" project="M2107-P2.4-RogueLike" 
+  <class id="13" language="java" name="fr.iutvalence.m2107.p24.display.HealthDisplay" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/display/HealthDisplay.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1325" y="446"/>    
+    <position height="-1" width="-1" x="1905" y="996"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="fr.iutvalence.m2107.p24.display.MiniMapDisplay" project="M2107-P2.4-RogueLike" 
+  <class id="14" language="java" name="fr.iutvalence.m2107.p24.display.MiniMapDisplay" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/display/MiniMapDisplay.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1682" y="362"/>    
+    <position height="-1" width="-1" x="1688" y="-362"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="fr.iutvalence.m2107.p24.display.RoomDisplay" project="M2107-P2.4-RogueLike" 
+  <class id="15" language="java" name="fr.iutvalence.m2107.p24.display.RoomDisplay" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/display/RoomDisplay.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1764" y="-300"/>    
+    <position height="-1" width="-1" x="1685" y="-15"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="fr.iutvalence.m2107.p24.MiniMap" project="M2107-P2.4-RogueLike" 
+  <class id="16" language="java" name="fr.iutvalence.m2107.p24.MiniMap" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/MiniMap.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1482" y="145"/>    
+    <position height="-1" width="-1" x="1452" y="-460"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="fr.iutvalence.m2107.p24.Health" project="M2107-P2.4-RogueLike" 
+  <class id="17" language="java" name="fr.iutvalence.m2107.p24.Health" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/Health.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1558" y="574"/>    
+    <position height="-1" width="-1" x="2121" y="1003"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="fr.iutvalence.m2107.p24.gameStates.PauseState" project="M2107-P2.4-RogueLike" 
+  <class id="18" language="java" name="fr.iutvalence.m2107.p24.gameStates.PauseState" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/gameStates/PauseState.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1022" y="-202"/>    
+    <position height="-1" width="-1" x="826" y="-377"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="fr.iutvalence.m2107.p24.gameStates.DeathState" project="M2107-P2.4-RogueLike" 
+  <class id="19" language="java" name="fr.iutvalence.m2107.p24.gameStates.DeathState" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/gameStates/DeathState.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="794" y="-216"/>    
+    <position height="-1" width="-1" x="577" y="-379"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="fr.iutvalence.m2107.p24.gameStates.FullMapState" project="M2107-P2.4-RogueLike" 
+  <class id="20" language="java" name="fr.iutvalence.m2107.p24.gameStates.FullMapState" project="M2107-P2.4-RogueLike" 
     file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/gameStates/FullMapState.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="539" y="-149"/>    
+    <position height="-1" width="-1" x="1089" y="-368"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="25">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="26" name="player">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <enumeration id="21" language="java" name="fr.iutvalence.m2107.p24.entities.State" project="M2107-P2.4-RogueLike" 
+    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/entities/State.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1500" y="1167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="22" language="java" name="fr.iutvalence.m2107.p24.entities.Boss" project="M2107-P2.4-RogueLike" 
+    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/entities/Boss.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2104" y="480"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="23" language="java" name="fr.iutvalence.m2107.p24.entities.MobType" project="M2107-P2.4-RogueLike" 
+    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/entities/MobType.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1872" y="786"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="24" language="java" name="fr.iutvalence.m2107.p24.entities.Mob" project="M2107-P2.4-RogueLike" 
+    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/entities/Mob.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1507" y="724"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="fr.iutvalence.m2107.p24.entities.Player" project="M2107-P2.4-RogueLike" 
+    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/entities/Player.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1053" y="1119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="26" language="java" name="fr.iutvalence.m2107.p24.entities.Colors" project="M2107-P2.4-RogueLike" 
+    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/entities/Colors.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1869" y="596"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="27" language="java" name="fr.iutvalence.m2107.p24.rooms.KeyRoom" project="M2107-P2.4-RogueLike" 
+    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/rooms/KeyRoom.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1909" y="313"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="fr.iutvalence.m2107.p24.rooms.Room" project="M2107-P2.4-RogueLike" 
+    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/rooms/Room.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1503" y="174"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="fr.iutvalence.m2107.p24.rooms.BossRoom" project="M2107-P2.4-RogueLike" 
+    file="/M2107-P2.4-RogueLike/src/fr/iutvalence/m2107/p24/rooms/BossRoom.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1905" y="96"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="30">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="31" name="DEFAULT_POSITON">        
+        <position height="0" width="0" x="-414" y="-521"/>      
       </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-414" y="-521"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="34" name="DEFAULT_ROOM_POSITION"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="36">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="37" name="state"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="39">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="40" name="map">        
+        <position height="0" width="0" x="110" y="-779"/>      
+      </attribute>      
+      <multiplicity id="41" minimum="0" maximum="1">        
+        <position height="0" width="0" x="110" y="-779"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <association id="29">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="30" name="mobs">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="31" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="33" name="type">        
-        <position height="0" width="0" x="16" y="188"/>      
-      </attribute>      
-      <multiplicity id="34" minimum="0" maximum="1">        
-        <position height="0" width="0" x="16" y="188"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="36" name="position">        
-        <position height="18" width="45" x="1250" y="816"/>      
-      </attribute>      
-      <multiplicity id="37" minimum="0" maximum="1">        
-        <position height="0" width="0" x="724" y="46"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="39">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="40" name="health">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="41" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="42">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="43" name="gsm">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="44" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="43" name="direction"/>      
+      <multiplicity id="44" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="45">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
   </generalization>  
-  <generalization id="46">    
-    <end type="SOURCE" refId="24"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="47">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="48">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="49" name="inventory">        
-        <position height="0" width="0" x="176" y="-71"/>      
+  <association id="46">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="47" name="player">        
+        <position height="0" width="0" x="260" y="502"/>      
       </attribute>      
-      <multiplicity id="50" minimum="0" maximum="1">        
-        <position height="0" width="0" x="176" y="-71"/>      
+      <multiplicity id="48" minimum="0" maximum="1">        
+        <position height="0" width="0" x="260" y="502"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="51">    
-    <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="52" name="player"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
+  <association id="49">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="50" name="player"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
+    <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="54">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="55" name="DEFAULT_POSITON">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <association id="52">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="53" name="gsm">        
+        <position height="0" width="0" x="-178" y="-170"/>      
       </attribute>      
-      <multiplicity id="56" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="57">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="58" name="gsm1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="59" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="54" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-178" y="-170"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="60">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="61" name="map">        
-        <position height="0" width="0" x="104" y="-55"/>      
-      </attribute>      
-      <multiplicity id="62" minimum="0" maximum="1">        
-        <position height="0" width="0" x="104" y="-55"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="63">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="64" name="position">        
-        <position height="18" width="45" x="1445" y="772"/>      
-      </attribute>      
-      <multiplicity id="65" minimum="0" maximum="1">        
-        <position height="16" width="23" x="1463" y="798"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="66">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="67">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <association id="68">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="69" name="health">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="70" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="71">    
+  <association id="55">    
     <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="72" name="map"/>      
-      <multiplicity id="73" minimum="0" maximum="1"/>    
+      <attribute id="56" name="position"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="74">    
-    <end type="SOURCE" refId="23"/>    
+  <association id="58">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="59" name="mobs"/>      
+      <multiplicity id="60" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="61">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="62" name="direction"/>      
+      <multiplicity id="63" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="64">    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="75">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="76" name="rooms">        
-        <position height="0" width="0" x="-28" y="3"/>      
-      </attribute>      
-      <multiplicity id="77" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-28" y="3"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="78">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="20"/>  
-  </generalization>  
-  <association id="79">    
+  <association id="65">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="80" name="state">        
-        <position height="0" width="0" x="-28" y="-13"/>      
+      <attribute id="66" name="state">        
+        <position height="0" width="0" x="-50" y="-109"/>      
       </attribute>      
-      <multiplicity id="81" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-28" y="-13"/>      
+      <multiplicity id="67" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-50" y="-109"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="82">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="21"/>  
+  <generalization id="68">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
   </generalization>  
+  <generalization id="69">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <generalization id="70">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <association id="71">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="72" name="state"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="74">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="75">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <association id="76">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="77" name="roomPosition"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="79">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="80" name="health"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="82">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="83">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="84" name="type"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="87" name="position"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="90" name="health"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="92">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="93" name="watchingAt"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="95">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <association id="96">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="97" name="inventory"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="99">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="100" name="position"/>      
+      <multiplicity id="101" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="102">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="103" name="watchingAt"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="106" name="realPosition"/>      
+      <multiplicity id="107" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="109" name="rooms"/>      
+      <multiplicity id="110" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="111">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="112">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="113" name="direction"/>      
+      <multiplicity id="114" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="115">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="116" name="gsm1">        
+        <position height="0" width="0" x="-178" y="-170"/>      
+      </attribute>      
+      <multiplicity id="117" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-178" y="-170"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="118">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="119" name="decor"/>      
+      <multiplicity id="120" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="121">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <generalization id="122">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <association id="123">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="124" name="map">        
+        <position height="0" width="0" x="-30" y="-605"/>      
+      </attribute>      
+      <multiplicity id="125" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-30" y="-605"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="126">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <association id="127">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="128" name="healths"/>      
+      <multiplicity id="129" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="130">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="131" name="color"/>      
+      <multiplicity id="132" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

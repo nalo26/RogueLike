@@ -68,28 +68,29 @@ public class MiniMapDisplay extends MiniMap {
 		g.fillRect(minimapPosition.getX(), minimapPosition.getY(), MINIMAP_SIZE, MINIMAP_SIZE);
 		
 		Room query = null;
-		for(HashMap.Entry<Position, Room> entry : this.rooms.entrySet()) {
-			Position pos = entry.getKey();
-			Room room = entry.getValue();
-			g.setColor(Color.WHITE);
-			
-			int roomOffsetX = pos.getX() - p.getRoomPosition().getX();
-			int roomOffsetY = pos.getY() - p.getRoomPosition().getY();
-
-			//      (            centering on the mini map            ) - (offset room) + (offset room coordinates) + (  gap for corridors if any  )
-			int x = (GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * roomOffsetX) + (roomOffsetX * CORRIDOR_WIDTH);
-			int y = (                  MINIMAP_OFFSET + MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * roomOffsetY) + (roomOffsetY * CORRIDOR_WIDTH);
-			
-			query = this.getRooms().get(new Position(pos.getX()-1, pos.getY()));
-			if (query != null && query.isOpen(Direction.RIGHT)) g.fillRect(x-CORRIDOR_WIDTH, y+ROOM_SIZE/2-CORRIDOR_HEIGHT/2, CORRIDOR_WIDTH, CORRIDOR_HEIGHT);
-			query = this.getRooms().get(new Position(pos.getX(), pos.getY()-1));
-			if (query != null && query.isOpen(Direction.DOWN))  g.fillRect(x+ROOM_SIZE/2-CORRIDOR_HEIGHT/2, y-CORRIDOR_WIDTH, CORRIDOR_HEIGHT, CORRIDOR_WIDTH);
-			
-			if(pos.equals(Player.DEFAULT_ROOM_POSITION)) g.setColor(Color.GREEN);
-			if(pos.equals(p.getRoomPosition())) g.setColor(Color.YELLOW);
-			if(room instanceof BossRoom) g.setColor(Color.MAGENTA);
-			
-			g.fillRect(x, y, ROOM_SIZE, ROOM_SIZE);
+		for(Room r : this.rooms) {
+			if(r.isVisited()) {
+				Position pos = r.getPosition();
+				g.setColor(Color.WHITE);
+				
+				int roomOffsetX = pos.getX() - p.getRoomPosition().getX();
+				int roomOffsetY = pos.getY() - p.getRoomPosition().getY();
+	
+				//      (            centering on the mini map            ) - (offset room) + (offset room coordinates) + (  gap for corridors if any  )
+				int x = (GamePanel.WIDTH - MINIMAP_OFFSET - MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * roomOffsetX) + (roomOffsetX * CORRIDOR_WIDTH);
+				int y = (                  MINIMAP_OFFSET + MINIMAP_SIZE/2) - (ROOM_SIZE/2) + (ROOM_SIZE * roomOffsetY) + (roomOffsetY * CORRIDOR_WIDTH);
+				
+				query = this.getRoomAt(new Position(pos.getX()-1, pos.getY()));
+				if (query != null && query.isOpen(Direction.RIGHT)) g.fillRect(x-CORRIDOR_WIDTH, y+ROOM_SIZE/2-CORRIDOR_HEIGHT/2, CORRIDOR_WIDTH, CORRIDOR_HEIGHT);
+				query = this.getRoomAt(new Position(pos.getX(), pos.getY()-1));
+				if (query != null && query.isOpen(Direction.DOWN))  g.fillRect(x+ROOM_SIZE/2-CORRIDOR_HEIGHT/2, y-CORRIDOR_WIDTH, CORRIDOR_HEIGHT, CORRIDOR_WIDTH);
+				
+				if(pos.equals(Player.DEFAULT_ROOM_POSITION)) g.setColor(Color.GREEN);
+				if(pos.equals(p.getRoomPosition())) g.setColor(Color.YELLOW);
+				if(r instanceof BossRoom) g.setColor(Color.MAGENTA);
+				
+				g.fillRect(x, y, ROOM_SIZE, ROOM_SIZE);
+			}
 		}
 	}
 

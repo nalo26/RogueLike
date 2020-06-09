@@ -23,24 +23,22 @@ public class RoomDisplay extends Room {
 	private BufferedImage image;
 	
 	/**
-	 * Construct the room displaying.
-	 * It gets the images according to the binary order of doors.
-	 * For example: "1010" will be open on right and left, but close on up and down.
-	 * This will be the image "ROOM10".
-	 * @param config the configuration of the room (which type of room)
-	 * @param bin the value of the room (in the file name)
+	 * Create a room ready to be displayed.
+	 * @param p The position of the Room on the map.
 	 */
-	public RoomDisplay(boolean[] config, String bin) {
-		super(config, bin);
-		this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
+	public RoomDisplay(Position p) {
+		super(p);
+		//this.image = Images.valueOf("ROOM"+Integer.parseInt(bin, 2)).getImage();
 	}
 	
 	/**
-	 * Create a new room, with the configuration as String.
-	 * @param config the String configuration of doors of the room (i.e. "0110").
+	 * Create a room ready to be displayed, with a specific configuration.
+	 * @param p The position of the Room on the map.
+	 * @param config The doors' configuration.
+	 * @see #getDoors()
 	 */
-	public RoomDisplay(String config) {
-		this(Room.computeDoors(config), config);
+	public RoomDisplay(Position p, String config) {
+		super(p, config);
 	}
 	
 	/** {@inheritDoc} */
@@ -48,7 +46,6 @@ public class RoomDisplay extends Room {
 	protected void generateDecorElement() {
 		Images im = Images.valueOf("TREE" + (new Random().nextInt(4)+1));
 		
-		//TODO adapt to the size of window.
 		Position pos = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
 		Rectangle rect = new Rectangle(pos.getX(), pos.getY(), im.getImage().getWidth(), im.getImage().getHeight());
 		while(!MiniMapDisplay.canBeCreatedAt(rect)) {
@@ -66,7 +63,7 @@ public class RoomDisplay extends Room {
 	public void draw(Graphics g) {
 		g.drawImage(this.image, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		
-		for(Item i : this.allItems) {
+		for(Item i : this.items) {
 			i.draw(g);
 		}
 		
@@ -80,6 +77,11 @@ public class RoomDisplay extends Room {
 			Position dim = World.updatePosition(new Position(im.getWidth(), im.getHeight()));
 			g.drawImage(im, pos.getX(), pos.getY(), dim.getX(), dim.getY(), null);
 		}
+	}
+	
+	@Override
+	public void setImage() {
+		this.image = Images.valueOf("ROOM"+Integer.parseInt(this.getDoorsString(), 2)).getImage();
 	}
 
 }

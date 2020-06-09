@@ -112,7 +112,7 @@ public class Player {
 	 */
 	public void updateItems(Room currentRoom) {
 		Item itemToRemove = null;
-		for(Item i : currentRoom.getAllItems()) {
+		for(Item i : currentRoom.getItems()) {
 			if(this.getBounds().intersects(i.getBounds())) {
 				itemToRemove = i;
 				this.inventory.addItem(i);

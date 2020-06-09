@@ -30,12 +30,13 @@ public class KeyRoom extends Room {
 	 * Create a new keys room.
 	 * This is in this room that the player must put
 	 * all 4 keys he will found on the dungeon. 
+	 * @param p The position of the room on the map.
 	 * @param d The direction of the room.
 	 */
-	public KeyRoom(Direction d) {
-		super(computeDirection(d));
+	public KeyRoom(Position p, Direction d) {
+		super(p, computeDirection(d));
 		this.decor.clear();
-		this.allItems.clear();
+		this.items.clear();
 		this.direction = d;
 		this.keys = new Key[4];
 		
@@ -52,13 +53,14 @@ public class KeyRoom extends Room {
 	 * Compute the doors of the room according to the direction.
 	 * @param d The direction of the room.
 	 * @return The String representation of the doors (i.e. "1010").
+	 * @see #getDoors()
 	 */
 	private static String computeDirection(Direction d) {
 		switch (d) {
-			case UP:    return "0101";
-			case DOWN:  return "0101";
-			case LEFT:  return "1010";
-			case RIGHT: return "1010";
+			case UP:    return "1010";
+			case RIGHT: return "0101";
+			case DOWN:  return "1010";
+			case LEFT:  return "0101";
 			default: return null;
 		}
 	}

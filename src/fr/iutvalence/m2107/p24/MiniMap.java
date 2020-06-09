@@ -1,15 +1,15 @@
 package fr.iutvalence.m2107.p24;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Stack;
 
 import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
 import fr.iutvalence.m2107.p24.entities.Player;
-import fr.iutvalence.m2107.p24.rooms.BossRoom;
-import fr.iutvalence.m2107.p24.rooms.KeyRoom;
 import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
@@ -18,68 +18,129 @@ import fr.iutvalence.m2107.p24.rooms.Room;
 public class MiniMap {
 
 	/** Rooms of the World. */
-	protected HashMap<Position, Room> rooms;
+	protected ArrayList<Room> rooms;
 	/** A random object to create random values. */
 	private Random random = new Random();
 	/** The seed of the map. */
 	private long seed;
 	
 	/**
-	 * Constructor.
-	 * Create a new room of 4 doors, and set a seed.
+	 * Create a maze of room using the "Recursive Backtracker" algorithm.
+	 * https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_backtracker
 	 */
 	public MiniMap() {
-		this.rooms = new HashMap<Position, Room>();
-		this.rooms.put(Player.DEFAULT_ROOM_POSITION.copy(), new RoomDisplay("1111"));
-		this.generateBossRoom();
 		this.seed = this.random.nextLong();
 		this.random.setSeed(this.seed);
-		/*for(int y = -10; y <= 10; y++) {
-			for(int x = -10; x <= 10; x++) {
-				this.rooms.put(new Position(x, y), new Room());
+		
+		this.rooms = new ArrayList<Room>();
+		
+		//create empty rooms.
+		for(int y = -9; y < 10; y++) {
+			for(int x = -9; x < 10; x++) {
+				this.rooms.add(new RoomDisplay(new Position(x, y)));
 			}
 		}
-		*/
+
+		// Generate maze with rooms.
+		Stack<Room> stack = new Stack<Room>();
+		Room current = this.getRoomAt(Player.DEFAULT_ROOM_POSITION);
+		current.setVisited(true);
+		stack.push(current);
+		Room next = null;
+		while(stack.size() > 0) {
+			current = stack.pop();
+			next = checkNeighbors(current.getPosition());
+			if(next != null) {
+				stack.push(current);
+				current.addDoors(next);
+				next.setVisited(true);
+				stack.push(next);
+			}
+		}
+		
+		// Finished up generation.
+		for(Room r : this.rooms) {
+			r.setImage();
+		}
 	}
 	
 	/**
-	 * Create a random boss room on the map,
-	 * with its key room next to it.
+	 * Gets a room at a given position.
+	 * @param p The position of the room to get.
+	 * @return The room standing to this position.
 	 */
-	private void generateBossRoom() {
-		/*Position bossPos = Position.randomPosition(-9, 10, -9, 10);
-		Direction bossDir = Direction.randomDirection();*/
-		Position bossPos = new Position(0, -2);
-		Direction bossDir = Direction.DOWN;
-		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
-			bossPos = Position.randomPosition(-9, 10, -9, 10);
+	public Room getRoomAt(Position p) {
+		for(Room r : this.rooms) {
+			if(r.getPosition().equals(p)) return r;
 		}
-		this.rooms.put(bossPos, new BossRoom(bossDir));
-
-		Position keyPos = null;
-		Direction keyDir = null;
-		switch (bossDir) {
-			case UP:
-				keyDir = Direction.DOWN;
-				keyPos = new Position(bossPos.getX(), bossPos.getY()-1);
-				break;
-			case RIGHT: 
-				keyDir = Direction.LEFT;
-				keyPos = new Position(bossPos.getX()+1, bossPos.getY());
-				break;
-			case DOWN:
-				keyDir = Direction.UP;
-				keyPos = new Position(bossPos.getX(), bossPos.getY()+1);
-				break;
-			case LEFT: 
-				keyDir = Direction.RIGHT;
-				keyPos = new Position(bossPos.getX()-1, bossPos.getY());
-				break;
-			default: break;
-		}
-		this.rooms.put(keyPos, new KeyRoom(keyDir));
+		return null;
 	}
 	
+	/**
+	 * Checks if a room at the given position has a neighbor,
+	 * and choose one of them randomly to be the next.
+	 * @param p The position of the room.
+	 * @return The next room.
+	 */
+	public Room checkNeighbors(Position p) {
+		ArrayList<Room> neighbors = new ArrayList<Room>();
+		
+		Room top = this.getRoomAt(new Position(p.getX(), p.getY()-1));
+		Room right = this.getRoomAt(new Position(p.getX()+1, p.getY()));
+		Room bottom = this.getRoomAt(new Position(p.getX(), p.getY()+1));
+		Room left = this.getRoomAt(new Position(p.getX()-1, p.getY()));
+		
+		if(top != null && !top.isVisited()) neighbors.add(top);
+		if(right != null && !right.isVisited()) neighbors.add(right);
+		if(bottom != null && !bottom.isVisited()) neighbors.add(bottom);
+		if(left != null && !left.isVisited()) neighbors.add(left);
+		
+		if(neighbors.size() > 0) {
+			int r = this.random.nextInt(neighbors.size());
+			return neighbors.get(r);
+		}
+		return null;
+		
+	}
+	
+//	/**
+//	 * Create a random boss room on the map,
+//	 * with its key room next to it.
+//	 */
+//	private void generateBossRoom() {
+//		/*Position bossPos = Position.randomPosition(-9, 10, -9, 10);
+//		Direction bossDir = Direction.randomDirection();*/
+//		Position bossPos = new Position(0, -2);
+//		Direction bossDir = Direction.DOWN;
+//		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
+//			bossPos = Position.randomPosition(-9, 10, -9, 10);
+//		}
+//		this.rooms.put(bossPos, new BossRoom(bossDir));
+//
+//		Position keyPos = null;
+//		Direction keyDir = null;
+//		switch (bossDir) {
+//			case UP:
+//				keyDir = Direction.DOWN;
+//				keyPos = new Position(bossPos.getX(), bossPos.getY()-1);
+//				break;
+//			case RIGHT: 
+//				keyDir = Direction.LEFT;
+//				keyPos = new Position(bossPos.getX()+1, bossPos.getY());
+//				break;
+//			case DOWN:
+//				keyDir = Direction.UP;
+//				keyPos = new Position(bossPos.getX(), bossPos.getY()+1);
+//				break;
+//			case LEFT: 
+//				keyDir = Direction.RIGHT;
+//				keyPos = new Position(bossPos.getX()-1, bossPos.getY());
+//				break;
+//			default: break;
+//		}
+//		this.rooms.put(keyPos, new KeyRoom(keyDir));
+//	}
+//	
 	/**
 	 * Describe the behavior of the map every tick for a given player.
 	 * @param room the current room.
@@ -105,55 +166,12 @@ public class MiniMap {
 		
 		p.updateRealPosition();
 		
-		if(this.rooms.get(p.getRoomPosition()) == null) {
-			this.rooms.put(p.getRoomPosition().copy(), this.randomRoom(p.getRoomPosition()));
-		}
-		room = this.rooms.get(p.getRoomPosition());
+		room = this.getRoomAt(p.getRoomPosition());
 		room.tick(p);
-	}
-		
-	/**
-	 * Create a random room from a given position.
-	 * This generation is procedural :
-	 * The algorithm will tests if the new room should or not have a door
-	 * on every sides according to all the rooms surrounding this new room.
-	 * If no room is found on a specific side, a door is randomly set (1/2 chance).
-	 * @param pos the position where the room will be created.
-	 * @return the new room randomly created.
-	 */
-	private RoomDisplay randomRoom(Position pos) {
-		String doors = "";
-		Room query = null;
-		
-		query = this.rooms.get(new Position(pos.getX(), pos.getY()+1));
-		if(query != null) {
-			if(query.isOpen(Direction.UP)) doors = "1" + doors;
-			else doors = "0" + doors;
-		} else doors = this.random.nextInt(2) + doors;
-		
-		query = this.rooms.get(new Position(pos.getX()-1, pos.getY()));
-		if(query != null) {
-			if(query.isOpen(Direction.RIGHT)) doors = "1" + doors;
-			else doors = "0" + doors;
-		} else doors = this.random.nextInt(2) + doors;
-		
-		query = this.rooms.get(new Position(pos.getX(), pos.getY()-1));
-		if(query != null) {
-			if(query.isOpen(Direction.DOWN)) doors = "1" + doors;
-			else doors = "0" + doors;
-		} else doors = this.random.nextInt(2) + doors;
-		
-		query = this.rooms.get(new Position(pos.getX()+1, pos.getY()));
-		if(query != null) {
-			if(query.isOpen(Direction.LEFT)) doors = "1" + doors;
-			else doors = "0" + doors;
-		} else doors = this.random.nextInt(2) + doors;
-		
-		return new RoomDisplay(doors);
 	}
 	
 	/**
-	 * Load all the rooms configs and positions.
+	 * Load all the rooms configuration and positions.
 	 * @param save the game that was saved
 	 */
 	@SuppressWarnings("unchecked")
@@ -167,14 +185,14 @@ public class MiniMap {
 			String config = (String) room.get("connections");
 			JSONObject pos = (JSONObject) room.get("position");
 			Position roomPos = new Position(((Long) pos.get("x")).intValue(), ((Long) pos.get("y")).intValue());
-			RoomDisplay newRoom = new RoomDisplay(config);
+			Room newRoom = new RoomDisplay(roomPos, config);
 			newRoom.load((JSONObject) room.get("mobs"));
 			
-			this.rooms.put(roomPos, newRoom);
+			this.rooms.add(newRoom);
 		}
 	}
 	
-	public HashMap<Position, Room> getRooms(){
+	public ArrayList<Room> getRooms(){
 		return this.rooms;
 	}
 	

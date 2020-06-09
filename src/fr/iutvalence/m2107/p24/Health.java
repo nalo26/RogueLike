@@ -31,6 +31,7 @@ public class Health {
 	 */
 	public void removeLife(float h) {
 		this.life -= h;
+		if(this.life < 0) this.life = 0;
 	}
 	
 	/**
@@ -39,6 +40,7 @@ public class Health {
 	 */
 	public void addLife(float h) {
 		this.life += h;
+		if(this.life > this.defaultLife) this.life = this.defaultLife;
 	}
 	
 	/**

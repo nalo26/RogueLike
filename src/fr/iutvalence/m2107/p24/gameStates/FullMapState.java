@@ -12,9 +12,9 @@ import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.rooms.Room;
 
 public class FullMapState extends GameState {
+	
 	/** The mini-map of the game. */
 	private MiniMap map;
-	
 	/** The player of the game. */
 	private Player player;
 	
@@ -26,12 +26,13 @@ public class FullMapState extends GameState {
 	private static final int CORRIDOR_WIDTH = 20;
 	/** The height of the corridor. */
 	private static final int CORRIDOR_HEIGHT = 36;
-/**
- * Constructor of of the state of the entire map.
- * @param gsm the manager wanted.
- * @param map the mini-map of the game.
- * @param p the player of the game.
- */
+	
+	/**
+	 * Constructor of of the state of the entire map.
+	 * @param gsm the manager wanted.
+	 * @param map the mini-map of the game.
+	 * @param p the player of the game.
+	 */
 	public FullMapState(GameStateManager gsm, MiniMap map, Player p) {
 		super(gsm);
 		this.map = map;
@@ -53,16 +54,17 @@ public class FullMapState extends GameState {
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		
 		Room query = null;
-		for(Position pos : this.map.getRooms().keySet()) {
+		for(Room room : this.map.getRooms()) {
+			Position pos = room.getPosition();
 			g.setColor(Color.WHITE);
 			
 			//      (centering the map ) - ( offset room ) + (                  offset from room's coordinate                  ) + (                      gap for corridors if any                      )
 			int x = (GamePanel.WIDTH /2) - (ROOM_WIDTH /2) + (ROOM_WIDTH  * (pos.getX() - this.player.getRoomPosition().getX())) + ((pos.getX() - this.player.getRoomPosition().getX()) * CORRIDOR_WIDTH);
 			int y = (GamePanel.HEIGHT/2) - (ROOM_HEIGHT/2) + (ROOM_HEIGHT * (pos.getY() - this.player.getRoomPosition().getY())) + ((pos.getY() - this.player.getRoomPosition().getY()) * CORRIDOR_WIDTH);
 			
-			query = this.map.getRooms().get(new Position(pos.getX()-1, pos.getY()));
+			query = this.map.getRoomAt(new Position(pos.getX()-1, pos.getY()));
 			if (query != null && query.isOpen(Direction.RIGHT)) g.fillRect(x-CORRIDOR_WIDTH, y+ROOM_HEIGHT/2-CORRIDOR_HEIGHT/2, CORRIDOR_WIDTH, CORRIDOR_HEIGHT);
-			query = this.map.getRooms().get(new Position(pos.getX(), pos.getY()-1));
+			query = this.map.getRoomAt(new Position(pos.getX(), pos.getY()-1));
 			if (query != null && query.isOpen(Direction.DOWN))  g.fillRect(x+ROOM_WIDTH/2-CORRIDOR_HEIGHT/2, y-CORRIDOR_WIDTH, CORRIDOR_HEIGHT, CORRIDOR_WIDTH);
 			
 			if(pos.equals(Player.DEFAULT_ROOM_POSITION)) g.setColor(Color.GREEN);
@@ -73,30 +75,23 @@ public class FullMapState extends GameState {
 
 	@Override
 	public void keyPressed(int k) {
-		// leave the map
+		// Leave the map.
 		if(k == KeyEvent.VK_M || k == KeyEvent.VK_ESCAPE) this.gsm1.getState().pop();
-		
 	}
 
 	@Override
 	public void keyReleased(int k) {
-		// not used
-	}
-
-
-
-	@Override
-	protected void mousePressed(int button)
-	{
-		// TODO Auto-generated method stub
-		
+		// Not used here.
 	}
 
 	@Override
-	protected void mouseReleased(int button)
-	{
-		// TODO Auto-generated method stub
-		
+	protected void mousePressed(int button) {
+		// Not used here.
+	}
+
+	@Override
+	protected void mouseReleased(int button) {
+		// Not used here.
 	}
 
 }
