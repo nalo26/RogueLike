@@ -1,5 +1,6 @@
 package fr.iutvalence.m2107.p24.display;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -54,6 +55,8 @@ public class PlayerDisplay extends Player {
 		this.health.draw(g, this.realPosition, DEFAULT_IMAGE.getWidth(), HealthDisplay.NORMAL_STYLE);
 		this.inventory.draw(g, this);
 		this.xp.draw(g);
+		g.setFont(new Font("Montserrat", 0, 30));
+		g.drawString(String.valueOf(this.lvl), GamePanel.WIDTH/2, GamePanel.HEIGHT - 40);
 	}
 	
 	@Override

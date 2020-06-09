@@ -69,6 +69,8 @@ public class Player {
 
 	protected XpDisplay xp;
 	
+	protected int lvl;
+	
 	/** Create a new player, with all its caracteristics (health, speed, etc)  */
 	public Player() {
 		this.speed = DEFAULT_SPEED;
@@ -82,6 +84,7 @@ public class Player {
 		this.damageCooldown = 0;
 		this.state = State.NORMAL;
 		this.xp = new XpDisplay(0);
+		this.lvl = 1;
 	}
 	
 	/** Describe the behavior of the player after a key is pressed. 
@@ -110,6 +113,7 @@ public class Player {
 			this.health= new HealthDisplay(this.health.getDefault()+10);
 			this.health.setHealth(currentHealth+5);
 			this.damage += 2;
+			this.lvl++;
 		}
 	}
 
