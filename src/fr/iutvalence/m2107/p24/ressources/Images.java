@@ -1,7 +1,6 @@
 package fr.iutvalence.m2107.p24.ressources;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 import javax.imageio.ImageIO;
 /** The library of images to use everywhere in the game. */
@@ -103,9 +102,10 @@ public enum Images {
 	Images(String path) {
 		BufferedImage tempImage = null;
 		try {
-			tempImage = ImageIO.read(new File("img/"+path));
+			tempImage = ImageIO.read(getClass().getResource("/"+path));
 		} catch (Exception e) {
 			tempImage = null;
+			System.err.println("Can't find : " + path);
 		}
 		this.image = tempImage;
 	}
