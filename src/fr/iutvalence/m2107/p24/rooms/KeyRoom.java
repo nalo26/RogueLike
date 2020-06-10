@@ -121,14 +121,26 @@ public class KeyRoom extends Room {
 		return true;
 	}
 	
+	/**
+	 * Add a key to the array of keys.
+	 * @param i the index of the key to add.
+	 */
 	public void addKey(int i) {
 		this.keys[i] = new Key();
 	}
 	
+	/**
+	 * Get all of the keys in the array.
+	 * @return an array of Key.
+	 */
 	public Key[] getKeys() {
 		return this.keys;
 	}
 	
+	/**
+	 * Get the direction of the room.
+	 * @return the direction of the room.
+	 */
 	public Direction getDirection() {
 		return this.direction;
 	}

@@ -123,11 +123,19 @@ public class Room {
 			r.doors[0] = true;
 		}
 	}
-	
+	/**
+	 * Open the specified door with the given index.
+	 * @param d the index of the wanted door to open.
+	 */
 	public void openDoor(int d) {
 		this.doors[d] = true;
 	}
 
+	/**
+	 * Set the door open or not depending on a given direction.
+	 * @param d the direction of the door.
+	 * @param b if true the door is open; otherwise the door is close.
+	 */
 	public void setDoor(Direction d, boolean b) {
 		switch(d) {
 			case UP:
@@ -146,14 +154,23 @@ public class Room {
 		}
 	}
 	
+	/**
+	 * Generate the decor of the room.
+	 */
 	protected void generateDecorElement() {
 		// Override later.
 	}
-	
+	/**
+	 * Update the player on the current room.
+	 * @param p the player to update.
+	 */
 	protected void update(Player p) {
 		// Override later.
 	}
 	
+	/**
+	 * Set the image of the room.
+	 */
 	public void setImage() {
 		// Override later.
 	}
@@ -183,6 +200,10 @@ public class Room {
 		return false;
 	}
 	
+	/**
+	 * Draw the current room.
+	 * @param g the paint component.
+	 */
 	public void draw(Graphics g) {
 		// Override later.
 	}
@@ -201,7 +222,10 @@ public class Room {
 			default: return false;
 		}
 	}
-	
+	/**
+	 * Load the room from a Json file.
+	 * @param save the file to load.
+	 */
 	@SuppressWarnings("unchecked")
 	public void load(JSONObject save) {
 		this.mobs.clear();
