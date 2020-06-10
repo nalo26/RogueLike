@@ -47,11 +47,20 @@ public class RoomDisplay extends Room {
 		
 		Position pos = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
 		Rectangle rect = new Rectangle(pos.getX(), pos.getY(), im.getImage().getWidth(), im.getImage().getHeight());
-		while(!MiniMapDisplay.canBeCreatedAt(rect)) {
+		while(!MiniMapDisplay.canBeCreatedAt(rect) || this.isOverlap(rect)) {
 			pos = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
 			rect = new Rectangle(pos.getX(), pos.getY(), im.getImage().getWidth(), im.getImage().getHeight());
 		}
 		this.decor.put(pos, im);
+	}
+	
+	private boolean isOverlap(Rectangle r) {
+		for(HashMap.Entry<Position, Images> entry : this.decor.entrySet()) {
+			Position p = entry.getKey();
+			BufferedImage m = entry.getValue().getImage();
+			if(r.intersects(new Rectangle(p.getX(), p.getY(), m.getWidth(), m.getHeight()))) return true;
+		}
+		return false;
 	}
 
 	/**
@@ -66,15 +75,15 @@ public class RoomDisplay extends Room {
 			i.draw(g);
 		}
 		
-		for(Mob m : this.mobs) {
-			m.draw(g);
-		}
-		
 		for(HashMap.Entry<Position, Images> entry : this.decor.entrySet()) {
 			Position pos = entry.getKey();
 			BufferedImage im = entry.getValue().getImage();
 			Position dim = new Position(im.getWidth(), im.getHeight());
 			g.drawImage(im, pos.getX(), pos.getY(), dim.getX(), dim.getY(), null);
+		}
+		
+		for(Mob m : this.mobs) {
+			m.draw(g);
 		}
 	}
 	
