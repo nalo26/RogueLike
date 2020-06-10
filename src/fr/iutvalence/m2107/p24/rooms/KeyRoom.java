@@ -18,7 +18,9 @@ import fr.iutvalence.m2107.p24.ressources.Images;
  */
 public class KeyRoom extends Room {
 	/** The Width of the image of the key and lock depending on screen size. */
-	private static int KEY_WIDTH = Math.round((float)32/(float)1920*GamePanel.WIDTH);
+	public static final int KEY_WIDTH = Math.round((float)32/(float)1920*GamePanel.WIDTH);
+	/** The amount of keys needed to open the boss room. */
+	public static final int KEY_NEEDED = 4;
 	/** The image of the wall with the keys. */
 	private static final BufferedImage KEY_WALL = Images.KEY_WALL.getImage();
 	
@@ -39,12 +41,9 @@ public class KeyRoom extends Room {
 		this.decor.clear();
 		this.items.clear();
 		this.direction = d;
-		this.keys = new Key[4];
+		this.keys = new Key[KEY_NEEDED];
 		
-		this.keys[0] = new Key();
-		this.keys[1] = new Key();
-		this.keys[2] = new Key();
-		this.keys[3] = new Key();
+		this.setDoor(d, false);
 		
 		this.image = Images.valueOf("KEY_ROOM_CLOSE_" + this.direction).getImage();
 	}
@@ -105,9 +104,10 @@ public class KeyRoom extends Room {
 	/** {@inheritDoc} */
 	@Override
 	protected void update(Player p) {
-		if(isOpen()) this.image = Images.valueOf("KEY_ROOM_OPEN_"+ this.direction).getImage();
-		
-		KEY_WIDTH = Math.round((float)32/(float)1920*GamePanel.WIDTH);
+		if(isOpen()) {
+			this.image = Images.valueOf("KEY_ROOM_OPEN_"+ this.direction).getImage();
+			this.setDoor(this.direction, true);
+		}
 	}
 	
 	/**
@@ -119,6 +119,18 @@ public class KeyRoom extends Room {
 			if (k == null) return false;
 		}
 		return true;
+	}
+	
+	public void addKey(int i) {
+		this.keys[i] = new Key();
+	}
+	
+	public Key[] getKeys() {
+		return this.keys;
+	}
+	
+	public Direction getDirection() {
+		return this.direction;
 	}
 	
 }

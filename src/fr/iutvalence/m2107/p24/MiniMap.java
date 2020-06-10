@@ -245,34 +245,34 @@ public class MiniMap {
 		
 		if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.LEFT)) && room.isOpen(Direction.LEFT)) {
 			p.getRoomPosition().move(-1, 0);
-			p.getPosition().set(GamePanel.WIDTH - 150, GamePanel.HEIGHT/2 - 100);
+			p.getPosition().set(GamePanel.WIDTH - 150, p.getPosition().getY());
 			for(Mob m : room.getMobs()) {
-			if(p.getBounds().intersects(m.getBounds())) {
-				m.setPosition(new Position(m.getPosition().getX(), m.getPosition().getY() + 100));
+				if(p.getBounds().intersects(m.getBounds())) {
+					m.setPosition(new Position(m.getPosition().getX(), m.getPosition().getY() + 100));
 				}
 			}
 		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.RIGHT)) && room.isOpen(Direction.RIGHT)) {
 			p.getRoomPosition().move(1, 0);
-			p.getPosition().set(150, 250);
+			p.getPosition().set(150, p.getPosition().getY());
 			for(Mob m : room.getMobs()) {
-			if(p.getBounds().intersects(m.getBounds())) {
-				m.setPosition(new Position(m.getPosition().getX(), m.getPosition().getY() + 100));
+				if(p.getBounds().intersects(m.getBounds())) {
+					m.setPosition(new Position(m.getPosition().getX(), m.getPosition().getY() + 100));
 				}
 			}
 		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.UP)) && room.isOpen(Direction.UP)) {
 			p.getRoomPosition().move(0, -1);
-			p.getPosition().set(GamePanel.WIDTH/2, GamePanel.HEIGHT - 200);
+			p.getPosition().set(p.getPosition().getX(), GamePanel.HEIGHT - 200);
 			for(Mob m : room.getMobs()) {
-			if(p.getBounds().intersects(m.getBounds())) {
-				m.setPosition(new Position(m.getPosition().getX() + 100, m.getPosition().getY() + 100));
+				if(p.getBounds().intersects(m.getBounds())) {
+					m.setPosition(new Position(m.getPosition().getX() + 100, m.getPosition().getY() + 100));
 				}
 			}
 		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.DOWN)) && room.isOpen(Direction.DOWN)) {
 			p.getRoomPosition().move(0, 1);
-			p.getPosition().set(GamePanel.WIDTH/2, 80);
+			p.getPosition().set(p.getPosition().getX(), 80);
 			for(Mob m : room.getMobs()) {
-			if(p.getBounds().intersects(m.getBounds())) {
-				m.setPosition(new Position(m.getPosition().getX() + 100, m.getPosition().getY() + 100));
+				if(p.getBounds().intersects(m.getBounds())) {
+					m.setPosition(new Position(m.getPosition().getX() + 100, m.getPosition().getY() + 100));
 				}
 			}
 		}

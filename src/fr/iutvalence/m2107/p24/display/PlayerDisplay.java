@@ -38,11 +38,12 @@ public class PlayerDisplay extends Player {
 	 * @param g the graphic component to paint on.
 	 */
 	public void draw(Graphics g) {
+		Position pos;
 		if(this.state == State.ATTACK && this.watchingAt == Direction.LEFT) {
-			this.position = new Position(this.position.getX() - (this.image.getWidth()-DEFAULT_IMAGE.getWidth()), this.position.getY()); 
-		}
+			pos = new Position(this.position.getX() - (this.image.getWidth()-DEFAULT_IMAGE.getWidth()), this.position.getY()); 
+		} else pos = this.position;
 
-		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
+		g.drawImage(this.image, pos.getX(), pos.getY(), null);
 		
 		this.health.draw(g, this.position, DEFAULT_IMAGE.getWidth(), HealthDisplay.NORMAL_STYLE);
 		this.inventory.draw(g, this);

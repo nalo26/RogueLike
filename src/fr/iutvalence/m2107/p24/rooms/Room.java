@@ -173,7 +173,10 @@ public class Room {
 		if(toDelete.size() > 0) {
 			this.mobs.removeAll(toDelete);
 			p.addXp(50);
-			if(toDelete.get(0) instanceof Boss) return true;
+			if(toDelete.get(0) instanceof Boss) {
+				this.update(p);
+				return true;
+			}
 		}
 		
 		if(this instanceof KeyRoom) this.update(p);

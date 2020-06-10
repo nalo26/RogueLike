@@ -8,13 +8,16 @@ import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.Inventory;
+import fr.iutvalence.m2107.p24.KeyLockPosition;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.display.InventoryDisplay;
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.XpDisplay;
 import fr.iutvalence.m2107.p24.items.Item;
+import fr.iutvalence.m2107.p24.items.Key;
 import fr.iutvalence.m2107.p24.ressources.Images;
+import fr.iutvalence.m2107.p24.rooms.KeyRoom;
 import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
@@ -105,6 +108,19 @@ public class Player {
 		else if(this.state == State.ATTACK && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_ATTACK_RIGHT);
 		else if(this.state == State.NORMAL && this.watchingAt == Direction.LEFT)  this.changeImage(Images.PLAYER_LEFT);
 		else if(this.state == State.NORMAL && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_RIGHT);
+		
+		if(currentRoom instanceof KeyRoom) {
+			KeyRoom r = (KeyRoom) currentRoom;
+			for(int i = 0; i < KeyRoom.KEY_NEEDED; i++) {
+				if(this.getBounds().intersects(KeyLockPosition.valueOf(r.getDirection()+"_"+i).getBounds())) {
+					int slot = this.inventory.contains(new Key());
+					if(slot != -1 && r.getKeys()[i] == null) {
+						this.inventory.removeItem(slot);
+						r.addKey(i);
+					}
+				}
+			}
+		}
 		
 		this.updateItems(currentRoom);
 		if(this.xp.getXp() >= XpDisplay.XP_WIDTH) {
