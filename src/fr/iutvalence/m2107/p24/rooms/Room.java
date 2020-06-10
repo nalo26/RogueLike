@@ -48,7 +48,7 @@ public class Room {
 	
 	/**
 	 * Create a new Room, fully close.
-	 * Generate some mobs, items & decoration on it.
+	 * Generate some mobs, items and decoration on it.
 	 * @param p The position of the room on the map.
 	 */
 	public Room(Position p) {
