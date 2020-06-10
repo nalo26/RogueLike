@@ -276,6 +276,12 @@ public class MiniMap {
 		
 		room = this.getRoomAt(p.getRoomPosition());
 		room.setVisited(true);
+		
+		if(room instanceof BossRoom) {
+			BossRoom r = (BossRoom) room;
+			r.setDoor(r.getDirection(), false);
+		}
+		
 		return room.tick(p);
 	}
 	

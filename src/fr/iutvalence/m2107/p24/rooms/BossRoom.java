@@ -36,8 +36,6 @@ public class BossRoom extends Room {
 		
 		this.direction = d;
 		
-		this.setDoor(d, false);
-		
 		this.image = Images.valueOf("BOSS_ROOM_" + d).getImage();
 	}
 	
@@ -70,6 +68,13 @@ public class BossRoom extends Room {
 	@Override
 	public void update(Player p) {
 		this.setDoor(this.direction, true);
+	}
+	
+	/**
+	 * @return The direction of the room.
+	 */
+	public Direction getDirection() {
+		return this.direction;
 	}
 	
 }

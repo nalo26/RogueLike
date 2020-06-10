@@ -259,7 +259,7 @@ public class Room {
 			this.items.add(newItem);
 		}	
 		
-		HashMap<String, Object> decors = (HashMap<String, Object>) save.get("items");
+		HashMap<String, Object> decors = (HashMap<String, Object>) save.get("decors");
 		for(HashMap.Entry<String, Object> i : decors.entrySet()) {
 			JSONObject decor = (JSONObject) i.getValue();
 			

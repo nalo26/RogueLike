@@ -171,7 +171,7 @@ public class World extends GameState {
 				decors.put(""+j, decor);
 				j++;
 			}
-			room.put("items", decors);
+			room.put("decors", decors);
 			
 			rooms.put(""+i, room);
 			i++;
