@@ -8,8 +8,8 @@ import fr.iutvalence.m2107.p24.Xp;
 /**
  * Display the XP with a colored bar.
  */
-public class XpDisplay extends Xp
-{
+public class XpDisplay extends Xp {
+	
 	/** The width of the xp display for the player. */
 	public static final int XP_WIDTH = 500;
 	/** The height of the xp display for the player. */
@@ -19,8 +19,7 @@ public class XpDisplay extends Xp
 	 * Call the Builder of Xp for your xp on the display.
 	 * @param theXp the current xp of the player.
 	 */
-	public XpDisplay(float theXp)
-	{
+	public XpDisplay(float theXp) {
 		super(theXp);
 	}
 
@@ -30,10 +29,10 @@ public class XpDisplay extends Xp
 	 */
 	public void draw(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.drawRect(GamePanel.WIDTH/2-250, GamePanel.HEIGHT - 30, XP_WIDTH, XP_HEIGHT);
+		g.drawRect(GamePanel.WIDTH/2-XP_WIDTH/2, GamePanel.HEIGHT-XP_HEIGHT-10, XP_WIDTH, XP_HEIGHT);
 		g.setColor(Color.BLACK);
-		g.fillRect(GamePanel.WIDTH/2-249, GamePanel.HEIGHT - 29, XP_WIDTH-1, XP_HEIGHT-1);
+		g.fillRect(GamePanel.WIDTH/2-XP_WIDTH/2+1, GamePanel.HEIGHT-XP_HEIGHT-10 + 1, XP_WIDTH-1, XP_HEIGHT-1);
 		g.setColor(Color.GREEN);
-		g.fillRect(GamePanel.WIDTH/2-249, GamePanel.HEIGHT - 29, (int) this.xp, XP_HEIGHT-1);
+		g.fillRect(GamePanel.WIDTH/2-XP_WIDTH/2+1, GamePanel.HEIGHT-XP_HEIGHT-10 + 1, (int) this.xp, XP_HEIGHT-1);
 	}
 }

@@ -107,10 +107,10 @@ public class Player {
 		else if(this.state == State.NORMAL && this.watchingAt == Direction.RIGHT) this.changeImage(Images.PLAYER_RIGHT);
 		
 		this.updateItems(currentRoom);
-		if(this.xp.getXp() == XpDisplay.XP_WIDTH) {
-			this.setXp(-XpDisplay.XP_WIDTH);
+		if(this.xp.getXp() >= XpDisplay.XP_WIDTH) {
+			this.addXp(-this.xp.getXp());
 			float currentHealth = this.health.getLife();
-			this.health= new HealthDisplay(this.health.getDefault()+10);
+			this.health = new HealthDisplay(this.health.getDefault()+10);
 			this.health.setHealth(currentHealth+5);
 			this.damage += 2;
 			this.lvl++;
@@ -379,13 +379,11 @@ public class Player {
 		this.damage = damage;
 	}
 
-	public float getXp()
-	{
+	public float getXp() {
 		return this.xp.getXp();
 	}
 
-	public void setXp(float xp)
-	{
+	public void addXp(float xp) {
 		this.xp.addXp(xp);
 	}
 	
