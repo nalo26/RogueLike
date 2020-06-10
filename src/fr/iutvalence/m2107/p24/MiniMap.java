@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.RoomDisplay;
+import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.items.Key;
 import fr.iutvalence.m2107.p24.rooms.BossRoom;
@@ -244,18 +245,37 @@ public class MiniMap {
 		
 		if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.LEFT)) && room.isOpen(Direction.LEFT)) {
 			p.getRoomPosition().move(-1, 0);
-			p.getPosition().set(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
+			p.getPosition().set(GamePanel.WIDTH - 150, GamePanel.HEIGHT/2 - 100);
+			for(Mob m : room.getMobs()) {
+			if(p.getBounds().intersects(m.getBounds())) {
+				m.setPosition(new Position(m.getPosition().getX(), m.getPosition().getY() + 100));
+				}
+			}
 		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.RIGHT)) && room.isOpen(Direction.RIGHT)) {
 			p.getRoomPosition().move(1, 0);
-			p.getPosition().set(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
+			p.getPosition().set(150, 250);
+			for(Mob m : room.getMobs()) {
+			if(p.getBounds().intersects(m.getBounds())) {
+				m.setPosition(new Position(m.getPosition().getX(), m.getPosition().getY() + 100));
+				}
+			}
 		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.UP)) && room.isOpen(Direction.UP)) {
 			p.getRoomPosition().move(0, -1);
-			p.getPosition().set(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
+			p.getPosition().set(GamePanel.WIDTH/2, GamePanel.HEIGHT - 200);
+			for(Mob m : room.getMobs()) {
+			if(p.getBounds().intersects(m.getBounds())) {
+				m.setPosition(new Position(m.getPosition().getX() + 100, m.getPosition().getY() + 100));
+				}
+			}
 		} else if (p.getBounds().intersects(MiniMapDisplay.getDoorBoundFromKey(Direction.DOWN)) && room.isOpen(Direction.DOWN)) {
 			p.getRoomPosition().move(0, 1);
-			p.getPosition().set(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
+			p.getPosition().set(GamePanel.WIDTH/2, 80);
+			for(Mob m : room.getMobs()) {
+			if(p.getBounds().intersects(m.getBounds())) {
+				m.setPosition(new Position(m.getPosition().getX() + 100, m.getPosition().getY() + 100));
+				}
+			}
 		}
-		
 		p.updateRealPosition();
 		
 		room = this.getRoomAt(p.getRoomPosition());

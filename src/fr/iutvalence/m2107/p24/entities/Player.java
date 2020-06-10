@@ -238,7 +238,7 @@ public class Player {
 	 * @param m the mob with who the player interact.
 	 */
 	public void collision(Mob m) {
-		if (m.wantToMove) collision(m.getWatching());
+		if (m.wantToMove) collision(this.watchingAt);
 		else collision(this.direction);
 	}
 	
