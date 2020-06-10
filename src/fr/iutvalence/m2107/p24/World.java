@@ -18,6 +18,7 @@ import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.PlayerDisplay;
 import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.gameStates.DeathState;
+import fr.iutvalence.m2107.p24.gameStates.EndState;
 import fr.iutvalence.m2107.p24.gameStates.FullMapState;
 import fr.iutvalence.m2107.p24.gameStates.GameState;
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
@@ -52,9 +53,10 @@ public class World extends GameState {
 		Room currentRoom = this.map.getRoomAt(this.player.getRoomPosition());
 		
 		this.player.tick(currentRoom);
-		this.map.tick(currentRoom, this.player);
+		boolean isBossDead = this.map.tick(currentRoom, this.player);
 		
 		if(this.player.getHealth().getLife() <= 0) this.gsm1.getState().push(new DeathState(this.gsm1));
+		if(isBossDead) this.gsm1.getState().push(new EndState(this.gsm1));
 	}
 
 	/** {@inheritDoc} */

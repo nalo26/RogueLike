@@ -158,7 +158,12 @@ public class Room {
 		// Override later.
 	}
 	
-	public void tick(Player p) {
+	/**
+	 * Describe the behavior of the room every game tick.
+	 * @param p the Player of the room.
+	 * @return if the boss is dead or not.
+	 */
+	public boolean tick(Player p) {
 		Mob isDead = null;
 		ArrayList<Mob> toDelete = new ArrayList<Mob>();
 		for(Mob m : this.mobs) {
@@ -167,10 +172,12 @@ public class Room {
 		}
 		if(toDelete.size() > 0) {
 			this.mobs.removeAll(toDelete);
-			p.setXp(50);
+			p.addXp(50);
+			if(toDelete.get(0) instanceof Boss) return true;
 		}
 		
 		if(this instanceof KeyRoom) this.update(p);
+		return false;
 	}
 	
 	public void draw(Graphics g) {

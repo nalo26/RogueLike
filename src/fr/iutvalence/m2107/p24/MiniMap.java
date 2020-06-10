@@ -133,10 +133,10 @@ public class MiniMap {
 	 * Also put key item on four random room on the map.
 	 */
 	private void generateBossRoom() {
-		Position bossPos = Position.randomPosition(-8, 8, -8, 8);
-		Direction bossDir = Direction.randomDirection();
-		/*Position bossPos = new Position(0, -2);
-		Direction bossDir = Direction.DOWN;*/
+		/*Position bossPos = Position.randomPosition(-8, 8, -8, 8);
+		Direction bossDir = Direction.randomDirection();*/
+		Position bossPos = new Position(0, -2);
+		Direction bossDir = Direction.DOWN;
 		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
 			bossPos = Position.randomPosition(-8, 8, -8, 8);
 		}
@@ -236,8 +236,9 @@ public class MiniMap {
 	 * Describe the behavior of the map every tick for a given player.
 	 * @param room the current room.
 	 * @param p the player wanted.
+	 * @return if the boss is dead or not.
 	 */
-	public void tick(Room room, Player p) {
+	public boolean tick(Room room, Player p) {
 		// Changing of room
 		// TODO TP the player to the other side of the room
 		
@@ -259,7 +260,7 @@ public class MiniMap {
 		
 		room = this.getRoomAt(p.getRoomPosition());
 		room.setVisited(true);
-		room.tick(p);
+		return room.tick(p);
 	}
 	
 	/**

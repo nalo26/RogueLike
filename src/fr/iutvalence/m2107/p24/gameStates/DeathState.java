@@ -20,7 +20,7 @@ public class DeathState extends GameState implements ImageObserver {
 	/** This array represent all of the possible options for the death menu. */
 	private String[] options;
 	/** Represent the current selected option. */
-	private int SelectedOption;
+	private int selectedOption;
 
 	/**
 	 * Initialize the possible options and the selector.
@@ -28,8 +28,8 @@ public class DeathState extends GameState implements ImageObserver {
 	 */
 	public DeathState(GameStateManager gsm) {
 		super(gsm);
-		this.options = new String[] { "Retry", "Main menu", "Quit" };
-		this.SelectedOption = 0;
+		this.options = new String[] { "Retry", "Main menu" };
+		this.selectedOption = 0;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class DeathState extends GameState implements ImageObserver {
 		g.setFont(new Font("Montserrat", 0, 72));
 		FontMetrics metrics = g.getFontMetrics();
 		for (int i = 0; i < this.options.length; ++i) {
-			if (i == this.SelectedOption) g.setColor(new Color(51, 204, 255));
+			if (i == this.selectedOption) g.setColor(new Color(51, 204, 255));
 			else g.setColor(Color.WHITE);
 			int x = (GamePanel.WIDTH - metrics.stringWidth(this.options[i]))/2;
 			int y = i*(GamePanel.HEIGHT/this.options.length-1)+(GamePanel.HEIGHT/this.options.length)/2+metrics.getHeight()/2;
@@ -56,14 +56,14 @@ public class DeathState extends GameState implements ImageObserver {
 	@Override
 	public void keyPressed(int k) {
 		if (k == 40 || k == 83) {
-			this.SelectedOption++;
-			if (this.SelectedOption >= this.options.length) this.SelectedOption = 0;
+			this.selectedOption++;
+			if (this.selectedOption >= this.options.length) this.selectedOption = 0;
 		} else if (k == 38 || k == 90) {
-			this.SelectedOption--;
-			if (this.SelectedOption < 0) this.SelectedOption = this.options.length - 1;
+			this.selectedOption--;
+			if (this.selectedOption < 0) this.selectedOption = this.options.length - 1;
 		}
 		if (k == KeyEvent.VK_ENTER) {
-			switch (this.SelectedOption) {
+			switch (this.selectedOption) {
 				case 0: // Retry
 					this.gsm1.getState().clear();
 					this.gsm1.getState().push(new World(this.gsm1));
@@ -72,8 +72,6 @@ public class DeathState extends GameState implements ImageObserver {
 					this.gsm1.getState().clear();
 					this.gsm1.getState().push(new MenuState(this.gsm1));
 					break;
-				case 2: // Exit
-					System.exit(0);
 				default: break;
 			}
 		}
