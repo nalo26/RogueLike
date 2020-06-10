@@ -195,4 +195,9 @@ public class Mob {
 		return this.direction;
 	}
 
+	public void setPosition(Position position)
+	{
+		this.position = position;
+	}
+
 }
