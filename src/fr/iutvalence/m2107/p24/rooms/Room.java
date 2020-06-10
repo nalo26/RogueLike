@@ -310,6 +310,7 @@ public class Room {
 	}
 	
 	/**
+	 * Give the list of mobs in the room.
 	 * @return the mobs in the room.
 	 */
 	public ArrayList<Mob> getMobs() {
@@ -317,6 +318,7 @@ public class Room {
 	}
 	
 	/**
+	 * Give the map of decorations in the room.
 	 * @return The decoration of the room.
 	 */
 	public HashMap<Position, Images> getDecoration(){
@@ -325,6 +327,7 @@ public class Room {
 	
 	
 	/**
+	 * Give the room position.
 	 * @return the room position.
 	 */
 	public Position getPosition() {

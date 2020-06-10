@@ -54,6 +54,7 @@ public class MobDisplay extends Mob {
 	}
 	
 	/**
+	 * Give the bounds of a mob.
 	 * @return a rectangle depending on the position of the entity and his size.
 	 */
 	@Override

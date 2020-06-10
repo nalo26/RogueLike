@@ -77,23 +77,25 @@ public class DeathState extends GameState implements ImageObserver {
 		}
 
 	}
-
+	/** {@inheritDoc} */
 	@Override
 	public void keyReleased(int p0) {
 		// not used here.
 	}
 
-
+	/** {@inheritDoc} */
 	@Override
 	protected void mousePressed(int button){
 		// not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void mouseReleased(int button) {
 		// not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
 		// not used here.

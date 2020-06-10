@@ -87,11 +87,13 @@ public class EndState extends GameState implements ImageObserver {
 		// Not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void mousePressed(int button) {
 		// Not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void mouseReleased(int button) {
 		// Not used here.

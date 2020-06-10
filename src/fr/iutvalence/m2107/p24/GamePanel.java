@@ -41,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
     /** The travel time of your player  */
     private long travelTime;
 
+    /** The state manager used to display our game. */
     private GameStateManager gsm;
     
     

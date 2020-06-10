@@ -51,6 +51,7 @@ public abstract class Item {
 	}
 	
 	/**
+	 * Give the position of the item.
 	 * @return the item position.
 	 */
 	public Position getPos() {
@@ -76,6 +77,10 @@ public abstract class Item {
 	
 	public abstract void tick(Player p);
 	
+	/**
+	 * Give the bounds of the item.
+	 * @return a Rectangle who represent the bounds of the item.
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle(this.position.getX(), this.position.getY(), this.imageDisplay.getWidth(), this.imageDisplay.getHeight());
 	}

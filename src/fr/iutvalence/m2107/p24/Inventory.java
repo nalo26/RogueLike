@@ -22,7 +22,7 @@ public class Inventory {
 	
 	/**
 	 * Constructor of the inventory.
-	 * Initialize the list of items.
+	 * Initialize an array of slots of items.
 	 */
 	public Inventory() {
 		this.slots = new Slot[MAX_SLOTS];
@@ -33,7 +33,7 @@ public class Inventory {
 	}
 	
 	/**
-	 * Add an item to the list.
+	 * Add an item to the array.
 	 * @param i the item wanted to add.
 	 * @return <tt>true</tt> if the Item has successfully been added to inventory, <tt>false</tt> else.
 	 */
@@ -52,7 +52,11 @@ public class Inventory {
 		}
 		return false;
 	}
-	
+	/**
+	 * Give the index of the given item in the array of slots.
+	 * @param it the item wanted to know the index.
+	 * @return the index of the item in the array of slots.
+	 */
 	public int contains(Item it) {
 		for(int i = 0; i < this.slots.length; i++) {
 			if(this.slots[i].getItem() != null && this.slots[i].getItem().isSame(it)) return i;
@@ -72,6 +76,11 @@ public class Inventory {
 		}
 	}
 	
+	/**
+	 * The keys used to use the inventory.
+	 * @param k the key value.
+	 * @param p the player affected by the keys used.
+	 */
 	public void KeyPressed(int k, Player p) {
 		if (k >= KeyEvent.VK_0 && k <= KeyEvent.VK_9) {
 			if (k == KeyEvent.VK_0) this.selectedSlot = 9;

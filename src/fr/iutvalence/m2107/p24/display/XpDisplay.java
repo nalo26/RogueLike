@@ -16,7 +16,7 @@ public class XpDisplay extends Xp {
 	public static final int XP_HEIGHT = 20;
 	
 	/**
-	 * Call the Builder of Xp for your xp on the display.
+	 * Call the constructor of Xp for your xp on the display.
 	 * @param theXp the current xp of the player.
 	 */
 	public XpDisplay(float theXp) {
