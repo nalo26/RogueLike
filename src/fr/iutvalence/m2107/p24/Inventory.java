@@ -39,7 +39,7 @@ public class Inventory {
 	 */
 	public boolean addItem(Item i) {
 		for(int j = 0; j < this.slots.length; j++) { //seek if item already on inventory.
-			if(this.slots[j].getItem() != null && this.slots[j].getItem().equals(i)) {
+			if(this.slots[j].getItem() != null && this.slots[j].getItem().isSame(i)) {
 				this.slots[j].add();
 				return true;
 			}

@@ -77,6 +77,7 @@ public abstract class Item {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((this.image == null) ? 0 : this.image.hashCode());
+		result = prime * result + ((this.position == null) ? 0 : this.position.hashCode());
 		return result;
 	}
 
@@ -86,10 +87,40 @@ public abstract class Item {
 		if (obj == null) return false;
 		if (getClass() != obj.getClass()) return false;
 		Item other = (Item) obj;
-		if (this.image == null) {
-			if (other.image != null) return false;
-		} else if (!this.image.equals(other.image)) return false;
+		if (this.image != other.image) return false;
+		if (this.position == null) {
+			if (other.position != null) return false;
+		} else if (!this.position.equals(other.position)) return false;
 		return true;
 	}
+	
+	public boolean isSame(Item i) {
+		if(this == i) return true;
+		if(i == null) return false;
+		if(this.image != i.image) return false;
+		return true;
+	}
+	
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((this.image == null) ? 0 : this.image.hashCode());
+//		return result;
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj) return true;
+//		if (obj == null) return false;
+//		if (getClass() != obj.getClass()) return false;
+//		Item other = (Item) obj;
+//		if (this.image == null) {
+//			if (other.image != null) return false;
+//		} else if (!this.image.equals(other.image)) return false;
+//		return true;
+//	}
+
+	
 	
 }
