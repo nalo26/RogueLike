@@ -89,7 +89,9 @@ public enum Images {
 	PAUSE_BACKGROUND("wallpaper_pause.jpg"),
 	MAIN_MENU_BACKGROUND("wallpaper_main_menu.jpg"),
 	DEATH_MENU_BACKGROUND("wallpaper_death.jpg"),
-	HELP("help.png");
+	HELP("help.png"),
+	WIN("WinTitle.png"),
+	WIN_BACKGROUND("WINBG.jpg");
 	
 	/** The current image. */
 	private final BufferedImage image;

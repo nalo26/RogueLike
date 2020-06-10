@@ -17,7 +17,7 @@ import fr.iutvalence.m2107.p24.ressources.Images;
  * This is in this room that the player must put all 4 keys he will found on the dungeon to unlock boss room. 
  */
 public class KeyRoom extends Room {
-	/** The Width of the key depending on screen size. */
+	/** The Width of the image of the key and lock depending on screen size. */
 	private static int KEY_WIDTH = Math.round((float)32/(float)1920*GamePanel.WIDTH);
 	/** The image of the wall with the keys. */
 	private static final BufferedImage KEY_WALL = Images.KEY_WALL.getImage();
