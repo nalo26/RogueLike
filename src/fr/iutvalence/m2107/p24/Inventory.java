@@ -53,6 +53,13 @@ public class Inventory {
 		return false;
 	}
 	
+	public int contains(Item it) {
+		for(int i = 0; i < this.slots.length; i++) {
+			if(this.slots[i].getItem() != null && this.slots[i].getItem().isSame(it)) return i;
+		}
+		return -1;
+	}
+	
 	/**
 	 * Remove an item from the inventory.
 	 * @param i the item wanted to remove.

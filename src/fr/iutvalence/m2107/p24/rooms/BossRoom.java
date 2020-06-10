@@ -8,6 +8,7 @@ import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.entities.Boss;
 import fr.iutvalence.m2107.p24.entities.Mob;
+import fr.iutvalence.m2107.p24.entities.Player;
 import fr.iutvalence.m2107.p24.ressources.Images;
 /**
  * The room where the boss is.
@@ -16,6 +17,8 @@ public class BossRoom extends Room {
 	
 	/** The image of the room. */
 	private BufferedImage image;
+	/** The direction of the room. */
+	private Direction direction;
 	
 	/** 
 	 * Create a new Boss room.
@@ -30,6 +33,10 @@ public class BossRoom extends Room {
 		this.mobs.add(new Boss());
 		this.decor.clear();
 		this.items.clear();
+		
+		this.direction = d;
+		
+		this.setDoor(d, false);
 		
 		this.image = Images.valueOf("BOSS_ROOM_" + d).getImage();
 	}
@@ -60,8 +67,9 @@ public class BossRoom extends Room {
 		}
 	}
 	
-	public void tick() {
-		//hello there
+	@Override
+	public void update(Player p) {
+		this.setDoor(this.direction, true);
 	}
 	
 }

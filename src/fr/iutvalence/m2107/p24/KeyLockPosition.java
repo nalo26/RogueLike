@@ -1,4 +1,9 @@
 package fr.iutvalence.m2107.p24;
+
+import java.awt.Rectangle;
+
+import fr.iutvalence.m2107.p24.rooms.KeyRoom;
+
 /**
  * Represent all of the possible Key Lock Position for open the boss room.
  */
@@ -50,6 +55,10 @@ public enum KeyLockPosition {
 	 */
 	public void setPosition(Position pos) {
 		this.position = pos;
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(this.position.getX(), this.position.getY(), KeyRoom.KEY_WIDTH, KeyRoom.KEY_WIDTH);
 	}
 	
 }
