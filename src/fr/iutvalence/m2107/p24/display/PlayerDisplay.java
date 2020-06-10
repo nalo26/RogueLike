@@ -32,7 +32,7 @@ public class PlayerDisplay extends Player {
 	 */
 	public PlayerDisplay() {
 		super();
-		this.position = DEFAULT_POSITON;
+		this.position = DEFAULT_POSITON.copy();
 		this.image = DEFAULT_IMAGE;
 		this.realPosition = this.position;
 		
