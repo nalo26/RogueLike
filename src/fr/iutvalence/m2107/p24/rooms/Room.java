@@ -44,7 +44,7 @@ public class Room {
 	/** List of all mobs in this room. */
 	protected ArrayList<Mob> mobs = new ArrayList<Mob>();
 	/** List of all decorations in this room. */
-	protected HashMap<Position, Images> decor = new HashMap<Position, Images>();
+	protected HashMap<Position, Images> decoration = new HashMap<Position, Images>();
 	
 	/**
 	 * Create a new Room, fully close.
@@ -222,6 +222,7 @@ public class Room {
 			default: return false;
 		}
 	}
+	
 	/**
 	 * Load the room from a Json file.
 	 * @param save the file to load.
@@ -230,6 +231,7 @@ public class Room {
 	public void load(JSONObject save) {
 		this.mobs.clear();
 		this.items.clear();
+		this.decoration.clear();
 		
 		HashMap<String, Object> mobs = (HashMap<String, Object>) save.get("mobs");
 		for(HashMap.Entry<String, Object> m : mobs.entrySet()) {
@@ -256,13 +258,26 @@ public class Room {
 			
 			this.items.add(newItem);
 		}	
+		
+		HashMap<String, Object> decors = (HashMap<String, Object>) save.get("items");
+		for(HashMap.Entry<String, Object> i : decors.entrySet()) {
+			JSONObject decor = (JSONObject) i.getValue();
+			
+			Images decImg = Images.valueOf((String) decor.get("decor"));
+			JSONObject pos = (JSONObject) decor.get("position");
+			Position decPos = new Position(((Long) pos.get("x")).intValue(), ((Long) pos.get("y")).intValue());
+			this.decoration.put(decPos, decImg);
+			
+		}	
 	}
+	
 	/**
 	 * @return if the room has been visited.
 	 */
 	public boolean isVisited() {
 		return this.visited;
 	}
+	
 	/**
 	 * Set if the room has already been visited.
 	 * @param v if the room is already visited.
@@ -270,12 +285,14 @@ public class Room {
 	public void setVisited(boolean v) {
 		this.visited = v;
 	}
+	
 	/**
 	 * @return items on the room.
 	 */
 	public ArrayList<Item> getItems() {
 		return this.items;
 	}
+	
 	/**
 	 * Add an item to the room.
 	 * @param i the item who's going to be add.
@@ -283,6 +300,7 @@ public class Room {
 	public void addItem(Item i) {
 		this.items.add(i);
 	}
+	
 	/**
 	 * Remove an item to the room.
 	 * @param i the item who's going to be remove.
@@ -290,12 +308,22 @@ public class Room {
 	public void removeItem(Item i) {
 		this.items.remove(i);
 	}
+	
 	/**
 	 * @return the mobs in the room.
 	 */
 	public ArrayList<Mob> getMobs() {
 		return this.mobs;
 	}
+	
+	/**
+	 * @return The decoration of the room.
+	 */
+	public HashMap<Position, Images> getDecoration(){
+		return this.decoration;
+	}
+	
+	
 	/**
 	 * @return the room position.
 	 */

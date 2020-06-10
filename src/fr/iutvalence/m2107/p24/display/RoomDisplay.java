@@ -51,11 +51,11 @@ public class RoomDisplay extends Room {
 			pos = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
 			rect = new Rectangle(pos.getX(), pos.getY(), im.getImage().getWidth(), im.getImage().getHeight());
 		}
-		this.decor.put(pos, im);
+		this.decoration.put(pos, im);
 	}
 	
 	private boolean isOverlap(Rectangle r) {
-		for(HashMap.Entry<Position, Images> entry : this.decor.entrySet()) {
+		for(HashMap.Entry<Position, Images> entry : this.decoration.entrySet()) {
 			Position p = entry.getKey();
 			BufferedImage m = entry.getValue().getImage();
 			if(r.intersects(new Rectangle(p.getX(), p.getY(), m.getWidth(), m.getHeight()))) return true;
@@ -75,7 +75,7 @@ public class RoomDisplay extends Room {
 			i.draw(g);
 		}
 		
-		for(HashMap.Entry<Position, Images> entry : this.decor.entrySet()) {
+		for(HashMap.Entry<Position, Images> entry : this.decoration.entrySet()) {
 			Position pos = entry.getKey();
 			BufferedImage im = entry.getValue().getImage();
 			Position dim = new Position(im.getWidth(), im.getHeight());

@@ -24,6 +24,7 @@ import fr.iutvalence.m2107.p24.gameStates.GameState;
 import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
 import fr.iutvalence.m2107.p24.gameStates.PauseState;
 import fr.iutvalence.m2107.p24.items.Item;
+import fr.iutvalence.m2107.p24.ressources.Images;
 import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
@@ -156,6 +157,21 @@ public class World extends GameState {
 				j++;
 			}
 			room.put("items", items);
+			
+			HashMap<String, Object> decors = new HashMap<String, Object>();
+			j = 0;
+			for(HashMap.Entry<Position, Images> dec : r.getDecoration().entrySet()) {
+				HashMap<String, Object> decor = new HashMap<String, Object>();
+				decor.put("decor", dec.getValue().toString());
+				HashMap<String, Integer> decorPos = new HashMap<String, Integer>();
+				decorPos.put("x", dec.getKey().getX());
+				decorPos.put("y", dec.getKey().getY());
+				decor.put("position", decorPos);
+				
+				decors.put(""+j, decor);
+				j++;
+			}
+			room.put("items", decors);
 			
 			rooms.put(""+i, room);
 			i++;

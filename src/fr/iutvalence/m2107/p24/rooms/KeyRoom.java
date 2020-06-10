@@ -38,7 +38,7 @@ public class KeyRoom extends Room {
 	 */
 	public KeyRoom(Position p, Direction d) {
 		super(p, computeDirection(d));
-		this.decor.clear();
+		this.decoration.clear();
 		this.items.clear();
 		this.direction = d;
 		this.keys = new Key[KEY_NEEDED];

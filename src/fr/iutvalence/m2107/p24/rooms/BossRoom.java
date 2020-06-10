@@ -31,7 +31,7 @@ public class BossRoom extends Room {
 		super(p, computeDirection(d));
 		this.mobs.clear();
 		this.mobs.add(new Boss());
-		this.decor.clear();
+		this.decoration.clear();
 		this.items.clear();
 		
 		this.direction = d;
