@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Position;
-import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.entities.Colors;
 import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.entities.MobType;
@@ -18,8 +17,6 @@ public class MobDisplay extends Mob {
 	private Colors color;
 	/** The image of the mob. */
 	private BufferedImage image;
-	/** The real position of the mob. */
-	private Position realPosition;
 	
 	/**
 	 * Constructor : call his super class Mob.
@@ -29,11 +26,8 @@ public class MobDisplay extends Mob {
 		super(type);
 		this.color = Colors.randomColor();
 		updateImage();
-		
-		this.realPosition = World.updatePosition(this.position);
 		while(!MiniMapDisplay.canBeCreatedAt(this.getBounds())) {
 			this.position = Position.randomPosition(0, GamePanel.WIDTH, 0, GamePanel.HEIGHT);
-			this.realPosition = World.updatePosition(this.position);
 		}
 	}
 
@@ -54,11 +48,9 @@ public class MobDisplay extends Mob {
 	/** {@inheritDoc} */
 	@Override
 	public void draw(Graphics g) {
-		this.realPosition = World.updatePosition(this.position);
+		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
 		
-		g.drawImage(this.image, this.realPosition.getX(), this.realPosition.getY(), null);
-		
-		this.health.draw(g, this.realPosition, this.image.getWidth(), HealthDisplay.NORMAL_STYLE);
+		this.health.draw(g, this.position, this.image.getWidth(), HealthDisplay.NORMAL_STYLE);
 	}
 	
 	/**
@@ -66,7 +58,7 @@ public class MobDisplay extends Mob {
 	 */
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
+		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
 	}
 
 }

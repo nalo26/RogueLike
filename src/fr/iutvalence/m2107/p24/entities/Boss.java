@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Position;
-import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.display.HealthDisplay;
 import fr.iutvalence.m2107.p24.ressources.Images;
 import fr.iutvalence.m2107.p24.rooms.Room;
@@ -24,8 +23,6 @@ public class Boss extends Mob {
 	
 	/** The image of the boss. */
 	private BufferedImage image;
-	/** The real position of the boss. */
-	private Position realPosition;
 	/** The phase of the fight the boss is (higher = stronger (hello Daft Punk)). */
 	private int phase;
 	/** The different health of the boss. */
@@ -47,7 +44,6 @@ public class Boss extends Mob {
 		this.phase = 1;
 		
 		this.position = new Position(GamePanel.WIDTH/2-this.image.getWidth()/2, GamePanel.HEIGHT/2-this.image.getHeight()/2);
-		this.realPosition = World.updatePosition(this.position);
 	}
 	
 	/** {@inheritDoc} */
@@ -75,12 +71,11 @@ public class Boss extends Mob {
 	@Override
 	public void draw(Graphics g) {
 		this.image = Images.valueOf("BOSS" + this.phase + "_" + this.state).getImage();
-		this.realPosition = World.updatePosition(this.position);
 		
-		g.drawImage(this.image, this.realPosition.getX(), this.realPosition.getY(), null);
+		g.drawImage(this.image, this.position.getX(), this.position.getY(), null);
 		
 		for(int i = 0; i < this.healths.length; i++) {
-			Position pos = this.realPosition.copy();
+			Position pos = this.position.copy();
 			pos.move(0, -(HealthDisplay.HEALTH_HEIGHT+4)*i);
 			this.healths[i].draw(g, pos, this.image.getWidth(), HealthDisplay.BOSS_STYLE);
 		}
@@ -100,7 +95,7 @@ public class Boss extends Mob {
 	/** {@inheritDoc} */
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(this.realPosition.getX(), this.realPosition.getY(), this.image.getWidth(), this.image.getHeight());
+		return new Rectangle(this.position.getX(), this.position.getY(), this.image.getWidth(), this.image.getHeight());
 	}
 
 }

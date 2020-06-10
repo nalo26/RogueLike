@@ -34,14 +34,13 @@ public enum KeyLockPosition {
 	 * @param pos the lock position.
 	 */
 	KeyLockPosition(Position pos) {
-		this.setPosition(World.updatePosition(pos));
+		this.setPosition(pos);
 	}
 
 	/**
 	 * @return the position of the lock. 
 	 */
 	public Position getPosition() {
-		this.setPosition(World.updatePosition(this.position));
 		return this.position;
 	}
 

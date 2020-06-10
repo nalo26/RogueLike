@@ -8,7 +8,6 @@ import java.util.Random;
 
 import fr.iutvalence.m2107.p24.GamePanel;
 import fr.iutvalence.m2107.p24.Position;
-import fr.iutvalence.m2107.p24.World;
 import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.ressources.Images;
@@ -72,9 +71,9 @@ public class RoomDisplay extends Room {
 		}
 		
 		for(HashMap.Entry<Position, Images> entry : this.decor.entrySet()) {
-			Position pos = World.updatePosition(entry.getKey());
+			Position pos = entry.getKey();
 			BufferedImage im = entry.getValue().getImage();
-			Position dim = World.updatePosition(new Position(im.getWidth(), im.getHeight()));
+			Position dim = new Position(im.getWidth(), im.getHeight());
 			g.drawImage(im, pos.getX(), pos.getY(), dim.getX(), dim.getY(), null);
 		}
 	}

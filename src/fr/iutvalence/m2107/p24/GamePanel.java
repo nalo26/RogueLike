@@ -23,13 +23,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
     
     /** Set the Width at screenSize. */
     //public static int WIDTH = screenSize.width;
-    public static final int DEFAULT_WIDTH = 1280;
-    public static int WIDTH = DEFAULT_WIDTH;
+    public static final int WIDTH = 1280;
     
     /** Set the Height at screenSize. */
     //public static int HEIGHT = screenSize.height;
-    public static final int DEFAULT_HEIGHT = 720;
-    public static int HEIGHT = DEFAULT_HEIGHT;
+    public static final int HEIGHT = 720;
     
     @SuppressWarnings("unused")
 	private Thread thread;
@@ -110,9 +108,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
     
     /** That's what is refresh every tick. */
     public void tick() {
-    	screenSize = RogueLikeLauncher.frame.getSize();
-    	WIDTH = screenSize.width - 16;
-    	HEIGHT = screenSize.height - 39;
     	this.gsm.tick();
     }
     
@@ -130,15 +125,12 @@ public class GamePanel extends JPanel implements Runnable, KeyListener, MouseLis
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e)
-	{
+	public void mouseEntered(MouseEvent e){
 		//never used
-		
 	}
 
 	@Override
-	public void mouseExited(MouseEvent e)
-	{
+	public void mouseExited(MouseEvent e){
 		//never used
 		
 	}
