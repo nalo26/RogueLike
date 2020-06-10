@@ -17,9 +17,9 @@ public class Boss extends Mob {
 	/** The different life bar the boss have. */
 	private static final int PHASE_AMOUNT = 3;
 	/** The amount of life of the boss PER PHASE/BAR. */
-	private static final int DEFAULT_LIFE = 20;
+	private static final int DEFAULT_LIFE = 100;
 	/** The different damage the boss deal PER PHASE. */
-	private static final int[] DEFAULT_DAMAGE = {3, 5, 8}; // one per phase of fight.
+	private static final int[] DEFAULT_DAMAGE = {10, 20, 50}; // one per phase of fight.
 	
 	/** The image of the boss. */
 	private BufferedImage image;
