@@ -91,22 +91,25 @@ public class PauseState extends GameState implements ImageObserver {
 
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void keyReleased(int p) {
 		// Not used here.
 	}
 
-
+	/** {@inheritDoc} */
 	@Override
 	protected void mousePressed(int button){
 		// Not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void mouseReleased(int button){
 		// Not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
 		return false;

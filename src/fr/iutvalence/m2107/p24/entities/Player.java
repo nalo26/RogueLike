@@ -58,20 +58,23 @@ public class Player {
 	protected Position roomPosition;
 	/** The inventory of the player*/
 	protected InventoryDisplay inventory;
-	/** Handle the direction the player is moving to. */
+	/** The up direction the player is moving to. */
 	protected boolean up;
+	/** The right direction the player is moving to. */
 	protected boolean right;
+	/** The down direction the player is moving to. */
 	protected boolean down;
+	/** The left direction the player is moving to. */
 	protected boolean left;
 	/** The cooldown between two critical attacks. */
 	protected int attackCooldown;
 	/** The time the player is taking damage. */
 	protected int damageCooldown;
-	
+	/** The current state of the player. */
 	protected State state;
-
+	/** The xp of the player. */
 	protected XpDisplay xp;
-	
+	/** The level of the player. */
 	protected int lvl;
 	
 	/** Create a new player, with all its caracteristics (health, speed, etc)  */
@@ -386,15 +389,26 @@ public class Player {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
-
+	/** 
+	 * Set the damage the player deals.
+	 * @param damage the amount of damages to change.
+	 */
 	public void setDamage(float damage) {
 		this.damage = damage;
 	}
 
+	/**
+	 * Give the xp of the player.
+	 * @return the amount of player's xp.
+	 */
 	public float getXp() {
 		return this.xp.getXp();
 	}
 
+	/**
+	 * Add an amount of xp.
+	 * @param xp the amount of xp to add.
+	 */
 	public void addXp(float xp) {
 		this.xp.addXp(xp);
 	}

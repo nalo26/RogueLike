@@ -56,7 +56,10 @@ public enum KeyLockPosition {
 	public void setPosition(Position pos) {
 		this.position = pos;
 	}
-	
+	/**
+	 * Give the bounds of the key lock.
+	 * @return a Rectangle which represent the bounds of the key lock.
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle(this.position.getX(), this.position.getY(), KeyRoom.KEY_WIDTH, KeyRoom.KEY_WIDTH);
 	}

@@ -14,7 +14,7 @@ import fr.iutvalence.m2107.p24.ressources.Images;
 import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
- * Display a room with its correspondent image.
+ * Display a room with it's correspondent image.
  */
 public class RoomDisplay extends Room {
 
@@ -54,6 +54,11 @@ public class RoomDisplay extends Room {
 		this.decoration.put(pos, im);
 	}
 	
+	/**
+	 * Check if an element of the decor is overlapping on another one.
+	 * @param r the rectangle on what you want to test with.
+	 * @return true if overlapping otherwise false.
+	 */
 	private boolean isOverlap(Rectangle r) {
 		for(HashMap.Entry<Position, Images> entry : this.decoration.entrySet()) {
 			Position p = entry.getKey();

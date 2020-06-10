@@ -31,6 +31,7 @@ public class MenuState extends GameState implements ImageObserver {
 		this.selectedOption = 0;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void tick() {
 		// Not used here.
@@ -97,21 +98,25 @@ public class MenuState extends GameState implements ImageObserver {
 		
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void keyReleased(final int k) {
 		// Not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void mousePressed(int button) {
 		// Not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void mouseReleased(int button) {
 		// Not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean imageUpdate(final Image arg0, final int arg1, final int arg2, final int arg3, final int arg4, final int arg5) {
 		return false;

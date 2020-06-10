@@ -13,6 +13,7 @@ public class Key extends Item {
 		super(Images.KEY);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void tick(Player p) {
 		//not use here.

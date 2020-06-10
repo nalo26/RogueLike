@@ -4,7 +4,7 @@ package fr.iutvalence.m2107.p24;
  */
 public class Xp {
 	
-	/** The actual xp. */
+	/** The current xp. */
 	protected float xp;
 	
 	/**
@@ -24,6 +24,7 @@ public class Xp {
 	}
 	
 	/**
+	 * Get the current amout of xp.
 	 * @return the current xp.
 	 */
 	public float getXp() {

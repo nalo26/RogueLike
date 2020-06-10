@@ -61,7 +61,7 @@ public class Position {
 		Random random = new Random();
 		return new Position(random.nextInt(maxX - minX) + minX, random.nextInt(maxY - minY) + minY);
 	}
-	
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		final int prime = 31;

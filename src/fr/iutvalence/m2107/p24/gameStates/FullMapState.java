@@ -41,6 +41,7 @@ public class FullMapState extends GameState {
 		this.player = p;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void tick() {
 		// Not used here.
@@ -85,16 +86,19 @@ public class FullMapState extends GameState {
 		if(k == KeyEvent.VK_M || k == KeyEvent.VK_ESCAPE) this.gsm1.getState().pop();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void keyReleased(int k) {
 		// Not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void mousePressed(int button) {
 		// Not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void mouseReleased(int button) {
 		// Not used here.

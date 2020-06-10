@@ -64,13 +64,14 @@ public class BossRoom extends Room {
 			m.draw(g);
 		}
 	}
-	
+	/** {@inheritDoc} */
 	@Override
 	public void update(Player p) {
 		this.setDoor(this.direction, true);
 	}
 	
 	/**
+	 * Give the direction of the boss's room.
 	 * @return The direction of the room.
 	 */
 	public Direction getDirection() {

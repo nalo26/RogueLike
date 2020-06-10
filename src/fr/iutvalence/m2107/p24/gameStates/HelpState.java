@@ -52,12 +52,13 @@ public class HelpState extends GameState implements ImageObserver {
 		return false;
 	}
 
-
+	/** {@inheritDoc} */
 	@Override
 	protected void mousePressed(int button) {
 		// Not used here.
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void mouseReleased(int button) {
 		// Not used here.

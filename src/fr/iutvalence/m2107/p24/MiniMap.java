@@ -307,7 +307,10 @@ public class MiniMap {
 			this.rooms.add(newRoom);
 		}
 	}
-	
+	/**
+	 * Give the list of rooms.
+	 * @return an ArrayList of all of the rooms.
+	 */
 	public ArrayList<Room> getRooms(){
 		return this.rooms;
 	}

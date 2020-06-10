@@ -44,6 +44,7 @@ public class Mob {
 	protected int damageCooldown;
 	/** The height of a slime. */
 	protected float slimeHeight;
+	/** The height slime speed. */
 	protected int slimeSpeedHeight;
 	
 	/**
@@ -128,6 +129,10 @@ public class Mob {
 		this.damageCooldown = 50;
 	}
 	
+	/**
+	 * Give the bounds of a mob.
+	 * @return a rectangle who represent the bounds of a mob.
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle(0, 0, 0, 0);
 		//this method is override by PlayerDisplay, which handle bounds.
@@ -195,6 +200,10 @@ public class Mob {
 		return this.direction;
 	}
 
+	/**
+	 * Set the position of the mob.
+	 * @param position the new position of the mob.
+	 */
 	public void setPosition(Position position)
 	{
 		this.position = position;
