@@ -60,7 +60,7 @@ public class Boss extends Mob {
 			if(p.getState() == State.ATTACK) {
 				this.healths[this.getLastLifeBar()].removeLife(p.getDamage());
 				this.takeDamage();
-			} //else p.takeDamage(this.damage);
+			} else p.takeDamage(this.damage);
 		}
 		
 		if(this.healths[0].getLife() <= 0) return this;

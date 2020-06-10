@@ -134,10 +134,9 @@ public class MiniMap {
 	 * Also put key item on four random room on the map.
 	 */
 	private void generateBossRoom() {
-		/*Position bossPos = Position.randomPosition(-8, 8, -8, 8);
-		Direction bossDir = Direction.randomDirection();*/
-		Position bossPos = new Position(0, -2);
-		Direction bossDir = Direction.DOWN;
+		Position bossPos = Position.randomPosition(-8, 8, -8, 8);
+		Direction bossDir = Direction.randomDirection();
+
 		while(bossPos.equals(Player.DEFAULT_ROOM_POSITION)) {
 			bossPos = Position.randomPosition(-8, 8, -8, 8);
 		}
@@ -227,9 +226,7 @@ public class MiniMap {
 		this.rooms.add(new KeyRoom(keyPos, keyDir));
 		
 		for(i = 0; i < 4; i++) { // add the key on random rooms.
-			Room k = this.getRoomAt(Player.DEFAULT_ROOM_POSITION);
-			//this.rooms.get(random.nextInt(this.rooms.size())).addItem(new Key());
-			k.addItem(new Key());
+			this.rooms.get(random.nextInt(this.rooms.size())).addItem(new Key());
 		}
 	}
 	
@@ -276,7 +273,6 @@ public class MiniMap {
 				}
 			}
 		}
-		p.updateRealPosition();
 		
 		room = this.getRoomAt(p.getRoomPosition());
 		room.setVisited(true);

@@ -291,6 +291,10 @@ public class Room {
 		return this.doors;
 	}
 	
+	/**
+	 * Get the string representation of doors.
+	 * @return the String representation of doors.
+	 */
 	public String getDoorsString() {
 		String res = "";
 		for(boolean d : this.doors) {

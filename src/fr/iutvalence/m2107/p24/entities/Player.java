@@ -235,10 +235,6 @@ public class Player {
 		// This method is override by PlayerDisplay, which handle images.  
 	}
 	
-	public void updateRealPosition() {
-		// Override later.
-	}
-	
 	/**
 	 * Get the bounds of the player, according to his position,
 	 * and his dimensions.
