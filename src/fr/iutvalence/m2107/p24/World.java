@@ -16,6 +16,7 @@ import org.json.simple.parser.ParseException;
 
 import fr.iutvalence.m2107.p24.display.MiniMapDisplay;
 import fr.iutvalence.m2107.p24.display.PlayerDisplay;
+import fr.iutvalence.m2107.p24.display.XpDisplay;
 import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.gameStates.DeathState;
 import fr.iutvalence.m2107.p24.gameStates.EndState;
@@ -25,6 +26,7 @@ import fr.iutvalence.m2107.p24.gameStates.GameStateManager;
 import fr.iutvalence.m2107.p24.gameStates.PauseState;
 import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.ressources.Images;
+import fr.iutvalence.m2107.p24.rooms.BossRoom;
 import fr.iutvalence.m2107.p24.rooms.Room;
 
 /**
@@ -36,6 +38,10 @@ public class World extends GameState {
 	private PlayerDisplay player;
 	/** The minimap in the world. */
 	private MiniMapDisplay map;
+	
+	private static final String[] KONAMIS = {"KILL", "LVLUP", "BOSS"};
+	
+	private String konamiInput = "";
 	
 	/**
 	 * Constructor of the World.
@@ -76,6 +82,9 @@ public class World extends GameState {
 			this.gsm1.getState().push(new PauseState(this.gsm1));
 		if (k == KeyEvent.VK_M)
 			this.gsm1.getState().push(new FullMapState(this.gsm1, this.map, this.player));
+
+		this.konamiInput += (char) k;
+		this.checkKonami();
 	}
 
 	/** {@inheritDoc} */
@@ -84,6 +93,36 @@ public class World extends GameState {
 		this.player.keyReleased(k);
 	}
 
+	private void checkKonami() {
+		for(String kona : KONAMIS) {
+			for(int i = 0; i < kona.length(); i++) {
+				if(this.konamiInput.length() < kona.length()) break;
+				if(this.konamiInput.charAt(this.konamiInput.length() - (kona.length() - i)) != kona.charAt(i)) break;
+
+				if(kona == KONAMIS[0]) { // Kill all mobs
+					this.map.getRoomAt(this.player.getRoomPosition()).getMobs().clear();
+					this.konamiInput = "";
+					return;
+				}
+				if(kona == KONAMIS[1]) { // Level up player
+					this.player.addXp(XpDisplay.XP_WIDTH - this.player.getXp());
+					this.konamiInput = "";
+					return;
+				}
+				if(kona == KONAMIS[2]) { // TP to boss room
+					for(Room r : this.map.getRooms()) {
+						if(r instanceof BossRoom) {
+							this.player.getRoomPosition().move(this.player.getRoomPosition().getX()+r.getPosition().getX(), this.player.getRoomPosition().getY()+r.getPosition().getY());
+							break;
+						}
+					}
+					this.konamiInput = "";
+					return;
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Save all the things need to be saved, so we can later play at the same status we were at when we backed up.
 	 */
