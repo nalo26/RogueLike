@@ -1,5 +1,4 @@
-Groupe **2.4**, composing of
-Nathan Vey, Maxime Testu, Nathan Peyronnet, Quentin Charra, *Clément Monello*.
+# Rogue Like Game
 
 "Rogue Like" game, based on the idea of exploring an "infinite" dungeon by fighting monsters.
 In order to finish the game, you have to collect the 4 keys that are in the dungeon.
