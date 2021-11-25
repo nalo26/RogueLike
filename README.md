@@ -20,3 +20,11 @@ He will then sees his attacks and hit points being improved.
 
 The goal of this project is to create a graphical application allowing to fully play the game.
 The game will be developed in Java, using the object-oriented programming method.
+
+TODO :  
+- [ ] Rework save system
+- [ ] Add visual and sound effects
+- [ ] Create boss fight
+- [ ] Add items
+- [ ] Add mobs
+- [ ] Add environment

@@ -13,6 +13,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <junit.version>4.13.2</junit.version>
         <json-simple.version>1.1.1</json-simple.version>
+        <jackson.version>2.13.0</jackson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -26,5 +27,22 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+
     </dependencies>
 </project>
