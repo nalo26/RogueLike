@@ -29,3 +29,4 @@ TODO :
 - [ ] Add items
 - [ ] Add mobs + animations
 - [ ] Add environment
+- [ ] Add spécial attack
