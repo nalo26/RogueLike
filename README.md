@@ -25,6 +25,7 @@ TODO :
 - [ ] Rework save system
 - [ ] Add visual and sound effects
 - [ ] Create boss fight
+- [ ] Rework hitboxes
 - [ ] Add items
-- [ ] Add mobs
+- [ ] Add mobs + animations
 - [ ] Add environment
