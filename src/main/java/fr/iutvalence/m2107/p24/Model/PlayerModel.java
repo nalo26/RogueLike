@@ -2,18 +2,19 @@ package fr.iutvalence.m2107.p24.Model;
 
 import fr.iutvalence.m2107.p24.Direction;
 import fr.iutvalence.m2107.p24.Position;
+import fr.iutvalence.m2107.p24.Slot;
 import fr.iutvalence.m2107.p24.items.ItemsList;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class PlayerModel {
-    String watchingAt;
+    Direction watchingAt;
     float damage;
     float health;
     Position roomPosition;
     Position playerPosition;
-    List<ItemsList> inventory;
+    List<Slot> inventory;
     Direction playerDirection;
 }

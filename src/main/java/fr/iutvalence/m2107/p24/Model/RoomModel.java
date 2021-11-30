@@ -4,12 +4,12 @@ import fr.iutvalence.m2107.p24.Position;
 import fr.iutvalence.m2107.p24.entities.Mob;
 import fr.iutvalence.m2107.p24.items.Item;
 import fr.iutvalence.m2107.p24.ressources.Images;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.Map;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class RoomModel {
 
     List<Mob> mobs;

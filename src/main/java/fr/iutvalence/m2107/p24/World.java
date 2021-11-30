@@ -8,9 +8,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.iutvalence.m2107.p24.Model.PlayerModel;
+import fr.iutvalence.m2107.p24.Model.RoomModel;
 import fr.iutvalence.m2107.p24.Model.SaveModel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -31,15 +37,17 @@ import fr.iutvalence.m2107.p24.ressources.Images;
 import fr.iutvalence.m2107.p24.rooms.BossRoom;
 import fr.iutvalence.m2107.p24.rooms.Room;
 
+import static java.util.Arrays.asList;
+
 /**
  * Create the whole map.
  */
 public class World extends GameState {
 
 	/** The Player in the World. */
-	private PlayerDisplay player;
+	private final PlayerDisplay player;
 	/** The minimap in the world. */
-	private MiniMapDisplay map;
+	private final MiniMapDisplay map;
 	
 	private static final String[] KONAMIS = {"KILL", "LVLUP", "BOSS"};
 	
@@ -129,9 +137,18 @@ public class World extends GameState {
 	 * Save all the things need to be saved, so we can later play at the same status we were at when we backed up.
 	 */
 	public void save() {
-		ObjectMapper mapper = new ObjectMapper();
-		SaveModel model = new SaveModel();
+		Map<String, RoomModel> roomModel = saveRoomsData(this.map.getRooms());
 
+
+		PlayerModel playerModel = savePlayerData(this.player);
+
+		ObjectMapper mapper = new ObjectMapper();
+		SaveModel model = new SaveModel(roomModel, playerModel);
+		try {
+			mapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get("saves/save.json").toFile(), model);
+		} catch (IOException ex) {
+			throw new RuntimeException("failed to write the save file", ex);
+		};
 		HashMap<String, HashMap<String, Object>> save = new HashMap<String, HashMap<String, Object>>();
 		
 		HashMap<String, Object> player = new HashMap<String, Object>();
@@ -237,7 +254,17 @@ public class World extends GameState {
 		}
 		
 	}
-	
+
+	private Map<String, RoomModel> saveRoomsData(ArrayList<Room> rooms) {
+	Map<String, RoomModel> res = new HashMap<>();
+
+	return res;
+	}
+
+	private PlayerModel savePlayerData(PlayerDisplay player) {
+		return new PlayerModel(player.getWatching(), player.getDamage(), player.getHealth().getLife(), player.getRoomPosition(), player.getPosition(), asList(player.getInventory().getItems()), player.getDirection());
+	}
+
 	/**
 	 * Calls all functions that have been created to load the saved progress.
 	 */
