@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.HashMap;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.iutvalence.m2107.p24.Model.SaveModel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -127,6 +129,9 @@ public class World extends GameState {
 	 * Save all the things need to be saved, so we can later play at the same status we were at when we backed up.
 	 */
 	public void save() {
+		ObjectMapper mapper = new ObjectMapper();
+		SaveModel model = new SaveModel();
+
 		HashMap<String, HashMap<String, Object>> save = new HashMap<String, HashMap<String, Object>>();
 		
 		HashMap<String, Object> player = new HashMap<String, Object>();
