@@ -13,7 +13,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <junit.version>4.13.2</junit.version>
         <json-simple.version>1.1.1</json-simple.version>
-        <jackson.version>2.13.0</jackson.version>
+        <jackson.version>2.13.1</jackson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -42,7 +42,5 @@
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-
-
     </dependencies>
 </project>
