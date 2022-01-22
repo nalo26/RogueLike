@@ -10,11 +10,11 @@ import java.util.List;
 
 @AllArgsConstructor
 public class PlayerModel {
-    Direction watchingAt;
-    float damage;
-    float health;
-    Position roomPosition;
-    Position playerPosition;
-    List<Slot> inventory;
-    Direction playerDirection;
+    public Direction watchingAt;
+    public float damage;
+    public float health;
+    public Position roomPosition;
+    public Position playerPosition;
+    public List<Slot> inventory;
+    public Direction playerDirection;
 }

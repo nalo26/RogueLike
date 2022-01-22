@@ -12,11 +12,11 @@ import java.util.Map;
 @AllArgsConstructor
 public class RoomModel {
 
-    List<Mob> mobs;
-    Map<Position, Images> decors;
-    List<Item> items;
-    Position position;
-    boolean visited;
-    String connections;
+    public List<Mob> mobs;
+    public Map<Position, Images> decors;
+    public List<Item> items;
+    public Position position;
+    public boolean visited;
+    public String connections;
 
 }

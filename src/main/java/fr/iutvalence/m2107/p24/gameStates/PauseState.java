@@ -76,7 +76,7 @@ public class PauseState extends GameState implements ImageObserver {
 					break;
 				case 2: // Save
 					this.gsm1.getState().pop();
-					((World) this.gsm1.getState().peek()).save();
+					((World) this.gsm1.getState().peek()).save2();
 					break;
 				case 3: // Help
 					this.gsm1.getState().push(new HelpState(this.gsm1));

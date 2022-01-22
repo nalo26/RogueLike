@@ -7,8 +7,11 @@ import java.util.Map;
 @AllArgsConstructor
 public class SaveModel {
 
+    @JsonProperty("rooms")
     Map<String, RoomModel> rooms;
 
     @JsonProperty("player")
     PlayerModel playerModel;
+
+
 }
